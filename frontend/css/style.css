@@ -1,0 +1,2204 @@
+
+ 
+
+.txtInput{  padding: 3px 3px 3px 3px; border: 1px solid #336699; -webkit-border-radius:5px; -moz-border-radius:5px; color: #333333;}
+#ulpm_tab1 li{ background-color: #990000; color: #FFFFFF;}
+
+.sp_pm_1{ font-weight: bold; font-size: 10px; }
+.sp_pm_2{ font-size: 10px;  }
+
+.c200px{
+    float:left;
+    width: 200px;
+}
+
+#dvpm_infosiaf{
+    border:1px solid #888; padding: 4px 4px 4px 4px; margin:0px 10px 0px 0px;
+    height: 170px; overflow: hidden;
+   
+}
+
+.spt1{ font-size:12px; font-weight: bold;}
+#dvpm_tabheader{ margin:7px 0px 0px 0px; font-size:12px; }
+#dvpm_tabbody {  width:950px; height: 300px; }
+
+.table_layout td{ }
+
+.dvloader_t1{display:none; padding: 4px 4px 4px 4px; margin: 10px 0px 0px 0px; color:#990000; font-weight: bold; text-align: center; background-color: #ffff66; border: 1px solid #333333; }
+
+#ulpm_indicadores{list-style: none; margin:0px 0px 0px 0px; padding:0px 0px 0px 0px;}
+.lipm_elemento{margin:15px 0px 0px 0px; padding: 4px 4px 4px 4px; background-color: #dfecff; border:1px solid #cccccc; }
+.lipm_elemento:Hover{ border: 1px solid #990000; background-color: #FFFFFF;}
+.inputTxt_t1{ font-size:12px; padding: 2px 2px 2px 2px; border:1px solid #336699; -moz-border-radius: 2px; -webkit-border-radius: 2px; }
+
+#wdProgramacionAccion{
+    display: none;
+    width:  850px;
+    height: 620px;
+}
+#wdArticularTareas{
+    display: none;
+    width:  850px;
+    height: 620px;
+   
+}
+
+#wdProgramacionPartida{
+    display: none;
+    width: 900px;
+    height: 600px;
+}
+
+#wdEditarPartida{
+    
+    display: none;
+    width: 850px;
+    height: 350px;
+    
+}
+
+.tr_bgr{ background-color: #990000; color: #FFFFFF; font-weight: bold;}
+
+#ulpm_acciones{list-style: none; margin:0px 0px 0px 0px; padding:0px 0px 0px 0px;}
+ 
+ #ulTareas{list-style: none; margin:0px 0px 0px 0px; padding:0px 0px 0px 0px;}
+ #ulPartidas{list-style: none; margin:0px 0px 0px 0px; padding:0px 0px 0px 0px;}
+ 
+.dvpm_nombre{ background-color: #336699; color:#FFFFFF; padding: 4px 4px 4px 4px; border-bottom: 1px solid #cccccc; font-size:12px;}
+
+.sp_t2{font-size:12px; }
+
+.toolbar_t1{background-color: #990000; color:#FFFFFF; border: 1px solid #333333; padding: 4px 4px 4px 4px;}
+
+#dvpm_accioncontent{ height: 260px; overflow: auto;}
+
+.dvpm_programafis{ margin: 5px 0px 0px 0px; font-size:12px; background-color: #99ccff; padding: 4px 4px 4px 4px; border: 1px solid #cccccc; }
+
+.dvpm_prografin{margin: 5px 0px 5px 0px; padding: 0px 0px 0px 10px; }
+
+.btnpm_progacc{background-color:#2c78c4; color:#FFFFFF; padding: 3px 6px 3px 6px; text-align: center; border: 1px solid #333333; font-size: 12px; }
+.btnpm_saveprofis{background-color:#2c78c4; color:#FFFFFF; padding: 3px 6px 3px 6px; text-align: center; border: 1px solid #333333; font-size: 12px; }
+
+.button_t1{background-color:#990000; color:#FFFFFF; padding: 3px 6px 3px 6px; text-align: center; border: 1px solid #333333; font-size: 12px; }
+
+.dvap_resumenaccion{ padding: 4px 4px 4px 4px; background-color: #ffff66; border: 1px solid #333333; font-size:12px;    }
+
+.dvap_tareacomp{ margin: 6px 0px 0px 0px; padding: 3px 3px 3px 3px; }
+
+.ultoolbar_1{ list-style: none; margin:0px 0px 0px 0px; padding:0px 0px 0px 0px;}
+.ultoolbar_1 li{ display: block; border: 1px solid #333333; cursor: pointer;
+                background-color: #56aeda; float: left; font-size: 10px;  padding: 3px 3px 3px 3px;    }
+ .ultoolbar_1 li:Hover{background-color: #ffff66}
+ 
+ .li_button_saveindicador{}
+ 
+ .dvoc_toolbar{margin: 7px 0px 0px 0px;}
+ 
+ .ul_resumenarbol{margin:0px 0px 0px 0px; padding: 0px 0px 0px 0px; }
+  .ul_resumenarbol li{margin:0px 0px 0px 0px; padding: 0px 0px 0px 0px; }
+  
+  .dvap_addpartida{margin:7px 0px 7px 0px; }
+  .dvacp_des1{font-size: 12px; padding: 4px 4px  4px 4px;}
+  
+  #dvap_conttareas{ height: 330px; width: 770px; border:1px solid #cccccc; margin-top: 10px; overflow: auto; }
+   #dvap_contpartidas{ height: 240px; width: 820px; border:1px solid #cccccc; margin-top: 10px; overflow: auto; }
+  
+  #dvloader_nuevapartida{display:none;}
+  #dvloader_contpartidas{display:none;}
+  
+  .btnap_addpartida{background-color:#2c78c4; color:#FFFFFF; padding: 3px 6px 3px 6px; text-align: center; border: 1px solid #333333; font-size: 12px; }
+  
+  
+  
+.inputTxt_t2{ font-size:8px; padding: 2px 2px 2px 2px; border:1px solid #336699; -moz-border-radius: 2px; -webkit-border-radius: 2px; }
+.selart_objsgen{font-size:12px; padding: 2px 2px 2px 2px; border:1px solid #336699; -moz-border-radius: 2px; -webkit-border-radius: 2px; }
+.selart_objsespe{font-size:12px; padding: 2px 2px 2px 2px; border:1px solid #336699; -moz-border-radius: 2px; -webkit-border-radius: 2px; }
+
+.trpa_nombresmeses{ font-size:10px;}
+
+.trap_progparti_txt{font-size:10px; text-align: center;}
+ 
+.formu_2{background-color: #ffff99; padding: 4px 4px 4px 4px; }
+.tdoc_editaccion:Hover{ cursor:pointer; background-color: #ffff66;}
+.tdoc_delaccion:Hover{ cursor:pointer; background-color: #ffff66;}
+.tdoc_delpartida:Hover{ cursor:pointer; background-color: #ffff66;}
+
+#ulart_metasdepe{list-style: none; margin:0px 0px 0px 0px; padding:0px 0px 0px 0px;}
+
+a:visited{ color: #cccccc; }
+
+
+.lipm_elemento2{margin:15px 0px 0px 0px; padding: 4px 4px 4px 4px; background-color: #dfecff; border:1px solid #cccccc; }
+ 
+.dvnombre2{ background-color: #336699; color:#FFFFFF; font-size: 12px;  }
+
+.spfs12{ font-size: 12px;}
+
+.btnasociar{ background-color:#990000; color:#FFFFFF; padding: 3px 6px 3px 6px; text-align: center; border: 1px solid #333333; font-size: 12px; }
+
+.ulart_meobs li:Hover{ background-color: #ffff66; padding: 2px 2px 2px 2px; cursor: pointer; }
+
+#dvContenedorTareasAdm{ border:1px solid #333333; height: 460px; width: 820px; overflow: auto;}
+
+#lias_admtareas, #lias_vintareas{ background-color: #336699; color: #FFFFFF; font-size:12px; }
+
+.btn99{background-color:#990000; color:#FFFFFF; padding: 3px 6px 3px 6px; text-align: center; border: 1px solid #333333; font-size: 12px; }
+
+
+#wdVerReportes{
+    width: 850px;
+    height: 620px;
+    display:none;
+}
+ 
+
+.ul_reportes {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    
+}
+
+.ul_reportes li{
+    padding: 5px 5px 5px 5px;
+    margin: 8px 0px 0px 0px;
+    width: 700px;
+}
+
+.ul_reportes li:Hover{
+    cursor:  pointer;
+    padding: 5px 5px 5px 10px;
+    border:1px solid #333333;
+    background-color: #ffff66;
+}
+
+
+.dv_group{ background-color:#d6f1ff; font-weight: bold; margin: 20px 0px 0px 0px; border:1px solid #333333; padding: 4px 4px 4px 4px; }
+.dv_tarea{background-color:#fefe89; font-size:12px; border:1px solid #333333; padding: 4px 4px 4px 4px; margin:30px 0px 0px 8px; }
+.dv_accion{ margin: 8px 8px 8px 15px; font-size:12px; border:1px solid #333333; background-color: #f2fbff; padding: 4px 4px 4px 4px;}
+
+
+.dv_totaltarea{
+    
+    padding:4px;
+    background-color: #ffffcc;
+    border:1px solid #333333;
+    width: 200px; 
+    font-size: 12px; 
+    margin: 8px 0px 0px 8px;
+    
+}
+ 
+
+.dv_total_totales{ background-color: #ccff33; margin: 20px 0px 0px 0px; padding: 5px 5px 5px 5px; border: 1px solid #333333; }
+
+.dvBtnEdit{ background-color:#cfe5fa; padding: 2px 2px 2px 2px; border: 1px solid #333333; }
+.dvBtnAddPar{ background-color:#cfe5fa; width:80px; cursor: pointer; margin: 5px 0px 0px 15px; padding: 3px 5px 3px 5px; border: 1px solid #333333; }
+
+
+#dv_user_des{ font-size:12px;}
+
+#menubar{font-size:10px;}
+#main_menu, .mnu_opt{ font-size:12px;}
+
+.menu_option{font-size: 12px;}
+ 
+/*.dv_view_name{ font-size: 14px; font-weight: bold; color:#990000; padding: 6px 0px 0px 10px; margin: 0px 0px 8px 0px;}
+*/
+.dv_view_name{ font-size: 14px; font-weight: bold; color:#990000; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;}
+
+
+
+.ui_button{ font-size: 10px; font-weight: normal;}
+
+
+.input_progra1{ width: 50px; font-size: 10px; font-weight: normal; text-align: center;}
+.input_prograbs{ width: 40px; font-size: 10px; font-weight: normal; text-align: center;}
+.input_small, .txtitempreciou{ width: 40px; font-size: 10px; font-weight: normal; text-align: center;}
+
+.dojobtnfs_10{font-size:10px; font-weight: normal;}
+.dojotxtfs_10{font-size:10px; font-weight: normal;}
+
+.dojobtnfs_12{font-size:12px; font-weight: normal;}
+.dojotxtfs_12{font-size:12px; font-weight: normal;}
+
+.btnpladet_savevar{font-size:12px; font-weight: normal;}
+
+
+.dv_dojoui_t1{ background-color: #99ccff; font-size:12px; padding: 3px 3px 3px 3px;}
+
+.trHead1{ background-color:#bedcfb; font-size:12px; font-weight: bold;}
+.trHead2{ background-color: #bedcfb; font-size:10px; font-weight: bold;}
+
+.tdprofi_nomac{font-size:12px; text-align: justify; }
+.button_fs10{ font-size:11px; }
+
+#dv_ppaa_panelizq, #dv_ppaa_tabizq,#dv_ppaa_tabizq_1,#dv_ppaa_tabizq_2,#dv_ppaa_tabizq_3,#dv_ppaa_tabizq_4{z-index:1;}
+
+.ul_objgeneral{ margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px;  list-style: none; clear: both; }
+.li_objgeneral{ margin: 10px 0px 0px 0px; padding: 3px 3px 3px 3px; border: 1px solid #bedcfb; display: block; font-size:12px;
+                min-width:400px;}
+
+.ul_objespeci{ margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px; list-style: none;}
+.li_objespeci{ margin: 10px 0px 0px 6px; padding: 6px 0px 0px 0px; font-size:12px;}
+.dvobjespeci_nombre{ background-color:#ffff99; padding: 3px 3px 3px 3px; }
+
+.dv_objgen_nombre{ background-color:#e6f2ff; font-weight: bold; padding: 4px 4px 4px 4px; }
+.dv_objta_conttar{ margin:4px 0px 0px 0px; padding: 3px 3px 3px 3px; border: 1px solid #bedcfb; min-height: 40px;  }
+
+.dv_objta_conttar:Hover{ background-color:#f7fafc; border: 1px solid #94ccff;   }
+
+.rela_tarea_obj{  padding:3px 3px 3px 3px; font-size: 12px; margin: 6px 0px 0px 0px;}
+.rela_tarea_obj:Hover{ border: 1px solid #94ccff ; background-color: #e8f4ff; cursor: pointer;  }
+
+.celda1, .tdTotalAct{   border-bottom: 1px solid #c2d1de; border-left: 1px solid #c2d1de;  border-right: 1px solid #c2d1de; }
+ 
+.tdunmed_nombre{font-size: 12px; text-align: center;}
+
+.td_desaccion, .td_desprogra{font-size:12px;}
+
+.seldojo_t1 option{ font-size:6px;}
+.lbl_fs12_b{ font-size:12px; font-weight: bold;}
+.lbl_fs12{ font-size:12px; font-weight: bold;}
+.btnproa_disbiser, .btnproa_disaccs{ font-size: 10px;}
+
+.ulerror_t1 li{margin-top:4px;}
+.dv_message_t1{ margin: 10px 0px 0px 12px; font-size: 12px; color: #c2d1de;}
+
+.dv_label_t1{ font-size:11px; color:#888; text-align: left; margin: 0px 0px 5px 0px;}
+
+.txtproac_actnombre{font-size:12px; }
+
+.tdproac_totalfisi{ font-size:10px; }
+
+#tdproac_ObjGeneral{ font-size:10px;}
+.dvproac_lblcantfi{ font-size:10px;}
+.dvinputprogra{display: none; }
+.dv_act_editnombre{display:none;}
+.dvproac_lblcantfi{ padding: 0px 0px 4px 0px;}
+.dv_act_editnombre{ text-align:  left;}
+
+
+.btnproa_canceledit{ display:none; }
+.btnproa_save{display:none;}
+.dvunmed_sel{display:none;}
+
+#dv_containertable_items{ overflow:auto; height: 400px;}
+
+.tritem_rows{font-size:11px;}
+
+._dv_form_t1{}
+
+#tree_estructura_organica{ font-size:11px;}
+
+#dvaccs_container{ 
+    height: 350px; 
+    overflow: auto;
+    border: 1px solid #c2d1de; 
+}
+
+
+#tableAcciones thead{
+     position: relative;
+}
+
+#tableAcciones thead th{
+     position: relative;
+}
+
+#tableAcciones tbody{
+    overflow: auto;
+    height: 200px;
+}
+
+.btnacc_canceledit{display:none;}
+.btnacc_save{display:none;}
+.txtacc_nombre{display:none;}
+
+#txtservicio{display:none;}
+.tritems_detalle{font-size:11px;}
+.tritems_detalle:Hover{background-color: #ccffcc}
+
+.titletabname{ font-size: 12px;}
+
+.titletabname11{ font-size: 11px;}
+
+.lbl_tipo1{ font-size:12px; }
+
+.rof_funcs_container{}
+.dvForm1{ background-color: #e0edfb; padding: 3px 3px 3px 3px;}
+.dvFormBorder{ border: 1px solid #e0edfb; padding: 3px 3px 3px 3px;}
+
+
+.rof_funcs_container{height:180px; border:1px solid #e0edfb; overflow: auto;}
+.rof_funcs_container ul li{font-size:12px;}
+.dvPadding4{ padding: 4px 4px 4px 4px;}
+
+.dv_subtitle1{color:#990000; font-size: 12px; font-weight: bold;}
+.dv_subtitle2{ font-size:10px; color:#888;}
+
+.ul_funciones_list{ list-style: none;  }
+.ul_funciones_list li{margin:6px 0px 0px 0px;}
+.ul_funciones_list li:Hover{background-color: #ffff99; padding: 1px 1px 1px 1px; cursor: pointer;}
+
+.dv_rof_cap_descripcion{ font-size:10px;}
+.ul_funciones_list_cap{ margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px; }
+
+.ul_funciones_list_cap li{padding:3px 3px 3px 3px; }
+.ul_funciones_list_cap li:Hover{ background-color: #fbffc8; }
+
+.sp_tt1{ font-size:10px; font-weight: bold; }
+.sp_tt2{ font-size:10px;  }
+
+.sp_tt12{ font-size:12px; font-weight: bold; }
+.sp_tt22{ font-size:12px;  }
+
+#dv_data_tarea_taob{ display:none; min-height: 60px;  }
+
+._tablepadding2{ margin:0px 0px 0px 4px;}
+._tablepadding2 tr td{ padding:2px 2px 2px 2px;}
+._tablepadding2_c tr td{ padding:2px 2px 2px 2px; border:1px solid #deeeff;}
+
+.dv_type1{ background-color: #ffff99; width:340px; padding: 2px 2px 2px 2px; margin: 0px 0px 8px 0px; }
+.dv_new_1{ background-color:#ffff99; padding: 4px 4px 4px 4px; font-weight: bold; }
+
+.tree_fs12{ font-size:12px;}
+
+.trprofi_accion:Hover{ }
+
+
+/* NUEVO GRUPO DE CLASES */
+
+.dv-toolbar{  padding:3px 3px 3px 3px; border-bottom: 1px solid #cccccc  }
+
+ /*FORM CLASS PATRON: FONTSIZE BOLD ITALLIC DECORATION */
+ 
+ .dvpadding3{ padding:3px 3px 3px 3px;}
+
+ .lbl11{font-size:11px;}
+ 
+.sp12{font-size:12px;}
+.sp12b{font-size:12px; font-weight:bold;}
+ 
+
+.sp10{font-size:10px;}
+.sp11{font-size:11px;}
+.sppladet_nombreconc{ font-size:11px;  }
+
+.lbl12{font-size:12px;}
+.lbl10{font-size:10px;}
+ 
+
+.formelement-20-12{font-size:12px; width:20px;  }
+.formelement-35-12{font-size:12px; width:35px;  }
+.formelement-50-12{font-size:12px; width:50px;  }
+.formelement-60-12{font-size:12px; width:60px;  }
+.formelement-80-12{font-size:12px; width:80px;  }
+.formelement-100-12{font-size:12px; width:100px;  }
+.formelement-150-12{font-size:12px; width:150px;  }
+.formelement-200-12{font-size:12px; width:200px;  }
+.formelement-250-12{font-size:12px; width:250px;  }
+.formelement-300-12{font-size:12px; width:300px;  }
+
+.formelement-20-11{font-size:11px; width:20px;  }
+.formelement-35-11{font-size:11px; width:35px;  }
+.formelement-50-11{font-size:11px; width:50px;  }
+.formelement-60-11{font-size:11px; width:60px;  }
+.formelement-80-11{font-size:11px; width:80px;  }
+.formelement-100-11{font-size:11px; width:100px;  }
+.formelement-150-11{font-size:11px; width:150px;  }
+.formelement-180-11{font-size:11px; width:180px;  }
+.formelement-200-11{font-size:11px; width:200px;  }
+.formelement-250-11{font-size:11px; width:250px;  }
+.formelement-300-11{font-size:11px; width:300px;  }
+.formelement-350-11{font-size:11px; width:350px;  }
+
+
+.formelement-20-10{font-size:10px; width:20px;     }
+.formelement-35-10{font-size:10px; width:35px;  }
+.formelement-50-10{font-size:10px; width:50px;  }
+.formelement-60-10{font-size:10px; width:60px;  }
+.formelement-80-10{font-size:10px; width:80px;  }
+.formelement-100-10{font-size:10px; width:100px;  }
+.formelement-150-10{font-size:10px; width:150px;  }
+.formelement-200-10{font-size:10px; width:200px;  }
+.formelement-250-10{font-size:10px; width:250px;  }
+.formelement-300-10{font-size:10px; width:300px;  }
+
+
+
+.form-hasedit{border:1px solid #990000;}
+.dv-300auto{ height: 300px; overflow: auto; border:1px solid #e7f1fc; }
+.dv-340auto{ height: 340px; overflow: auto; border:1px solid #e7f1fc;   }
+ .dv-620auto{ height: 620px; overflow: auto; border:1px solid #e7f1fc; }
+  .dv-450auto{ height: 450px; overflow: auto; border:1px solid #e7f1fc; }
+ .dv-580auto{ height: 580px; overflow: auto; border:1px solid #e7f1fc; }
+.row_form:Hover{ background-color:#f2f9ff;  }
+
+.row_form2:Hover{ background-color:#f2f9ff;  }
+.row_form2 td{border: 1px solid #f2f9ff; padding: 1px 1px 1px 1px }
+
+.tr_header_celeste{background-color: #d2e9ff}
+.tr_header_celeste td{ padding: 4px 4px 4px 4px; font-size: 12px; font-weight: bold; text-align: center;   border: 1px solid #e0f0ff; }
+.tr_row_celeste td{
+    border: 1px solid #e0f0ff;
+}
+
+.tr_row_celeste:Hover{background-color: #ffffcc; cursor: pointer;}
+
+#dvinfopers_container{
+    background-color: #dfeefc;
+    border:1px solid #b1d9ff;
+    padding:3px 3px 3px 3px;
+}
+
+#dvinfopers_container table td{
+   padding: 3px 3px 3px 3px;     
+}
+
+.dv_subtoolbar{
+    margin:5px 0px 0px 0px;
+}
+
+.dv_bgceleste{
+    background-color:#def4ff;
+    
+}
+
+.dvblock{ display:block; margin: 2px 0px 2px 0px;   }
+
+.toolbar_form{  
+
+              padding:3px 0px 7px 0px;
+              background-color: #ecf5ff
+}
+
+.dvtabledata{background-color:#FFFFFF; width:99%; height: 99%; border: 1px solid #e0f0ff; }
+
+.table_loader{text-align: center; padding:30px 0px 0px 0px; display: none; }
+.table_data{ font-size:11px; display:none;}
+ 
+ 
+        
+        
+        /* define height and width of scrollable area. Add 16px to width for scrollbar          */
+div.tableContainer {
+	clear: both;
+	border: 1px solid #963;
+	height: 265px;
+	overflow: auto;
+	width: 736px
+}
+
+/* Reset overflow value to hidden for all non-IE browsers. */
+html>body div.tableContainer {
+	overflow: hidden;
+	width: 736px
+}
+
+/* define width of table. IE browsers only                 */
+div.tableContainer table {
+	float: left;
+	width: 720px
+}
+
+/* define width of table. Add 16px to width for scrollbar.           */
+/* All other non-IE browsers.                                        */
+html>body div.tableContainer table {
+	width: 736px
+}
+
+/* set table header to a fixed position. WinIE 6.x only                                       */
+/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+thead.fixedHeader tr {
+	position: relative
+}
+
+/* set THEAD element to have block level attributes. All other non-IE browsers            */
+/* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
+html>body thead.fixedHeader tr {
+	display: block
+}
+
+/* make the TH elements pretty */
+thead.fixedHeader th {
+	background: #C96;
+	border-left: 1px solid #EB8;
+	border-right: 1px solid #B74;
+	border-top: 1px solid #EB8;
+	font-weight: normal;
+	padding: 4px 3px;
+	text-align: left
+}
+
+/* make the A elements pretty. makes for nice clickable headers                
+thead.fixedHeader a, thead.fixedHeader a:link, thead.fixedHeader a:visited {
+	color: #FFF;
+	display: block;
+	text-decoration: none;
+	width: 100%
+}
+
+/* make the A elements pretty. makes for nice clickable headers                 
+/* WARNING: swapping the background on hover may cause problems in WinIE 6.x   
+thead.fixedHeader a:hover {
+	color: #FFF;
+	display: block;
+	text-decoration: underline;
+	width: 100%
+}
+
+/* define the table content to be scrollable                                              */
+/* set TBODY element to have block level attributes. All other non-IE browsers            */
+/* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
+/* induced side effect is that child TDs no longer accept width: auto                     */
+html>body tbody.scrollContent {
+	display: block;
+	height: 242px;
+	overflow: auto;
+	width: 100%
+}
+
+/* make TD elements pretty. Provide alternating classes for striping the table */
+/* http://www.alistapart.com/articles/zebratables/                             */
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td {
+	background: #FFF;
+	border-bottom: none;
+	border-left: none;
+	border-right: 1px solid #CCC;
+	border-top: 1px solid #DDD;
+	padding: 2px 3px 3px 4px
+}
+
+tbody.scrollContent tr.alternateRow td {
+	background: #EEE;
+	border-bottom: none;
+	border-left: none;
+	border-right: 1px solid #CCC;
+	border-top: 1px solid #DDD;
+	padding: 2px 3px 3px 4px
+}
+
+/* define width of TH elements: 1st, 2nd, and 3rd respectively.          */
+/* Add 16px to last TH for scrollbar padding. All other non-IE browsers. */
+/* http://www.w3.org/TR/REC-CSS2/selector.html#adjacent-selectors        
+html>body thead.fixedHeader th {
+	width: 200px
+}
+
+html>body thead.fixedHeader th + th {
+	width: 240px
+}
+
+html>body thead.fixedHeader th + th + th {
+	width: 316px
+}
+
+/* define width of TD elements: 1st, 2nd, and 3rd respectively.          */
+/* All other non-IE browsers.                                            */
+/* http://www.w3.org/TR/REC-CSS2/selector.html#adjacent-selectors      
+html>body tbody.scrollContent td {
+	width: 200px
+}
+
+html>body tbody.scrollContent td + td {
+	width: 240px
+}
+
+html>body tbody.scrollContent td + td + td {
+	width: 300px
+}  */
+        
+
+        
+.dv_form_toolbarcontainer{
+     display: block;
+     overflow: hidden;
+     height: 32px;
+     padding: 0px 0px 4px 0px;
+}
+
+.dv_form_container{
+     display: block;
+     overflow: auto;
+     height: 270px;
+     border: 1px solid #daedff;
+}
+
+.filter_select {
+    font-size: 8px;
+}
+
+
+/*  */
+
+
+.heading {
+        font-weight: bold;
+        padding-bottom: 0.25em;
+}
+
+/*
+#grid, #gridWide { 
+        width: 750px;
+}
+#grid .field-col1 {
+        width: 100px;
+}
+#grid .field-col2 {
+        width: 100px;
+}
+#grid .field-col3 {
+        width: auto;
+}
+#grid .field-col4 {
+        width: 100px;
+}
+#grid .field-col5 {
+        width: 150px;
+}
+
+#gridWide .field-col1,
+#gridWide .field-col2,
+#gridWide .field-col3,
+#gridWide .field-col4,
+#gridWide .field-col5 {
+        width: 200px;
+}
+
+.ui-widget{
+        margin: 10px;
+} */
+
+
+#dvcomision_table  { height: 220px; width: 98%;  font-size:11px;    }
+
+#dvcomision_table .field-col1{ width:40px; text-align: center;}
+#dvcomision_table .field-col2{ width:120px; }
+#dvcomision_table .field-col3{ width:100px;  text-align: center;}
+#dvcomision_table .field-col4{ width:80px;   text-align: center;}
+#dvcomision_table .field-col5{ width:80px;  text-align: center;}
+#dvcomision_table .field-col6{ width:350px; }
+
+
+.dvcomision_table  { height: 220px; width: 98%;  font-size:11px;    }
+
+.dvcomision_table .field-trabajador{ width: 180px;  }
+.dvcomision_table .field-col1{ width:40px; text-align: center;}
+.dvcomision_table .field-col2{ width:120px; }
+.dvcomision_table .field-col3{ width:100px;  text-align: center;}
+.dvcomision_table .field-col4{ width:80px;   text-align: center;}
+.dvcomision_table .field-col5{ width:80px;  text-align: center;}
+.dvcomision_table .field-col6{ width:350px; }
+
+ 
+
+#dvdescanso_table { height: 220px; width: 98%; font-size:11px;    }
+
+#dvdescanso_table .field-col1{ width:40px; text-align: center;}
+#dvdescanso_table .field-col2{ width:120px;}
+#dvdescanso_table .field-col3{ width:100px; text-align: center;}
+#dvdescanso_table .field-col4{ width:100px; text-align: center;}
+#dvdescanso_table .field-col5{  width:50px; text-align: center;}
+#dvdescanso_table .field-col6{  width:50px; text-align: center;}
+#dvdescanso_table .field-col7{ width:290px; }
+
+
+
+#dvlicencia_table { height: 220px; width: 98%; font-size:11px;    }
+
+#dvlicencia_table .field-col1{ width:40px; text-align: center;}
+#dvlicencia_table .field-col2{ width:120px;}
+#dvlicencia_table .field-col3{ width:70px; text-align: center;}
+#dvlicencia_table .field-col4{ width:70px; text-align: center;}
+#dvlicencia_table .field-col5{ width:160px; text-align: center;}
+#dvlicencia_table .field-col6{ width:220px; }
+
+#dvpermiso_table { height: 220px; width: 98%; font-size:11px;    }
+
+#dvpermiso_table .field-col1{ width:40px; text-align:center; }
+#dvpermiso_table .field-col2{ width:120px;   }
+#dvpermiso_table .field-col3{ width:80px;  text-align:center; }
+#dvpermiso_table .field-col4{ width:80px;  text-align:center; }
+#dvpermiso_table .field-col5{ width:220px;    }
+#dvpermiso_table .field-hsalida{ width:80px;  text-align:center; }
+#dvpermiso_table .field-hingreso{ width:80px; text-align:center;   }
+
+.dvpermiso_table { height: 220px; width: 98%; font-size:11px;    }
+
+.dvpermiso_table .field-col1{ width:40px; text-align:center; }
+.dvpermiso_table .field-trabajador{ width: 180px;  }
+.dvpermiso_table .field-col2{ width:120px;   }
+.dvpermiso_table .field-col3{ width:80px;  text-align:center; }
+.dvpermiso_table .field-col4{ width:80px;  text-align:center; }
+.dvpermiso_table .field-col5{ width:220px;   }
+.dvpermiso_table .field-hsalida{ width:80px;  text-align:center; }
+.dvpermiso_table .field-hingreso{ width:80px;  text-align:center;  }
+
+
+#dv_explorarxfechas{
+  height: 270px; width: 98%; font-size:11px; 
+} 
+
+
+#dv_explorarxfechas .field-numeral{
+    width: 40px; text-align: center;
+}
+
+#dv_explorarxfechas .field-trabajador_nombre{
+    width: 180px;  
+}
+
+#dv_explorarxfechas .field-trabajador_dni{
+    width: 80px; text-align: center;
+}
+
+#dv_explorarxfechas .field-trabajador_regimen{
+    width: 140px;  
+}
+
+#dv_explorarxfechas .field-documento{
+    width: 120px;  
+}
+
+#dv_explorarxfechas .field-desde{
+    width: 70px; text-align: center;
+}
+#dv_explorarxfechas .field-hasta{
+    width: 70px; text-align: center;
+}
+
+#dv_explorarxfechas .field-dias{
+    width: 70px; text-align: center;
+}
+
+#dv_explorarxfechas .field-periodo{
+    width: 70px; text-align: center;
+}
+#dv_explorarxfechas .field-total{
+    width: 70px; text-align: center;
+}
+
+#dv_explorarxfechas .field-minutos{
+    width: 70px; text-align: center;
+}
+
+#dv_explorarxfechas .field-justificada{
+    width: 70px; text-align: center;
+}
+
+
+#dvvacaciones_table { height: 220px; width: 98%; font-size:11px;    }
+
+#dvvacaciones_table .field-col1{ width:40px; text-align: center;}
+#dvvacaciones_table .field-col2{ width:120px;}
+#dvvacaciones_table .field-col3{ width:100px; text-align: center;}
+#dvvacaciones_table .field-col4{ width:100px; text-align: center;}
+#dvvacaciones_table .field-col5{ width:200px; text-align: center;}
+ 
+
+
+#dvfaltardanza_table { height: 270px; width: 98%;  font-size:11px;   }
+
+#dvfaltardanza_table .field-col1{ width:30px; text-align:center; }
+#dvfaltardanza_table .field-col2{ width:60px;  text-align:center; }
+#dvfaltardanza_table .field-col3{ width:60px;  text-align:center; }
+#dvfaltardanza_table .field-col4{ width:60px;  text-align:center; }
+#dvfaltardanza_table .field-col5{ width:290px;    }
+
+
+.dvfaltardanza_table { height: 270px; width: 98%;  font-size:11px;   }
+.dvfaltardanza_table .field-trabajador{ width: 180px;  }
+.dvfaltardanza_table .field-col1{ width:30px; text-align:center; }
+.dvfaltardanza_table .field-col2{ width:60px;  text-align:center; }
+.dvfaltardanza_table .field-col3{ width:60px;  text-align:center; }
+.dvfaltardanza_table .field-col4{ width:60px;  text-align:center; }
+.dvfaltardanza_table .field-col5{ width:290px;    }
+
+ 
+
+#dvfaltas_table { height: 270px; width: 98%;  font-size:11px;   }
+
+#dvfaltas_table .field-col1{ width:30px; text-align:center; }
+#dvfaltas_table .field-col2{ width:60px;  text-align:center; }
+#dvfaltas_table .field-col3{ width:60px;  text-align:center; }
+#dvfaltas_table .field-col4{ width:60px;  text-align:center; }
+#dvfaltas_table .field-col5{ width:200px;    }
+#dvfaltas_table .field-col6{ width:200px;    }
+
+
+#dvtardanza_table { height: 270px; width: 98%;  font-size:11px;   }
+#dvtardanza_table .field-trabajador{ width: 180px;  }
+#dvtardanza_table .field-col1{ width:30px; text-align:center; }
+#dvtardanza_table .field-col2{ width:80px;  text-align:center; }
+#dvtardanza_table .field-col3{ width:80px;  text-align:center; }
+#dvtardanza_table .field-col4{ width:220px;   }
+ 
+ 
+
+#dvhistorial_table { height: 270px; font-size:11px;   }
+
+#dvhistorial_table .field-col1{ width:40px; text-align:center; }
+#dvhistorial_table .field-col2{ width:200px;   }
+#dvhistorial_table .field-cargo{ width:120px;   }
+#dvhistorial_table .field-col4{ width:80px;  text-align:center; }
+#dvhistorial_table .field-col5{ width:80px;  text-align:center; }
+#dvhistorial_table .field-col6{ width:80px;  text-align:center; } 
+#dvhistorial_table .field-col7{ width:50px;  text-align:center; } 
+
+
+#dvfamiliar_table { height: 270px; font-size:11px;   }
+
+#dvfamiliar_table .field-col1{ width:40px; align:center; }
+#dvfamiliar_table .field-col2{ width:80px;  align:center; } 
+#dvfamiliar_table .field-col3{ width:220px;  align:center; }
+#dvfamiliar_table .field-col4{ width:80px;  align:center; }
+#dvfamiliar_table .field-col5{ width:80px;  align:center; }
+#dvfamiliar_table .field-col6{ width:80px;  align:center; }
+#dvfamiliar_table .field-col7{ width:80px;  align:center; }
+
+
+#dvacademico_table { height: 270px; font-size:11px;   }
+
+#dvacademico_table .field-col1{ width:40px; text-align:center; }
+#dvacademico_table .field-col2{ width:100px;  text-align:center; } 
+#dvacademico_table .field-col3{ width:220px;   }
+#dvacademico_table .field-col4{ width:200px;   }
+#dvacademico_table .field-col5{ width:80px;  text-align:center; }
+#dvacademico_table .field-col6{ width:80px;  text-align:center; }
+
+
+#dvapersonalregistrado_table { height: 300px; font-size:11px;  width: 960px;    }
+
+#dvapersonalregistrado_table .field-col1{ width:40px; align:center; }
+#dvapersonalregistrado_table .field-col2{ width:80px;  align:center; } 
+#dvapersonalregistrado_table .field-col3{ width:80px;  align:center; } 
+#dvapersonalregistrado_table .field-col4{ width:160px;  align:center; } 
+#dvapersonalregistrado_table .field-col5{ width:70px;  align:center; }
+#dvapersonalregistrado_table .field-col6{ width:120px;  align:center; }
+#dvapersonalregistrado_table .field-col7{ width:180px;  align:center; }
+#dvapersonalregistrado_table .field-col8{ width:140px;  align:center; }
+#dvapersonalregistrado_table .field-col9{ width:80px;  align:center; }
+
+
+#dv_planillaadddetalle_table{ height: 300px; font-size:11px;  width: 920px;    }
+ 
+#dv_planillaadddetalle_table .field-col0{ width:25px; text-align:center; }
+#dv_planillaadddetalle_table .field-col1{ width:40px; text-align:center; }
+#dv_planillaadddetalle_table .field-col2{ width:80px;   } 
+#dv_planillaadddetalle_table .field-col3{ width:80px;   } 
+#dv_planillaadddetalle_table .field-col4{ width:160px;  } 
+#dv_planillaadddetalle_table .field-col5{ width:70px;  text-align:center; }
+#dv_planillaadddetalle_table .field-col6{ width:120px;  text-align:center; }
+#dv_planillaadddetalle_table .field-col7{ width:180px;    }
+#dv_planillaadddetalle_table .field-col8{ width:140px;    }
+#dv_planillaadddetalle_table .field-col9{ width:80px;    }
+#dv_planillaadddetalle_table .field-col10{ width:80px;    }
+
+
+
+
+#dv_asistencia_adddetalle_table{ height: 300px; font-size:11px;  width: 920px;    }
+
+
+#dv_asistencia_adddetalle_table .field-col0{ width:25px; text-align:center; }
+#dv_asistencia_adddetalle_table .field-col1{ width:40px; text-align:center; }
+#dv_asistencia_adddetalle_table .field-col2{ width:80px;   } 
+#dv_asistencia_adddetalle_table .field-col3{ width:80px;   } 
+#dv_asistencia_adddetalle_table .field-col4{ width:160px;  } 
+#dv_asistencia_adddetalle_table .field-col5{ width:70px;  text-align:center; }
+#dv_asistencia_adddetalle_table .field-col6{ width:120px;  text-align:center; }
+#dv_asistencia_adddetalle_table .field-col7{ width:180px;    }
+#dv_asistencia_adddetalle_table .field-col8{ width:140px;    }
+#dv_asistencia_adddetalle_table .field-col9{ width:80px;    }
+
+
+.table_toolbar{ margin: 10px 0px 0px 0px; padding: 0px 15px 0px 0px;  }
+.table_toolbar_left{ margin: 10px 0px 0px 0px; padding: 0px 15px 0px 0px;  }
+
+
+.dv_formu_find{background-color:#f6fbff; border: 1px solid #dfe8f1; -moz-border-radius:5px;}
+
+.dv_formu_find_tt{ padding: 4px 4px 4px 4px;}
+.dv_yellow_resltador{ background-color: #fcffd4; padding: 3px 3px 3px 3px; border: 1px solid #f1f1ed; }
+
+.dv_form_bceleste{ border: 1px solid #dff4ff; padding: 4px 4px 4px 4px;}
+
+.row_static_form:Hover{ background-color: #f2f9ff; }
+
+.dvmb10{margin-bottom: 10px;}
+ 
+
+#table_planillas_preview{ font-size:11px; height:410px; width:98% }
+#table_planillas_preview .field-col1{ width:40px; text-align:center; }
+#table_planillas_preview .field-col2{ width:70px; text-align:center; }
+#table_planillas_preview .field-col3{ width:70px; text-align:center; }
+#table_planillas_preview .field-col4{ width:160px;  }
+#table_planillas_preview .field-col5{ width:160px;   }
+#table_planillas_preview .field-col6{ width:50px; text-align:center; }
+#table_planillas_preview .field-col7{ width:50px; text-align:center; }
+#table_planillas_preview .field-col8{ width:140px; text-align:center; }
+#table_planillas_preview .field-col9{ width:50px; text-align:center; }
+
+
+#dvplaregistro_table{ font-size:11px; height:320px; width:820px; }
+#dvplaregistro_table .field-col0{ width:25px; text-align:center; }
+#dvplaregistro_table .field-col1{ width:40px; text-align:center; }
+#dvplaregistro_table .field-col2{ width:70px; text-align:center; }
+#dvplaregistro_table .field-col3{ width:140px; text-align:center; }
+#dvplaregistro_table .field-col4{ width:160px;  }
+#dvplaregistro_table .field-col5{ width:160px;   }
+#dvplaregistro_table .field-col6{ width:50px; text-align:center; }
+#dvplaregistro_table .field-col7{ width:50px; text-align:center; }
+#dvplaregistro_table .field-col8{ width:70px; text-align:center; }
+#dvplaregistro_table .field-col9{ width:50px; text-align:center; }
+
+
+
+#dv_planilla_boletasindividuales{ font-size:11px; height:320px; width:860px; }
+#dv_planilla_boletasindividuales .field-col0{ width:40px; text-align:center; }
+#dv_planilla_boletasindividuales .field-col1{ width:50px; text-align:center; }
+#dv_planilla_boletasindividuales .field-col2{ width:60px; }
+#dv_planilla_boletasindividuales .field-col3{ width:40px; }
+#dv_planilla_boletasindividuales .field-col4{ width:80px;   }
+#dv_planilla_boletasindividuales .field-col5{ width:80px;   }
+#dv_planilla_boletasindividuales .field-col6{ width:100px; text-align:center; }
+#dv_planilla_boletasindividuales .field-col7{ width:150px;   }
+#dv_planilla_boletasindividuales .field-col8{ width:150px;   }
+#dv_planilla_boletasindividuales .field-col9{ width:60px; text-align:center; }
+#dv_planilla_boletasindividuales .field-col10{ width:60px; text-align:center; }
+#dv_planilla_boletasindividuales .field-col11{ width:60px; text-align:center; }
+#dv_planilla_boletasindividuales .field-col12{ width:60px; text-align:center; }
+
+
+#dvdetalle_planilla{ font-size:11px; height:300px; width:610px; }
+#dvdetalle_planilla .field-col1{ width:40px; text-align:center; }
+/*#dvdetalle_planilla .field-col2{ width:80px;   } */
+#dvdetalle_planilla .field-col2{ width:60px;   }
+#dvdetalle_planilla .field-col3{ width:100px;   }
+#dvdetalle_planilla .field-col4{ width:100px;   }
+#dvdetalle_planilla .field-col5{ width:120px;   }
+#dvdetalle_planilla .field-col6{ width:130px;  }
+#dvdetalle_planilla .field-col7{ width:60px; text-align:center;  }
+#dvdetalle_planilla .field-col8{ width:40px; text-align:center;  }
+ 
+
+
+#dvdetalle_planilla_procesada{ font-size:11px; height:300px; width:610px; }
+#dvdetalle_planilla_procesada .field-col0{ width:30px; text-align:center; }
+#dvdetalle_planilla_procesada .field-col1{ width:40px; text-align:center; }
+#dvdetalle_planilla_procesada .field-col2{ width:60px;   }
+#dvdetalle_planilla_procesada .field-col3{ width:220px;   }
+#dvdetalle_planilla_procesada .field-col4{ width:80px;   }
+#dvdetalle_planilla_procesada .field-col5{ width:60px; text-align: center;  }
+#dvdetalle_planilla_procesada .field-col6{ width:60px; text-align: center;  }
+#dvdetalle_planilla_procesada .field-col7{ width:60px; text-align: center; }
+#dvdetalle_planilla_procesada .field-col8{ width:60px; text-align: center; }
+#dvdetalle_planilla_procesada .field-col9{ width:60px; text-align: center; }
+#dvdetalle_planilla_procesada .field-col10{ width:60px; text-align: center; }
+#dvdetalle_planilla_procesada .field-col11{ width:40px; text-align: center; }
+
+
+
+
+ 
+
+#dv_importacion_otraempleados{ font-size:11px; height:210px; width:440px; }
+#dv_importacion_otraempleados .field-col1{ width:40px; text-align:center; }
+/*#dv_importacion_otraempleados .field-col2{ width:80px;   } */
+#dv_importacion_otraempleados .field-col2{ width:60px;   }
+#dv_importacion_otraempleados .field-col3{ width:120px;   }
+#dv_importacion_otraempleados .field-col4{ width:120px;   }
+#dv_importacion_otraempleados .field-col5{ width:120px;   } 
+
+#table_asistencias_preview{ font-size:11px; height:99%; width:99% }  
+#table_asistencias_preview .field-col1{ width:40px; text-align:center; }
+#table_asistencias_preview .field-col2{ width:50px; text-align:center; }
+#table_asistencias_preview .field-col3{ width:50px; text-align:center; }
+#table_asistencias_preview .field-col4{ width:60px; text-align:center; }
+#table_asistencias_preview .field-col5{ width:200px;  }
+#table_asistencias_preview .field-col6{ width:60px;  text-align:center;   }
+#table_asistencias_preview .field-col7{ width:60px;  text-align:center;   }
+#table_asistencias_preview .field-col8{ width:40px;  text-align:center;   }
+
+
+ 
+
+#dvasisregistro_table{ font-size:11px; height:300px; width:99% }  
+#dvasisregistro_table .field-col1{ width:40px; text-align:center; }
+#dvasisregistro_table .field-col2{ width:50px; text-align:center; }
+#dvasisregistro_table .field-col3{ width:80px; text-align:center; }
+#dvasisregistro_table .field-col4{ width:100px; text-align:center; }
+#dvasisregistro_table .field-col5{ width:200px;  }
+#dvasisregistro_table .field-col6{ width:200px;  }
+#dvasisregistro_table .field-col7{ width:80px;  text-align:center;   }
+#dvasisregistro_table .field-col8{ width:80px;  text-align:center;   }
+#dvasisregistro_table .field-col9{ width:40px;  text-align:center;   }
+#dvasisregistro_table .field-col10{ width:140px;      }
+
+#dvasisregistroimportacion_table{ font-size:11px; height:320px; width:99% }  
+#dvasisregistroimportacion_table .field-col1{ width:40px; text-align:center; }
+#dvasisregistroimportacion_table .field-col2{ width:50px; text-align:center; }
+#dvasisregistroimportacion_table .field-col3{ width:80px; text-align:center; }
+#dvasisregistroimportacion_table .field-col4{ width:100px; text-align:center; }
+#dvasisregistroimportacion_table .field-col5{ width:200px;  }
+#dvasisregistroimportacion_table .field-col6{ width:200px;  }
+#dvasisregistroimportacion_table .field-col7{ width:80px;  text-align:center;   }
+#dvasisregistroimportacion_table .field-col8{ width:80px;  text-align:center;   }
+#dvasisregistroimportacion_table .field-col9{ width:40px;  text-align:center;   }
+#dvasisregistroimportacion_table .field-col10{ width:140px;      }
+
+#dvasisimportacion_trabajadores{ font-size:11px; height:250px; width:99%; }
+#dvasisimportacion_trabajadores .field-col1{ width:30px; text-align:center; }
+#dvasisimportacion_trabajadores .field-col2{ width:200px; }
+#dvasisimportacion_trabajadores .field-col3{ width:80px;  text-align:center;  }
+#dvasisimportacion_trabajadores .field-col4{ width:100px;  text-align:center;  }
+
+ 
+
+#dv_reportes_filtroplanilla{ font-size:11px; height:250px; width:100%; }
+#dv_reportes_filtroplanilla .field-col0{ width:25px; text-align:center; }
+#dv_reportes_filtroplanilla .field-col1{ width:40px; text-align:center; }
+#dv_reportes_filtroplanilla .field-col2{ width:70px; text-align:center; }
+#dv_reportes_filtroplanilla .field-col3{ width:50px; text-align:center; }
+#dv_reportes_filtroplanilla .field-col4{ width:70px; text-align:center;  }
+#dv_reportes_filtroplanilla .field-col5{ width:120px;  text-align:center;  }
+#dv_reportes_filtroplanilla .field-col6{ width:180px;   }
+#dv_reportes_filtroplanilla .field-col7{ width:180px;   }
+#dv_reportes_filtroplanilla .field-col8{ width:90px; text-align:center; }
+#dv_reportes_filtroplanilla .field-col9{ width:50px; text-align:center; }
+
+
+ 
+
+#table_contratos_view{ font-size:11px; height:250px; width:99% }  
+#table_contratos_view .field-col0{ width:25px; text-align:center; }
+#table_contratos_view .field-col1{ width:40px; text-align:center; }
+#table_contratos_view .field-col2{ width:200px;   }
+#table_contratos_view .field-col3{ width:60px; text-align: center;  }
+#table_contratos_view .field-col4{ width:60px; text-align: center;  }
+#table_contratos_view .field-col5{ width:60px; text-align: center;  }
+#table_contratos_view .field-col6{ width:50px; text-align: center;  }
+#table_contratos_view .field-col7{ width:100px;      }
+#table_contratos_view .field-col8{ width:50px;   text-align: center;    }
+#table_contratos_view .field-col9{ width:80px;      }
+#table_contratos_view .field-col10{ width:80px;      }
+#table_contratos_view .field-col11{ width:40px; text-align: center;     }
+#table_contratos_view .field-col12{ width:40px;  text-align: center;text-align: center;    } 
+
+
+
+.dv_containerinto_window{
+    border:1px solid #e7efff;
+    padding: 4px 4px 4px 4px;
+}
+
+#viewplanilla_container{
+     height:  500px;
+     width: 100%;
+          
+}
+
+#viewasistencia_container{
+    height:  500px;
+     width: 100%;
+}
+
+#dv_view_name{
+     height:  500px;
+     width: 100%;
+          
+}
+
+
+
+
+.concepto_x{ display: inline; }
+.concepto_operador{display: inline; font-size:12px; width:35px; }
+
+.dv_subtitle3{ font-size: 12px; font-weight: bold; color:#990000; padding: 0px 0px 0px 3px; margin: 0px 0px 5px 0px;}
+
+
+.cierre_parentesis{font-size: 14px; color:#00CCFF; font-weight: bold;}
+.cierre_parentesis:Hover{ color: #4a91d7; }
+.abre_parentesis{font-size: 14px; color:#00CCFF; font-weight: bold;}
+.abre_parentesis:Hover{ color: #4a91d7; }
+
+.cierre_parentesis_select{font-size: 14px; color:#990000; font-weight: bold;}
+.cierre_parentesis_select:Hover{}
+
+.operator_parentesis{ font-size: 14px; color:#daebfe; font-weight: bold; width:12px;  }
+.operator_parentesis:Hover{ color: #4a91d7; font-size: 18px; }
+.operator_parentesis_select{font-size: 18px; color:#990000; font-weight: bold; width:12px; }
+.operator_parentesis_select:Hover{}
+
+.line_parte{ display:inline;  }
+.concepto_line{ }
+
+ .operator_comp{ display: inline; margin: 0px 2px 0px 2px; }
+
+
+
+
+.dv_subtitle4{ color: #990000; text-align: left; font-size: 12px; font-weight: bold;  margin: 0px 5px 5px 5px; }
+
+.dv_label_operation_fconcepto{ text-align: left; font-weight: bold; font-size: 11px;  margin: 5px 5px 5px 5px; color: #838383;   }
+
+#dv_operator_factory { border:1px solid #dbedfe; padding: 5px 5px 5px 5px; margin: 5px 5px 5px 5px; }
+
+
+#dvtable_conceptosview{
+    width: 780px;
+    font-size:11px;
+    height: 220px;
+}
+#dvtable_conceptosview .field-col1{ width:40px; text-align:center; }
+#dvtable_conceptosview .field-col2{ width:220px;   }
+#dvtable_conceptosview .field-col3{ width:80px;   }
+#dvtable_conceptosview .field-col4{ width:120px;   }
+#dvtable_conceptosview .field-col5{ width:120px;  }
+#dvtable_conceptosview .field-col6{ width:200px;  }
+
+
+
+#dvtable_variablesview{
+    width:     695px;
+    font-size: 11px;
+    height:    220px;
+}
+#dvtable_variablesview .field-col1{ width:40px; text-align:center; }
+#dvtable_variablesview .field-col2{ width:200px; }
+#dvtable_variablesview .field-col3{ width:160px; }
+#dvtable_variablesview .field-col4{ width:120px; text-align: center;  }
+#dvtable_variablesview .field-col5{ width:70px; text-align: center;  }
+#dvtable_variablesview .field-col6{ width:70px; text-align: center;  }
+
+
+
+
+#dv_importacion_tareo{
+    width:     450px;
+    height:    320px;
+    font-size: 11px;
+}
+#dv_importacion_tareo .field-col1{ width:30px; text-align:center; }
+#dv_importacion_tareo .field-col2{ width:60px; text-align:center;  }
+#dv_importacion_tareo .field-col3{ width:200px;                    }
+#dv_importacion_tareo .field-col4{ width:70px; text-align: center; }
+#dv_importacion_tareo .field-col5{ width:70px; text-align: center;  } 
+  
+
+
+#table_trabajadores_tareo{
+    width:     430px;
+    font-size: 11px;
+    height:    250px;
+}
+#table_trabajadores_tareo .field-col1{ width:30px; text-align:center; }
+#table_trabajadores_tareo .field-col2{ width:60px; text-align: center;}
+#table_trabajadores_tareo .field-col3{ width:240px;  }
+#table_trabajadores_tareo .field-col4{ width:70px;    }
+ 
+
+
+
+#dv_geusu_usuarios{
+    width:     530px;
+    font-size: 11px;
+    height:    250px;
+}
+#dv_geusu_usuarios .field-col1{ width:30px; text-align:center; }
+#dv_geusu_usuarios .field-col2{ width:200px; }
+#dv_geusu_usuarios .field-col3{ width:80px;  text-align:center; }
+#dv_geusu_usuarios .field-col4{ width:100px;   text-align:center;   }
+#dv_geusu_usuarios .field-col5{ width:60px;   text-align:center;   }
+
+
+
+
+#dv_gestionar_metas{
+    width:     630px;
+    font-size: 11px;
+    height:    250px;
+}
+#dv_gestionar_metas .field-col1{ width:30px; text-align:center; }
+#dv_gestionar_metas .field-col2{ width:40px; text-align: center; }
+#dv_gestionar_metas .field-col3{ width:80px;  text-align:center; }
+#dv_gestionar_metas .field-col4{ width:200px;     }
+#dv_gestionar_metas .field-col5{ width:60px;   text-align: center;  }
+#dv_gestionar_metas .field-col6{ width:80px;   text-align: center;   }
+#dv_gestionar_metas .field-col6{ width:80px;   text-align: center;   }
+
+
+
+
+#table_asistencias_resumenimportacion{
+    width:     588px;
+    font-size: 11px;
+    height:    240px;
+}
+
+#table_asistencias_resumenimportacion .dgrid-column-set-0 { 
+  width: 470px;
+}
+
+#table_asistencias_resumenimportacion .field-col0{ width:20px; text-align:center; }
+#table_asistencias_resumenimportacion .field-col1{ width:40px; text-align:center; }
+#table_asistencias_resumenimportacion .field-col2{ width:200px;  }
+#table_asistencias_resumenimportacion .field-col3{ width:80px;  text-align:center; }
+#table_asistencias_resumenimportacion .field-col4{ width:120px;  }
+
+#table_asistencias_resumenimportacion .field-col5{ width:30px;   text-align: center;  }
+#table_asistencias_resumenimportacion .field-col6{ width:30px;   text-align: center;  }
+#table_asistencias_resumenimportacion .field-col7{ width:30px;   text-align: center;  }
+#table_asistencias_resumenimportacion .field-col8{ width:30px;   text-align: center;  }
+#table_asistencias_resumenimportacion .field-col9{ width:30px;   text-align: center;  }
+#table_asistencias_resumenimportacion .field-col10{ width:30px;   text-align: center;  }
+#table_asistencias_resumenimportacion .field-col11{ width:30px;   text-align: center;  }
+#table_asistencias_resumenimportacion .field-col12{ width:30px;   text-align: center;  }
+#table_asistencias_resumenimportacion .field-col13{ width:30px;   text-align: center;  }
+#table_asistencias_resumenimportacion .field-col14{ width:30px;   text-align: center;  } 
+
+
+#asistencias_table_hojaresumen{
+    width:     800px;
+    font-size: 11px;
+    height:    230px;
+}
+
+#asistencias_table_hojaresumen .dgrid-column-set-0 { 
+  width: 470px;
+}
+
+#asistencias_table_hojaresumen .field-col0{ width:20px; text-align:center; }
+#asistencias_table_hojaresumen .field-col1{ width:40px; text-align:center; }
+#asistencias_table_hojaresumen .field-col2{ width:220px;  }
+#asistencias_table_hojaresumen .field-col3{ width:60px;  text-align:center; }
+#asistencias_table_hojaresumen .field-col4{ width:120px;  }
+
+#asistencias_table_hojaresumen .field-col5{ width:45px;   text-align: center;  }
+#asistencias_table_hojaresumen .field-col6{ width:45px;   text-align: center;  }
+#asistencias_table_hojaresumen .field-col7{ width:45px;   text-align: center;  }
+#asistencias_table_hojaresumen .field-col8{ width:45px;   text-align: center;  }
+#asistencias_table_hojaresumen .field-col9{ width:45px;   text-align: center;  }
+#asistencias_table_hojaresumen .field-col10{ width:45px;   text-align: center;  }
+#asistencias_table_hojaresumen .field-col11{ width:45px;   text-align: center;  }
+#asistencias_table_hojaresumen .field-col12{ width:45px;   text-align: center;  }
+#asistencias_table_hojaresumen .field-col13{ width:45px;   text-align: center;  }
+#asistencias_table_hojaresumen .field-col14{ width:45px;   text-align: center;  }
+#asistencias_table_hojaresumen .field-col15{ width:45px;   text-align: center;  }
+#asistencias_table_hojaresumen .field-col16{ width:45px;   text-align: center;  }
+#asistencias_table_hojaresumen .field-col17{ width:45px;   text-align: center;  }  
+
+
+
+.dv_busqueda_personalizada{
+    
+    border: 1px solid #99ccff; padding: 4px 4px 4px 4px;
+    background-color: #deeeff; /*#dff4ff */
+    margin: 0px 0px 10px 0px; 
+}
+
+
+
+.dv_red_alert{
+    
+    border: 1px solid #FF8080; padding: 4px 4px 4px 4px;
+    background-color: #FFCCCC; /*#dff4ff */
+    margin: 0px 0px 10px 0px; 
+}
+
+
+.dv_busqueda_personalizada_pa2{ 
+    
+    border: 1px solid #99ccff; padding: 2px 2px 2px 2px;
+    background-color: #deeeff; /*#dff4ff */
+    margin: 0px 0px 10px 0px; 
+}
+
+.dv_green_mensaje{ 
+    
+    border: 1px solid #00CC33; padding: 2px 2px 2px 2px;
+    background-color: #C1FFC1;
+    margin: 0px 0px 10px 0px; 
+}
+
+.dv_celeste_mensaje{ 
+    
+    border: 1px solid #0080FF; padding: 2px 2px 2px 2px;
+    background-color: #91C8FF;
+    margin: 0px 0px 10px 0px; 
+}
+
+
+.dv_celeste_padding4{
+    
+    border: 1px solid #99ccff;
+    padding: 4px 4px 4px 4px;
+    background-color: #deeeff; /*#dff4ff */
+    margin: 0px 0px 6px 5px; 
+}
+
+.dv_celeste_padding2{
+    
+    border: 1px solid #99ccff;
+    padding: 2px 2px 2px 2px;
+    background-color: #deeeff; /*#dff4ff */
+    margin: 0px 0px 6px 5px; 
+}
+
+.dv_sub_toolbar{
+    
+     margin: 6px 0px 0px 0px;
+    
+}
+
+
+.sp11b{ font-size:11px; font-weight: bold;}
+
+.botonera_top{margin: 3px 0px 4px 4px;}
+ 
+
+.lbl_submensaje{ font-size: 9px; color: #838383 }
+
+.dv_red_subtitle{ font-weight: bold; font-size: 11px; color: #990000; padding: 3px 0px 0px 3px; display:block;}
+
+
+.dv_cargando{ padding: 3px 3px 3px 3px; font-size: 11px; font-weight: bold;}
+
+.mini_button_1{ cursor: pointer;}
+
+.txt_valordetalle_var{ font-size:11px; width:50px }
+.txtpladet_vari{font-size:11px; width:50px }
+
+.dv_new_resumen{ font-size: 11px; padding: 4px 4px 4px 4px;}
+
+
+.pec_operador{ font-weight: bold; font-size: 12px; }
+.pec_operador:Hover{ background-color: #ffff99; padding: 2px 2px 2px 2px; cursor: pointer; }
+
+.pec_operando{ font-size: 12px; }
+.pec_operando:Hover{ background-color: #d7ebff; padding: 2px 2px 2px 2px; cursor: pointer; }
+
+
+#dvtablepla_resumen_ingresos{ 
+     font-size:11px;
+     width:99%;
+     height: 98%;
+}
+
+#dvtablepla_resumen_ingresos .field-col1{ width:10%;  text-align:center; } 
+#dvtablepla_resumen_ingresos .field-col2{ width:38%;   } 
+#dvtablepla_resumen_ingresos .field-col3{ width:38%;    } 
+#dvtablepla_resumen_ingresos .field-col4{ width:14%;  text-align:center;  }
+ 
+
+#dvtablepla_resumen_descuentos{ 
+     font-size:11px;
+     width:99%;
+     height: 98%;
+}
+
+#dvtablepla_resumen_descuentos .field-col1{ width:10%;  text-align:center; } 
+#dvtablepla_resumen_descuentos .field-col2{ width:38%;   } 
+#dvtablepla_resumen_descuentos .field-col3{ width:38%;    } 
+#dvtablepla_resumen_descuentos .field-col4{ width:14%;  text-align:center;  }
+
+
+#dvtablepla_resumen_aportaciones{ 
+     font-size:11px;
+     width:99%;
+     height: 98%;
+}
+
+#dvtablepla_resumen_aportaciones .field-col1{ width:10%;  text-align:center; } 
+#dvtablepla_resumen_aportaciones .field-col2{ width:38%;   } 
+#dvtablepla_resumen_aportaciones .field-col3{ width:38%;    } 
+#dvtablepla_resumen_aportaciones .field-col4{ width:14%;  text-align:center;  }
+
+
+
+#dvtablepla_resumen_xclasificador{ 
+     font-size:11px;
+     width:99%;
+     height: 98%;
+}
+
+#dvtablepla_resumen_xclasificador .field-col1{ width:10%;  text-align:center; } 
+#dvtablepla_resumen_xclasificador .field-col2{ width:74%;   } 
+#dvtablepla_resumen_xclasificador .field-col4{ width:18%;  text-align:center;  }
+
+
+
+
+
+#dvtable_afectacion_planilla{
+      font-size:11px;
+     width : 790px;
+     height: 320px;
+}
+
+#dvtable_afectacion_planilla .field-col1{ width:30px;  text-align:center; } 
+#dvtable_afectacion_planilla .field-col2{ width:200px;   } 
+#dvtable_afectacion_planilla .field-col3{ width:160px;   } 
+#dvtable_afectacion_planilla .field-col4{ width:160px;   }
+#dvtable_afectacion_planilla .field-col5{ width:70px; text-align:center;  } 
+#dvtable_afectacion_planilla .field-col6{ width:70px; text-align:center;  } 
+#dvtable_afectacion_planilla .field-col7{ width:70px; text-align:center;    } 
+#dvtable_afectacion_planilla .field-col8{ width:60px;    }
+ 
+
+
+.dv_cr_1 label{ font-size:11px; }
+.dv_cr_1 label:Hover{ color: #336699;}
+
+
+#dv_planillaempleado_addconcepto{
+     font-size:11px;
+     width : 680px;
+     height: 250px;
+}
+
+#dv_planillaempleado_addconcepto .field-col1{ width:40px; text-align:center; }
+#dv_planillaempleado_addconcepto .field-col2{ width:220px;   }
+#dv_planillaempleado_addconcepto .field-col3{ width:80px;   }
+#dv_planillaempleado_addconcepto .field-col4{ width:120px;   }
+#dv_planillaempleado_addconcepto .field-col5{ width:120px;  }
+#dv_planillaempleado_addconcepto .field-col6{ width:200px;  }
+
+
+
+#dvtable_recon_trabajadores{
+     font-size:11px;
+     width : 650px;
+     height: 99%;
+}
+#dvtable_recon_trabajadores .field-col1{ width:40px; text-align:center; }
+#dvtable_recon_trabajadores .field-col2{ width:130px;  }
+#dvtable_recon_trabajadores .field-col3{ width:70px;   }
+#dvtable_recon_trabajadores .field-col4{ width:100px;   }
+#dvtable_recon_trabajadores .field-col5{ width:100px;  }
+#dvtable_recon_trabajadores .field-col6{ width:100px;   }
+#dvtable_recon_trabajadores .field-col7{ width:70px;   }
+ 
+ 
+
+
+#dv_importacion_plapreview{ font-size:11px; height:320px; width:99%; }
+#dv_importacion_plapreview .field-col1{ width:40px; text-align:center; }
+#dv_importacion_plapreview .field-col2{ width:70px; text-align:center; }
+#dv_importacion_plapreview .field-col3{ width:70px; text-align:center; }
+#dv_importacion_plapreview .field-col4{ width:160px;  }
+#dv_importacion_plapreview .field-col5{ width:160px;   }
+#dv_importacion_plapreview .field-col6{ width:50px; text-align:center; }
+#dv_importacion_plapreview .field-col7{ width:50px; text-align:center; }
+#dv_importacion_plapreview .field-col8{ width:140px; text-align:center; }
+#dv_importacion_plapreview .field-col9{ width:50px; text-align:center; }
+
+ 
+
+#dv_importacion_empleados{ width:99%; height:320px; font-size:11px; }
+#dv_importacion_empleados .field-col1{ width:40px; text-align:center; }
+#dv_importacion_empleados .field-col2{ width:70px;  text-align:center;  }
+#dv_importacion_empleados .field-col3{ width:70px; text-align:center;   }
+#dv_importacion_empleados .field-col4{ width:110px;   }
+#dv_importacion_empleados .field-col5{ width:110px;   }
+#dv_importacion_empleados .field-col6{ width:110px;  }
+#dv_importacion_empleados .field-col7{ width:110px;     }
+
+
+
+#dvtgd_trabajadores { height: 350px; font-size:11px;  width: 100%;    }
+
+#dvtgd_trabajadores .field-col1{ width:40px; text-align:center; }
+#dvtgd_trabajadores .field-col2{ width:80px;   } 
+#dvtgd_trabajadores .field-col3{ width:80px;   } 
+#dvtgd_trabajadores .field-col4{ width:160px;   } 
+#dvtgd_trabajadores .field-col5{ width:70px;  text-align:center; }
+#dvtgd_trabajadores .field-col6{ width:120px;    }
+#dvtgd_trabajadores .field-col7{ width:180px;    }
+#dvtgd_trabajadores .field-col8{ width:140px;  text-align:center; }
+#dvtgd_trabajadores .field-col9{ width:80px;  text-align:center; }
+
+
+
+
+
+#dv_importacion_hojaspreview { height: 280px; font-size:11px;  width: 355px;    }
+
+#dv_importacion_hojaspreview .field-col0{ width:30px; text-align:center; }
+#dv_importacion_hojaspreview .field-col1{ width:40px; text-align:center; }
+#dv_importacion_hojaspreview .field-col2{ width:60px;  text-align:center; } 
+#dv_importacion_hojaspreview .field-col3{ width:80px;  text-align:center; } 
+#dv_importacion_hojaspreview .field-col4{ width:80px;  text-align:center; } 
+#dv_importacion_hojaspreview .field-col5{ width:40px;  text-align:center; } 
+#dv_importacion_hojaspreview .field-col6{ width:70px;  text-align:center; }
+#dv_importacion_hojaspreview .field-info_import{ width:70px;  text-align:center; }
+ 
+.lbl10{
+  font-size: 10px;
+}
+
+.lbl11b{
+    font-size  : 11px;
+    font-weight: bold;
+
+}
+
+
+.spVariable_personalizar{
+     font-size: 11px;
+}
+
+
+ 
+.calendario_notrabaja{}
+.calendario_notrabaja{}
+.calendario_notrabaja{}
+.calendario_notrabaja{}
+
+
+
+
+
+
+
+
+
+#table_asistencia_calendario, #table_asistencia_hoja_resumen{
+  font-size: 11px;
+
+}
+
+#table_asistencia_calendario td, #table_asistencia_hoja_resumen td{
+   padding: 2px 2px 2px 2px;
+   border: 1px solid #99ccff;
+    
+
+}
+
+#table_asistencia_calendario .td_fecha, #table_asistencia_hoja_resumen .td_fecha{
+   padding: 0px 2px 0px 2px  !important;
+   border: 1px solid #99ccff !important; 
+   text-align: center;
+   min-width: 50px !important;
+   cursor: pointer; 
+
+}
+
+#table_asistencia_calendario .td_numeracion, #table_asistencia_hoja_resumen .td_numeracion{
+    width:35px;
+    text-align: center;
+ } 
+
+ #table_asistencia_calendario .td_nombre_trabajador, #table_asistencia_hoja_resumen .td_nombre_trabajador{
+    width:400px; 
+ } 
+ 
+  
+ #table_asistencia_calendario  tr:Hover, #table_asistencia_hoja_resumen tr:Hover{
+      background-color:#FFFED9 !important;
+  } 
+ 
+
+ #table_asistencia_calendario .tr_header td, #table_asistencia_hoja_resumen .tr_header td{
+  font-weight: bold; 
+  text-align:center;
+    border: 1px solid #99ccff; 
+    background-color: #deeeff; /*#dff4ff */
+ 
+ }
+
+
+ #dvcontainer_calendar{
+
+    width:100%;
+    height: 100%;
+    overflow:  auto;  
+ }
+
+.dvcontainer_calendar{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+/* TIPOS DE CASILLAS */
+
+  #table_asistencia_calendario .dv_nocontar, #table_asistencia_hoja_resumen .dv_nocontar{
+      background-color:#DDDDDD ;
+      /*
+      display: block;
+      width: 100%;
+      height: 100%;*/
+      padding: 2px 2px 2px 2px;
+
+  }
+
+
+
+  .td_nombre_trabajador :Hover{
+        
+  }
+
+
+  .info_sisgedo{ font-size: 11px;}
+
+  .spquitardoc{color: "#336699"; text-decoration: none;}
+
+
+  .spdetcal_delete, .spdetcal_cambiarcategoria{ cursor: pointer; }
+ 
+  .spdetcal_delete:Hover, .spdetcal_cambiarcategoria:Hover{
+     color:#336699; 
+  }
+
+
+.table_reporter{
+
+   font-size: 11px;
+}
+
+
+.table_reporter td{
+
+     border: 1px solid #99ccff;  !important;
+     padding: 3px 3px 3px 3px;
+}
+
+.dv_form_1{
+   border: 1px solid #D7EAFF;
+   padding: 2px 2px 2px 2px;
+   height: 300px; 
+   overflow: auto;;
+}
+
+
+.ul_csdet{
+    list-style: none;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.ul_csdet li, .ul_csdet li:Hover{
+
+   font-size: 11px;
+   text-align: center; 
+   display: blocK;
+   padding: 2px 2px 2px 2px; 
+   border : 1px solid #99ccff; 
+  
+   float: left;
+   min-width: 60px;
+
+}
+
+.ul_csdet li:Hover{
+    background-color: #9DC4E3; 
+    cursor: pointer;
+}
+
+
+
+
+#spdet_quitartipocs{
+     font-size: 11px;
+     color: #333333;
+     display: block;
+     cursor: pointer;
+     border: 1px solid  #111111;
+     padding: 3px 3px 3px 3px;
+     color:#FFFFFF;
+     background-color: #8A8A8A;
+}
+
+
+#spdet_quitartipocs:Hover{
+    background-color: #333333;
+}
+
+
+
+.dv_subtitlered{
+
+    font-size: 11px; 
+    font-weight: bold;
+    color :#990000;
+    text-align: center;
+    margin: 0px 0px 3px 2px;
+}
+
+
+.td_conceptoempleado_retencion{cursor: pointer; }
+
+.cursor_pointer{ cursor: pointer;}
+
+
+
+.subtitle_red{
+   font-size:11px;
+   color: #990000;
+   font-weight: bold;
+   padding: 2px 2px 2px 6px;
+}
+
+
+#spleyenda{
+  cursor:  pointer;
+}
+
+
+.existe_preview{ 
+ 
+}
+.no_existe_preview{
+  color: #990000;
+ 
+}
+
+.dv_btncontent_afp{
+  display: inline;
+}
+
+
+#ptrabajadores_opnotice{
+   float: right;
+   font-size: 11px;
+   padding-left: 10px;
+}
+
+
+
+
+
+.dv_label_operation_fconcepto{ text-align: left; font-weight: bold; font-size: 11px;  margin: 5px 5px 5px 5px; color: #838383;   }
+
+.dv_xls_errores{
+   margin:10px 0px 0px 0px; 
+   border:1px solid #D8DFE2; 
+   width:600px; 
+   height:300px; 
+   padding: 5px 5px 5px 5px; 
+   overflow: auto;
+}
+
+.ul_xls_error{ 
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
+   list-style: circle;
+}
+
+.ul_xls_error li{ 
+  font-size: 13px;
+  display: block;  
+  padding: 3px 3px 3px 3px;
+} 
+
+.ul_xls_error li:Hover{
+   background-color: #f2f9ff; 
+}
+
+
+#dv_planillaprocesada_obs
+{
+   border: 1px solid #336699;
+   margin: 10px;
+   padding: 5px;
+   min-height: 180px;
+   font-size: 11px;
+}
+
+
+#dv_table_reportes_preview
+{
+   width:100%;
+   height: 300px;
+}
+
+
+
+#table_tipoplanilla_tipos{ height: 300px; font-size:11px;  width: 600px;    }
+ 
+#table_tipoplanilla_tipos .field-col0{ width:25px; text-align:center; }
+
+#table_tipoplanilla_tipos .field-col1{ width:25px; text-align:center; }
+#table_tipoplanilla_tipos .field-col2{ width:100px;  }
+#table_tipoplanilla_tipos .field-col3{ width:100px;  } 
+#table_tipoplanilla_tipos .field-col4{ width:80px;   } 
+#table_tipoplanilla_tipos .field-col5{ width:80px; text-align:center; } 
+#table_tipoplanilla_tipos .field-col6{ width:80px; text-align:center; }
+#table_tipoplanilla_tipos .field-col7{ width:80px; text-align:center; } 
+#table_tipoplanilla_tipos .field-col8{ width:80px; text-align:center; } 
+#table_tipoplanilla_tipos .field-activo_asistencia{ width:100px; text-align:center; } 
+
+
+
+#table_tipoplanilla_asistencia{ height: 300px; font-size:11px;  width:  340px;    }
+ 
+#table_tipoplanilla_asistencia .field-col0{ width:25px; text-align:center; }
+#table_tipoplanilla_asistencia .field-col1{ width:25px; text-align:center; }
+#table_tipoplanilla_asistencia .field-col2{ width:180px; }
+#table_tipoplanilla_asistencia .field-activo_asistencia{ width:80px; text-align:center; } 
+
+ 
+
+#table_estadodeldia{ height: 300px; font-size:11px;  width:  540px;    }
+  
+#table_estadodeldia .field-col1{ width:30px; text-align:center; }
+#table_estadodeldia .field-col2{ width:180px; }
+#table_estadodeldia .field-col3{ width:130px; }
+#table_estadodeldia .field-col4{ width:130px; }
+#table_estadodeldia .field-col5{ width:80px; text-align:center; } 
+
+
+#dvtable_estadodia_plati{ height: 200px; font-size:11px;  width: 360px;    }
+  
+#dvtable_estadodia_plati .field-col1{ width:30px; text-align:center; }
+#dvtable_estadodia_plati .field-col2{ width:180px; }
+#dvtable_estadodia_plati .field-col3{ width:60px; text-align:center; } 
+#dvtable_estadodia_plati .field-plati_activado{ width:60px; text-align:center; } 
+
+
+
+#table_horarios{ height: 300px; font-size:11px;  width:  540px;    }
+  
+#table_horarios .field-col1{ width:40px; text-align:center; }
+#table_horarios .field-col2{ width:220px; }
+#table_horarios .field-col3{ width:240px; }
+/*#table_horarios .field-col2{ width:130px; }
+#table_horarios .field-col5{ width:80px; text-align:center; } */
+
+ 
+#dvgtp_categorias{
+    width:     520px;
+    height:    200px;
+    font-size: 11px;
+}
+#dvgtp_categorias .field-col1{ width:45px; text-align:center; }
+#dvgtp_categorias .field-col2{ width:200px;  }
+#dvgtp_categorias .field-col3{ width:270px;  } 
+
+
+
+.formulario_con_borde{
+   border: 1px solid #d2e9ff;
+   padding: 4px 4px 4px 4px;
+}
+
+
+.ul_menu_config{
+  
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+
+}
+
+.ul_menu_config li{
+
+  margin: 6px 0px 0px 0px;
+  padding: 4px;
+      
+}
+
+
+
+#impuestoquinta_filtrotrabajadores{ height: 300px; font-size:11px;  width: 600px;    }
+ 
+#impuestoquinta_filtrotrabajadores .field-col0{ width:25px; text-align:center; }
+#impuestoquinta_filtrotrabajadores .field-col1{ width:40px; text-align:center; }
+#impuestoquinta_filtrotrabajadores .field-col2{ width:200px;   } 
+#impuestoquinta_filtrotrabajadores .field-col3{ width:70px;  text-align:center;  } 
+#impuestoquinta_filtrotrabajadores .field-col4{ width:130px;  } 
+#impuestoquinta_filtrotrabajadores .field-col5{ width:80px;  text-align:center; }
+#impuestoquinta_filtrotrabajadores .field-col6{ width:80px;  text-align:center; }
+#impuestoquinta_filtrotrabajadores .field-col7{ width:80px;  text-align:center;  }
+#impuestoquinta_filtrotrabajadores .field-col8{ width:80px;  text-align:center;  }
+#impuestoquinta_filtrotrabajadores .field-col9{ width:80px;  text-align:center;  }
+#impuestoquinta_filtrotrabajadores .field-col10{ width:80px; text-align:center;   }
+
+
+#dvretenciones_table { height: 180px; width: 420px; font-size:11px;    }
+
+#dvretenciones_table .field-col1{ width:30px; text-align: center;}
+#dvretenciones_table .field-col2{ width:180px; }
+#dvretenciones_table .field-col3{ width:100px; }
+#dvretenciones_table .field-col4{ width:80px; } 
+ 
+
+
+#table_sunataltas{ height: 250px; font-size:11px;  width: 99%;    }
+ 
+#table_sunataltas .field-col1{ width:40px; text-align:center; }
+#table_sunataltas .field-col2{ width:200px; }
+#table_sunataltas .field-col3{ width:60px; text-align: center;   } 
+#table_sunataltas .field-col4{ width:130px;    } 
+#table_sunataltas .field-col5{ width:70px;  text-align:center; } 
+#table_sunataltas .field-col6{ width:80px;  text-align:center; }
+#table_sunataltas .field-col7{ width:80px;  text-align:center; }
+#table_sunataltas .field-col8{ width:80px;  text-align:center;   }
+#table_sunataltas .field-col9{ width:80px;  text-align:center;  }
+#table_sunataltas .field-col10{ width:80px;  text-align:center;  }
+#table_sunataltas .field-col11{ width:150px;  text-align:center;  }
+
+#table_sunatbajas{ height: 250px; font-size:11px;  width: 99%;    }
+ 
+#table_sunatbajas .field-col1{ width:40px; text-align:center; }
+#table_sunatbajas .field-col2{ width:200px; }
+#table_sunatbajas .field-col3{ width:60px; text-align: center;   } 
+#table_sunatbajas .field-col4{ width:130px;   } 
+#table_sunatbajas .field-col5{ width:70px;  text-align:center; } 
+#table_sunatbajas .field-col6{ width:80px;  text-align:center; }
+#table_sunatbajas .field-col7{ width:80px;  text-align:center; }
+#table_sunatbajas .field-col8{ width:80px;  text-align:center;   }
+#table_sunatbajas .field-col9{ width:80px;  text-align:center;  }
+#table_sunatbajas .field-col10{ width:80px;  text-align:center;  }
+#table_sunatbajas .field-col11{ width:150px;  text-align:center;  }
+ 
+
+#table_sunat_planillas_seleccionadas{ font-size:11px; height:250px; width:99%; }
+#table_sunat_planillas_seleccionadas .field-col0{ width:25px; text-align:center; }
+#table_sunat_planillas_seleccionadas .field-col1{ width:40px; text-align:center; }
+#table_sunat_planillas_seleccionadas .field-col2{ width:70px; text-align:center; }
+#table_sunat_planillas_seleccionadas .field-col3{ width:140px; text-align:center; }
+#table_sunat_planillas_seleccionadas .field-col4{ width:160px;  }
+#table_sunat_planillas_seleccionadas .field-col5{ width:160px;   }
+#table_sunat_planillas_seleccionadas .field-col6{ width:50px; text-align:center; }
+#table_sunat_planillas_seleccionadas .field-col7{ width:50px; text-align:center; }
+#table_sunat_planillas_seleccionadas .field-col8{ width:70px; text-align:center; }
+#table_sunat_planillas_seleccionadas .field-col9{ width:50px; text-align:center; }
+
+
+
+
+#table_certificados_list{ font-size:11px; height:250px; width:99%; } 
+#table_certificados_list .field-col1{ width:40px; text-align:center; }
+#table_certificados_list .field-col2{ width:200px; }
+#table_certificados_list .field-col3{ width:100px; text-align:center; }
+#table_certificados_list .field-col4{ width:80px;  }
+#table_certificados_list .field-col5{ width:200px;   }
+#table_certificados_list .field-col6{ width:90px; text-align:center; }
+#table_certificados_list .field-col7{ width:100px;  }
+#table_certificados_list .field-col8{ width:80px; text-align:center; }
+#table_certificados_list .field-col9{ width:80px; text-align:center; }
+#table_certificados_list .field-col10{ width:70px; text-align:center; }
+#table_certificados_list .field-col11{ width:70px; text-align:center; }
+
+ 
+#table_planilla_importaciones{ font-size:11px; height:170px; width:99%; } 
+#table_planilla_importaciones .field-col1{ width:40px; text-align:center; }
+#table_planilla_importaciones .field-col2{ width:60px;  text-align:center; }
+#table_planilla_importaciones .field-col3{ width:250px; }
+#table_planilla_importaciones .field-col4{ width:140px;  } 
+
+
+.paginador{ list-style: none; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;}
+.pagina{ display: block; float: left; padding: 2px 2px 2px 2px; font-size: 11px; font-style: inherit; margin:0px 2px 0px 0px; }
+.pagina:Hover{ background-color: #deeeff; font-weight: block; border: 1px solid #333; cursor: pointer; }
+
+
+.div_subseccion_pdt{
+  margin:7px 0px 0px 0px; padding:3px 3px 3px 3px; border:1px solid grey;
+}
+
+.div_subtitle_pdt{
+   background-color: #d2e9ff; font-weight:bold; padding:3px 3px 3px 3px; border:1px solid #e0f0ff; margin:0px 0px 5px 0px;
+}
+
+.ul_tooltip_1{
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    list-style: none;
+}
+
+.ul_tooltip_1 li{
+   font-size: 11px;
+   margin: 0px 0px 0px 5px;
+   padding: 0px 0px 0px 0px;
+   color: gray;
+}
+
+
+.ul_tooltip_1 li:Hover{
+   color:  black;
+}
+
+                                       
+
+#tablapermisos_panel{ font-size:11px; height:300px; width:620px; } 
+#tablapermisos_panel .field-col1{ width:40px; text-align:center; }
+#tablapermisos_panel .field-col2{ width:200px;   }
+#tablapermisos_panel .field-col3{ width:70px; text-align:center; }
+#tablapermisos_panel .field-col4{ width:80px; text-align:center;}
+#tablapermisos_panel .field-col5{ width:80px; text-align:center;}
+#tablapermisos_panel .field-col6{ width:80px; text-align:center;} 
+#tablapermisos_panel .field-col7{ width:200px; } 
+#tablapermisos_panel .field-estado{ width:40px; text-align: center; } 
+
+
+#tablapermisos_registrados{ font-size:11px; height:240px; width:700px; } 
+#tablapermisos_registrados .field-col1{ width:40px; text-align:center; }
+#tablapermisos_registrados .field-col2{ width:250px;   }
+#tablapermisos_registrados .field-col3{ width:70px; text-align:center; }
+#tablapermisos_registrados .field-col4{ width:80px; text-align:center;}
+#tablapermisos_registrados .field-col5{ width:60px; text-align:center;}
+#tablapermisos_registrados .field-col6{ width:60px; text-align:center;} 
+#tablapermisos_registrados .field-col7{ width:120px; } 
+#tablapermisos_registrados .field-estado{ width:40px; text-align: center; } 
+  
+
+#tablepermisosdeldia{ font-size:11px; height:160px; width:505px; } 
+#tablepermisosdeldia .field-col1{ width:40px; text-align:center; }
+#tablepermisosdeldia .field-col2{ width:80px; text-align:center; }
+#tablepermisosdeldia .field-col3{ width:80px; text-align:center; }
+#tablepermisosdeldia .field-col4{ width:200px;   }
+#tablepermisosdeldia .field-col5{ width:80px; text-align:center; } 
+
+
+
+
+#tablalicencias_registradas{ font-size:11px; height:240px; width:700px; } 
+#tablalicencias_registradas .field-col1{ width:40px; text-align:center; }
+#tablalicencias_registradas .field-col2{ width:250px;   }
+#tablalicencias_registradas .field-col3{ width:70px; text-align:center; }
+#tablalicencias_registradas .field-col4{ width:130px; text-align:center;}
+#tablalicencias_registradas .field-col5{ width:70px; text-align:center;}
+#tablalicencias_registradas .field-col6{ width:70px; text-align:center;}  
+#tablalicencias_registradas .field-col7{ width:50px; text-align:center;} 
+
+
+
+
+
+#tablalicencias_panel_registradas{ font-size:11px; height:240px; width:1100px; } 
+#tablalicencias_panel_registradas .field-col1{ width:40px; text-align:center; }
+#tablalicencias_panel_registradas .field-col2{ width:250px;   }
+#tablalicencias_panel_registradas .field-col3{ width:70px; text-align:center; }
+#tablalicencias_panel_registradas .field-col4{ width:130px; text-align:center;}
+#tablalicencias_panel_registradas .field-col5{ width:70px; text-align:center;}
+#tablalicencias_panel_registradas .field-col6{ width:70px; text-align:center;}  
+#tablalicencias_panel_registradas .field-col7{ width:50px; text-align:center;}  
+#tablalicencias_panel_registradas .field-anio{ width:80px; text-align:center;}  
+#tablalicencias_panel_registradas .field-fecha_registro{ width:90px; text-align:center;}  
+#tablalicencias_panel_registradas .field-observacion{ width:190px; }  
+#tablalicencias_panel_registradas .field-tipotrabajador{ width:150px; }  
+  
+
+
+.lr_hide{
+  display: none; 
+}
+
+
+
+.lr_show{
+   display: block;
+}
+
+
+#dvquinta_parametros_proyeccion{
+     font-size:11px;
+     width : 300px;
+     height: 180px;
+}
+
+#dvquinta_parametros_proyeccion .field-col1{ width:30px; text-align:center; }
+#dvquinta_parametros_proyeccion .field-col2{ width:260px;   } 
+
+#dvquinta_conceptos_imponibles{
+     font-size:11px;
+     width : 300px;
+     height: 180px;
+}
+
+#dvquinta_conceptos_imponibles .field-col1{ width:30px; text-align:center; }
+#dvquinta_conceptos_imponibles .field-col2{ width:260px;   } 
+
+
+#table_tipoplanilla_quintacategoria{ height: 300px; font-size:11px;  width:  340px;    }
+ 
+#table_tipoplanilla_quintacategoria .field-col0{ width:25px; text-align:center; }
+#table_tipoplanilla_quintacategoria .field-col1{ width:25px; text-align:center; }
+#table_tipoplanilla_quintacategoria .field-col2{ width:180px; }
+#table_tipoplanilla_quintacategoria .field-activo_asistencia{ width:80px; text-align:center; } 
+
+
+#impuestoquinta_filtrotrabajadores{ height: 300px; font-size:11px;  width: 600px;    }
+ 
+#impuestoquinta_filtrotrabajadores .field-col0{ width:25px; text-align:center; }
+#impuestoquinta_filtrotrabajadores .field-col1{ width:40px; text-align:center; }
+#impuestoquinta_filtrotrabajadores .field-col2{ width:200px;   } 
+#impuestoquinta_filtrotrabajadores .field-col3{ width:70px;  text-align:center;  } 
+#impuestoquinta_filtrotrabajadores .field-col4{ width:130px;  } 
+#impuestoquinta_filtrotrabajadores .field-col5{ width:80px;  text-align:center; }
+#impuestoquinta_filtrotrabajadores .field-col6{ width:80px;  text-align:center; }
+#impuestoquinta_filtrotrabajadores .field-col7{ width:80px;  text-align:center;  }
+#impuestoquinta_filtrotrabajadores .field-col8{ width:80px;  text-align:center;  }
+#impuestoquinta_filtrotrabajadores .field-col9{ width:80px;  text-align:center;  }
+#impuestoquinta_filtrotrabajadores .field-col10{ width:80px; text-align:center;   }
+
+
+
+.detalledia_celda_seleccionada{
+  text-align: center;
+  cursor: pointer;
+}
+
+.detalledia_celda_seleccionada:Hover{
+   background-color:#deeeff;
+}
+
+.quinta_separador{
+   font-size: 11px;
+   margin-top: 5px;
+   margin-bottom: 5px;
+}
+
+.texto_derecha{
+  text-align: right;
+}
+    
+
+#dvDescansosMedicosPlanilla{ height: 240px; font-size:11px;  width:750px;    }
+  
+#dvDescansosMedicosPlanilla .field-num{ width:35px; text-align:center; }
+#dvDescansosMedicosPlanilla .field-trabajador{ width:220px; }
+#dvDescansosMedicosPlanilla .field-dni{ width:80px;  text-align:center;  } 
+#dvDescansosMedicosPlanilla .field-anio{ width:50px;  text-align:center;  } 
+#dvDescansosMedicosPlanilla .field-dias_dm{ width:90px;  text-align:center;  }  
+#dvDescansosMedicosPlanilla .field-planilla_dm{ width:90px;  text-align:center;  }  
+#dvDescansosMedicosPlanilla .field-horas_anio_dm{ width:90px;  text-align:center;  }  
+#dvDescansosMedicosPlanilla .field-dias_anio_dm{ width:90px;  text-align:center;  }  
+
+
+
+#dvdescansosmedicos_anio{ height: 160px; font-size:11px;  width:450px;    }
+  
+#dvdescansosmedicos_anio .field-num{ width:35px; text-align:center; }
+#dvdescansosmedicos_anio .field-documento{ width:140px; }
+#dvdescansosmedicos_anio .field-desde{ width:80px;  text-align:center;  } 
+#dvdescansosmedicos_anio .field-hasta{ width:80px;  text-align:center;  } 
+#dvdescansosmedicos_anio .field-dias{ width:80px;  text-align:center;  }   
+
+ 
+#dvRetencionesAnteriores{ height: 240px; font-size:11px;  width:730px;    }
+  
+#dvRetencionesAnteriores .field-num{ width:35px; text-align:center; }
+#dvRetencionesAnteriores .field-anio{ width:70px;  text-align:center;  } 
+#dvRetencionesAnteriores .field-trabajador{ width:220px; } 
+#dvRetencionesAnteriores .field-descripcion{ width:200px;   }  
+#dvRetencionesAnteriores .field-ingresos{ width:90px;  text-align:center;  }  
+#dvRetencionesAnteriores .field-descuentos{ width:90px;  text-align:center;  }   
+
+ 
+#dvespecificarlugar_de_trabajo { height:300px; font-size:11px;  width: 800px;    }
+
+#dvespecificarlugar_de_trabajo .field-col0{ width:30px; text-align:center;  }
+#dvespecificarlugar_de_trabajo .field-num{ width:40px;}
+#dvespecificarlugar_de_trabajo .field-trabajador{ width:220px; } 
+#dvespecificarlugar_de_trabajo .field-dni{ width:80px;text-align:center;} 
+#dvespecificarlugar_de_trabajo .field-tipo_trabajador{ width:180px; text-align:center;  } 
+#dvespecificarlugar_de_trabajo .field-lugar_de_trabajo{ width:150px; text-align:center;  } 
+#dvespecificarlugar_de_trabajo .field-activo{ width:70px; text-align:center;  } 
+
+

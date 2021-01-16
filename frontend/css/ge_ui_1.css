@@ -1,0 +1,536 @@
+/* 
+    Document   : estilos
+    Created on : 12/04/2011, 01:01:08 PM
+    Author     : Ideartic
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+/*
+    ESTILOS PARA LOS OBJETOSle
+*/
+._window{
+    position: absolute;
+    z-index:11;
+    background-color:#FFFFFF;
+    border:1px solid #333333;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    overflow: hidden;
+    -moz-box-shadow: 2px 2px 5px 4px #888;
+    -webkit-box-shadow: 2px 2px 5px 4px #888;
+    box-shadow: 2px 2px 5px 4px #888;
+}
+
+    ._window ._w_header{
+        background-color: #336699;
+        height:20px;
+        padding: 2px 2px 2px 2px;
+        color:#FFFFFF;
+    }
+        
+        ._window .tblHeader{}
+        ._window .tblHeader td{padding: 2px 2px 2px 2px;}
+        ._window .tblHeader .td-Close{cursor:pointer; }
+
+    ._window ._w_body{
+        padding:10px 10px 10px 10px;
+         background-image:url(../images/fw1_01.jpg);
+         background-repeat: repeat-x;
+         background-color: #e2e3e3;
+         overflow: auto;
+    }
+        ._w_b_title{
+            padding:5px 0px 0px 5px;
+            margin:0px 0px 15px 0px;
+        }
+
+    ._window ._w_footer{
+          height:20px;
+          background-color: #336699;
+          padding: 2px 4px 2px 2px;
+          color:#FFFFFF;
+          font-size:10px;
+          text-align: right;
+    }
+
+
+
+._table{
+    
+}
+._tablepadding4 td{ padding: 4px 4px 4px 4px; }
+._tablepadding6 td{ padding: 6px 6px 6px 6px; }
+
+    ._table-header{
+        background-color: #990000;
+        font-size:12px;
+        
+    }
+        ._table-header td{
+             
+        }
+    
+     ._table-header2{
+        background-color: #336699;
+        font-size:12px;
+        
+    }
+
+        ._table-header td, ._table-header2 td{
+            color:#FFFFFF;
+            padding:4px 4px 4px 4px;
+            text-align: center;
+        }
+
+    ._table-row{
+        font-size: 12px;
+       
+    } 
+    
+    ._table-row_s{
+        font-size: 10px;
+       
+    } 
+    
+    ._table-row-1, ._table-row-2, ._table-row-3{
+        font-size: 13px;
+     }
+         ._table-row-1
+         {
+             background-color: #b5daff;
+         }
+
+         ._table-row-2{
+             background-color: #d3e6f9;
+         }
+
+        ._table-row td, _table-row_s td,._table-row-1 td ,._table-row-2 td{
+               padding: 3px 3px 3px 3px;
+
+        }
+
+    ._table-row:Hover, ._table-row_s:Hover, ._table-row-1:Hover, ._table-row-2:Hover{
+        background-color:  #ffff66;
+        cursor:pointer;
+    }
+    
+     .ui_table_loader{  position:absolute; display:none;  }
+     .ui_table_loader_bg {
+                    background-color: #cccccc; 
+                    position:absolute; 
+                    opacity:0.3;
+                    -moz-opacity:0.3;
+                    width:100%;
+                    height: 100%;
+                     z-index: 1;
+                 }
+     
+    .ul_table_loader_show{ position: absolute; z-index: 2;
+                           border:1px solid #333333; padding: 4px 4px 4px 4px; 
+                           display: block; width: 90px; 
+                           background-color: #FFFFFF;
+                           border-radius:5px;
+                           -moz-border-radius:5px;
+                           text-align: center;
+                          }
+        .ul_table_loader_text{ font-size: 10px;}
+    
+     .ui_table_container{   overflow: auto; 
+                             border: 1px solid #333333;
+                          }
+    
+/*
+ Textos
+*/
+
+
+.title_page{
+    font-size   :   22px;
+    color       :   #990000;
+
+}
+
+.text-t1{
+    font-size   :   15px;
+    font-weight :   bold;
+}
+
+.text-t2{
+    font-size   :  25px;
+    font-weight :   bold;
+}
+
+.text-t1-red{
+    font-size   :   15px;
+    font-weight :   bold;
+    color:  #990000;
+}
+
+/*
+    Elementos de formulario
+*/
+
+.img-t1{
+    margin:0px 6px 0px 0px;
+}
+
+.dv-form{
+
+}
+
+.dv-form-t1{
+    border:1px solid #999999;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    margin:10px 14px 15px 0px;
+    padding:11px 11px 10px 11px;
+}
+
+.dv-formulario-t1{
+    margin:10px 0px 0px 10px;
+    
+}
+
+
+    .dv-formulario-t1 table{  }
+
+
+        .dv-formulario-t1 table tr{ }
+
+
+            .dv-formulario-t1 table tr td{
+               padding:4px 4px 4px 4px;
+            }
+
+
+.txt-t1, .txt-t2{
+    border: 1px solid;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 3px 3px 3px 3px;
+}
+.txt-t1{
+    border-color:#336699;
+}
+.txt-t1 option, .txt-t2 option{
+    padding-right: 15px;
+}
+
+.txt-t2{
+    border-color:#990000;
+}
+
+.btn-t1,.btn-t2{
+
+     border             :   1px solid #333333 ;
+     border-radius      :   5px;
+     -moz-border-radius :   5px;
+     color              :   #FFFFFF;
+     cursor             :   pointer;
+     padding            :   3px 6px 3px 6px;
+
+}
+
+    .btn-t1{
+        background-color: #336699;
+    }
+
+    .btn-t2{
+        background-color: #990000;
+    }
+
+.sp-button1 , .sp-button2{
+    border-radius       :   5px;
+    -moz-border-radius  :   5px;
+    cursor              :   pointer;
+    padding             :   5px 5px 5px 5px;
+}
+
+    .sp-button1{
+              background-color    :   #990000;
+              border              :   1px solid #333333;
+              color               :   #FFFFFF;
+    }
+
+    .sp-button2{
+              background-color    :   #336699;
+              border              :   1px solid #333333;
+              color               :   #FFFFFF;
+    }
+
+    .ul_ToolBar{
+        list-style: none;
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        
+    }
+
+    .ul_ToolBar .li_BTB{
+        float: left;
+        padding: 3px 3px 3px 3px;
+        font-weight: bold;
+        font-size: 12px;
+        text-align: center;
+        margin: 0px 0px 0px 8px;
+        border: 1px solid #333333;
+        -moz-border-radius:5px;
+        border-radius:5px;
+        cursor:pointer;
+     }
+     .ul_ToolBar .li_BTB:Hover{}
+ /*  */
+
+#ge_cortina{
+    background-color: #e6f3ff;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left:0px;
+    top: 0px;
+    z-index: 10000;
+    display: none;
+    opacity: 0.3;
+}
+
+
+#ge_loader{
+   position :    absolute;
+   display:none;
+   top: 0px;
+   left: 0px;
+   z-index: 10001;
+   width: 130px;
+   height: 50px;
+   background-color: #FFFFFF;
+   border:1px solid #a2d0f9;
+   -moz-border-radius:8px;
+   -webkit-border-radius:8px;
+   border-radius:8px;
+   padding: 10px 10px 10px 10px;
+     -moz-box-shadow: 2px 2px 5px 4px #888;
+    -webkit-box-shadow: 2px 2px 5px 4px #888;
+    box-shadow: 2px 2px 5px 4px #888;
+  
+}
+#ge_loader span{font-weight: bold;  vertical-align: middle; }
+
+
+#dv_loader_progressbar{
+   position :    absolute;
+   display:none;
+   top: 0px;
+   left: 0px;
+   z-index: 10001;
+   width: 200px;
+   height: 40px;
+   background-color: #FFFFFF;
+   border:1px solid #a2d0f9;
+   -moz-border-radius:4px;
+   -webkit-border-radius:4px;
+   border-radius:4px;
+   padding: 10px 10px 10px 10px;
+     -moz-box-shadow: 2px 2px 5px 4px #888;
+    -webkit-box-shadow: 2px 2px 5px 4px #888;
+    box-shadow: 2px 2px 5px 4px #888;
+  
+}
+#dv_loader_progressbar span{font-weight: bold;  vertical-align: middle; }
+
+
+
+#wBuscarCliente,#wBuscarCliente2{
+    width: 600px;
+    height: 400px;
+    display: none;
+     
+}
+
+.menu{  z-index:4;  }		
+.menu div.header-menu { display:block; position:relative; }
+#dv_mnu_container_large{height:24px; background-color: #004D71; border-bottom: 1px solid #333333; 		
+	background-repeat:repeat-x;  } 
+  #menu-container { display:block; position:relative;  z-index:4;  }
+		#drop_down_menu { display:block; position:absolute; clear:both; margin:0px; padding:0px; text-align:left; list-style-type:none; text-align:center; float:none; left:0px; top:0px;  }
+		#drop_down_menu li { font-size:12px; font-weight:bold; float:left; color:#FFFFFF; margin-left:0px; left:0px; padding:3px; background-color: #004D71;  cursor:pointer;  min-width:140px;   }
+		#drop_down_menu li ul { margin:0px; padding:0px; list-style-type:none; padding-top:10px; z-index:4;  }
+		#drop_down_menu li ul li { display:block; float:none; clear:both; border-bottom:1px solid #333333; padding:4px;  }
+		#drop_down_menu li ul li a { color:#FFFFFF; font-weight:normal; text-decoration:none; display:block; }
+		#drop_down_menu li ul li a label{ color:#FFFFFF; font-weight:normal; text-decoration:none; display:block; }
+		#drop_down_menu li ul li a:HOVER { background-color:#336699;}
+	
+
+
+.ui_tabs_header{ margin:0px 0px 0px 0px; padding:0px 0px 0px 0px;}
+.ui_tabs_header li{  margin:0px 0px 0px 15px; padding:4px 4px 4px 4px; display:block; float:left; border:1px solid #333333; font-weight:bold; cursor:pointer;}
+.ui_tabs_header li a { text-decoration:none; color:#FFFFFF; }
+
+.ui_tabs_container{ border:1px solid #888; padding: 3px 3px 3px 3px; overflow: auto; }
+
+.ui_tabs_tab{ display:none; }
+
+
+
+
+.dv-padding7{
+    padding: 7px 7px 7px 7px;
+}
+
+.dv-padding4{
+    padding: 4px 4px 4px 4px;
+}
+
+/*
+ Interface plattaform
+ RIA v1
+*/ 
+html { overflow:hidden; }
+
+body{ 
+	padding:0px; 
+	margin:0px; 
+	background-image:url(../images/modelo1_01.gif);
+}
+
+
+
+#page{
+	width:99.99%; 
+	background-color:#666666; 
+	margin:auto; 
+	border:1px solid #333333;
+	position:relative;
+        overflow: hidden;
+        
+}
+
+#header{
+	height:65px; 
+	background-image:url(../images/ge/fondo_top.png); 
+	background-color:#FFFFFF; 
+	background-position:bottom; 
+	
+	border-bottom:1px solid #333333;
+        overflow:hidden;
+}
+ 
+    #header_top{
+         padding: 2px 2px 2px 2px;
+         background-image:url(../images/ge/bg_footer_1.png); 
+         border-bottom:1px solid #333333;
+         background-repeat:repeat-x;
+
+    }
+
+    #header_logo{
+        margin: 0px 0px 0px 10px;
+    }
+    #module_name{
+        margin: 0xp 0px 0px 50px;
+        font-size: 8px;
+    }
+    
+    #dv_user_des{ color: #cccccc; text-align: right; padding-right: 10px; }
+    
+    
+#bodi{
+	
+	/* background-image:url(../images/ge/fw1_01.jpg); 	*/
+	 background-position:bottom; 
+	 background-repeat:repeat-x;
+         background-color: #FFFFFF;
+	 font-size:14px; 
+	 overflow:hidden; 
+	 min-height:443px;
+}
+       #bodi_content{ padding: 6px 6px 6px 6px; overflow: auto; background-color: #fafafa;  }
+#footer{
+        height: 10px; 
+        background-image:url(../images/ge/bg_footer_1.png); 		
+	background-repeat:repeat-x;
+	border-top:1px solid #333333;
+	color:#CCCCCC; 
+	font-size:12px; 
+        overflow:hidden;
+}
+
+/* Interface login */
+
+#ui_login_window_c{
+     width: 300px; 
+     height: 350px;
+     position:absolute;
+}
+
+#ui_login_window{
+    
+  width: 300px; 
+  height: 240px;
+  border: 2px solid #333333;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  background-color: #FFFFFF;
+   padding: 6px 6px 6px 6px;
+     -moz-box-shadow: 2px 2px 5px 4px #888;
+    -webkit-box-shadow: 2px 2px 5px 4px #888;
+    box-shadow: 2px 2px 5px 4px #888;
+  
+}
+
+    #ui_wlogin_head{
+        background-color: #990000;	
+	background-repeat:repeat-x;
+        height: 20px;
+    }
+       .sp_small1{font-size:12px;}
+      .login_title{font-weight: bold; text-align: center; color:#990000; font-size:15px;}
+      .login_olvido{ font-size:10px; color: #333333; text-align: right; }
+      .login_olvido:Hover{text-decoration: underline; cursor:pointer;}
+      .txtInput_1{ border: 1px solid #336699; -moz-border-radius:5px; padding: 3px 3px 3px 3px; color: #333333;}
+      
+        #ui_login_namesys{
+            text-align: center;
+        }
+    
+    #ui_wlogin_body{
+       
+        height: 160px;
+
+    }
+
+    #ui_wlogin_footer{
+        background-color: #990000;	
+	background-repeat:repeat-x;
+        height: 20px;
+    }
+    
+    
+    .dvTitulo{
+         font-size: 22px;
+         font-weight: bold;
+         color: #990000;
+         text-align: right;
+    }
+    
+    
+    .form_1{
+        padding: 6px 6px 6px 6px;
+        border: 1px solid #cccccc;
+        -moz-border-radius:7px;
+        -webkit-border-radius:7px;
+    }
+    
+    .form_yellow{
+        padding: 6px 6px 6px 6px;
+        border: 1px solid #333333;
+        -moz-border-radius:4px;
+        -webkit-border-radius:4px;
+        background-color: #ffff33;
+    }

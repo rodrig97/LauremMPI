@@ -1,0 +1,683 @@
+<?PHP
+ 
+if ( ! defined('BASEPATH')) exit('<br/><b>Estas trantando de ingresar de manera indebida a un portal del estado peruano, tu IP ha sido registrado</b>');
+
+ 
+class migrar extends CI_Controller {
+    
+    public $usuario;
+    
+    public function __construct(){
+        parent::__construct();
+       
+        
+        
+    }
+     
+    public function generar_individuos(){
+        
+      
+        $this->load->library(array('db/public/individuo','App/situacionlaboral','App/pension','App/segurosalud'));
+         
+        // Codigos de situaciones laborales
+        $codigos = array(
+            
+                '1' => '2',     // Nombrados
+                '2' => '3',     // Empleado contratado
+                '3' => '4',     // Obrero Nombrado
+                '4' => '5',     // Obrero Contratado
+                '5' => '1',     // Empleado de Inversiones
+                '6' => '9',     // Construccion civil
+                '7' => '11',    // Pensionista
+                '8' => '10',    // Regidor
+                '9' => '6',     // Cas Inversiones
+                '0' => '7',     // Cas funcionamiento
+                'A' => '8'      // Practicante
+        );
+        
+        $estado_civil = array(
+            
+                'SOLTERO'    => '1',
+                'CASADO'     => '2',   
+                'SOLTERA'    => '1',
+                'CASADA'     => '2',
+                'VIUDO'      => '4',
+                'VIUDA'      => '4',
+                'DIVORCIADO' => '3',
+                'DIVORCIADA' => '3',
+                'CONVIVIENT' => '5'
+            
+        );
+        
+        $afps_ids = array(
+            
+             '02' => '2', //  Integra
+             '03' => '1', // profuturo
+             '04' => '4', // horizonte
+             '06' => '3'  // Prima
+            
+        );
+         
+        $sql = " SELECT distinct(elec) as dni FROM pla.pla005 "; // Obteniendo los DNIS 
+         
+        $empleados = $this->db->query($sql)->result_array(); // Por cada DNI buscaremos los registros
+       
+        echo "Encontrados : ".sizeof($empleados)." registros de DNIS diferentes <br/><br/>";
+        
+        foreach($empleados as $empleado ){  // Recorremos los DNIS
+            
+
+
+            $sql = " SELECT * FROM public.individuo WHERE indiv_dni = ? LIMIT 1 ";
+            $existente = $this->_CI->db->query($sql, array($empleado['dni']) )->result_array();
+
+            if($existente['indiv_dni'] != ''){
+
+                  $existe = true;  
+            } 
+
+            $sql = " SELECT * FROM pla.pla005 where elec = ? ORDER BY row_id desc " ;  // Ordenando para obtener el ultimo ingresado, primero
+            $registros_empleado = $this->db->query($sql, array($empleado['dni']) )->result_array();
+             
+            $indiv_id = '';
+            
+            foreach($registros_empleado as $k => $data_empleado){ // Foreach registros del empleado
+                
+                 if($k == 0){  // SI K es cero entonces genera la data base en individuo
+                     
+                    $values =  array(
+
+                        'indiv_appaterno'       =>  trim($data_empleado['apno']),
+                        'indiv_apmaterno'       =>  trim($data_empleado['mate']),
+                        'indiv_nombres'         =>  trim($data_empleado['nomb']),
+                        'indiv_telefono'        =>  trim($data_empleado['tele']), 
+                        'indiv_dni'             =>  trim($data_empleado['elec']),
+                        'indiv_libmilitar_cod'  =>  trim($data_empleado['mili']),
+                     
+                        'indiv_estadocivil'     =>  $estado_civil[trim($data_empleado['esta'])],
+                        'indiv_direccion1'      =>  trim($data_empleado['dire']),
+                        'migrado_codi'          =>  trim($data_empleado['codi']),
+                        'indti_id'              => '1'
+                             
+                    );
+ 
+                   if(trim($data_empleado['fena']) != '') $values['indiv_fechanac'] =  trim($data_empleado['fena']);
+                    
+                   list($indiv_id,$key) =  $this->individuo->registrar($values,true); // Insertamos el registro base table individuo
+
+                        /* AFP / ONP */
+
+                        $values_p = array(
+
+                                    'pers_id'       => $indiv_id,
+                                    'afp_id'        => (trim($data_empleado['cafp']) == '') ? '0' : $afps_ids[trim($data_empleado['afp'])],
+                                    'pentip_id'     => (trim($data_empleado['cafp']) == '') ? '1' : '2', // 1 : ONP , 2: AFP
+                                    'peaf_codigo'   => (trim($data_empleado['cafp']) == '') ? ''  : trim($data_empleado['cafp']),
+                                    'migrado_codi'  => trim($data_empleado['codi']) 
+
+                        );
+
+                        $this->pension->registrar($values_p);
+
+
+                        /* SEGURO DE SALUD ESSALUD */ 
+
+                        if(trim($data_empleado['ipss']) != ''){
+                            $values_sa = array(
+
+                                        'pers_id'        => $indiv_id,
+                                        'persa_codigo'   => trim($data_empleado['ipss']),
+                                        'migrado_codi'   => trim($data_empleado['codi']) 
+
+                            );
+
+                            $this->segurosalud->registrar($values_sa);
+                        }
+                        
+                        /* BUSCAR SI TIENE USUARIO ACTUAL Y COLOCAR EL CAMPO INDIV_ID */ 
+                        
+                        if(trim($empleado['dni']) != '')
+                        {
+                            $sql = " UPDATE  \"public\".v001 SET indiv_id = ? WHERE ndoc = ? ";
+                            $this->db->query($sql, array($indiv_id, trim($empleado['dni']) ) );
+                        }
+                        
+                        
+                 } // FIN K == 0
+                 
+                 // generamos el registro de situacion laboral
+                 $values_h = array(
+                        
+                            'pers_id'               => $indiv_id,
+                            'plati_id'              => $codigos[trim($data_empleado['tita'])],
+                          
+                            'persla_estado'         => '1',
+                            'persla_vigente'        => '2', // 1: vigente 0: no vigente 2: no precisado
+                            'persla_descripcion'    => trim($data_empleado['ocup']).' '.trim($data_empleado['nive']),
+                            'persla_generado'       => '1',
+                            'persla_ultimo'         => ($k==0) ? '1' : '0',
+                            'persla_porcompletar'   => '1',
+                            'migrado_codi'          => trim($data_empleado['codi']) 
+
+                 );
+                 
+                 if(trim($data_empleado['fein']) != '') $values_h['persla_fechaini'] =  trim($data_empleado['fein']);
+                 
+                 $this->situacionlaboral->registrar($values_h);
+                
+                
+            }
+            
+          
+        }  // FIN foreach DNI's
+        
+        /*
+        
+        $sql = "INSERT INTO public.individuo() ";
+        
+        
+           $sql ="SELECT * FROM public.v001 ";
+        
+        $sql = "INSERT INTO "; */ 
+        
+    }
+
+
+
+
+
+
+
+
+
+
+     
+    public function generar_individuos_2(){
+        
+      
+        $this->load->library(array('db/public/individuo','App/situacionlaboral','App/pension','App/segurosalud','App/persona'));
+                 // Codigos de situaciones laborales
+        $codigos = array(
+            
+                '1' => '2',     // Nombrados
+                '2' => '3',     // Empleado contratado
+                '3' => '4',     // Obrero Nombrado
+                '4' => '5',     // Obrero Contratado
+                '5' => '1',     // Empleado de Inversiones
+                '6' => '9',     // Construccion civil
+                '7' => '11',    // Pensionista
+                '8' => '10',    // Regidor
+                '9' => '6',     // Cas Inversiones
+                '0' => '7',     // Cas funcionamiento
+                'A' => '8'      // Practicante
+        );
+        
+        $estado_civil = array(
+            
+                'SOLTERO'    => '1',
+                'CASADO'     => '2',   
+                'SOLTERA'    => '1',
+                'CASADA'     => '2',
+                'VIUDO'      => '4',
+                'VIUDA'      => '4',
+                'DIVORCIADO' => '3',
+                'DIVORCIADA' => '3',
+                'CONVIVIENT' => '5'
+            
+        );
+        
+        $afps_ids = array(
+            
+             '02' => '2', //  Integra
+             '03' => '1', // profuturo
+             '04' => '4', // horizonte
+             '06' => '3'  // Prima
+            
+        );
+
+
+           $bancos = array(
+         
+                 'S' => '6',
+                 'N' => '4',
+                 'C' => '7',
+                 'I' => '5'
+
+
+            );
+         
+        $sql = " SELECT distinct(elec) as dni FROM pla.pla005 "; // Obteniendo los DNIS 
+         
+        $empleados = $this->db->query($sql)->result_array(); // Por cada DNI buscaremos los registros
+       
+        echo "Encontrados : ".sizeof($empleados)." registros de DNIS diferentes <br/><br/>";
+        
+        $c_e = 0;
+
+        foreach($empleados as $empleado ){  // Recorremos los DNIS
+
+            $c_e++;
+            $c_re = 0;
+
+            echo '<br/>Registro de empleado: '.$c_e.'<br/>';
+            
+            $existe = false;    
+            $indiv_id = '';
+
+
+
+            $sql = " SELECT * FROM public.individuo WHERE indiv_dni = ? LIMIT 1 ";
+            $existente = $this->db->query($sql, array($empleado['dni']) )->result_array();
+
+            if( trim($existente[0]['indiv_id']) != ''){
+
+                  $existe = true;  
+                  $indiv_id = $existente[0]['indiv_id'];
+            } 
+
+            $sql = " SELECT * FROM pla.pla005 where elec = ? ORDER BY row_id desc " ;  // Ordenando para obtener el ultimo ingresado, primero
+            $registros_empleado = $this->db->query($sql, array($empleado['dni']) )->result_array();
+        
+            
+            foreach($registros_empleado as $k => $data_empleado){ // Foreach registros del empleado
+                
+                $c_re++;
+
+                echo 'I: '.$c_re.'<br/>';
+                 if($c_re == 1 && !$existe){  // SI K es cero entonces genera la data base en individuo
+                             
+                            $values =  array(
+
+                                'indiv_appaterno'       =>  trim($data_empleado['apno']),
+                                'indiv_apmaterno'       =>  trim($data_empleado['mate']),
+                                'indiv_nombres'         =>  trim($data_empleado['nomb']),
+                                'indiv_telefono'        =>  trim($data_empleado['tele']), 
+                                'indiv_dni'             =>  trim($data_empleado['elec']),
+                                'indiv_libmilitar_cod'  =>  trim($data_empleado['mili']),
+                             
+                                'indiv_estadocivil'     =>  $estado_civil[trim($data_empleado['esta'])],
+                                'indiv_direccion1'      =>  trim($data_empleado['dire']),
+                                'migrado_codi'          =>  trim($data_empleado['codi']),
+                                'indti_id'              => '1'
+                                     
+                            );
+         
+                           if(trim($data_empleado['fena']) != '') $values['indiv_fechanac'] =  trim($data_empleado['fena']);
+                            
+                           list($indiv_id,$key) =  $this->individuo->registrar($values,true); // Insertamos el registro base table individuo
+ 
+                 } // FIN K == 0
+
+
+                 if($c_re == 1){
+
+                          /* AFP / ONP */
+                                
+
+                                 $modo_afp = array('F' => '1',
+                                                   'N' => '1',
+                                                   'S' => '2');   
+
+
+                                $values_p = array(
+
+                                            'pers_id'      => $indiv_id,
+                                            'afp_id'       => (trim($data_empleado['cafp']) == '') ? '0' : $afps_ids[trim($data_empleado['afp'])],
+                                            'pentip_id'    => (trim($data_empleado['cafp']) == '') ? '1' : '2', // 1 : ONP , 2: AFP
+                                            'peaf_codigo'  => (trim($data_empleado['cafp']) == '') ? ''  : trim($data_empleado['cafp']),
+                                            'afm_id'       => (trim($data_empleado['afpmod']) != '') ? ''  : $modo_afp[trim($data_empleado['afpmod'])],
+                                            'migrado_codi' => trim($data_empleado['codi']) 
+
+                                );
+
+                                $this->pension->registrar($values_p);
+ 
+
+                                /* SEGURO DE SALUD ESSALUD */ 
+
+                                if(trim($data_empleado['ipss']) != ''){
+                                    $values_sa = array(
+
+                                                'pers_id'        => $indiv_id,
+                                                'persa_codigo'   => trim($data_empleado['ipss']),
+                                                'migrado_codi'   => trim($data_empleado['codi']) 
+
+                                    );
+
+                                    $this->segurosalud->registrar($values_sa);
+                                }
+
+                              
+                                if(trim($data_empleado['banco']) != ''){ 
+
+                                         $values = array(
+                             
+                                             'pers_id'             => $indiv_id,
+                                             'pecd_cuentabancaria' => $data_empleado['cta'],
+                                             'ebanco_id'           => $bancos[$data_empleado['banco']],
+                                             'migrado_codi'        => trim($data_empleado['codi']) 
+
+                                         ); 
+						//var_dump($data_empleado);
+                                          $this->persona->add_cuentadeposito(  $indiv_id, $values);
+
+                                 }
+
+                                
+                                /* BUSCAR SI TIENE USUARIO ACTUAL Y COLOCAR EL CAMPO INDIV_ID */ 
+                                
+                                if(trim($empleado['dni']) != '')
+                                {
+                                    $sql = " UPDATE  \"public\".v001 SET indiv_id = ? WHERE ndoc = ? ";
+                                    $this->db->query($sql, array($indiv_id, trim($empleado['dni']) ) );
+                                }
+
+
+                            
+
+
+                 }
+
+
+
+                 
+                 // generamos el registro de situacion laboral
+                 $values_h = array(
+                        
+                            'pers_id'               => $indiv_id,
+                            'plati_id'              => $codigos[trim($data_empleado['tita'])],
+                          
+                            'persla_estado'         => '1',
+                            'persla_vigente'        => '2', // 1: vigente 0: no vigente 2: no precisado
+                            'persla_descripcion'    => trim($data_empleado['ocup']).' '.trim($data_empleado['nive']),
+                            'persla_generado'       => '1',
+                            'persla_ultimo'         => ($k==0) ? '1' : '0',
+                            'persla_porcompletar'   => '1',
+                            'migrado_codi'          => trim($data_empleado['codi']) 
+
+                 );
+                 
+                 if(trim($data_empleado['fein']) != '') $values_h['persla_fechaini'] =  trim($data_empleado['fein']);
+                    
+             //       var_dump($values_h);
+                 $this->situacionlaboral->registrar($values_h);
+                
+                
+            }
+            
+          
+        }  // FIN foreach DNI's
+        
+        /*
+        
+        $sql = "INSERT INTO public.individuo() ";
+        
+        
+           $sql ="SELECT * FROM public.v001 ";
+        
+        $sql = "INSERT INTO "; */ 
+        
+    }
+
+
+    public function migrar_variables_conceptos(){
+
+
+            $this->load->library(array('App/empleadovariable', 'App/empleadoconcepto'));
+
+            $_DATOS = array();
+
+            $sql ="  SELECT * FROM public.individuo ind
+                     INNER JOIN rh.persona_situlaboral sit ON  ind.indiv_id = sit.pers_id AND  persla_ultimo = 1 AND persla_estado = 1
+                     INNER JOIN pla.pla005 pl ON sit.migrado_codi = pl.codi   ";
+
+            
+            $rs = $this->db->query($sql)->result_array();
+
+            $variables_grid = array(
+
+                 'NOMBRADOS'  => array( 
+
+                             'espe' => '223',  // BONIFICACION ESPCIAL
+                             'fami' => '229',   //  =  FAMILIAR
+                             'pers' => '228',   // =  PERSONAL 
+                             'covi' => '226',  // COSTO DE VIDA
+                             'enca' => '225',   // ENCARGATURA
+                             'incr' => '231',  // INCREMENTO AFP
+                             'movi' => '230',  // movilidad
+                             'reun' =>  '222', // reunificada
+                             'basi' => '221', // basico
+                             'tran' =>  '224', //transitoria
+                             'judi' =>  '237',   // JUDICIAL 
+                             'hijo' =>   '215'
+                    )
+ 
+
+            );
+
+            foreach($rs as $reg)
+            {   
+
+                if($reg['plati_id'] == TIPOPLANILLA_NOMBRADOS){ 
+
+
+                     foreach($variables_grid['NOMBRADOS'] as $field => $vari_id ){
+
+                          echo  'INDIV: '.$reg['indiv_id'].' DATO: '.$field.' : '.$reg[$field].'<br/>';
+                          if($reg[$field] > 0 ){
+
+                                if($field=='judi') $reg[$field] = $reg[$field]/100;
+                                
+                                $this->empleadovariable->registrar( array('indiv_id' => $reg['indiv_id'], 
+                                                                          'vari_id' =>   $vari_id, 
+                                                                          'empvar_value' => $reg[$field]  ) );
+
+                                if($field == 'judi'){
+
+                                    $this->empleadoconcepto->registrar($reg['indiv_id'], '121');
+
+                                }
+                          }
+
+
+                          // VERIFICAR TIPO DE PENSION
+                          if($reg['afil']=='S'){
+
+                                $this->empleadoconcepto->registrar($reg['indiv_id'], '116');
+                                $this->empleadoconcepto->registrar($reg['indiv_id'], '117');
+                                $this->empleadoconcepto->registrar($reg['indiv_id'], '118');
+
+                          }
+                          else{
+
+                                $this->empleadoconcepto->registrar($reg['indiv_id'], '119');
+                          }
+
+                          // SINDICATO 
+
+                          if($reg['sind']=='S'){
+                                 $this->empleadoconcepto->registrar($reg['indiv_id'], '122');
+                          }
+                     }
+                }
+           }
+
+    }
+
+
+    public function actualizar_bancos(){
+
+
+           $this->load->library(array('App/persona')); 
+
+           $sql ="  SELECT indiv.indiv_id,indiv.indiv_dni,e.elec,e.banco,e.cta  from pla.pla005 e
+                INNER JOIN public.individuo indiv ON e.elec = indiv.indiv_dni
+              where e.banco != '' ";
+
+           $rs = $this->db->query($sql,array())->result_array(); 
+
+
+           $bancos = array(
+         
+                 'S' => '6',
+                 'N' => '4',
+                 'C' => '7',
+                 'I' => '5'
+
+
+            );
+
+           echo 'AQUII ';
+
+           foreach($rs as $reg){
+                    
+                 $values = array(
+                     
+                     'pers_id' => $reg['indiv_id'],
+                     'pecd_cuentabancaria' => $reg['cta'],
+                     'ebanco_id' => $bancos[$reg['banco']]
+
+                 ); 
+
+                 $this->persona->add_cuentadeposito( $reg['indiv_id'], $values);
+
+           }
+    }
+
+
+    public function get_equivalente($id_en_nombrados, $tipo, $de){
+
+
+        $sql =" SELECT ".$de." FROM  planillas.temp_equi_vars WHERE  nombrados = ? AND  tipo = ?  LIMIT 1 ";
+
+        $rs =  $this->db->query($sql, array($id_en_nombrados, $tipo))->result_array();
+
+        return $rs[0][$de];
+    }
+
+
+    public function clone_calculo__no_execute(){
+
+
+
+        $this->load->library(array('App/variable','App/concepto', 'App/conceptooperacion'));
+
+        $NOMBRADOS_ID = 2;
+
+        $TO_CLONE_PLATI = 6;
+        $field_equivalente_to = "casinv";
+
+
+         // CLONANDO VARIABLES   BUSCAMOS LOS CONCEPTOS DE LOS NOMBRADOS
+        $sql =" SELECT * FROM planillas.variables WHERE plati_id = ?  AND  vari_estado = 1 ";  
+        $rs_to_clone = $this->db->query($sql, array($NOMBRADOS_ID))->result_array();  
+        
+         /*
+         foreach($rs_to_clone as $reg){
+              $sql =" INSERT INTO  planillas.temp_equi_vars  (tipo,nombrados) VALUES(?,?)"; 
+              $this->db->query($sql, array('1',$reg['vari_id']));
+         }*/
+
+        foreach($rs_to_clone as $reg){
+
+            $values = $reg;
+            $values['plati_id'] = $TO_CLONE_PLATI;
+            $vari_m = $values['vari_id'];
+            unset($values['vari_id']); // KILL THIS
+            unset($values['vari_key']); // KILL THIS
+          //  echo '<br/><br/>';
+           // var_dump($values);
+            list($new_id, $new_key) =  $this->variable->registrar($values, true);    
+            $sql =" UPDATE planillas.temp_equi_vars SET ".$field_equivalente_to." = ? WHERE tipo = 1 AND nombrados = ? ";
+            $this->db->query($sql, array($new_id, $vari_m));
+         
+
+        }
+
+     
+        $sql =" SELECT * FROM planillas.conceptos WHERE plati_id = ?  AND  conc_estado = 1 ";
+        $rs_to_clone = $this->db->query($sql, array($NOMBRADOS_ID))->result_array();  // CLONANDO CONCEPTOS  
+         
+         /*
+        foreach($rs_to_clone as $reg){
+              $sql =" INSERT INTO  planillas.temp_equi_vars  (tipo,nombrados) VALUES(?,?)"; 
+              $this->db->query($sql, array('2',$reg['conc_id']));
+         }*/
+
+ 
+        foreach($rs_to_clone as $reg){
+
+            $values = $reg;
+            $values['plati_id'] = $TO_CLONE_PLATI;
+            $conc_m = $values['conc_id'];
+            unset($values['conc_id']); // KILL THIS
+            unset($values['conc_key']); // KILL THIS
+          //  echo '<br/><br/>';
+           // var_dump($values);
+            list($new_id, $new_key) =  $this->concepto->registrar($values, true);    
+             $sql =" UPDATE planillas.temp_equi_vars SET ".$field_equivalente_to." = ? WHERE tipo = 2 AND nombrados = ? ";
+            $this->db->query($sql, array($new_id, $conc_m));
+        }
+
+
+
+        $sql = " SELECT * FROM planillas.conceptos_ops coo WHERE coo.coops_estado = 1 AND generado = 0  order by coops_id ";
+
+        $rs_ops = $this->db->query($sql, array())->result_array();
+
+        foreach($rs_ops as $reg){
+            
+
+            $values                    = $reg;
+            var_dump($values);
+            echo '<br/><br/>';
+       
+            $values['conc_id']         = $this->get_equivalente($reg['conc_id'], 2 ,$field_equivalente_to);
+
+            $tipo = $values['coops_operando1_t'];
+            $values['coops_operando1'] =  ( $tipo == 1 ||  $tipo == 2  ) ? $this->get_equivalente($reg['coops_operando1'], $tipo ,$field_equivalente_to) : $reg['coops_operando1'];
+ 
+            $tipo = $values['coops_operando2_t'];
+            $values['coops_operando2'] =  ( $tipo == 1 ||  $tipo == 2  ) ? $this->get_equivalente($reg['coops_operando2'], $tipo ,$field_equivalente_to) : $reg['coops_operando2'];
+            $values['generado']        = '1'; 
+
+            unset($values['coops_id']); // KILL THIS
+            unset($values['coops_key']); // KILL THIS
+
+          var_dump($values);
+           echo '<br/><br/>';
+            $this->conceptooperacion->registrar($values);
+
+        }
+
+        /* */
+
+
+
+    } 
+
+
+    public function generar_residentes_tareos(){
+
+
+        $sql =" SELECT v001.codi, v003.carg from public.v001  inner join public.v003 on v001.codi = v003.usur
+                where v003.carg = 7  ";
+
+        $rs=  $this->db->query($sql,array())->result_array();
+
+        foreach($rs  as $reg){
+
+            $sql =" INSERT INTO tareo.funciones (codi,codi_v001) VALUES (?,?) ";
+            $this->db->query($sql, array('7', $reg['codi']) );
+        }
+
+    }  
+
+    
+}
+
+
+/* 
+ * X
+ *  
+ */

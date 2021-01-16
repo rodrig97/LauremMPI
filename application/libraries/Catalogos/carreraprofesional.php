@@ -1,0 +1,45 @@
+<?php
+
+class carreraprofesional extends Table{
+    
+       
+     
+    protected $_FIELDS=array(   
+                                    'id'    => 'carpro_id',
+                                    'code'  => 'carpro_key',
+                                    'name'  => 'carpro_nombre',
+                                    'descripcion' => '',
+                                    'state' => 'carpro_estado'
+                            );
+    
+    protected $_SCHEMA = 'rh';
+    protected $_TABLE = 'carreras_profesionales';
+    protected $_PREF_TABLE= 'CARRERA'; 
+    
+    public function __construct(){
+        
+        parent::__construct();
+        
+    }
+
+    public function get_list($params){
+        
+
+        $sql=" SELECT * FROM  rh.carreras_profesionales ";
+        
+        $query = array();
+        if($params['nombre'] != ''){ 
+
+                $sql.=" WHERE carpro_nombre like ? ";
+                $query[]  = '%'.$params['nombre'].'%';
+         }
+
+        $sql.="  ORDER BY carpro_nombre";
+        return  $this->_CI->db->query($sql, $query)->result_array();
+
+    }
+     
+    
+    
+}
+ 
