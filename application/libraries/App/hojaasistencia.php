@@ -31,8 +31,14 @@ class hojaasistencia extends Table{
                           est.hoae_nombre as estado, 
                           hojas.hoa_estado as estado_id, 
                           (hoa_fechafin - hoa_fechaini + 1) as  nro_dias,
-                          (tarea.sec_func || ' - ' || tarea.tarea_nro) as tarea_codigo,
-                          ( tarea.sec_func || ' - ' || tarea.tarea_nro || ' ' || tarea.tarea_nombre ) as proyecto,
+						  CASE WHEN cast(tarea.ano_eje as int) >= 2021 
+							THEN tarea.sec_func 
+							ELSE (tarea.sec_func || ' - ' || tarea.tarea_nro) 
+						  END as tarea_codigo,
+						  CASE WHEN cast(tarea.ano_eje as int) >= 2021 
+							THEN ( tarea.sec_func || ' - ' || tarea.tarea_nombre ) 
+							ELSE ( tarea.sec_func || ' - ' || tarea.tarea_nro || ' ' || tarea.tarea_nombre )
+						  END as proyecto,
                           meta.nombre as meta_nombre,
                           (  SELECT count(distinct(indiv_id)) FROM planillas.hojaasistencia_emp empdet 
                              WHERE empdet.hoae_estado = 1 AND hoa_id =  ?
@@ -61,8 +67,14 @@ class hojaasistencia extends Table{
           $sql =" SELECT   hojas.*, (  substring( hojas.anio_eje from 3 for 2) || hojas.hoa_id ||  '-' ||hojas.plati_id ) as hoa_codigo , 
                           plati.plati_nombre as tipo_planilla, est.hoae_nombre as estado, hojas.hoa_estado as estado_id, 
 
-                          ( tarea.sec_func || ' - ' || tarea.tarea_nro || ' ' || tarea.tarea_nombre ) as proyecto,
-                          ( tarea.sec_func || ' - ' || tarea.tarea_nro) as meta_codigo,
+                          CASE WHEN cast(tarea.ano_eje as int) >= 2021 
+							THEN ( tarea.sec_func || ' - ' || tarea.tarea_nombre ) 
+							ELSE ( tarea.sec_func || ' - ' || tarea.tarea_nro || ' ' || tarea.tarea_nombre ) 
+						  END as proyecto,
+						  CASE WHEN cast(tarea.ano_eje as int) >= 2021 
+							THEN tarea.sec_func
+							ELSE ( tarea.sec_func || ' - ' || tarea.tarea_nro)
+                          END as meta_codigo,
                           (hoa_fechafin - hoa_fechaini + 1) as  nro_dias,
                    ( 
                       SELECT count(hoae_id) 
@@ -1792,7 +1804,10 @@ class hojaasistencia extends Table{
                         plati.plati_nombre as tipo_planilla, 
                         est.hoae_nombre as estado, 
                         hojas.hoa_estado as estado_id, 
-                        ( tarea.sec_func || ' - ' || tarea.tarea_nro || ' ' || tarea.tarea_nombre ) as proyecto 
+						CASE WHEN cast(tarea.ano_eje as int) >= 2021 
+							THEN ( tarea.sec_func || ' - ' || tarea.tarea_nombre )
+							ELSE ( tarea.sec_func || ' - ' || tarea.tarea_nro || ' ' || tarea.tarea_nombre )
+						END as proyecto
 
                FROM planillas.hojaasistencia hojas 
                LEFT JOIN planillas.planilla_tipo plati ON hojas.plati_id =  plati.plati_id 

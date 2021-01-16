@@ -47,8 +47,14 @@ class planillaempleado extends Table{
                         afp.afp_nombre,
                         mo.afm_nombre as modo_afp,
                         p_e.platica_id as categoria,
-                        (tarea.sec_func || '-'|| tarea.tarea_nro) as tarea,
-                        (tarea.sec_func || '-'|| tarea.tarea_nro) as tarea_codigo,
+						CASE WHEN cast(tarea.ano_eje as int) >= 2021 
+							THEN tarea.sec_func
+							ELSE (tarea.sec_func || '-'|| tarea.tarea_nro)
+						 END as tarea,
+                        CASE WHEN cast(tarea.ano_eje as int) >= 2021 
+							THEN tarea.sec_func
+							ELSE (tarea.sec_func || '-'|| tarea.tarea_nro)
+						 END as tarea_codigo,
                         tarea.tarea_nombre,
                         (p_e.fuente_id  || '-' || p_e.tipo_recurso) as fuente,
 
@@ -134,7 +140,11 @@ class planillaempleado extends Table{
                      indiv.indiv_dni as dni, 
                      plati_nombre as tipo_empleado, 
                      ocu.ocu_nombre as ocupacion_nombre,
-                     (tarea.sec_func || '-'|| tarea.tarea_nro) as tarea,
+					 CASE WHEN cast(tarea.ano_eje as int) >= 2021 
+						THEN tarea.sec_func
+						ELSE (tarea.sec_func || '-'|| tarea.tarea_nro)
+					 END as tarea,
+					 tarea.sec_func as meta,
                      tarea.tarea_nombre,
                      (plaemp.fuente_id || '-' || plaemp.tipo_recurso) as fuente,
                      firma.firma_imagen,
@@ -375,7 +385,7 @@ class planillaempleado extends Table{
 
 
         $sql.="      firma_imagen,firma_indiv, plaemp.indiv_id, indiv_appaterno, indiv_apmaterno, 
-                     indiv_nombres, indiv_dni,  plati_nombre, ocupacion_nombre,  tarea.sec_func, 
+                     indiv_nombres, indiv_dni,  plati_nombre, ocupacion_nombre,  tarea.sec_func, tarea.ano_eje,
                      tarea.tarea_nro,tarea_nombre, plaemp.fuente_id, plaemp.tipo_recurso, firma_imagen, firma_indiv,
                      historial.persla_quinta_gratificacionproyeccion,
                      indiv.indiv_suspension_cuarta,

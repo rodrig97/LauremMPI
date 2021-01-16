@@ -167,12 +167,14 @@
                        </td>
                   </tr> 
                    <tr class="row_form"> 
-                        <td width="100"> <span class="sp11b"> Tarea Presupuestal </span>  </td>
+                        <td width="100"> <span class="sp11b">
+							<?PHP echo (trim($this->usuario['anio_ejecucion']) >= 2021) ? 'Meta Presupuestal' : 'Tarea Presupuestal'; ?>
+						</span>  </td>
                         <td width="10"> : </td>
                         <td> 
                             
 
-                            <select id="selgd_tarea"  data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"tarea", readOnly:true, autoComplete:false, highlightMatch: "all",  queryExpr:"*${0}*", invalidMessage: "La Tarea Presupuestal no esta registrada" ' class="formelement-180-11">
+                            <select id="selgd_tarea"  data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"tarea", readOnly:true, autoComplete:false, highlightMatch: "all",  queryExpr:"*${0}*", invalidMessage: "La Meta Presupuestal no esta registrada" ' class="formelement-180-11">
                                 <option value="0"> No Especificar </option>
                                    <?PHP
                                    foreach($tareas as $tarea){
@@ -180,9 +182,15 @@
 
                                         if($afectacion['tarea_id'] == trim($tarea['cod_tarea']) ){
                                            echo " selected='true' ";
-                                        }  
+                                        }
+										
+										if (trim($tarea['ano_eje']) >= 2021) {
+										   $meta_codigo = trim($tarea['sec_func']);
+										} else {
+										   $meta_codigo = trim($tarea['sec_func']).'-'.trim($tarea['tarea']);
+										}
 
-                                        echo ">(".trim($tarea['ano_eje']).' - '.trim($tarea['sec_func']).'-'.trim($tarea['tarea']).') '.trim($tarea['nombre'])."</option>";
+                                        echo ">(".trim($tarea['ano_eje']).' - '.$meta_codigo.') '.trim($tarea['nombre'])."</option>";
                                    }
                                  ?>
                            </select>

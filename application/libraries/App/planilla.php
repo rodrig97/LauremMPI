@@ -34,7 +34,10 @@ class planilla extends Table{
                             plati.plati_key as tipo_key, 
                             mov.plaes_id as estado_id, 
                             est.plaes_nombre as estado, 
-                            ( tarea.ano_eje || '-' || tarea.sec_func || '-' || tarea.tarea_nro ) as tarea_codigo,
+							CASE WHEN cast(tarea.ano_eje as int) >= 2021 
+								THEN ( tarea.ano_eje || '-' || tarea.sec_func )
+								ELSE ( tarea.ano_eje || '-' || tarea.sec_func || '-' || tarea.tarea_nro )
+							END as tarea_codigo,
                             tarea.tarea_nombre,
                 
                             (SELECT count(plaemp_id) 
@@ -90,7 +93,10 @@ class planilla extends Table{
                  mes.mes_nombre as mes,
                  plati.plati_nombre as tipo,  
                  est.plaes_nombre as estado, 
-                 (tarea.sec_func || '-' || tarea.tarea_nro ) as tarea_codigo,
+				 CASE WHEN cast(tarea.ano_eje as int) >= 2021 
+					THEN tarea.sec_func 
+					ELSE (tarea.sec_func || '-' || tarea.tarea_nro ) 
+				 END as tarea_codigo,
                  tarea.tarea_nombre,
                  mov.plaes_id as estado_id, 
                  ( SELECT count(plaemp_id) FROM planillas.planilla_empleados plaem WHERE plaem.pla_id = pla.pla_id AND plaem.plaemp_estado = 1 ) as num_emps
@@ -715,7 +721,10 @@ class planilla extends Table{
 
                             afectacion.*,
                             tarea.tarea_nombre,
-                            ( tarea.sec_func || '-' || tarea.tarea_nro ) as tarea_codigo,
+							CASE WHEN cast(tarea.ano_eje as int) >= 2021 
+								THEN tarea.sec_func
+								ELSE ( tarea.sec_func || '-' || tarea.tarea_nro )
+							END as tarea_codigo,
                             ( afectacion.fuente_id || '-' || afectacion.tipo_recurso ) as fuente_codigo,
                             ff.nombre as fuente,
                             tr.nombre as tiporecurso,
@@ -2024,7 +2033,10 @@ class planilla extends Table{
                                    0 
                               END )) as aportacion,
 
-                         (tarea.sec_func || '-'|| tarea.tarea_nro) as tarea,
+                         CASE WHEN cast(tarea.ano_eje as int) >= 2021
+							THEN tarea.sec_func
+							ELSE (tarea.sec_func || '-'|| tarea.tarea_nro) 
+						 END as tarea,
                          (plaemp.fuente_id || '-' || plaemp.tipo_recurso) as fuente 
 
 
@@ -2036,7 +2048,7 @@ class planilla extends Table{
                     INNER JOIN planillas.planilla_movimiento movs ON movs.pla_id = pla.pla_id  AND plamo_estado = 1 AND movs.plaes_id >= ".ESTADOPLANILLA_PROCESADA."    
                     LEFT JOIN sag.tarea ON plaemp.tarea_id = tarea.tarea_id
                     WHERE pla.pla_id = ?
-                    GROUP BY plaemp.plaemp_id, plaemp.plaemp_key,indiv.indiv_id, tarea.sec_func, tarea.tarea_nro,plaemp.fuente_id, plaemp.tipo_recurso, platica.platica_nombre, indiv.indiv_appaterno,indiv.indiv_apmaterno,indiv.indiv_nombres, indiv_dni
+                    GROUP BY plaemp.plaemp_id, plaemp.plaemp_key,indiv.indiv_id, tarea.sec_func, tarea.tarea_nro,plaemp.fuente_id, plaemp.tipo_recurso, platica.platica_nombre, indiv.indiv_appaterno,indiv.indiv_apmaterno,indiv.indiv_nombres, indiv_dni, tarea.ano_eje
                     ORDER BY indiv_appaterno, indiv_apmaterno, indiv.indiv_nombres, plaemp.plaemp_id, platica_nombre
  
         ";

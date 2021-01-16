@@ -36,10 +36,13 @@
 		   { 
 
 		       if($plani_info['tarea_id'] != '')
-		       {
-
-		           echo '<span class="sp11b"> Tarea: </span> ';
-		           echo '<span class="sp11"> '.(trim($plani_info['tarea_codigo']).' '.substr(trim($plani_info['tarea_nombre']),0,50).'..' ).'</span>';
+		       {	
+					if(trim($this->usuario['anio_ejecucion']) >= 2021) {
+						echo '<span class="sp11b"> Meta: </span> ';
+					} else {
+						echo '<span class="sp11b"> Tarea: </span> ';
+					}
+					echo '<span class="sp11"> '.(trim($plani_info['tarea_codigo']).' '.substr(trim($plani_info['tarea_nombre']),0,50).'..' ).'</span>';
 		       }
 
 		
@@ -99,7 +102,7 @@
 					<tr  class="row_form"  id="tr_crpla_seltarea_row" > 
 					    <td>
 					        <span class="sp12b">
-					         Tarea
+								<?PHP echo (trim($this->usuario['anio_ejecucion']) >= 2021) ? 'Meta' : 'Tarea'; ?>
 					        </span>
 					    </td>
 					    <td>
@@ -113,7 +116,11 @@
 					             <option value="0"> No Especificar </option>
 					                <?PHP
 					                foreach($tareas as $tarea){
-					                     echo "<option value='".trim($tarea['tarea_id'])."'>(".trim($tarea['sec_func']).'-'.trim($tarea['tarea_nro']).') '.trim($tarea['tarea_nombre'])."</option>";
+										if (trim($tarea['ano_eje']) >= 2021) {
+										   echo "<option value='".trim($tarea['tarea_id'])."'>(".trim($tarea['sec_func']).') '.trim($tarea['tarea_nombre'])."</option>";
+										} else {
+										   echo "<option value='".trim($tarea['tarea_id'])."'>(".trim($tarea['sec_func']).'-'.trim($tarea['tarea_nro']).') '.trim($tarea['tarea_nombre'])."</option>";
+										}
 					                }
 					              ?>
 					        </select>

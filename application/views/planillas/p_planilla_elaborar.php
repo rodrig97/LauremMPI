@@ -116,8 +116,11 @@
 
                                   if($plani_info['tarea_id'] != '')
                                   {
-
-                                      echo '<span class="sp11b"> Tarea: </span> ';
+                                    if(trim($this->usuario['anio_ejecucion']) >= 2021) {
+										echo '<span class="sp11b"> Meta: </span> ';
+									} else {
+										echo '<span class="sp11b"> Tarea: </span> ';
+									}
                                       echo '<span class="sp11"> '.(trim($plani_info['tarea_codigo']).' '.substr(trim($plani_info['tarea_nombre']),0,50).'..' ).'</span>';
                                   }
 
@@ -695,7 +698,9 @@
                                              </tr>
 
                                              <tr class="row_form">
-                                                  <td> <span class="sp12b"> Tarea Presupuestal</span></td>
+                                                  <td> <span class="sp12b">
+													<?PHP echo (trim($this->usuario['anio_ejecucion']) >= 2021) ? 'Meta Presupuestal' : 'Tarea Presupuestal'; ?>
+												  </span></td>
                                                   <td>:</td>
                                                   <td colspan="3"> 
                                                      <select id="pesel_tarea" data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"tarea", disabled:false, autoComplete:false, highlightMatch: "all",  queryExpr:"*${0}*", invalidMessage: "La Tarea Presupuestal no esta registrada" ' style="margin-left:6px; font-size:11px; width: 180px;">
@@ -704,7 +709,11 @@
                                                           <option value="si"> CON TAREA PRESUPUESTAL </option>
                                                              <?PHP
                                                              foreach($tareas as $tarea){
-                                                                  echo "<option value='".trim($tarea['cod_tarea'])."'>(".trim($tarea['sec_func']).'-'.trim($tarea['tarea']).') '.trim($tarea['nombre'])."</option>";
+																if (trim($tarea['ano_eje']) >= 2021) {
+																   echo "<option value='".trim($tarea['cod_tarea'])."'>(".trim($tarea['sec_func']).') '.trim($tarea['nombre'])."</option>";
+																} else {
+																   echo "<option value='".trim($tarea['cod_tarea'])."'>(".trim($tarea['sec_func']).'-'.trim($tarea['tarea']).') '.trim($tarea['nombre'])."</option>";
+																}
                                                              }
                                                            ?>
                                                      </select>

@@ -212,7 +212,9 @@
                                                    </td>
                                               </tr>
                                               <tr class="row_form" >
-                                                   <td> <span class="sp12b">Tarea Presupuestal</span></td>
+                                                   <td> <span class="sp12b">
+													<?PHP echo (trim($this->usuario['anio_ejecucion']) >= 2021) ? 'Meta Presupuestal' : 'Tarea Presupuestal'; ?>
+												   </span></td>
                                                    <td> <span class="sp12b">: </span></td>
                                                    <td>  
                                                          <select  data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"tarea", disabled:false, autoComplete:false, highlightMatch: "all",  queryExpr:"*${0}*", invalidMessage: "La Tarea Presupuestal no esta registrada" ' style="margin-left:0px; font-size:11px; width: 180px;">
@@ -220,7 +222,11 @@
                                                                <?PHP
                                                                foreach($tareas as $tarea)
                                                                {
-                                                                    echo "<option value='".trim($tarea['cod_tarea'])."'>(".trim($tarea['ano_eje']).' - '.trim($tarea['sec_func']).'-'.trim($tarea['tarea']).') '.trim($tarea['nombre'])."</option>";
+																	if (trim($tarea['ano_eje']) >= 2021) {
+																	   echo "<option value='".trim($tarea['cod_tarea'])."'>(".trim($tarea['ano_eje']).' - '.trim($tarea['sec_func']).') '.trim($tarea['nombre'])."</option>";
+																	} else {
+																		echo "<option value='".trim($tarea['cod_tarea'])."'>(".trim($tarea['ano_eje']).' - '.trim($tarea['sec_func']).'-'.trim($tarea['tarea']).') '.trim($tarea['nombre'])."</option>";
+																	}
                                                                }
                                                              ?>
                                                        </select>

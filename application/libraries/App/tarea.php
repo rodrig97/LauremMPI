@@ -44,8 +44,10 @@ class Tarea extends Table{
                         tarea_id as cod_tarea, 
                         tarea_nombre as nombre, 
                         tarea_nro as tarea ,
-                        ( meta.sec_func || ' - ' || tarea.tarea_nro ) as tarea_codigo
-                
+                        CASE WHEN cast(tarea.ano_eje as int) >= 2021 
+							THEN meta.sec_func 
+							ELSE ( meta.sec_func || ' - ' || tarea.tarea_nro ) 
+						END as tarea_codigo
                  FROM sag.tarea 
                  LEFT JOIN pip.meta ON tarea.sec_func = meta.sec_func AND tarea.ano_eje = meta.ano_eje 
                  WHERE tarea_estado = '1'   
