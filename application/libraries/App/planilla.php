@@ -717,7 +717,7 @@ class planilla extends Table{
         }
 
 
-          $sql = "   SELECT  
+          $sql = "   SELECT  distinct
 
                             afectacion.*,
                             tarea.tarea_nombre,
@@ -2440,7 +2440,7 @@ class planilla extends Table{
 
         $in_planillas = implode(',', $params['planillas']);
  
-        $sql = "  SELECT  data.*,  ";
+        $sql = "  SELECT  distinct data.*,  ";
  
         if($planilla)
         {

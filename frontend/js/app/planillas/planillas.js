@@ -348,17 +348,23 @@ var Planillas = {
               onSuccess  : function(responseJSON){
                   
                     app.loader_hide(); 
-                    dojo.forEach( dijit.byId('sel_crpla_selfuente').getOptions(), function(opt,it){
+                //     dojo.forEach( dijit.byId('sel_crpla_selfuente').getOptions(), function(opt,it){
 
-                        dijit.byId('sel_crpla_selfuente').removeOption(opt);
-                   });
+                //         dijit.byId('sel_crpla_selfuente').removeOption(opt);
+                //    });
 
-                   dojo.forEach( responseJSON, function(newOption, it){
+                //    dojo.forEach( responseJSON, function(newOption, it){
 
 
-                        dijit.byId('sel_crpla_selfuente').addOption(  {label:  newOption.fuente_nombre, value: newOption.fuente_codigo, disabled : false} );
+                //         dijit.byId('sel_crpla_selfuente').addOption(  {label:  newOption.fuente_nombre, value: newOption.fuente_codigo, disabled : false} );
 
-                   });
+                //    });
+
+                    dijit.byId('sel_crpla_selfuente').set('value', '');
+                    dijit.byId('sel_crpla_selfuente').store.data = [];
+                    dojo.forEach( responseJSON, function(newOption, it){
+                            dijit.byId('sel_crpla_selfuente').store.put(  {name:  newOption.fuente_nombre, id: newOption.fuente_codigo} );
+                    });
                                                     
                 //    dijit.byId('sel_crpla_selfuente').addOption();
                     

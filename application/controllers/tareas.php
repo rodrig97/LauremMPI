@@ -34,18 +34,14 @@ class tareas extends CI_Controller {
         $fuentes = array(); 
         $fuentes_rs  =  array();
  
-          if(CONECCION_AFECTACION_PRESUPUESTAL)
-          {
-
-             if($cod_tarea != '')
-             {
-                 $fuentes_rs  =  $this->fuentefinanciamiento->get_by_tarea($cod_tarea,$this->usuario['anio_ejecucion']);
-             }
-          }
-          else
-          {
-              $fuentes_rs  =  $this->fuentefinanciamiento->get_all($this->usuario['anio_ejecucion']);
-          }
+        if($cod_tarea != '') {
+            if(CONECCION_AFECTACION_PRESUPUESTAL) {
+                $fuentes_rs  =  $this->fuentefinanciamiento->get_by_tarea($cod_tarea,$this->usuario['anio_ejecucion']);
+            }
+            else {
+                $fuentes_rs  =  $this->fuentefinanciamiento->get_tr_by_ff_in_tarea($cod_tarea,$this->usuario['anio_ejecucion']);
+            }
+        }
 
           foreach($fuentes_rs as $k => $ff){
           

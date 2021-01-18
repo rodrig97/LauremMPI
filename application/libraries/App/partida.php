@@ -76,7 +76,7 @@ class partida extends Table{
     public function get_by_tarea( $params = array() )
     {
  
-        $sql = "SELECT  
+        $sql = "SELECT  distinct
                        ed.id_clasificador,
                        (tipo_transaccion ||'.'|| generica || '.' || subgenerica || '.' || subgenerica_det || '.' || especifica || '.' || especifica_det ) as codigo,
                         ed.descripcion as nombre
@@ -85,7 +85,7 @@ class partida extends Table{
                       FROM sag.tarea_saldo 
                       WHERE tarea_id = ?  ) as by_tarea 
                
-                LEFT JOIN pip.especifica_det ed ON by_tarea.clasi = ed.id_clasificador AND ed.ano_eje = ?
+                INNER JOIN pip.especifica_det ed ON by_tarea.clasi = ed.id_clasificador AND ed.ano_eje = ?
                 ORDER BY codigo   
                ";
 

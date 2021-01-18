@@ -75,18 +75,14 @@ var Trabajadores =  {
               onSuccess  : function(responseJSON){
                   
                    app.loader_hide(); 
-              
-                   dojo.forEach( dijit.byId('selgd_selfuente').getOptions(), function(opt,it){
 
-                        dijit.byId('selgd_selfuente').removeOption(opt);
-                   });
-
+                   dijit.byId('selgd_selfuente').set('value', '');
+                   dijit.byId('selgd_selfuente').store.data = [];
+                   dijit.byId('selgd_selfuente').store.put(  {name:  'No especificar', id: '0'} );
                    dojo.forEach( responseJSON, function(newOption, it){
- 
-                        dijit.byId('selgd_selfuente').addOption(  {label:  newOption.fuente_nombre, value: newOption.fuente_codigo, disabled : false} );
-
+                         dijit.byId('selgd_selfuente').store.put(  {name:  newOption.fuente_nombre, id: newOption.fuente_codigo} );
                    });
-                     
+
               },
               
               onFailure : function(){

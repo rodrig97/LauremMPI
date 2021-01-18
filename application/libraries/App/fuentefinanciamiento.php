@@ -96,6 +96,28 @@ class fuentefinanciamiento extends Table{
                  
     }
 
+    public function get_tr_by_ff_in_tarea($cod_tarea = 0, $ano_eje)
+    {
+        
+        $sql  =" 
+                SELECT  distinct(t_s.fuente_financ,t_r.tipo_recurso ) as rela_id, 
+                            t_s.fuente_financ as fuente_id,  
+                            ff.nombre as fuente_nombre, 
+                            t_r.tipo_recurso as recurso_id, 
+                            t_r.nombre as recurso_nombre   
+                    FROM sag.tarea_saldo  t_s
+                    LEFT JOIN pip.fuente_financ ff ON t_s.ano_eje = ff.ano_eje AND t_s.fuente_financ = ff.fuente_financ 
+                    LEFT JOIN pip.tipo_recurso t_r ON t_s.ano_eje = t_r.ano_eje AND t_s.fuente_financ = t_r.fuente_financ 
+                    where t_s.ano_eje = ? AND t_s.tarea_id = ?
+                    order by  t_s.fuente_financ, t_r.tipo_recurso 
+
+         ";
+
+        $rs = $this->_CI->db->query($sql,array($ano_eje,$cod_tarea))->result_array();
+        
+        return $rs;
+                 
+    }
 
     public function get_all($ano_eje)
     {   

@@ -201,10 +201,10 @@
                         <td> <span class="sp11b"> Fuente Financiamiento </span>  </td>
                         <td> : </td>
                         <td> 
-                            <select id="selgd_selfuente"   data-dojo-type="dijit.form.Select" data-dojo-props='name:"fuente_financiamiento", readOnly:true, disabled:false' class="formelement-180-11" style="width:200px;">
+                            <select id="selgd_selfuente"   data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"fuente_financiamiento", readOnly:true, autoComplete:false, highlightMatch: "all",  queryExpr:"*${0}*", invalidMessage: "La Fuente Presu no esta registrada" ' class="formelement-180-11" style="width:200px;">
                                   
                                 <?PHP 
-                                    if($afectacion['empre_id'] == '')
+                                    if( ($afectacion['empre_id'] == '') || ( $afectacion['fuente_id'] == '0' ) )
                                     {
 
                                 ?>
