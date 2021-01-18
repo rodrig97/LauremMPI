@@ -283,7 +283,7 @@
 		</td>
 	
 		<?PHP 
-			$max_uit = 26600;
+			$max_uit = 30800; // $max_uit = 26600;
 			foreach ($meses as $k => $mes)
 			{
 		?>

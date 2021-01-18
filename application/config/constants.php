@@ -58,7 +58,7 @@ define('NUMERO_CARACTERES_DNI', 8);
 define('AFP_EDADINVALIDEZ_LIMITE',65);
 
 define('MULTIPLE_UIT_QUINTA', 7);
-define('MONTO_UIT', 4150 );
+define('MONTO_UIT', 4400 );
 
 define('TIPOOPERANDO_VARIABLE','1');
 define('TIPOOPERANDO_CONCEPTO','2');
@@ -304,7 +304,7 @@ define('PERIODOPAGO_QUINCENA', 2);
 define('PERIODOPAGO_MENSUAL', 3);
 define('PERIODOPAGO_DIARIO', 4);
 
-define('VALOR_UIT',4300);
+define('VALOR_UIT',4400);
 
 define('TIPOCALCULO_QUINTA', '1');
 
