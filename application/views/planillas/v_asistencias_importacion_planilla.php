@@ -109,6 +109,7 @@
                                                    foreach($tareas as $tarea){
                                                         if (trim($tarea['ano_eje']) >= 2021) {
                                                             echo "<option value='".trim($tarea['tarea_id'])."'> (".trim($tarea['ano_eje']).' - '.trim($tarea['sec_func']).') '.trim($tarea['tarea_nombre'])."</option>";
+                                                        } else {
                                                             echo "<option value='".trim($tarea['tarea_id'])."'> (".trim($tarea['ano_eje']).' - '.trim($tarea['sec_func']).'-'.trim($tarea['tarea_nro']).') '.trim($tarea['tarea_nombre'])."</option>";
                                                         }
                                                    }
