@@ -82,7 +82,8 @@ var Trabajadores =  {
                    dojo.forEach( responseJSON, function(newOption, it){
                          dijit.byId('selgd_selfuente').store.put(  {name:  newOption.fuente_nombre, id: newOption.fuente_codigo} );
                    });
-
+                   dijit.byId('selgd_selfuente').set('value','0');
+                   
               },
               
               onFailure : function(){

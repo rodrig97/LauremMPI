@@ -155,8 +155,8 @@
                        </td>
                        
                        <td>
-                           <select id="sel_crpla_selfuente"   data-dojo-type="dijit.form.Select" data-dojo-props='name:"fuente_financiamiento", disabled:false' style="margin-left:6px; font-size:11px; width: 250px;">
-                                 
+                           <select id="sel_crpla_selfuente"   data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"fuente_financiamiento", autoComplete:false, highlightMatch: "all",  queryExpr:"*${0}*", invalidMessage: "La Fuente de Financiamiento no esta registrada" ' style="margin-left:6px; font-size:11px; width: 250px;">
+                                
                             </select>
                        </td>
                    </tr> 

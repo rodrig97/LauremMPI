@@ -51,7 +51,9 @@
                       <span class="sp12b"> : </span>  
                   </td>
                   <td>
-                       <span class="sp12b"> Tarea: </span>  <span class="sp12"> <?PHP echo $info['tarea'] ?> </span>
+                       <span class="sp12b">
+                        <?PHP echo (trim($this->usuario['anio_ejecucion']) >= 2021) ? 'Meta' : 'Tarea'; ?>
+                       </span>  <span class="sp12"> <?PHP echo $info['tarea'] ?> </span>
 
                        <span class="sp12b"> Fuente: </span>  <span class="sp12"> <?PHP echo $info['fuente'] ?> </span>
            
@@ -60,7 +62,9 @@
 
                 <tr class="row_form">
                    <td> 
-                       <span class="sp12b"> Tarea presupuestal </span>
+                       <span class="sp12b">
+                        <?PHP echo (trim($this->usuario['anio_ejecucion']) >= 2021) ? 'Meta Presupuestal' : 'Tarea Presupuestal'; ?>
+                       </span>
                    </td>
                    <td>
                        <span class="sp12b"> : </span>
@@ -70,7 +74,11 @@
                             <option value="0"> No Especificar </option>
                                <?PHP
                                foreach($tareas as $tarea){
+                                if (trim($tarea['ano_eje']) >= 2021) {
+                                    echo "<option value='".trim($tarea['cod_tarea'])."'>(".trim($tarea['sec_func']).') '.trim($tarea['nombre'])."</option>";
+                                 } else {
                                     echo "<option value='".trim($tarea['cod_tarea'])."'>(".trim($tarea['sec_func']).'-'.trim($tarea['tarea']).') '.trim($tarea['nombre'])."</option>";
+                                 }
                                }
                              ?>
                        </select>
@@ -86,7 +94,7 @@
                     </td>
                     
                     <td>
-                        <select id="sel_crpla_selfuente"   data-dojo-type="dijit.form.Select" data-dojo-props='name:"fuente_financiamiento", disabled:false' style="margin-left:6px; font-size:11px; width: 220px;">
+                        <select id="sel_crpla_selfuente"   data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"fuente_financiamiento", autoComplete:false, highlightMatch: "all",  queryExpr:"*${0}*", invalidMessage: "La Fuente de Financiamiento no esta registrada"' style="margin-left:6px; font-size:11px; width: 220px;">
                               
                          </select>
                     </td>

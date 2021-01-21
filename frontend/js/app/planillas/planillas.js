@@ -362,9 +362,11 @@ var Planillas = {
 
                     dijit.byId('sel_crpla_selfuente').set('value', '');
                     dijit.byId('sel_crpla_selfuente').store.data = [];
+                    dijit.byId('sel_crpla_selfuente').store.put(  {name:  'No especificar', id: '0'} );
                     dojo.forEach( responseJSON, function(newOption, it){
                             dijit.byId('sel_crpla_selfuente').store.put(  {name:  newOption.fuente_nombre, id: newOption.fuente_codigo} );
                     });
+                    dijit.byId('sel_crpla_selfuente').set('value','0');
                                                     
                 //    dijit.byId('sel_crpla_selfuente').addOption();
                     
