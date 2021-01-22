@@ -117,7 +117,7 @@
      </div> 
  
 
- <input type="hidden" id="hdafectacion_modo" value="<?PHP echo CONECCION_AFECTACION_PRESUPUESTAL ? '1' : '0'; ?>" />
+ <input type="hidden" id="hdafectacion_modo" value="<?PHP echo (CONECCION_AFECTACION_PRESUPUESTAL ||PRESUPUESTAL_SOLO_LECTURA) ? '1' : '0'; ?>" />
  <div id="dvtable_afectacion_planilla"></div>
  
  

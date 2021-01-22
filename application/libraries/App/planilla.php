@@ -663,7 +663,7 @@ class planilla extends Table{
 
  
 
-        if(CONECCION_AFECTACION_PRESUPUESTAL)
+        if(CONECCION_AFECTACION_PRESUPUESTAL || PRESUPUESTAL_SOLO_LECTURA)
         { 
 
               if($mododinero_afectacion == PLATI_AFECTARDINERO_MODO_SALDO )
@@ -734,7 +734,7 @@ class planilla extends Table{
                            
                     ";
                     
-                  if(CONECCION_AFECTACION_PRESUPUESTAL)
+                  if(CONECCION_AFECTACION_PRESUPUESTAL || PRESUPUESTAL_SOLO_LECTURA)
                   {             
                       $sql.="        ,disponible.disponible ";
 
@@ -768,7 +768,7 @@ class planilla extends Table{
                 ";
 
 
-                 if(CONECCION_AFECTACION_PRESUPUESTAL)
+                 if(CONECCION_AFECTACION_PRESUPUESTAL || PRESUPUESTAL_SOLO_LECTURA)
                  { 
 
               $sql.="    
@@ -782,7 +782,7 @@ class planilla extends Table{
                          ) as disponible ON afectacion.ano_eje = disponible.ano_eje 
                                             AND afectacion.tarea_id = disponible.tarea_id 
                                             AND afectacion.fuente_id = disponible.fuente_financ 
-                                            AND afectacion.tipo_recurso = disponible.tipo_recurso 
+                                            /* AND afectacion.tipo_recurso = disponible.tipo_recurso */
                                             AND afectacion.clasificador_id = disponible.id_clasificador 
                  
                      ";                       
