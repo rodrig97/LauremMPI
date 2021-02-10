@@ -841,7 +841,7 @@ class Spreadsheet_Excel_Reader {
 
 		// Custom pattern can be POSITIVE;NEGATIVE;ZERO
 		// The "text" option as 4th parameter is not handled
-		$parts = split(";",$format);
+		$parts = explode(";",$format);
 		$pattern = $parts[0];
 		// Negative pattern
 		if (count($parts)>2 && $num==0) {
@@ -1388,7 +1388,8 @@ class Spreadsheet_Excel_Reader {
 					$column	 = ord($data[$spos+2]) | ord($data[$spos+3])<<8;
 					$xfindex	= ord($data[$spos+4]) | ord($data[$spos+5])<<8;
 					$index  = $this->_GetInt4d($data, $spos + 6);
-					$this->addcell($row, $column, $this->sst[$index], array('xfIndex'=>$xfindex) );
+					$strval = trim( $this->sst[$index], chr(0xC2).chr(0xA0) );
+					$this->addcell($row, $column, $strval, array('xfIndex'=>$xfindex) );
 					break;
 				case SPREADSHEET_EXCEL_READER_TYPE_MULRK:
 					$row		= ord($data[$spos]) | ord($data[$spos+1])<<8;
