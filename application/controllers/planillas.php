@@ -604,7 +604,7 @@ class planillas extends CI_Controller
             $data['bancos']       = $this->banco->get_list();
             $data['tareas']       = $this->tarea->get_list(array('ano_eje' =>  $this->usuario['anio_ejecucion'] ) );
             $data['conceptos']    = $this->concepto->get_list( array('tipoplanilla' =>  $plani_info['plati_id']));
-            $data['fuentes']      = $this->fuentefinanciamiento->get_all( $this->usuario['anio_ejecucion'] );
+            $data['fuentes']      = $this->fuentefinanciamiento->get_ff_tr(array('anio_eje' =>  $this->usuario['anio_ejecucion'] ));
 
             $data['dependencias'] = $this->dependencia->get_list();
             $data['cargos']       = $this->cargo->get_list(); 
@@ -922,7 +922,7 @@ class planillas extends CI_Controller
          $data['afps']         = $this->afp->load_for_combo(true);
          $data['bancos']       = $this->banco->get_list();
          $data['tareas']       = $this->tarea->get_list(array('ano_eje' => $this->usuario['anio_ejecucion'] ) ); 
-         $data['fuentes']      = $this->fuentefinanciamiento->get_all( $this->usuario['anio_ejecucion'] );   
+         $data['fuentes']      = $this->fuentefinanciamiento->get_ff_tr( array('anio_eje' =>  $this->usuario['anio_ejecucion'] ) );   
         
          $grupos = $this->grupoempleado->get_list();
 

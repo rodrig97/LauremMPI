@@ -39,7 +39,7 @@ class tareas extends CI_Controller {
                 $fuentes_rs  =  $this->fuentefinanciamiento->get_by_tarea($cod_tarea,$this->usuario['anio_ejecucion']);
             }
             else {
-                $fuentes_rs  =  $this->fuentefinanciamiento->get_tr_by_ff_in_tarea($cod_tarea,$this->usuario['anio_ejecucion']);
+                $fuentes_rs  =  $this->fuentefinanciamiento->get_all($this->usuario['anio_ejecucion']);
             }
         }
 

@@ -144,7 +144,7 @@ class trabajadores extends CI_Controller
                 $data['afps']         = $this->afp->load_for_combo(true);
                 $data['bancos']       = $this->banco->get_list();
                 $data['tareas']       = $this->tarea->get_list(array('ano_eje' => $this->usuario['anio_ejecucion'] ) ); 
-                $data['fuentes']      = $this->fuentefinanciamiento->get_all( $this->usuario['anio_ejecucion'] ); 
+                $data['fuentes']      = $this->fuentefinanciamiento->get_ff_tr( array('anio_eje' =>  $this->usuario['anio_ejecucion'] ) );
 
                 $this->load->view('planillas/p_trabajadores_gestionardatos', array(  
                                                                                    'edicion_directa' => $edicion_directa,
