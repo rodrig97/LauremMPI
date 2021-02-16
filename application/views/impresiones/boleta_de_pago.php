@@ -270,7 +270,7 @@ $alto_fila = 4;
     $this->pdf->Cell($sub_columnas[4][0],$alto_fila,'Cese',$bordes,0,'L');
     $this->pdf->Cell($sub_columnas[4][1],$alto_fila,':',$bordes,0,'C');
     $this->pdf->SetFont('Arial','',$tamanio_letra);
-    $this->pdf->Cell($sub_columnas[4][2],$alto_fila, (trim($detalle_info['persla_fechacese']) != '' && trim($detalle_info['vigente']) == '0' ) ? _get_date_pg(trim($persona_info['persla_fechaini'])) : '------' , $bordes,0,'L');
+    $this->pdf->Cell($sub_columnas[4][2],$alto_fila, (trim($detalle_info['persla_fechacese']) != '' && trim($persona_info['vigente']) == '0' ) ? _get_date_pg(trim($detalle_info['persla_fechacese'])) : '------' , $bordes,0,'L');
       
     
     $current_Y = ($POSITION_Y_1 +21);
