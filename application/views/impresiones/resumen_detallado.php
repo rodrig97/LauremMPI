@@ -515,7 +515,8 @@ foreach($planillas as $planilla_id)
 
                     $this->pdf->ln();
                     $this->pdf->SetFont('Arial','B',$tamanio_letra_info_cabecera);
-                    $this->pdf->Cell(33,$alto_linea,'TAREA PRESUPUESTAL','',0,'L');
+                    $lcTarea = ( $planilla_info['ano_eje'] < 2021 ) ? 'TAREA' : 'META';
+                    $this->pdf->Cell(33,$alto_linea,$lcTarea.' PRESUPUESTAL','',0,'L');
                     $this->pdf->Cell(5,$alto_linea,':','',0,'C');
                     $this->pdf->SetFont('Arial','',$tamanio_letra_info_cabecera);
 
