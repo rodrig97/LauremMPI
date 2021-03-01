@@ -31,13 +31,13 @@ class hojaasistencia extends Table{
                           est.hoae_nombre as estado, 
                           hojas.hoa_estado as estado_id, 
                           (hoa_fechafin - hoa_fechaini + 1) as  nro_dias,
-						  CASE WHEN cast(tarea.ano_eje as int) >= 2021 
-							THEN tarea.sec_func 
-							ELSE (tarea.sec_func || ' - ' || tarea.tarea_nro) 
+						  CASE WHEN hoa_anio::integer < 2021 
+                            THEN (tarea.sec_func || ' - ' || tarea.tarea_nro) 
+                            ELSE tarea.sec_func 	
 						  END as tarea_codigo,
-						  CASE WHEN cast(tarea.ano_eje as int) >= 2021 
-							THEN ( tarea.sec_func || ' - ' || tarea.tarea_nombre ) 
-							ELSE ( tarea.sec_func || ' - ' || tarea.tarea_nro || ' ' || tarea.tarea_nombre )
+						  CASE WHEN hoa_anio::integer < 2021 
+                            THEN ( tarea.sec_func || ' - ' || tarea.tarea_nro || ' ' || tarea.tarea_nombre )
+                            ELSE ( tarea.sec_func || ' - ' || tarea.tarea_nombre ) 	
 						  END as proyecto,
                           meta.nombre as meta_nombre,
                           (  SELECT count(distinct(indiv_id)) FROM planillas.hojaasistencia_emp empdet 
@@ -66,14 +66,13 @@ class hojaasistencia extends Table{
 
           $sql =" SELECT   hojas.*, (  substring( hojas.anio_eje from 3 for 2) || hojas.hoa_id ||  '-' ||hojas.plati_id ) as hoa_codigo , 
                           plati.plati_nombre as tipo_planilla, est.hoae_nombre as estado, hojas.hoa_estado as estado_id, 
-
-                          CASE WHEN cast(tarea.ano_eje as int) >= 2021 
-							THEN ( tarea.sec_func || ' - ' || tarea.tarea_nombre ) 
-							ELSE ( tarea.sec_func || ' - ' || tarea.tarea_nro || ' ' || tarea.tarea_nombre ) 
+                          CASE WHEN hoa_anio::integer < 2021 
+                            THEN ( tarea.sec_func || ' - ' || tarea.tarea_nro || ' ' || tarea.tarea_nombre ) 
+                            ELSE ( tarea.sec_func || ' - ' || tarea.tarea_nombre ) 
 						  END as proyecto,
-						  CASE WHEN cast(tarea.ano_eje as int) >= 2021 
-							THEN tarea.sec_func
-							ELSE ( tarea.sec_func || ' - ' || tarea.tarea_nro)
+						  CASE WHEN hoa_anio::integer < 2021 
+                            THEN ( tarea.sec_func || ' - ' || tarea.tarea_nro)
+                            ELSE tarea.sec_func	
                           END as meta_codigo,
                           (hoa_fechafin - hoa_fechaini + 1) as  nro_dias,
                    ( 
@@ -1804,9 +1803,9 @@ class hojaasistencia extends Table{
                         plati.plati_nombre as tipo_planilla, 
                         est.hoae_nombre as estado, 
                         hojas.hoa_estado as estado_id, 
-						CASE WHEN cast(tarea.ano_eje as int) >= 2021 
-							THEN ( tarea.sec_func || ' - ' || tarea.tarea_nombre )
-							ELSE ( tarea.sec_func || ' - ' || tarea.tarea_nro || ' ' || tarea.tarea_nombre )
+						CASE WHEN hoa_anio::integer < 2021 
+                            THEN ( tarea.sec_func || ' - ' || tarea.tarea_nro || ' ' || tarea.tarea_nombre )
+                            ELSE ( tarea.sec_func || ' - ' || tarea.tarea_nombre )	
 						END as proyecto
 
                FROM planillas.hojaasistencia hojas 
