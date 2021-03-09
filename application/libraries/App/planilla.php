@@ -669,27 +669,17 @@ class planilla extends Table{
               if($mododinero_afectacion == PLATI_AFECTARDINERO_MODO_SALDO )
               {
 
-					// FROMAN 03.10.2016 17:28
+					// 21-03-09 DEJAR SOLO USAR SALDOS DEL SIGEM AL AFECTAR PLANILLAS
                     $sql_disponible = "   SELECT  t_s.ano_eje, 
                                        t_s.tarea_id, 
                                        t_s.fuente_financ, 
                                        t_s.tipo_recurso, 
                                        t_s.id_clasificador,                                      
-									   
                                       (CASE
-											WHEN (SUM(t_s.monto_pia + t_s.monto_mov_ha + COALESCE(s_query.monto_retorno,0) - (t_s.monto_mov_de + t_s.monto_egreso + t_s.monto_egreso_ctb)) > 0) THEN 
-												SUM(t_s.monto_pia + t_s.monto_mov_ha + COALESCE(s_query.monto_retorno,0) - (t_s.monto_mov_de + t_s.monto_egreso + t_s.monto_egreso_ctb))
-											ELSE 
-												0
+											WHEN t_s.monto_saldo_sigem < 0 THEN 0
+											ELSE t_s.monto_saldo_sigem
 										END) AS disponible
-							FROM sag.tarea_saldo t_s
-							   left join (select tarea,fte_fto,tip_recur,clasificador_id,sum(COALESCE(monto_retorno,0)) as monto_retorno from sag.subsidy_return group by tarea,fte_fto,tip_recur,clasificador_id) as s_query 
-									on cast(s_query.tarea as int)=t_s.tarea_id and s_query.fte_fto=t_s.fuente_financ and s_query.tip_recur=t_s.tipo_recurso and s_query.clasificador_id=t_s.id_clasificador
-
-                               WHERE t_s.tareacomp_id = 0
-                               GROUP BY t_s.ano_eje, t_s.tarea_id, t_s.fuente_financ, t_s.tipo_recurso, t_s.id_clasificador
-                               ORDER BY t_s.ano_eje, t_s.tarea_id, t_s.fuente_financ, t_s.tipo_recurso, t_s.id_clasificador
-     
+							FROM sag.v_tarea_saldo_calculate t_s
                            ";
 
               } 
@@ -1362,7 +1352,7 @@ class planilla extends Table{
                 
                     $xp = ($retornar_dinero == false) ? 1 : -1;
 
-                    $tipo_mov = '';
+                    $tipo_mov = 'S';
 
                    
                     foreach($afectacion_planilla as $planilla_clasificador)
