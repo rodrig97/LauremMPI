@@ -29,6 +29,7 @@ class escalafon extends CI_Controller {
                                      'App/descansomedico',
                                      'App/ocupacion',
                                      'App/licencia',
+                                     'Catalogos/reniec',
                                      'Catalogos/afp',
                                      'Catalogos/banco',
                                      'Catalogos/brevet',
@@ -58,7 +59,7 @@ class escalafon extends CI_Controller {
              $this->load->library(array('Catalogos/ubicacion'));
      
              $dni            = trim($this->input->post('dni'));
-             
+             $datos_reniec   = $this->reniec->buscar_dni($dni);
              $afps           = $this->afp->load_for_combo(false); // 
              $bancos         = $this->banco->load_for_combo(false);
              $brevetes       = $this->brevet->load_for_combo(false);
@@ -71,6 +72,7 @@ class escalafon extends CI_Controller {
            
              $this->load->view('escalafon/v_nuevo_view', array( 
                                                                 'dni'            => $dni, 
+                                                                'reniec'         => $datos_reniec,
                                                                 'afps'           => $afps, 
                                                                 'bancos'         => $bancos, 
                                                                 'brevetes'       => $brevetes, 
