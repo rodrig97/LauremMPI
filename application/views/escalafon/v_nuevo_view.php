@@ -140,21 +140,21 @@
                   <td width="190"> <span class="sp12b">Nombres </span></td>
                   <td>:</td>
                   <td width="500"> 
-                       <input id="fip_txtnombres" name="nombres" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:100" class="formelement-250-12" value="<?php echo $reniec['nombres']; ?>" <?php echo ( $reniec['nombres'] == '' ? '' : ' disabled' ); ?> />
+                       <input id="fip_txtnombres" name="nombres" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:100" class="formelement-250-12" value="<?php echo $reniec['nombres']; ?>" <?php echo ( $reniec['nombres'] == '' ? '' : ' readonly' ); ?> />
                   </td>
              </tr>
               <tr class="row_form">
                   <td> <span class="sp12b">Apellido Paterno </span></td>
                   <td>:</td>
                   <td> 
-                      <input id="fip_txtpaterno" name="paterno" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:100" class="formelement-250-12" value="<?php echo $reniec['apellido_primero']; ?>" <?php echo ( $reniec['apellido_primero'] == '' ? '' : ' disabled' ); ?> />
+                      <input id="fip_txtpaterno" name="paterno" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:100" class="formelement-250-12" value="<?php echo $reniec['apellido_primero']; ?>" <?php echo ( $reniec['apellido_primero'] == '' ? '' : ' readonly' ); ?> />
                   </td>
              </tr>
               <tr class="row_form">
                   <td> <span class="sp12b">Apellido Materno </span></td>
                   <td>:</td>
                   <td> 
-                       <input id="fip_txtmaterno" name="materno" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:100" class="formelement-250-12" value="<?php echo $reniec['apellido_segundo']; ?>" <?php echo ( $reniec['apellido_segundo'] == '' ? '' : ' disabled' ); ?> />
+                       <input id="fip_txtmaterno" name="materno" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:100" class="formelement-250-12" value="<?php echo $reniec['apellido_segundo']; ?>" <?php echo ( $reniec['apellido_segundo'] == '' ? '' : ' readonly' ); ?> />
                   </td>
              </tr>
               <tr class="row_form">
@@ -240,7 +240,7 @@
                   <td> <span class="sp12b">Dni</span></td>
                   <td>:</td>
                   <td> 
-                      <input  id="fip_txtdni" name="dni" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:8, readOnly: <?PHP echo $dni_editable; ?>" class="formelement-100-12" value="<?PHP echo $dni; ?>" disabled />
+                      <input  id="fip_txtdni" name="dni" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:8" class="formelement-100-12" value="<?PHP echo $dni; ?>" readonly />
                   </td>
              </tr>
 
