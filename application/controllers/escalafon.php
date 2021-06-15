@@ -2813,10 +2813,11 @@ class escalafon extends CI_Controller {
                             'col3' => 'indiv_apmaterno',
                             'col4' => 'indiv_nombres',
                             'col5' => 'indiv_dni',
-                            'col6' => '',
-                            'col7' => '',
-                            'col8' => '',
-                            'col9' => ''
+                            'col6' => 'tipo_trabajador',
+                            'col7' => 'depe_nombre',
+                            'col8' => 'cargo_nombre',
+                            'col9' => 'vigente',
+                            'col11' => 'ultimo_pago'
                             );
         
         $params =  array();
@@ -2979,6 +2980,7 @@ class escalafon extends CI_Controller {
             $data['dni'] = $registro['indiv_dni'];
             $data['tipo_trabajador'] = $registro['tipo_trabajador'];
             $data['lugar_de_trabajo'] = ($registro['indiv_lugar_de_trabajo'] == LUGAR_DE_TRABAJO_PALACIO ? 'Palacion Municipal' : 'Perifericos');
+            $data['col11'] = ( $registro['ultimo_pago'] ? _get_date_pg($registro['ultimo_pago']) : '---' );
          
             $response[] = $data;
             $c++;

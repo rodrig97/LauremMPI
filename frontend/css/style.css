@@ -869,7 +869,7 @@ html>body tbody.scrollContent td + td + td {
 #dvacademico_table .field-col6{ width:80px;  text-align:center; }
 
 
-#dvapersonalregistrado_table { height: 300px; font-size:11px;  width: 960px;    }
+#dvapersonalregistrado_table { height: 300px; font-size:11px;  width: 1050px;    }
 
 #dvapersonalregistrado_table .field-col1{ width:40px; align:center; }
 #dvapersonalregistrado_table .field-col2{ width:80px;  align:center; } 
@@ -880,6 +880,7 @@ html>body tbody.scrollContent td + td + td {
 #dvapersonalregistrado_table .field-col7{ width:180px;  align:center; }
 #dvapersonalregistrado_table .field-col8{ width:140px;  align:center; }
 #dvapersonalregistrado_table .field-col9{ width:80px;  align:center; }
+#dvapersonalregistrado_table .field-col11{ width:80px;  align:center; }
 
 
 #dv_planillaadddetalle_table{ height: 300px; font-size:11px;  width: 920px;    }

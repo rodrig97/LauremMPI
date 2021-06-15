@@ -57,7 +57,13 @@ class persona extends Table{
             $sql.=" AND persla.plati_id IN (".trim($params['plati_id']).") ";
         }
 
-        $sql.= " ORDER BY indiv.indiv_appaterno, indiv.indiv_apmaterno, indiv.indiv_nombres  ";
+        if( $params['orden'] != '' ) // && $params['nombre'] != '' 
+        { 
+            $sql.=" ORDER BY ? ";
+            $query[] = $params['orden'];
+        } else {
+            $sql.= " ORDER BY indiv.indiv_appaterno, indiv.indiv_apmaterno, indiv.indiv_nombres  ";
+        }
 
         if($params['limit'] != '' ) // && $params['nombre'] != '' 
         { 
@@ -233,6 +239,7 @@ class persona extends Table{
                            \'\'
                      END )  as termino_de_contrato  
 
+                     , up.ultimo_pago
 
                ';
  
@@ -263,6 +270,15 @@ class persona extends Table{
                  LEFT JOIN planillas.empleado_presupuestal empre ON empre.indiv_id = pers.indiv_id  AND empre.empre_estado = 1 AND empre.ano_eje = ?
                  LEFT JOIN public.cargo cargos ON cargos.cargo_id = historial.cargo_id  
                  LEFT JOIN public.area depes ON historial.depe_id = depes.area_id
+
+                 LEFT JOIN (
+                    SELECT pe.indiv_id, max(pla_fecreg) as ultimo_pago 
+                    FROM planillas.planilla_empleados pe
+                        INNER JOIN planillas.planillas p ON pe.pla_id = p.pla_id
+                        INNER JOIN public.individuo i on pe.indiv_id = i.indiv_id
+                    WHERE p.pla_tipo = \'r\' AND p.pla_estado = 1
+                    GROUP BY 1
+                ) AS up ON up.indiv_id = pers.indiv_id
 
               WHERE ( persla_estado = 1 OR persla_estado is null ) 
                ';

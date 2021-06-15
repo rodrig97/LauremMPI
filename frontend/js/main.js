@@ -83,7 +83,8 @@ callback_fns.mnuescala_registro = function()
                                                         col6: {label: 'Tipo de trabajador', sortable: true},
                                                         col7: {label: 'Area/Proyecto', sortable: true},
                                                         col8: {label: 'Cargo', sortable: true},
-                                                        col9: {label: 'Activo', sortable: true}
+                                                        col9: {label: 'Activo', sortable: true},
+                                                        col11: {label: 'Ultimo Pago', sortable: true}
                                                       
                                                 };
 
