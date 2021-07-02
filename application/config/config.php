@@ -14,21 +14,62 @@
 | path to your installation.
 |
 */
- 
-
-
-$txu = strpos($_SERVER[HTTP_HOST], 'mpi.gob.pe');  
-if($txu == FALSE)
-{
-	$config['base_url']	= ''; //http://localhost/laurem/
-}
-else
-{
-	$config['base_url'] = 'http://www.mpi.gob.pe/int/laurem/';
+$config['base_url']	= '';
+/*
+if ($_SERVER[HTTP_HOST] == 'www.mpi.gob.pe') {
+	$config['base_url'] = 'http://www.mpi.gob.pe/intranet/jasmin/';
 }
 
 if ($_SERVER[HTTP_HOST] == '10.0.0.10') {
-	$config['base_url']	= 'http://10.0.0.10/int/laurem/';
+	$config['base_url'] = 'http://10.0.0.10/intranet/jasmin/';
+}
+
+if ($_SERVER[HTTP_HOST] == 'mpi.gob.pe') {
+	$config['base_url'] = 'http://mpi.gob.pe/intranet/jasmin/';
+}
+
+print_r($config); */
+
+/*
+ 
+$txu = strpos($_SERVER[HTTP_HOST], 'www.mpi.gob.pe');  
+
+
+
+if($txu == FALSE)
+{
+	$txu = strpos($_SERVER[HTTP_HOST], '10.0.0.10');  
+
+	if($txu == FALSE)
+	{	
+		$config['base_url']	= ''; //http://localhost/sisplae/
+	}
+	else
+	{
+		$config['base_url'] = 'http://10.0.0.10/intranet/sisplae/';
+	}
+}
+else
+{
+	$config['base_url'] = 'http://www.mpi.gob.pe/intranet/sisplae/';
+} */
+
+if ($_SERVER[HTTP_HOST] == 'mail.mpi.gob.pe')
+{
+	$config['base_url'] = 'http://mail.mpi.gob.pe/int/sisplae/';
+}
+
+if ($_SERVER[HTTP_HOST] == '190.239.24.68')
+{
+	$config['base_url'] = 'http://190.239.24.68/int/sisplae/';
+}
+
+if ($_SERVER[HTTP_HOST] == '10.0.0.10') {
+	$config['base_url']	= 'http://10.0.0.10/int/sisplae/';
+}
+
+if ($_SERVER[HTTP_HOST] == '192.168.25.7') {
+	$config['base_url']	= 'http://192.168.25.7/sisplae/';
 }
 
 /*
