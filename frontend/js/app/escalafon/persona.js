@@ -1561,32 +1561,32 @@ var Persona = {
                                  }
                                  
                                  if(v == tipo_estudios.primaria || v == tipo_estudios.secundaria  ){
-                                      only_view_rows([4,11]);
+                                      only_view_rows([1,11]);
                                  }
                                  
                                  if(v == tipo_estudios.seminario || v == tipo_estudios.congreso    ){
-                                      only_view_rows([1,3,4,5,10,11,13]);
+                                      only_view_rows([1,2,4,5,10,11,13]);
                                  }
                                  
                                  if( v == tipo_estudios.curso || v == tipo_estudios.diplomado){
 
-                                      only_view_rows([1,3,4,5,6,10,11,13]);
+                                      only_view_rows([1,2,3,5,6,10,11,13]);
                                  }
                                   
                                  if(v == tipo_estudios.investigacion || v == tipo_estudios.publicacion  ){
-                                      only_view_rows([1,3,4,5,12,13]);
+                                      only_view_rows([1,2,4,5,12,13]);
                                  } 
                                  
                                  if(v == tipo_estudios.tecnico  || v == tipo_estudios.tecnico_superior  ){
-                                      only_view_rows([2,4,5,6,7,8,9,11,13]);
+                                      only_view_rows([2,3,5,6,7,8,9,11,13]);
                                  } 
                                  
                                  if(v == tipo_estudios.universitario   ){
-                                      only_view_rows([2,4,5,6,7,8,9,11,13]);
+                                      only_view_rows([2,3,5,6,7,8,9,11,13]);
                                  } 
                                  
                                  if(v == tipo_estudios.maestria  || v == tipo_estudios.doctorado  || v == tipo_estudios.phd   ){
-                                      only_view_rows([1,3,4,5,6,7,8,9,11,13]);
+                                      only_view_rows([1,2,4,5,6,7,8,9,11,13]);
                                  } 
                                  
                                  

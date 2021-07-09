@@ -90,8 +90,41 @@ var Trabajadores =  {
                   
               } 
               
-          })
+          }),
 
+          get_carreras : new Request({
+              
+            type :  'json',
+            
+            method: 'post',
+            
+            url : 'estudios/get_carreras',
+            
+            onRequest : function(){
+          
+                 app.loader_show(); 
+          
+            },
+            
+            onSuccess  : function(responseJSON){
+                
+                 app.loader_hide(); 
+
+                 dijit.byId('selAcademico_carrera').set('value', '');
+                 dijit.byId('selAcademico_carrera').store.data = [];
+                 dijit.byId('selAcademico_carrera').store.put(  {name:  'No especificar', id: '0'} );
+                 dojo.forEach( responseJSON, function(newOption, it){
+                       dijit.byId('selAcademico_carrera').store.put(  {name:  newOption.carrera_nombre, id: newOption.carrera_id} );
+                 });
+                 dijit.byId('selAcademico_carrera').set('value','0');
+                 
+            },
+            
+            onFailure : function(){
+                
+            } 
+            
+        })
 	 },
 
 	 _V : { 
@@ -192,6 +225,14 @@ var Trabajadores =  {
                             Trabajadores._M.get_ff_tarea.send({'view' : codigo});
                           
                       });
+
+                      dojo.connect( dijit.byId('selAcademico_centroestudios'), 'onChange', function(evt){
+                           
+                                var codigo = dijit.byId('selAcademico_centroestudios').get('value');
+                              console.log('centro: '+codigo);
+                                Trabajadores._M.get_carreras.send({'view' : codigo});
+                            
+                        });
 
  
                       dojo.forEach(dojo.query('.spVariable_personalizar'), function(el,ind){

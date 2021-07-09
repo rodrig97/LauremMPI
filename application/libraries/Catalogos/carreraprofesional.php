@@ -25,7 +25,8 @@ class carreraprofesional extends Table{
     public function get_list($params){
         
 
-        $sql=" SELECT * FROM  rh.carreras_profesionales ";
+        $sql=" SELECT DISTINCT c.* FROM  rh.carreras_profesionales c
+            LEFT JOIN rh.centro_estudio_carreras ce on c.carpro_id = ce.carpro_id ";
         
         $query = array();
         if($params['nombre'] != ''){ 
@@ -34,6 +35,11 @@ class carreraprofesional extends Table{
                 $query[]  = '%'.$params['nombre'].'%';
          }
 
+        if($params['centro_estudios'] != ''){ 
+
+            $sql.=" WHERE cees_id = ? ";
+            $query[]  = $params['centro_estudios'];
+     }
         $sql.="  ORDER BY carpro_nombre";
         return  $this->_CI->db->query($sql, $query)->result_array();
 

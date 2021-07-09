@@ -98,5 +98,29 @@ class estudios extends CI_Controller {
         echo json_encode($response);
         
     }
-    
+
+    public function get_carreras() {
+
+        $this->load->library('Catalogos/carreraprofesional');
+
+        $cod_institucion = trim($this->input->post('view'));
+        $params = array(
+            'centro_estudios' => $cod_institucion,
+        );
+
+        if($cod_institucion != '') {
+            $carreras_tmp = $this->carreraprofesional->get_list($params);
+        }
+
+        $carreras = array();
+
+        foreach($carreras_tmp as $index => $carrera){
+            $carreras[$index]['carrera_id'] = trim( $carrera['carpro_id']);
+            $carreras[$index]['carrera_nombre'] = trim( $carrera['carpro_nombre']);
+        }
+
+        echo json_encode($carreras);
+
+    }
+
 }

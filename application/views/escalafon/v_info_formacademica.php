@@ -50,6 +50,20 @@
                                                   </td>
                                              </tr>
                                              
+                                            <tr height="35"  class="row_form">
+                                                <td> <span class="sp12b">Centro de estudios</span></td>
+                                                <td>:</td>
+                                                <td>
+                                                    <select  id="selAcademico_centroestudios"  name="centroestudios" data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"centroestudios", autoComplete:false, trim:true, highlightMatch: "all",  queryExpr:"${0}", invalidMessage: ""   ' style="width: 300px; font-size:12px;">
+                                                        <!--  <option value="0" selected="selected"> ------ </option>
+                                                            
+                                                                foreach($centroestudio as $centro){
+                                                                    echo '<option value="'.$centro['id'].'">'.trim($centro['label']).'</option>';
+                                                                }
+                                                            ?>-->
+                                                    </select>
+                                                </td>
+                                            </tr>
                                               <tr height="35"  class="row_form">
                                                   <td> <span class="sp12b">Carrera Profesional</span></td>
                                                   <td>:</td>
@@ -73,20 +87,6 @@
                                                               
                                                                 foreach($especialidades as $especi){
                                                                     echo '<option value="'.$especi['id'].'">'.trim($especi['label']).'</option>';
-                                                                }
-                                                             ?>-->
-                                                      </select>
-                                                  </td>
-                                             </tr>
-                                            <tr height="35"  class="row_form">
-                                                  <td> <span class="sp12b">Centro de estudios</span></td>
-                                                  <td>:</td>
-                                                  <td>
-                                                      <select  id="selAcademico_centroestudios"  name="centroestudios" data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"centroestudios", autoComplete:false, trim:true, highlightMatch: "all",  queryExpr:"${0}", invalidMessage: ""   ' style="width: 300px; font-size:12px;">
-                                                          <!--  <option value="0" selected="selected"> ------ </option>
-                                                               
-                                                                foreach($centroestudio as $centro){
-                                                                    echo '<option value="'.$centro['id'].'">'.trim($centro['label']).'</option>';
                                                                 }
                                                              ?>-->
                                                       </select>
