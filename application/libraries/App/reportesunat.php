@@ -251,70 +251,13 @@ class reportesunat extends Table{
     public function per_bajas($params = array())
     {
 
-        $indivs = $this->historico_ingresos_mes(array('modo' => 'bajas', 'anio' => $params['anio'], 'mes' => $params['mes']));
-
-        $indiv_id = array();
-
-        foreach ($indivs as $reg)
-        {
-           $indiv_id[] = $reg['indiv_id'];
-        }
-     
-        $params['indivs_id_in'] = implode(',', $indiv_id);
-
-        $meses = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
-    
-        $dias_meses = array(
-                             '01' => '31',
-                             '02' => '28',
-                             '03' => '31',
-                             '04' => '30',
-                             '05' => '31',
-                             '06' => '30',
-                             '07' => '31',
-                             '08' => '31',
-                             '09' => '30',
-                             '10' => '31',
-                             '11' => '30',
-                             '12' => '31'
-                           );
-
-        if($params['mes'] == '01')
-        {
-            $mes = '12';
-            $anio = ($params['anio'] * 1) - 1;
-            $anio = trim($anio);
-        }
-        else
-        {
-            $anio = $params['anio'];
-
-            for($i = 0; $i<= 11; $i++)
-            { 
-                if( $params['mes'] == $meses[$i] )
-                {
-                   break;
-                } 
-                else
-                {
-                   $mes = $meses[$i];
-                }
-
-            }
-         }
-
-         $dia = $dias_meses[$mes];
-
-         $fecha_cese = $dia.'/'.$mes.'/'.$anio;
-
-
-         $sql = "  SELECT indiv.indiv_id, indiv.indiv_dni, '".$fecha_cese."' as fecha_cese
-                   FROM public.individuo indiv  
-                   WHERE indiv.indiv_id IN (".$params['indivs_id_in'].") 
-                   ORDER BY indiv.indiv_dni  ";
-
+        $sql = "
+            SELECT i.indiv_id, i.indiv_dni, ps.persla_fechacese as fecha_cese
+            FROM public.individuo i
+                INNER JOIN rh.persona_situlaboral ps ON i.indiv_id = ps.pers_id
+            WHERE persla_fechacese IS NOT NULL AND ( to_char(ps.persla_fechacese, 'yyyy' ) = ? AND to_char(ps.persla_fechacese, 'mm' ) = ? ) ";
           
-          $rs = $this->_CI->db->query($sql, array() )->result_array();
+        $rs = $this->_CI->db->query($sql, array($params['anio'], $params['mes']))->result_array();
 
           return $rs;
  
