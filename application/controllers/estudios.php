@@ -31,33 +31,17 @@ class estudios extends CI_Controller {
         $id= $this->academico->get_id($codigo);
         $info = $this->academico->view($id);
 
-        $estado  = $info['situacion'];
-        $periodo = _get_date_pg(trim($info['perac_fecini'])).' - '._get_date_pg(trim($info['perac_fecfin']));  // trim($info['perac_fecini']);
+        if ( trim($info['perac_fecini']) == trim($info['perac_fecfin']) ) {
+            $info['periodo'] = _get_date_pg(trim($info['perac_fecini']));
+        } else {
+            $info['periodo'] = _get_date_pg(trim($info['perac_fecini'])).' - '._get_date_pg(trim($info['perac_fecfin']));
+        }
 
+        $info['nombre_estudio'] = ( trim($info['carpro_nombre']) != '' ? trim($info['carpro_nombre']) : trim($info['especi_nombre']) );
 
-         if( in_array( $info['tiest_id'], array('3','4','5') )  ){
-                 $estado =  (trim($info['estado_titulo']) != '')  ? trim($info['estado_titulo']) : '-------';
-         }
+        $info['centro_estudio'] = ( trim($info['cees_nombre']) != '' ? trim($info['cees_nombre']) : trim($info['perac_nombre']) );
 
-        
-         $nombre_estudio = '';
-
-            if( in_array( $info['tiest_id'], array('1','2') )  ){
-                 $nombre_estudio =  (trim($info['tiest_nombre']) != '')  ? trim($info['carpro_nombre']) : '-------';
-            }
-
-            if( in_array( $info['tiest_id'], array('3','4','5') )  ){
-                 $nombre_estudio =  (trim($info['carpro_nombre']) != '')  ? trim($info['carpro_nombre']) : '-------';
-            }
- 
-            if( in_array( $info['tiest_id'], array('6','7','8','9','10','11','12','13','14') )  ){
-                 $nombre_estudio =  (trim($info['perac_nombre']) != '')  ? trim($info['perac_nombre']).' ('.trim($info['especi_nombre']).')'  : '-------';
-            }
-
-            $info['nombre_estudio'] = $nombre_estudio;
-            $info['periodo'] = $periodo;
-
-     $documentos = $this->documento->get_list(FUENTETIPODOC_ACADEMICO, $id);
+        $documentos = $this->documento->get_list(FUENTETIPODOC_ACADEMICO, $id);
 
         $this->load->view('escalafon/view_academico', array('info' => $info, 'documentos' => $documentos));
         
@@ -121,6 +105,31 @@ class estudios extends CI_Controller {
 
         echo json_encode($carreras);
 
+    }
+
+    public function get_centros(){
+
+        $this->load->library('Catalogos/centroestudio');
+
+        $tiest = trim($this->input->post('view'));
+
+        $tipo_estudio = ( $tiest > 13 ) ? 13 : $tiest;
+        $params = array(
+            'tipo_estudio' => $tipo_estudio,
+        );
+
+        if($tipo_estudio != '') {
+            $centros_tmp = $this->centroestudio->get_list($params);
+        }
+
+        $centros = array();
+
+        foreach($centros_tmp as $index => $centro){
+            $centros[$index]['centro_id'] = trim( $centro['cees_id']);
+            $centros[$index]['centro_nombre'] = trim( $centro['cees_nombre']);
+        }
+
+        echo json_encode($centros);
     }
 
 }

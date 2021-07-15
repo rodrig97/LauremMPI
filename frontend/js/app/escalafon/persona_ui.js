@@ -207,7 +207,7 @@
                                             'calvacadesde','calvacahasta',
                                             'calfalta_desde','calfalta_hasta',
                                             'caltard_dia',
-                                            'calacadesde','calacahasta'];
+                                            'calacadesde','calacahasta','calacafecha'];
                                          
                                          
                             var fecha = $_currentDate();
@@ -1505,7 +1505,7 @@
 
 
 
-             if( [5,3,4].indexOf(parseInt(data.tipo)) > -1  ){  
+             if( [11,13,14,15].includes(Number(data.tipo)) ){  
 
                  if(data.carrera == ''){
 
@@ -1526,7 +1526,7 @@
              }  
 
 
-             if( [6,7,8,9,10,11,12,13,14].indexOf(parseInt(data.tipo) ) > -1  ){ 
+             if( [9,17,18,20,21].includes(Number(data.tipo)) ){ 
 
                  if(data.especialidad == ''){
 
@@ -1548,28 +1548,30 @@
              } 
                    
 
+             if( [11,13,14,15,17,18,20,21].includes(Number(data.tipo)) ){ 
 
-             if(data.centroestudios == '' || dijit.byId('selAcademico_centroestudios').get('displayedValue') == '' ){
+                if(data.centroestudios == '' || dijit.byId('selAcademico_centroestudios').get('displayedValue') == '' ){
 
-                   console.log('Centro de estudios aqui !'); 
+                    //console.log('Centro de estudios aqui !'); 
 
-                   if(dijit.byId('selAcademico_centroestudios').get('displayedValue') == ''){
+                    if(dijit.byId('selAcademico_centroestudios').get('displayedValue') == ''){
 
-                        err = true;
-                        mensaje+=' <li>Debe especificar el CENTRO DE ESTUDIOS</li> ';
- 
-                    }
+                            err = true;
+                            mensaje+=' <li>Debe especificar el CENTRO DE ESTUDIOS</li> ';
+    
+                        }
 
-                    data.centroestudios_nombre  = dijit.byId('selAcademico_centroestudios').get('displayedValue');
+                        data.centroestudios_nombre  = dijit.byId('selAcademico_centroestudios').get('displayedValue');
 
-              }
-             
+                }
+
+            }
 
             
 
 
 
-             if( [6,7,8,9,10,11,12,13,14].indexOf(parseInt(data.tipo)) > -1 ){
+             if( [3,5,7,9].includes(Number(data.tipo)) ){
                   
                   if( data.nombre == '' ){  
 
@@ -1583,7 +1585,7 @@
              }
 
 
-
+            /*
              if( [3,4,5,6,7,8,9,12].indexOf(parseInt(data.tipo)) > -1  ){
 
 
@@ -1636,7 +1638,7 @@
              else{
                  data.horasacademicas = '0';
              }
-   
+            */
 
              mensaje += " </ul> ";
 

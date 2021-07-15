@@ -24,17 +24,22 @@ class centroestudio extends Table{
 
     public function get_list($params){
 
-        $sql =" SELECT * FROM  rh.centro_estudio   ";
+        $sql = " SELECT * FROM  rh.centro_estudio WHERE cees_estado = 1 ";
         $query = array();
-        if($params['nombre'] != ''){ 
+        
+        if($params['nombre'] != ''){
+            $sql .= " AND cees_nombre like ? ";
+            $query[]  = '%'.$params['nombre'].'%';
+        }
 
-                $sql.=" WHERE cees_nombre like ? ";
-                $query[]  = '%'.$params['nombre'].'%';
-         }
+        if($params['tipo_estudio'] != ''){
+            $sql .= " AND  ( tiest_id = ? OR tiest_id = 0 ) ";
+            $query[]  = $params['tipo_estudio'];
+        }
 
-        $sql.="  ORDER BY cees_nombre";
+        $sql .= " ORDER BY cees_nombre";
+
         return  $this->_CI->db->query($sql, $query)->result_array();
-
 
     }
     

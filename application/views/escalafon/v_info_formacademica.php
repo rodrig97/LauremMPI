@@ -54,7 +54,7 @@
                                                 <td> <span class="sp12b">Centro de estudios</span></td>
                                                 <td>:</td>
                                                 <td>
-                                                    <select  id="selAcademico_centroestudios"  name="centroestudios" data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"centroestudios", autoComplete:false, trim:true, highlightMatch: "all",  queryExpr:"${0}", invalidMessage: ""   ' style="width: 300px; font-size:12px;">
+                                                    <select  id="selAcademico_centroestudios"  name="centroestudios" data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"centroestudios", autoComplete:false, trim:true, highlightMatch: "all",  queryExpr:"*${0}*", invalidMessage: ""   ' class="formelement-180-11" style="width: 300px; font-size:12px;">
                                                         <!--  <option value="0" selected="selected"> ------ </option>
                                                             
                                                                 foreach($centroestudio as $centro){
@@ -68,7 +68,7 @@
                                                   <td> <span class="sp12b">Carrera Profesional</span></td>
                                                   <td>:</td>
                                                   <td>
-                                                      <select id="selAcademico_carrera" name="carrera" data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='autoComplete:false, trim:true, highlightMatch: "all",  queryExpr:"${0}", invalidMessage: ""   ' style="width: 300px; font-size:12px;">
+                                                      <select id="selAcademico_carrera" name="carrera" data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"carrera", autoComplete:false, trim:true, highlightMatch: "all",  queryExpr:"*${0}*", invalidMessage: ""   ' class="formelement-180-11" style="width: 300px; font-size:12px;">
                                                             <!-- <option value="0" selected="selected"> ------ </option>
                                                              
                                                                 foreach($especialidades as $especi){

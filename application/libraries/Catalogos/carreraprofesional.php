@@ -24,23 +24,21 @@ class carreraprofesional extends Table{
 
     public function get_list($params){
         
+        $sql = " SELECT DISTINCT c.* FROM  rh.carreras_profesionales c LEFT JOIN rh.centro_estudio_carreras ce on c.carpro_id = ce.carpro_id WHERE carpro_estado = 1 ";
 
-        $sql=" SELECT DISTINCT c.* FROM  rh.carreras_profesionales c
-            LEFT JOIN rh.centro_estudio_carreras ce on c.carpro_id = ce.carpro_id ";
-        
         $query = array();
-        if($params['nombre'] != ''){ 
 
-                $sql.=" WHERE carpro_nombre like ? ";
-                $query[]  = '%'.$params['nombre'].'%';
-         }
+        if($params['nombre'] != ''){ 
+            $sql .= " AND carpro_nombre like ? ";
+            $query[]  = '%'.$params['nombre'].'%';
+        }
 
         if($params['centro_estudios'] != ''){ 
-
-            $sql.=" WHERE cees_id = ? ";
+            $sql .= " AND cees_id = ? ";
             $query[]  = $params['centro_estudios'];
-     }
-        $sql.="  ORDER BY carpro_nombre";
+        }
+
+        $sql .= " ORDER BY carpro_nombre";
         return  $this->_CI->db->query($sql, $query)->result_array();
 
     }

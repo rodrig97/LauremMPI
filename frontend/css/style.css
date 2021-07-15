@@ -862,11 +862,10 @@ html>body tbody.scrollContent td + td + td {
 #dvacademico_table { height: 270px; font-size:11px;   }
 
 #dvacademico_table .field-col1{ width:40px; text-align:center; }
-#dvacademico_table .field-col2{ width:100px;  text-align:center; } 
+#dvacademico_table .field-col2{ width:180px;  text-align:center; } 
 #dvacademico_table .field-col3{ width:220px;   }
 #dvacademico_table .field-col4{ width:200px;   }
 #dvacademico_table .field-col5{ width:80px;  text-align:center; }
-#dvacademico_table .field-col6{ width:80px;  text-align:center; }
 
 
 #dvapersonalregistrado_table { height: 300px; font-size:11px;  width: 1050px;    }

@@ -328,9 +328,72 @@ var Persona = {
                }
 
 
-          })
+          }),
 
-          
+            get_carreras : new Request({
+                
+                type :  'json',
+                
+                method: 'post',
+                
+                url : 'estudios/get_carreras',
+                
+                onRequest : function(){
+            
+                    app.loader_show(); 
+            
+                },
+                
+                onSuccess  : function(responseJSON){
+                    
+                    app.loader_hide(); 
+                    
+                    dijit.byId('selAcademico_carrera').store.data = [];
+                    dijit.byId('selAcademico_carrera').store.put(  {name:  'No especificar', id: "999999"} );
+                    dojo.forEach( responseJSON, function(newOption, it){
+                        dijit.byId('selAcademico_carrera').store.put(  {name:  newOption.carrera_nombre, id: newOption.carrera_id} );
+                    });
+                    dijit.byId('selAcademico_carrera').set('value', "999999");
+                    
+                },
+                
+                onFailure : function(){
+                    
+                } 
+                
+            }),
+
+            get_centros : new Request({
+                
+                type :  'json',
+                
+                method: 'post',
+                
+                url : 'estudios/get_centros',
+                
+                onRequest : function(){
+            
+                    app.loader_show(); 
+            
+                },
+                
+                onSuccess  : function(responseJSON){
+                    
+                    app.loader_hide(); 
+                    
+                    dijit.byId('selAcademico_centroestudios').store.data = [];
+                    dojo.forEach( responseJSON, function(newOption, it){
+                        dijit.byId('selAcademico_centroestudios').store.put(  {name:  newOption.centro_nombre, id: newOption.centro_id} );
+                    });
+                    dijit.byId('selAcademico_centroestudios').set('value', "");
+                    
+                },
+                
+                onFailure : function(){
+                    
+                } 
+                
+            })
          
     },
     
@@ -1503,22 +1566,18 @@ var Persona = {
                        
                        
                        var tipo_estudios = {
-                           
-                            'primaria'      :  1,
-                            'secundaria'    : 2,
-                            'tecnico'       : 3,
-                            'tecnico_superior' : 4,
-                            'universitario'     : 5,
-                            'maestria'      : 6,
-                            'doctorado'     : 7,
-                            'phd'           : 8,
-                            'curso'         : 9,
-                            'seminario'     : 10,
-                            'congreso'      : 11,
-                            'diplomado'     : 12,
-                            'investigacion' : 13,
-                            'publicacion'   : 14
-                            
+                            'especial' : 3,
+                            'primaria' :  5,
+                            'secundaria' : 7,
+                            'tecnico' : 9,
+                            'tecnico_superior' : 11,
+                            'universitario' : 13,
+                            'bachiller' : 14,
+                            'titulado' : 15,
+                            'maestria' : 17,
+                            'grado_maestria' : 18,
+                            'doctorado' : 20,
+                            'grado_doctorado' : 21
                        }
                        
                        
@@ -1556,40 +1615,37 @@ var Persona = {
                             
                                  var v = dijit.byId('selAcademicoTiEst').get('value');
                                  
-                                 if(v == 0  ){
-                                      only_view_rows(false);
+                                 switch ( Number(v) ) {
+                                    case tipo_estudios.primaria: 
+                                    case tipo_estudios.secundaria:
+                                        only_view_rows([1,11,13]);
+                                        break;
+                                    case tipo_estudios.especial:
+                                    case tipo_estudios.tecnico:
+                                        only_view_rows([1,4,11,13]);
+                                        break;
+                                    case tipo_estudios.tecnico_superior:
+                                        only_view_rows([2,3,11,13]);
+                                        break;
+                                    case tipo_estudios.universitario:
+                                        only_view_rows([2,3,11,13]);
+                                        break;
+                                    case tipo_estudios.bachiller:
+                                    case tipo_estudios.titulado:
+                                        only_view_rows([2,3,11,13]);
+                                        break;
+                                    case tipo_estudios.maestria:
+                                    case tipo_estudios.doctorado:
+                                        only_view_rows([2,4,11,13]);
+                                        break;
+                                    case tipo_estudios.grado_maestria:
+                                    case tipo_estudios.grado_doctorado:
+                                        only_view_rows([2,4,11,13]);
+                                        break;
+                                    case 0:
+                                        only_view_rows(false);
+                                        break;
                                  }
-                                 
-                                 if(v == tipo_estudios.primaria || v == tipo_estudios.secundaria  ){
-                                      only_view_rows([1,11]);
-                                 }
-                                 
-                                 if(v == tipo_estudios.seminario || v == tipo_estudios.congreso    ){
-                                      only_view_rows([1,2,4,5,10,11,13]);
-                                 }
-                                 
-                                 if( v == tipo_estudios.curso || v == tipo_estudios.diplomado){
-
-                                      only_view_rows([1,2,3,5,6,10,11,13]);
-                                 }
-                                  
-                                 if(v == tipo_estudios.investigacion || v == tipo_estudios.publicacion  ){
-                                      only_view_rows([1,2,4,5,12,13]);
-                                 } 
-                                 
-                                 if(v == tipo_estudios.tecnico  || v == tipo_estudios.tecnico_superior  ){
-                                      only_view_rows([2,3,5,6,7,8,9,11,13]);
-                                 } 
-                                 
-                                 if(v == tipo_estudios.universitario   ){
-                                      only_view_rows([2,3,5,6,7,8,9,11,13]);
-                                 } 
-                                 
-                                 if(v == tipo_estudios.maestria  || v == tipo_estudios.doctorado  || v == tipo_estudios.phd   ){
-                                      only_view_rows([1,2,4,5,6,7,8,9,11,13]);
-                                 } 
-                                 
-                                 
                             
                            });
 
@@ -2116,8 +2172,7 @@ var Persona = {
                                                         col2: {label: 'Tipo', sortable: false},
                                                         col3: {label: 'Especialidad/Nombre', sortable: false},
                                                         col4: {label: 'Centro de Estudio', sortable: false},
-                                                        col5: {label: 'Estado', sortable: false},
-                                                        col6: {label: 'Periodo', sortable: false}
+                                                        col5: {label: 'Periodo', sortable: false}
                                                        /*  col5: {label: 'Fecha Fin', sortable: false},
                                                         col6: {label: 'Actual', sortable: false},
                                                         col4: {label: 'Hasta', sortable: false},
@@ -2222,75 +2277,41 @@ var Persona = {
 
 
                         require([ "dojo/_base/declare", "dojo/store/JsonRest", "dojo/store/Observable", "dojo/store/Cache", "dojo/store/Memory", "dojo/domReady!"], 
-                                  function(declare, JsonRest, Observable, Cache, Memory){
+                            function(declare, JsonRest, Observable, Cache, Memory){
      
+                                var memoryStore = new Memory({});
+                                var restStore   = new JsonRest({
+                                        
+                                        target    :app.getUrl() + "escalafon/provide/especialidades", 
+                                        idProperty: "value",
+                                        sortParam : 'oby',
+                                        query: function(query, options){
+                                            
+                                            return dojo.store.JsonRest.prototype.query.call(this, query, options);
+                                        }
+
+                                }); 
+                                
+                                Persona.Stores.especialidades =  new  Cache(restStore, memoryStore);
+                                Persona.Stores.especialidades.query({});
+    
+                                dijit.byId('selAcademico_especialidad').set('store',Persona.Stores.especialidades);
 
 
-                                 var memoryStore = new Memory({});
-                                 var restStore   = new JsonRest({
-                                          
-                                          target    : app.getUrl() + "escalafon/provide/carreras", 
-                                          idProperty: "value",
-                                          sortParam : 'oby',
-                                          query: function(query, options){
-                                              
-                                             
-                                              return dojo.store.JsonRest.prototype.query.call(this, query, options);
-                                          }
+                                dojo.connect( dijit.byId('selAcademico_centroestudios'), 'onChange', function(evt){
+                        
+                                    var codigo = dijit.byId('selAcademico_centroestudios').get('value');
+                                    //console.log('centro: '+codigo);
+                                    Persona._M.get_carreras.send({'view' : codigo});
+                                
+                                });
 
-                                  }); 
-                                  
-                                  Persona.Stores.carreras =  new  Cache(restStore, memoryStore);
-                                  Persona.Stores.carreras.query({});
-     
-                                  dijit.byId('selAcademico_carrera').set('store',Persona.Stores.carreras);
-
-
-
-
-
-                                 var memoryStore = new Memory({});
-                                 var restStore   = new JsonRest({
-                                          
-                                          target    :app.getUrl() + "escalafon/provide/especialidades", 
-                                          idProperty: "value",
-                                          sortParam : 'oby',
-                                          query: function(query, options){
-                                              
-                                             
-                                              return dojo.store.JsonRest.prototype.query.call(this, query, options);
-                                          }
-
-                                  }); 
-                                  
-                                  Persona.Stores.especialidades =  new  Cache(restStore, memoryStore);
-                                  Persona.Stores.especialidades.query({});
-     
-                                  dijit.byId('selAcademico_especialidad').set('store',Persona.Stores.especialidades);
-
-
-
-
-                                 var memoryStore = new Memory({});
-                                 var restStore   = new JsonRest({
-                                          
-                                          target    : app.getUrl() + "escalafon/provide/centroestudio", 
-                                          idProperty: "value",
-                                          sortParam : 'oby',
-                                          query: function(query, options){
-                                              
-                                             
-                                              return dojo.store.JsonRest.prototype.query.call(this, query, options);
-                                          }
-
-                                  }); 
-                                  
-                                  Persona.Stores.centroestudio =  new  Cache(restStore, memoryStore);
-                                  Persona.Stores.centroestudio.query({});
-     
-                                  dijit.byId('selAcademico_centroestudios').set('store',Persona.Stores.centroestudio);
-     
-
+                                dojo.connect( dijit.byId('selAcademicoTiEst'), 'onChange', function(evt){
+                        
+                                    var codigo = dijit.byId('selAcademicoTiEst').get('value');
+                                    Persona._M.get_centros.send({'view' : codigo});
+                                
+                                });
                          });
    
                     }

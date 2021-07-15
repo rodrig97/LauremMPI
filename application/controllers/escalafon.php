@@ -119,7 +119,7 @@ class escalafon extends CI_Controller {
         // $metas          = $this->meta->get_list(); 
          
          
-         $tipoestudio    =  $this->tipoestudio->load_for_combo(true);
+         $tipoestudio    =  $this->tipoestudio->load_for_combo(true,'','1');
          
          $categorias     = $this->categorialaboral->get_list(); 
          
@@ -2690,35 +2690,23 @@ class escalafon extends CI_Controller {
             foreach($rs as $registro){
                 
                 $nombres = trim($registro['pefa_apellpaterno']).' '.trim($registro['pefa_apellmaterno']).' '.trim($registro['pefa_nombres']);
-                $estado  = $registro['situacion'];
-                $periodo = _get_date_pg(trim($registro['perac_fecini'])).' - '._get_date_pg(trim($registro['perac_fecfin']));  // trim($registro['perac_fecini']);
 
-
-                if( in_array( $registro['tiest_id'], array('3','4','5') )  ){
-                     $estado =  (trim($registro['estado_titulo']) != '')  ? trim($registro['estado_titulo']) : '-------';
+                if ( trim($registro['perac_fecini']) == trim($registro['perac_fecfin']) ) {
+                    $periodo = _get_date_pg(trim($registro['perac_fecini']));
+                } else {
+                    $periodo = _get_date_pg(trim($registro['perac_fecini'])).' - '._get_date_pg(trim($registro['perac_fecfin']));
                 }
 
-                $nombre_estudio = '';
+                $nombre_estudio = ( trim($registro['carpro_nombre']) != '' ? trim($registro['carpro_nombre']) : trim($registro['especi_nombre']) );
 
-                if( in_array( $registro['tiest_id'], array('1','2') )  ){
-                     $nombre_estudio =  (trim($registro['tiest_nombre']) != '')  ? trim($registro['carpro_nombre']) : '-------';
-                }
-
-                if( in_array( $registro['tiest_id'], array('3','4','5') )  ){
-                     $nombre_estudio =  (trim($registro['carpro_nombre']) != '')  ? trim($registro['carpro_nombre']) : '-------';
-                }
-     
-                if( in_array( $registro['tiest_id'], array('6','7','8','9','10','11','12','13','14') )  ){
-                     $nombre_estudio =  (trim($registro['perac_nombre']) != '')  ? trim($registro['perac_nombre']).' ('.trim($registro['especi_nombre']).')'  : '-------';
-                }
-
+                $centro_estudio = ( trim($registro['cees_nombre']) != '' ? trim($registro['cees_nombre']) : trim($registro['perac_nombre']) );
+                
                 $data['id'] =   trim($registro['perac_key']);
                 $data['col1'] = $c;
                 $data['col2'] =  trim($registro['tiest_nombre']);  //trim($registro['tiest_nombre']);
                 $data['col3'] =  $nombre_estudio;
-                $data['col4'] =  trim($registro['cees_nombre']);
-                $data['col5'] =  $estado;
-                $data['col6'] =  $periodo;
+                $data['col4'] =  $centro_estudio;
+                $data['col5'] =  $periodo;
               
                 $response[] = $data;
                 $c++;

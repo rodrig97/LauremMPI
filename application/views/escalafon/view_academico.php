@@ -53,9 +53,20 @@
              <span class="sp12"> <?PHP  echo trim($info['tipo_estudio']); ?>  
         </td>
     </tr>
-     <tr height="30" class="row_static_form">
+    <tr height="30" class="row_static_form">
         <td>
-            <span class="sp12b" > Carrera/Especialidad/Nombre </span>
+             <span class="sp12b">Centro de Estudios</span>
+        </td>
+         <td>
+             <span class="sp12b">:</span>
+        </td>
+       <td>
+             <span class="sp12"> <?PHP  echo trim($info['centro_estudio']); ?>   </span>
+        </td>
+    </tr>
+    <tr height="30" class="row_static_form">
+        <td>
+            <span class="sp12b" > Carrera/Especialidad </span>
         </td>
          <td>
              <span class="sp12b">:</span>
@@ -64,29 +75,7 @@
              <span class="sp12"> <?PHP  echo trim($info['nombre_estudio']); ?>  </span>
         </td>
     </tr>
-      <tr height="30" class="row_static_form">
-         <td>
-              <span class="sp12b">Modalidad</span>
-        </td>
-         <td>
-             <span class="sp12b">:</span>
-        </td>
-       <td>
-             <span class="sp12"> <?PHP  echo trim($info['modalidad']); ?>   </span>
-        </td>
-    </tr>
-     <tr height="30" class="row_static_form">
-        <td>
-             <span class="sp12b">Centro de Estudios</span>
-        </td>
-         <td>
-             <span class="sp12b">:</span>
-        </td>
-       <td>
-             <span class="sp12"> <?PHP  echo trim($info['cees_nombre']); ?>   </span>
-        </td>
-    </tr>
-   <tr height="30" class="row_static_form">
+    <tr height="30" class="row_static_form">
         <td>
              <span class="sp12b">Periodo</span>
         </td>
@@ -97,30 +86,6 @@
              <span class="sp12"> <?PHP  echo trim($info['periodo']); ?>   </span>
         </td>
     </tr>
-    <tr height="30" class="row_static_form">
-         <td>
-              <span class="sp12b">Titulo</span>
-        </td>
-         <td>
-             <span class="sp12b">:</span>
-        </td>
-       <td>
-             <span class="sp12"> <?PHP  echo trim($info['estado_titulo']); ?>   </span>
-        </td>
-    </tr>
-
-     <tr height="30" class="row_static_form">
-         <td>
-              <span class="sp12b">Horas Academicas</span>
-        </td>
-         <td>
-             <span class="sp12b">:</span>
-        </td>
-       <td>
-             <span class="sp12"> <?PHP  echo trim($info['perac_horas']); ?>   </span>
-        </td>
-    </tr>
-
      <tr height="30" class="row_static_form">
          <td>
               <span class="sp12b">Descripcion</span>
