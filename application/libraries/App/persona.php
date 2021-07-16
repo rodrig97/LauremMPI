@@ -297,21 +297,16 @@ class persona extends Table{
         
             if($params['vigente_estricto']===true)
             {
-                if($params['vigente'] != '2' )
+                switch ($params['vigente'])
                 { 
-
-                      if($params['vigente'] == '1' )
-                      {
-
-                          $sql.= " AND ( historial.persla_vigente = 1 OR historial.persla_vigente = 2 ) ";
-
-                      }
-                      else
-                      { 
-
-                          $sql.= " AND  ( historial.persla_vigente = 0 OR historial.persla_vigente = 2 ) ";
-                           
-                      }
+                    case '0':
+                        $sql.= " AND  ( historial.persla_vigente = 0 OR historial.persla_vigente = 2 ) ";
+                        break;
+                    case '3':
+                        $sql.= " AND ( up.ultimo_pago < NOW() - INTERVAL '2 months' ) ) ";
+                    case '1':
+                        $sql.= " AND ( historial.persla_vigente = 1 OR historial.persla_vigente = 2 ) ";
+                        break;
                 }
             }
 
@@ -356,21 +351,16 @@ class persona extends Table{
                     $vars_ejec[] = $params['lugar_de_trabajo'];
                 }
 
-                if($params['vigente'] != '2' )
+                switch ($params['vigente'])
                 { 
-
-                      if($params['vigente'] == '1' )
-                      {
-
-                          $sql.= " AND ( historial.persla_vigente = 1 OR historial.persla_vigente = 2 ) ";
-
-                      }
-                      else
-                      { 
-
-                          $sql.= " AND  ( historial.persla_vigente = 0 OR historial.persla_vigente = 2 ) ";
-                           
-                      }
+                    case '0':
+                        $sql.= " AND  ( historial.persla_vigente = 0 OR historial.persla_vigente = 2 ) ";
+                        break;
+                    case '3':
+                        $sql.= " AND ( up.ultimo_pago < NOW() - INTERVAL '2 months' ) ";
+                    case '1':
+                        $sql.= " AND ( historial.persla_vigente = 1 OR historial.persla_vigente = 2 ) ";
+                        break;
                 }
 
 

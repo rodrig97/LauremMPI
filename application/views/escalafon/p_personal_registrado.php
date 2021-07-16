@@ -129,6 +129,7 @@
                                                                    <option value="1" selected="selected">  SI </option>
                                                                    <option value="0">  NO </option>
                                                                    <option value="2">  No especificar </option>
+                                                                   <option value="3">  Pendientes de Baja </option>
                                                                      
                                                        </select> 
                                                 </td>
