@@ -99,8 +99,8 @@ class estudios extends CI_Controller {
         $carreras = array();
 
         foreach($carreras_tmp as $index => $carrera){
-            $carreras[$index]['carrera_id'] = trim( $carrera['carpro_id']);
-            $carreras[$index]['carrera_nombre'] = trim( $carrera['carpro_nombre']);
+            $carreras[$index]['id'] = trim( $carrera['carpro_id']);
+            $carreras[$index]['name'] = trim( $carrera['carpro_nombre']);
         }
 
         echo json_encode($carreras);
@@ -125,8 +125,8 @@ class estudios extends CI_Controller {
         $centros = array();
 
         foreach($centros_tmp as $index => $centro){
-            $centros[$index]['centro_id'] = trim( $centro['cees_id']);
-            $centros[$index]['centro_nombre'] = trim( $centro['cees_nombre']);
+            $centros[$index]['id'] = trim( $centro['cees_id']);
+            $centros[$index]['name'] = trim( $centro['cees_nombre']);
         }
 
         echo json_encode($centros);

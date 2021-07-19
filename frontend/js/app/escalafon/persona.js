@@ -345,16 +345,14 @@ var Persona = {
                 },
                 
                 onSuccess  : function(responseJSON){
-                    
                     app.loader_hide(); 
                     
                     dijit.byId('selAcademico_carrera').store.data = [];
-                    dijit.byId('selAcademico_carrera').store.put(  {name:  'No especificar', id: "999999"} );
-                    dojo.forEach( responseJSON, function(newOption, it){
-                        dijit.byId('selAcademico_carrera').store.put(  {name:  newOption.carrera_nombre, id: newOption.carrera_id} );
-                    });
-                    dijit.byId('selAcademico_carrera').set('value', "999999");
-                    
+                    if ( responseJSON.length > 0 ) {
+                        responseJSON.push( {name: 'No especificar', id: '999999'} );
+                        dijit.byId('selAcademico_carrera').store.data = responseJSON;
+                        dijit.byId('selAcademico_carrera').set('value', '999999');
+                    }
                 },
                 
                 onFailure : function(){
@@ -382,11 +380,11 @@ var Persona = {
                     app.loader_hide(); 
                     
                     dijit.byId('selAcademico_centroestudios').store.data = [];
-                    dojo.forEach( responseJSON, function(newOption, it){
-                        dijit.byId('selAcademico_centroestudios').store.put(  {name:  newOption.centro_nombre, id: newOption.centro_id} );
-                    });
-                    dijit.byId('selAcademico_centroestudios').set('value', "");
-                    
+                    if ( responseJSON.length > 0 ) {
+                        responseJSON.push( {name: 'No especificar', id: '0'} );
+                        dijit.byId('selAcademico_centroestudios').store.data = responseJSON;
+                        dijit.byId('selAcademico_centroestudios').set('value', '0');
+                    }
                 },
                 
                 onFailure : function(){

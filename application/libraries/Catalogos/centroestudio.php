@@ -24,7 +24,7 @@ class centroestudio extends Table{
 
     public function get_list($params){
 
-        $sql = " SELECT * FROM  rh.centro_estudio WHERE cees_estado = 1 ";
+        $sql = " SELECT * FROM  rh.centro_estudio WHERE cees_estado = 1 AND tiest_id >= 11";
         $query = array();
         
         if($params['nombre'] != ''){
