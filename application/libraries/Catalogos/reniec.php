@@ -21,7 +21,7 @@ class reniec extends Table{
 
     public function buscar_dni($dni)
     {
-        $base = "10.0.0.10/webapp/api/consulta_dni";
+        $base = "10.0.0.10/apps/webapp/api/consulta_dni/index.php";
         $params = array(
             'consultar' => $dni,
         );
