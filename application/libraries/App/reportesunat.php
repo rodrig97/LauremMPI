@@ -248,6 +248,42 @@ class reportesunat extends Table{
      // BAJAS :PER , ALTAS:  IDE TRA  PER EST EST  
 
 
+    public function edu($params = array())
+    {
+        $individuos = $this->historico_ingresos_mes(array(
+            'modo' => 'altas', 
+            'anio' => $params['anio'], 
+            'mes' => $params['mes'] 
+        ));
+
+        $indiv_id = array();
+
+        foreach ($individuos as $individuo)
+        {
+            $indiv_id[] = $individuo['indiv_id'];
+        }
+
+        $param['individuos'] = implode(',', $indiv_id);
+
+        $sql = "
+            SELECT 
+                i.indiv_id, 
+                i.indiv_dni, 
+                CASE WHEN pa.tiest_id > 13 THEN 13 ELSE pa.tiest_id END AS tipo_estudio, 
+                ce.cees_codigo, 
+                cp.carpro_codigo, 
+                to_char(pa.perac_fecfin,'yyyy') as anio_egreso
+            FROM rh.persona_academico pa
+                INNER JOIN rh.centro_estudio ce on pa.cees_id = ce.cees_id
+                INNER JOIN rh.carreras_profesionales cp on pa.carpro_id = cp.carpro_id
+                INNER JOIN public.individuo i on pa.pers_id = i.indiv_id
+            WHERE pa.perac_estado = 1 AND pa.tiest_id >= 11 AND i.indiv_id IN ( " . $param['individuos'] . " ) ";
+
+        $rs = $this->_CI->db->query($sql, array())->result_array();
+
+        return $rs;
+    }
+
     public function per_bajas($params = array())
     {
 

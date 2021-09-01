@@ -2252,6 +2252,42 @@ class exportar extends CI_Controller{
 
        //  **************************************** ARCHIVOS PARA T-REGISTRO  ***************************************************************************
 
+       // EDU
+
+       $contenido_txt = '';
+       $reporte =  $this->reportesunat->edu($params);
+
+       $nombre_file =  'RP_'.RUC_INSTITUCION.'.EDU';
+       $file_txt = $path_files.$nombre_file;
+
+       foreach($reporte as $reg) {  
+           $data = array(  
+                'tipo'          => PDT_DOCUMENTO_DNI,
+                'numero'        => $reg['indiv_dni'],
+                'pais'          => PDT_PAIS,
+                'completo'      => '1',
+                'institucion'   => $reg['cees_codigo'],
+                'carrera'       => $reg['carpro_codigo'],
+                'egreso'        => $reg['anio_egreso']
+            );
+       
+           $linea = $data['tipo'].'|'.$data['numero'].'|'.$data['pais'].'|'.$data['completo'].'|'.$data['institucion'].'|'.$data["carrera"].'|'.$data["egreso"];
+           $contenido_txt.= $linea."\x0D\x0A";
+       
+       }
+       
+
+       if(file_put_contents($file_txt, $contenido_txt))
+       {   
+             $this->zip->read_file($file_txt);   
+       } 
+       else
+       {
+            if(sizeof($reporte) > 0)  $generado = false;
+       }
+
+
+
 
        // PER BAJAS
 
