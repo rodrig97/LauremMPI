@@ -173,11 +173,8 @@ $this->excel->getActiveSheet()->setCellValue( ('J'.$f), 'Fecha Registro' );
  //if you want to save it as .XLSX Excel 2007 format
  $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');  
  //force user to download the Excel file without writing it to server's HD
+
 $filename = $nombre_archivo.'.xls';
 $objWriter->save('docsmpi/exportar/'.$filename);
- 
-header("Content-Disposition: attachment; filename=\"$filename\"");
-header("Content-Type: application/vnd.ms-excel");
 
-readfile('docsmpi/exportar/'.$nombre_archivo.'.xls'); 
-
+echo '<a href="' . base_url() . '/docsmpi/exportar/'. $filename . '">Descargar</a>';
