@@ -1166,7 +1166,7 @@ class exportador extends Table{
                                 pla.pla_id, 
                                 pla.plati_id,  
                                 plaec.conc_id, 
-                                plaec_value::numeric(10,2) 
+                                plaec_value 
                               ";
                       }
                       else
@@ -1177,7 +1177,7 @@ class exportador extends Table{
                                 pla.pla_mes,  
                                 plaemp.indiv_id, 
                                 plaec.conc_id, 
-                                SUM(plaec_value)::numeric(10,2) 
+                                SUM(plaec_value) 
                               ";
                       }
 
@@ -1411,7 +1411,7 @@ class exportador extends Table{
                                                 plaec.plaec_value 
                                             ELSE 
                                                                 0 
-                                          END ))::numeric(10,2) as DATO_ingresos,
+                                          END )) as DATO_ingresos,
 
                                   SUM((CASE WHEN plaec.conc_tipo = 2 THEN     
 
@@ -1419,7 +1419,7 @@ class exportador extends Table{
 
                                        ELSE 
                                            0 
-                                       END ))::numeric(10,2) as DATO_descuentos,
+                                       END )) as DATO_descuentos,
 
 
                                   SUM((CASE WHEN plaec.conc_tipo = 3 THEN    
@@ -1427,7 +1427,7 @@ class exportador extends Table{
                                             plaec.plaec_value 
                                       ELSE 
                                            0 
-                                      END ))::numeric(10,2) as DATO_aportacion
+                                      END )) as DATO_aportacion
 
                             FROM planillas.planillas pla
                             INNER JOIN planillas.planilla_empleados plaemp ON plaemp.pla_id = pla.pla_id  AND plaemp.plaemp_estado = 1
