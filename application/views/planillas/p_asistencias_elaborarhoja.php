@@ -55,7 +55,11 @@
                       <td width="35"> <span class="sp12b"> Codigo    </span> </td>
                       <td width="10" align="center"> <span class="sp12b"> :       </span> </td>
                       <td width="70"> <span class="sp12"> <?PHP echo  (trim($hoja_info['hoa_codigo']) == '' ) ? '------'  : trim($hoja_info['hoa_codigo']);  ?>   </span> </td>
-                       <td colspan="9"> </td> 
+                      <td colspan="3"> </td> 
+                      <td width="94"> <span class="sp12b">Creada el</span> </td>
+                      <td width="10" align="center">  <span class="sp12b"> :       </span> </td>
+                      <td width="180" align="left"> <span class="sp12">  <?PHP echo _get_date_pg(trim($hoja_info['hoa_fechareg'])) . ' ' . substr($hoja_info['hoa_fechareg'], 11, 8); ?>    </span> </td>
+                      <td colspan="3"> </td> 
 
                    </tr>   
 

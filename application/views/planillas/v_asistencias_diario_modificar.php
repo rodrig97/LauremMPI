@@ -540,6 +540,21 @@
 	 	?>
 
 
+        <tr class="row_form">
+	 		<td><span class="sp11b">Último cambio</span></td>
+	 		<td><span class="sp11b"> :  </span></td>
+	 		<td colspan="4"> 
+ 				<span class="sp12"> 
+ 					 <?PHP 
+ 					 	if( $diario_info['hoaed_fechaupdate'] ) {
+                            echo _get_date_pg(trim($diario_info['hoaed_fechaupdate'])) . ' ' . substr($diario_info['hoaed_fechaupdate'], 11, 8);
+                        } else {
+                            echo _get_date_pg(trim($diario_info['hoaed_fecreg'])) . ' ' . substr($diario_info['hoaed_fecreg'], 11, 8);
+                        }
+ 					 ?>
+ 				</span>
+	 		</td>
+	 	</tr>
 
 
 	 	<tr>
