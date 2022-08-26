@@ -32,6 +32,8 @@ class reniec extends Table{
         curl_setopt($dc, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($dc, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($dc, CURLINFO_HEADER_OUT, true);
+        curl_setopt($dc, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($dc, CURLOPT_TIMEOUT, 5);
 
         if ( curl_error($dc) ) {
             $respuesta['error'] = true;

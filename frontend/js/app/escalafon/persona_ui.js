@@ -2257,7 +2257,7 @@
          
          
          btn_tblinfoper_click : function(btn, e){
-            
+           
             var codigo = '';      
                     
             for(var i in Persona.Ui.Grids.trabajadores.selection){
@@ -2269,6 +2269,419 @@
                // alert(codigo);
                 
                 Persona._V.full_info_persona.load({'empkey' : codigo});
+            }
+            else{
+                alert('Debe seleccionar un registro');
+            }
+            
+          
+         },
+
+         btn_tblinfoper_click_legajo : function(indiv_id){
+            if(indiv_id != '')      
+            {   
+               // alert(codigo);
+                
+                Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+            }
+            else{
+                alert('Debe seleccionar un registro');
+            }
+            
+          
+         },
+
+         btn_estudios_click_legajo : function(indiv_id,ipersid,accion,iperstipoestudid){
+            
+         
+            switch(accion){
+                case 'agregar':
+
+                    Persona._V.agregar_estudios_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'iperstipoestudid' : null});
+                  
+                break;
+                case 'actualizar':
+                    
+                    if(iperstipoestudid!=''){
+                        
+                        Persona._V.actualizar_estudios_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    
+                break;
+                case 'eliminar':
+                   
+                    if(iperstipoestudid!=''){
+                        if(confirm('Seguro desea eliminar')){
+                            Persona.Ui.btn_estudios_accion(indiv_id,iperstipoestudid,ipersid,'eliminar'); 
+                        }
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+
+            }
+            
+         },
+
+         btn_estudios_accion : function(indiv_id,iperstipoestudid,ipersid,accion){
+
+            
+
+            let estudio = {};
+
+            switch(accion){
+                case 'agregar':
+                    var ccentroestudios = document.getElementById("ccentroestudios").value;
+                    var dfechainicio = document.getElementById("dfechainicio").value;
+                    var dfechatermino = document.getElementById("dfechatermino").value;
+                    var cgrado_titulo = document.getElementById("cgrado_titulo").value;
+                    var ccolegiaturanro = document.getElementById("ccolegiaturanro").value;
+                             estudio = {
+                                accion:accion,
+                                ipersid:ipersid,
+                                ccentroestudios:ccentroestudios,
+                                dfechatermino:dfechatermino,
+                                cgrado_titulo:cgrado_titulo,
+                                ccolegiaturanro:ccolegiaturanro,
+                                dfechainicio:dfechainicio
+                            }
+                        
+                            var rs =  Persona.estudios_accion(estudio);
+                           
+                            if(rs){
+                                //Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                                Persona._V.agregar_estudios_legajo.close();
+                                Persona._V.full_info_persona_legajo.close();
+                                Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                            }
+                       
+                  
+                break;
+                case 'actualizar':
+                    var ccentroestudios = document.getElementById("ccentroestudios").value;
+                    var dfechainicio = document.getElementById("dfechainicio").value;
+                    var dfechatermino = document.getElementById("dfechatermino").value;
+                    var cgrado_titulo = document.getElementById("cgrado_titulo").value;
+                    var ccolegiaturanro = document.getElementById("ccolegiaturanro").value;
+                   
+                    estudio = {
+                            accion:accion,
+                            ipersid:ipersid,
+                            iperstipoestudid:iperstipoestudid,
+                            ccentroestudios:ccentroestudios,
+                            dfechatermino:dfechatermino,
+                            cgrado_titulo:cgrado_titulo,
+                            ccolegiaturanro:ccolegiaturanro,
+                            dfechainicio:dfechainicio
+                        }
+                       
+                        var rs =  Persona.estudios_accion(estudio);
+                    
+                        if(rs){
+                            //Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                            Persona._V.actualizar_estudios_legajo.close();
+                            Persona._V.full_info_persona_legajo.close();
+                            Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                        }
+                   
+                    
+                break;
+                case 'eliminar':
+                   
+                    if(iperstipoestudid!=''){
+                        estudio = {
+                            accion:accion,
+                            ipersid:ipersid,
+                            iperstipoestudid:iperstipoestudid
+                        }
+                       
+                        var rs =  Persona.estudios_accion(estudio);
+                        if(rs){
+                            Persona._V.full_info_persona_legajo.close();
+                            Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                        }
+                       
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+
+            }
+            
+         },
+
+         btn_capacitacion_click_legajo : function(indiv_id,ipersid,accion,iperstipocapacid){
+            
+            
+            switch(accion){
+                case 'agregar':
+                    
+                    Persona._V.agregar_capacitacion_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'iperstipocapacid' : null});
+                break;
+                case 'actualizar':
+                    if(iperstipocapacid!=''){
+                        Persona._V.actualizar_capacitacion_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'iperstipocapacid' : iperstipocapacid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    
+                break;
+                case 'eliminar':
+                   
+                    if(iperstipocapacid!=''){
+                        if(confirm('Seguro desea eliminar')){
+                            Persona.Ui.btn_capacitacion_accion(indiv_id,iperstipocapacid,ipersid,'eliminar'); 
+                        }
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+
+            }
+            
+         },
+
+         btn_capacitacion_accion : function(indiv_id,iperstipocapacid,ipersid,accion){
+
+           
+
+            let capacitacion = {};
+
+            switch(accion){
+                case 'agregar':
+                   
+                    var itipocapacid = document.getElementById("c_itipocapacid").value;
+                    var cdenominacion = document.getElementById("c_cdenominacion").value;
+                    var ihoras = document.getElementById("c_ihoras").value;
+                    var dfechainicio = document.getElementById("c_dfechainicio").value;
+                    var dfechatermino = document.getElementById("c_dfechatermino").value;
+                    var ccentroestudios = document.getElementById("c_ccentroestudios").value;
+                    
+                             capacitacion = {
+                                accion:accion,
+                                ipersid:ipersid,
+                                itipocapacid:itipocapacid,
+                                cdenominacion:cdenominacion,
+                                ihoras:ihoras,
+                                dfechainicio:dfechainicio,
+                                dfechatermino:dfechatermino,
+
+                                ccentroestudios:ccentroestudios,
+                                
+                            }
+                            console.log(capacitacion);
+                            var rs =  Persona.capacitacion_accion(capacitacion);
+                           
+                            if(rs){
+                              
+                                Persona._V.agregar_capacitacion_legajo.close();
+                                Persona._V.full_info_persona_legajo.close();
+                                Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                            }
+                       
+                  
+                break;
+                case 'actualizar':
+                    var itipocapacid = document.getElementById("c_itipocapacid").value;
+                    var cdenominacion = document.getElementById("c_cdenominacion").value;
+                    var ihoras = document.getElementById("c_ihoras").value;
+                    var dfechainicio = document.getElementById("c_dfechainicio").value;
+                    var dfechatermino = document.getElementById("c_dfechatermino").value;
+                    var ccentroestudios = document.getElementById("c_ccentroestudios").value;
+                   
+                        capacitacion = {
+                            accion:accion,
+                            ipersid:ipersid,
+                            iperstipocapacid:iperstipocapacid,
+                            itipocapacid:itipocapacid,
+                            cdenominacion:cdenominacion,
+                            ihoras:ihoras,
+                            dfechainicio:dfechainicio,
+                            dfechatermino:dfechatermino,
+
+                            ccentroestudios:ccentroestudios,
+                        }
+                       
+                        var rs =  Persona.capacitacion_accion(capacitacion);
+                    
+                        if(rs){
+                            //Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                            Persona._V.actualizar_capacitacion_legajo.close();
+                            Persona._V.full_info_persona_legajo.close();
+                            Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                        }
+                   
+                    
+                break;
+                case 'eliminar':
+                   
+                    if(iperstipocapacid!=''){
+                        capacitacion = {
+                            accion:accion,
+                            ipersid:ipersid,
+                            iperstipocapacid:iperstipocapacid
+                        }
+                       
+                        var rs =  Persona.capacitacion_accion(capacitacion);
+                        if(rs){
+                            Persona._V.full_info_persona_legajo.close();
+                            Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                        }
+                       
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+
+            }
+            
+         },
+
+         btn_expLaboral_click_legajo : function(ipersid,accion,iperstipoestudid){
+            
+            
+            switch(accion){
+                case 'agregar':
+                    Persona._V.agregar_expLaboral_legajo.load({'ipersid':ipersid,'iperstipoestudid' : null});
+                break;
+                case 'actualizar':
+                    if(iperstipoestudid!=''){
+                        Persona._V.actualizar_expLaboral_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    
+                break;
+                case 'eliminar':
+                   
+                    if(iperstipoestudid!=''){
+                        Persona._V.eliminar_expLaboral_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+
+            }
+            
+         },
+
+         btn_meritos_click_legajo : function(ipersid,accion,iperstipoestudid){
+            switch(accion){
+                case 'agregar':
+                    Persona._V.agregar_meritos_legajo.load({'ipersid':ipersid,'iperstipoestudid' : null});
+                break;
+                case 'actualizar':
+                    if(iperstipoestudid!=''){
+                        Persona._V.actualizar_meritos_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    
+                break;
+                case 'eliminar':
+                    if(iperstipoestudid!=''){
+                        Persona._V.eliminar_meritos_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+            }
+         },
+
+         btn_demeritos_click_legajo : function(ipersid,accion,iperstipoestudid){
+            
+            
+            switch(accion){
+                case 'agregar':
+                    Persona._V.agregar_demeritos_legajo.load({'ipersid':ipersid,'iperstipoestudid' : null});
+                break;
+                case 'actualizar':
+                    if(iperstipoestudid!=''){
+                        Persona._V.actualizar_demeritos_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    
+                break;
+                case 'eliminar':
+                   
+                    if(iperstipoestudid!=''){
+                        Persona._V.eliminar_demeritos_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+
+            }
+            
+         },
+
+         btn_cargaFam_click_legajo : function(ipersid,accion,iperstipoestudid){
+            
+            
+            switch(accion){
+                case 'agregar':
+                    Persona._V.agregar_cargaFam_legajo.load({'ipersid':ipersid,'iperstipoestudid' : null});
+                break;
+                case 'actualizar':
+                    if(iperstipoestudid!=''){
+                        Persona._V.actualizar_cargaFam_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    
+                break;
+                case 'eliminar':
+                   
+                    if(iperstipoestudid!=''){
+                        Persona._V.eliminar_cargaFam_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+
+            }
+            
+         },
+         
+
+         btn_tblinfoper_legajo_click : function(btn, e){
+            
+            var codigo = '';      
+                    
+            for(var i in Persona.Ui.Grids.trabajadores.selection){
+                  codigo = i;
+            }
+		
+            if(codigo != '')      
+            {   
+               // alert(codigo);
+                
+                Persona._V.full_info_legajo.load({'empkey' : codigo});
             }
             else{
                 alert('Debe seleccionar un registro');

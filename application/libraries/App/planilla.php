@@ -59,7 +59,7 @@ class planilla extends Table{
                  LEFT JOIN pip.fuente_financ ff ON pla.fuente_id = ff.fuente_financ AND pla.ano_eje = ff.ano_eje 
                  LEFT JOIN pip.especifica_det clasi ON clasi.id_clasificador = pla.clasificador_id AND pla.ano_eje = clasi.ano_eje 
                                      
-            WHERE  
+            WHERE  pla.pla_estado != 0 AND
         ";
          
          if($by_codigo == FALSE )

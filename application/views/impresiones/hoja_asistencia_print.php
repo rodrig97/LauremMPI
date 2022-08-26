@@ -150,7 +150,6 @@ foreach($calendario as $ind =>  $reg)
 			$this->pdf->SetFont('Arial','',$tamanio_letra_header);
 			$this->pdf->cell(13, $alto_fila_header,  ((trim($hoja_info['meta_nombre']) == '' ) ? '------'  : trim($hoja_info['tarea_codigo']).' - '.utf8_decode(trim($hoja_info['meta_nombre'])) ),'',0,'L');
 			
-
 			$this->pdf->ln(); 
 			$this->pdf->SetFont('Arial','B',$tamanio_letra_header);
 			$this->pdf->cell(16, $alto_fila_header, utf8_decode('Descripción'),'',0,'L');
@@ -158,8 +157,14 @@ foreach($calendario as $ind =>  $reg)
 			$this->pdf->SetFont('Arial','',$tamanio_letra_header);
 			$this->pdf->cell(50, $alto_fila_header,  ((trim($hoja_info['hoa_descripcion']) == '' ) ? '------'  : trim($hoja_info['hoa_descripcion']) ),'',0,'L');
 			 
-			 
+			$this->pdf->ln(); 
+			$this->pdf->SetFont('Arial','B',$tamanio_letra_header);
+			$this->pdf->cell(16, $alto_fila_header, utf8_decode('Creada el'),'',0,'L');
+			$this->pdf->cell(2, $alto_fila_header, ':','',0,'L');
+			$this->pdf->SetFont('Arial','',$tamanio_letra_header);
+			$this->pdf->cell(50, $alto_fila_header,  ( _get_date_pg(trim($hoja_info['hoa_fechareg'])) . ' ' . substr($hoja_info['hoa_fechareg'], 11, 8) ),'',0,'L');
  
+
 	        $this->pdf->SetFillColor(80, 192, 192);
 		    $fill = true;
 	

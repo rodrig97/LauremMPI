@@ -60,7 +60,7 @@ dojo.declare('Laugo.Model',null,{
     },
      
     process: function(data, return_full_object){
-         
+       
        data = data || {}  
        return_full_object  = (arguments[1] != null) ? return_full_object : false; 
        
@@ -96,7 +96,7 @@ dojo.declare('Laugo.Model',null,{
             handleAs: 'json',
             
             load: function(responseJSON){
-    
+                    
                   self.object_response = responseJSON;
                   self.data = responseJSON.data;
                   self.mensaje = responseJSON.mensaje;
@@ -127,7 +127,7 @@ dojo.declare('Laugo.Model',null,{
                   
             },
             error: function(err){
-
+                
                  on_error = true;
 
                  var datos_str = '';
@@ -155,7 +155,7 @@ dojo.declare('Laugo.Model',null,{
         });
         
        
-        console.log(on_error);
+      
        
        if(!on_error){
 
@@ -168,7 +168,22 @@ dojo.declare('Laugo.Model',null,{
            return false;
        }
    
-    }
+    },
+
+    store: function(data){
+        var self = this;
+        $.ajax({
+            type: "POST",
+            url: self.connect_url,
+            data:data,
+            success: function(response)
+            {   //SI SE REALIZAR LA FUNCIÓN , RETURN TRU... VERIFICAR
+                //return true;
+             
+            }
+       });
+       return true;
+     },
     
     
 });

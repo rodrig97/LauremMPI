@@ -1,42 +1,42 @@
 <?php
 
-class persona extends Table{
-     
-    protected $_FIELDS=array(   
-                                    'id'          => 'indiv_id',
-                                    'code'        => 'indiv_key',
-                                    'name'        => 'indiv_nombres',
-                                    'descripcion' => '',
-                                    'state'       => 'indiv_estado'
-                            );
-    
+class persona extends Table
+{
+
+    protected $_FIELDS = array(
+        'id'          => 'indiv_id',
+        'code'        => 'indiv_key',
+        'name'        => 'indiv_nombres',
+        'descripcion' => '',
+        'state'       => 'indiv_estado'
+    );
+
     protected $_SCHEMA     = 'public';
     protected $_TABLE      = 'individuo';
-    protected $_PREF_TABLE = 'PERSMPI'; 
-    
-    
+    protected $_PREF_TABLE = 'PERSMPI';
+
+
     public function __construct()
     {
-          
+
         parent::__construct();
-          
     }
 
 
-     public function get_by_dni($dni)
-     {
-          $query = array($dni); 
-          
-          $sql   = " SELECT * FROM  public.individuo indiv WHERE indiv_dni = ? LIMIT 1";
-          $rs    = $this->_CI->db->query($sql, $query)->result_array();
+    public function get_by_dni($dni)
+    {
+        $query = array($dni);
 
-          return $rs[0];
-     }
+        $sql   = " SELECT * FROM  public.individuo indiv WHERE indiv_dni = ? LIMIT 1";
+        $rs    = $this->_CI->db->query($sql, $query)->result_array();
+
+        return $rs[0];
+    }
 
 
-     public function get_list($params)
-     {
-      
+    public function get_list($params)
+    {
+
         $query = array();
 
         $sql = " SELECT indiv.*,
@@ -46,50 +46,45 @@ class persona extends Table{
                        WHERE indiv_estado = 1 ";
 
 
-        if($params['nombre'] != '' )
-        {
-            $sql.=" AND (  indiv.indiv_appaterno ||' '|| indiv.indiv_apmaterno || ' ' ||  indiv.indiv_nombres ) like ? ";
-            $query[] =  trim($params['nombre']).'%';
-        }               
-
-        if( trim($params['plati_id']) != '' && trim($params['plati_id']) != '0'){
-
-            $sql.=" AND persla.plati_id IN (".trim($params['plati_id']).") ";
+        if ($params['nombre'] != '') {
+            $sql .= " AND (  indiv.indiv_appaterno ||' '|| indiv.indiv_apmaterno || ' ' ||  indiv.indiv_nombres ) like ? ";
+            $query[] =  trim($params['nombre']) . '%';
         }
 
-        if( $params['orden'] != '' ) // && $params['nombre'] != '' 
-        { 
-            $sql.=" ORDER BY ? ";
+        if (trim($params['plati_id']) != '' && trim($params['plati_id']) != '0') {
+
+            $sql .= " AND persla.plati_id IN (" . trim($params['plati_id']) . ") ";
+        }
+
+        if ($params['orden'] != '') // && $params['nombre'] != '' 
+        {
+            $sql .= " ORDER BY ? ";
             $query[] = $params['orden'];
         } else {
-            $sql.= " ORDER BY indiv.indiv_appaterno, indiv.indiv_apmaterno, indiv.indiv_nombres  ";
+            $sql .= " ORDER BY indiv.indiv_appaterno, indiv.indiv_apmaterno, indiv.indiv_nombres  ";
         }
 
-        if($params['limit'] != '' ) // && $params['nombre'] != '' 
-        { 
-         
-           $sql.=' LIMIT  ? '; 
-           $query[] = $params['limit'];
-       
-         }
- 
-         return $this->_CI->db->query($sql, $query)->result_array();
-     }
-    
-    
+        if ($params['limit'] != '') // && $params['nombre'] != '' 
+        {
+
+            $sql .= ' LIMIT  ? ';
+            $query[] = $params['limit'];
+        }
+
+        return $this->_CI->db->query($sql, $query)->result_array();
+    }
+
+
     public function get_some_info($param, $search_by = 1)
     {
-         
-        if($search_by == 1 )
-        {
-           $param_q = ' ind.indiv_dni';
+
+        if ($search_by == 1) {
+            $param_q = ' ind.indiv_dni';
+        } else if ($search_by == 'id') {
+            $param_q = ' ind.indiv_id';
         }
-        else if($search_by=='id')
-        {
-           $param_q = ' ind.indiv_id';
-        } 
-        
-        
+
+
         $sql = "SELECT  ind.*,  
                         ( ind.indiv_appaterno || ' ' || ind.indiv_apmaterno || ' ' || ind.indiv_nombres) as nombre_completo, 
                         COALESCE(date_part('YEAR', age(now(), ind.indiv_fechanac) ),0) as edad,  
@@ -108,20 +103,18 @@ class persona extends Table{
                 LEFT JOIN rh.persona_pension pensi ON pensi.pers_id = ind.indiv_id AND pensi.peaf_estado = 1 
                 LEFT JOIN rh.persona_cuenta_deposito cuenta  ON cuenta.pers_id = ind.indiv_id AND cuenta.pecd_estado = 1  
                 
-                WHERE ".$param_q." = ?
+                WHERE " . $param_q . " = ?
 
                 ORDER BY ind.indiv_id 
                 LIMIT 1 ";
-       
-        $rs= $this->_CI->db->query($sql,array($param))->result_array();
+
+        $rs = $this->_CI->db->query($sql, array($param))->result_array();
         return $rs[0];
-        
-        
     }
-    
+
     public function get_info($pers_id)
     {
-         
+
         $sql = " SELECT pers.*, 
                         pers.dpto_id as departamento, 
                         pers.prvn_id as provincia, 
@@ -171,55 +164,47 @@ class persona extends Table{
                 LEFT JOIN  planillas.ocupacion ocu ON historial.ocu_id = ocu.ocu_id 
                 WHERE  pers.indiv_id = ? Limit 1     
                ";
-        
-        $rs= $this->_CI->db->query($sql,array($pers_id))->result_array();
+
+        $rs = $this->_CI->db->query($sql, array($pers_id))->result_array();
         return $rs[0];
-        
-    } 
-     
+    }
 
 
-    public function get_situacionlaboral( $id = 0, $tipo)
+
+    public function get_situacionlaboral($id = 0, $tipo)
     {
 
         $sql = " SELECT indiv_dni, persla.* FROM rh.persona_situlaboral persla 
                  INNER JOIN public.individuo indiv ON persla.pers_id = indiv.indiv_id
                  WHERE ";
 
-                 if($tipo == 'dni')
-                 {
-                    $sql.=" indiv.indiv_dni = ? ";
-                 }
-                 else
-                 {
-                    $sql.=" persla.pers_id = ? ";
-                 }
+        if ($tipo == 'dni') {
+            $sql .= " indiv.indiv_dni = ? ";
+        } else {
+            $sql .= " persla.pers_id = ? ";
+        }
 
-       $sql.=" AND persla.persla_ultimo = 1 AND persla.persla_estado = 1 LIMIT 1 ";
+        $sql .= " AND persla.persla_ultimo = 1 AND persla.persla_estado = 1 LIMIT 1 ";
 
-      list($rs) = $this->_CI->db->query($sql, array($id))->result_array();
+        list($rs) = $this->_CI->db->query($sql, array($id))->result_array();
 
-      return $rs;
+        return $rs;
+    }
 
-    } 
 
-   
-   public function get_trabajadores($params = array(), $count =  false)
-   {
-        
+    public function get_trabajadores($params = array(), $count =  false)
+    {
+
         $vars_ejec = array();
-       
+
         $sql = ' SELECT   ';
 
-        if($count)
-        {
+        if ($count) {
 
-          $sql.=' count(*) as total ';
-        }
-        else
-        {
+            $sql .= ' count(*) as total ';
+        } else {
 
-          $sql.='    pers.*, 
+            $sql .= '    pers.*, 
                      COALESCE(date_part(\'YEAR\', age(now(), pers.indiv_fechanac) ),0) as edad, 
                      historial.persla_vigente as vigente,
                      cargos.cargo_nombre as cargo_nombre, 
@@ -242,13 +227,12 @@ class persona extends Table{
                      , up.ultimo_pago
 
                ';
- 
 
-              if($params['fecha_limite'] != '')
-              {
-   
-                  $sql.= ' 
-                           ,( CASE WHEN persla_fechafin is not null  AND  persla_fechafin <  \''.$params['fecha_limite'].'\'  THEN 
+
+            if ($params['fecha_limite'] != '') {
+
+                $sql .= ' 
+                           ,( CASE WHEN persla_fechafin is not null  AND  persla_fechafin <  \'' . $params['fecha_limite'] . '\'  THEN 
                                
                                 1
                                                        
@@ -257,11 +241,10 @@ class persona extends Table{
                                 0
 
                            END )  as contrato_vencido  ';
-
-               }
+            }
         }
 
-        $sql.='             
+        $sql .= '             
                  FROM public.individuo pers 
                  LEFT JOIN rh.persona_situlaboral historial  ON pers.indiv_id = historial.pers_id AND historial.persla_ultimo = 1 
                  LEFT JOIN planillas.planilla_tipo plati ON  historial.plati_id = plati.plati_id
@@ -284,266 +267,249 @@ class persona extends Table{
                ';
 
 
-          
-         $vars_ejec[] = $params['anio_eje'];
-            
-     
-        
-        if($params['dni'] != '' )
-        {
-             
-            $sql.=" AND pers.indiv_dni = ? ";
+
+        $vars_ejec[] = $params['anio_eje'];
+
+
+
+        if ($params['dni'] != '') {
+
+            $sql .= " AND pers.indiv_dni = ? ";
             $vars_ejec[] = $params['dni'];
-        
-            if($params['vigente_estricto']===true)
-            {
-                switch ($params['vigente'])
-                { 
+
+            if ($params['vigente_estricto'] === true) {
+                switch ($params['vigente']) {
                     case '0':
-                        $sql.= " AND  ( historial.persla_vigente = 0 OR historial.persla_vigente = 2 ) ";
+                        $sql .= " AND  ( historial.persla_vigente = 0 OR historial.persla_vigente = 2 ) ";
                         break;
                     case '3':
-                        $sql.= " AND ( up.ultimo_pago < NOW() - INTERVAL '2 months' ) ) ";
+                        $sql .= " AND ( up.ultimo_pago < NOW() - INTERVAL '2 months' ) ) ";
                     case '1':
-                        $sql.= " AND ( historial.persla_vigente = 1 OR historial.persla_vigente = 2 ) ";
+                        $sql .= " AND ( historial.persla_vigente = 1 OR historial.persla_vigente = 2 ) ";
                         break;
                 }
             }
-
-        }
-        else{
-        
-        
-                if($params['depe_id'] != '' && $params['depe_id'] != '0'){
-                    $sql.=" AND historial.depe_id = ? ";
-                    $vars_ejec[] = $params['depe_id'];
-                }
-
-                 if($params['situ_lab'] != '' && $params['situ_lab'] != '0'){
-                    $sql.=" AND historial.plati_id = ? ";
-                    $vars_ejec[] = $params['situ_lab'];
-                }
-
-                if($params['cargo'] != '' && $params['cargo'] != '0'){
-                    $sql.=" AND historial.cargo_id = ? ";
-                    $vars_ejec[] = $params['cargo'];
-                }
-                
-                if($params['materno'] != '' ){
-                    $sql.=" AND pers.indiv_apmaterno = ? ";
-                    $vars_ejec[] = $params['materno'];
-                }
-                
-                if($params['paterno'] != '' ){
-                    $sql.=" AND pers.indiv_appaterno = ? ";
-                    $vars_ejec[] = $params['paterno'];
-                }
-                
-
-                if($params['paterno'] != '' ){
-                    $sql.=" AND pers.indiv_appaterno = ? ";
-                    $vars_ejec[] = $params['paterno'];
-                }
-                
-
-                if($params['lugar_de_trabajo'] != '' ){
-                   $sql.=" AND pers.indiv_lugar_de_trabajo = ? ";
-                    $vars_ejec[] = $params['lugar_de_trabajo'];
-                }
-
-                switch ($params['vigente'])
-                { 
-                    case '0':
-                        $sql.= " AND  ( historial.persla_vigente = 0 OR historial.persla_vigente = 2 ) ";
-                        break;
-                    case '3':
-                        $sql.= " AND ( up.ultimo_pago < NOW() - INTERVAL '2 months' ) ";
-                    case '1':
-                        $sql.= " AND ( historial.persla_vigente = 1 OR historial.persla_vigente = 2 ) ";
-                        break;
-                }
+        } else {
 
 
-                if($params['grupo'] != '0' && $params['grupo'] != '')
-                {
+            if ($params['depe_id'] != '' && $params['depe_id'] != '0') {
+                $sql .= " AND historial.depe_id = ? ";
+                $vars_ejec[] = $params['depe_id'];
+            }
 
-                    $sql.=" AND historial.gremp_id = ? ";
-                    $vars_ejec[] = $params['grupo'];
-                }
+            if ($params['situ_lab'] != '' && $params['situ_lab'] != '0') {
+                $sql .= " AND historial.plati_id = ? ";
+                $vars_ejec[] = $params['situ_lab'];
+            }
 
- 
-                if($params['tienecuenta'] != '0')
-                {
+            if ($params['cargo'] != '' && $params['cargo'] != '0') {
+                $sql .= " AND historial.cargo_id = ? ";
+                $vars_ejec[] = $params['cargo'];
+            }
 
-                    if($params['tienecuenta'] == '1')
-                    {
-                        $sql.=" AND pecd.pecd_id is not NULL ";
-                    
-                        if($params['banco'] != '0')
-                        {
-                            $sql.=" AND pecd.ebanco_id = ? ";
-                            $vars_ejec[] = $params['banco'];
-                        }
+            if ($params['materno'] != '') {
+                $sql .= " AND pers.indiv_apmaterno = ? ";
+                $vars_ejec[] = $params['materno'];
+            }
 
-                    }  
-                    else if($params['tienecuenta'] == '2')
-                    {
-                         $sql.=" AND pecd.pecd_id is NULL ";   
+            if ($params['paterno'] != '') {
+                $sql .= " AND pers.indiv_appaterno = ? ";
+                $vars_ejec[] = $params['paterno'];
+            }
+
+
+            if ($params['paterno'] != '') {
+                $sql .= " AND pers.indiv_appaterno = ? ";
+                $vars_ejec[] = $params['paterno'];
+            }
+
+
+            if ($params['lugar_de_trabajo'] != '') {
+                $sql .= " AND pers.indiv_lugar_de_trabajo = ? ";
+                $vars_ejec[] = $params['lugar_de_trabajo'];
+            }
+
+            switch ($params['vigente']) {
+                case '0':
+                    $sql .= " AND  ( historial.persla_vigente = 0 OR historial.persla_vigente = 2 ) ";
+                    break;
+                case '3':
+                    $sql .= " AND ( up.ultimo_pago < NOW() - INTERVAL '2 months' ) ";
+                case '1':
+                    $sql .= " AND ( historial.persla_vigente = 1 OR historial.persla_vigente = 2 ) ";
+                    break;
+            }
+
+
+            if ($params['grupo'] != '0' && $params['grupo'] != '') {
+
+                $sql .= " AND historial.gremp_id = ? ";
+                $vars_ejec[] = $params['grupo'];
+            }
+
+
+            if ($params['tienecuenta'] != '0') {
+
+                if ($params['tienecuenta'] == '1') {
+                    $sql .= " AND pecd.pecd_id is not NULL ";
+
+                    if ($params['banco'] != '0') {
+                        $sql .= " AND pecd.ebanco_id = ? ";
+                        $vars_ejec[] = $params['banco'];
                     }
-                     
+                } else if ($params['tienecuenta'] == '2') {
+                    $sql .= " AND pecd.pecd_id is NULL ";
                 }
+            }
 
 
-                if($params['tipopension'] != '0')
-                {
+            if ($params['tipopension'] != '0') {
 
-                    if($params['tipopension'] ==  PENSION_AFP )
-                    {
-                        $sql.=" AND pepe.pentip_id = ? ";
-                        $vars_ejec[] = PENSION_AFP;
-                    
-                        if($params['afp'] != '0')
-                        {
-                            $sql.=" AND pepe.afp_id = ? ";
-                            $vars_ejec[] = $params['afp'];
-                        }
+                if ($params['tipopension'] ==  PENSION_AFP) {
+                    $sql .= " AND pepe.pentip_id = ? ";
+                    $vars_ejec[] = PENSION_AFP;
 
-                        if($params['modoafp'] != '0')
-                        {
-                            $sql.=" AND pepe.afm_id = ? ";
-                            $vars_ejec[] = $params['modoafp'];
-                        }
-
-                    }  
-                    else if($params['tipopension'] == PENSION_SNP )
-                    {
-                         $sql.=" AND pepe.pentip_id = ? ";
-                         $vars_ejec[] = PENSION_SNP;   
+                    if ($params['afp'] != '0') {
+                        $sql .= " AND pepe.afp_id = ? ";
+                        $vars_ejec[] = $params['afp'];
                     }
-                     
+
+                    if ($params['modoafp'] != '0') {
+                        $sql .= " AND pepe.afm_id = ? ";
+                        $vars_ejec[] = $params['modoafp'];
+                    }
+                } else if ($params['tipopension'] == PENSION_SNP) {
+                    $sql .= " AND pepe.pentip_id = ? ";
+                    $vars_ejec[] = PENSION_SNP;
                 }
+            }
 
 
-                if($params['tarea'] != '0')
-                {
+            if ($params['tarea'] != '0') {
 
-                   if($params['tarea']=='no')
-                   {
-                      $sql.=" AND (empre.tarea_id = 0 OR empre.tarea_id is null) ";  
-                   }
-                   else if($params['tarea']=='si')
-                   {
-                      $sql.=" AND ( empre.tarea_id is not null AND  empre.tarea_id != 0  ) ";  
-                   }
-                   else
-                   {
-                    
-                       $sql.=" AND empre.tarea_id = ? ";
-                       $vars_ejec[] = $params['tarea'];  
-                         
-                   }
+                if ($params['tarea'] == 'no') {
+                    $sql .= " AND (empre.tarea_id = 0 OR empre.tarea_id is null) ";
+                } else if ($params['tarea'] == 'si') {
+                    $sql .= " AND ( empre.tarea_id is not null AND  empre.tarea_id != 0  ) ";
+                } else {
 
+                    $sql .= " AND empre.tarea_id = ? ";
+                    $vars_ejec[] = $params['tarea'];
                 }
+            }
 
 
-                if($params['fuente'] != '')
-                {
+            if ($params['fuente'] != '') {
 
-                   if($params['fuente'] == 'no')
-                   {
-                       $sql.=" AND (empre.fuente_id = '' OR empre.fuente_id is null ) ";
-                   }
-                   else if($params['fuente'] == 'si')
-                   {
-                       $sql.=" AND (empre.fuente_id != '' AND empre.fuente_id is not null ) ";
-                   }
-                   else
-                   {
-                       $sql.=" AND empre.fuente_id = ? ";
-                       $vars_ejec[] = $params['fuente'];  
-
-                   }
+                if ($params['fuente'] == 'no') {
+                    $sql .= " AND (empre.fuente_id = '' OR empre.fuente_id is null ) ";
+                } else if ($params['fuente'] == 'si') {
+                    $sql .= " AND (empre.fuente_id != '' AND empre.fuente_id is not null ) ";
+                } else {
+                    $sql .= " AND empre.fuente_id = ? ";
+                    $vars_ejec[] = $params['fuente'];
                 }
+            }
 
-                
-                if($params['tiporecurso'] != '')
-                {
-                   if($params['tiporecurso'] == 'no')
-                   {
-                       $sql.=" AND (empre.tipo_recurso = '' OR empre.tipo_recurso is null ) ";
-                   }
-                   else if($params['tiporecurso'] == 'si')
-                   {
-                       $sql.=" AND (empre.tipo_recurso != '' AND empre.tipo_recurso is not null ) ";
-                   }
-                   else
-                   { 
-                       $sql.=" AND empre.tipo_recurso = ? ";
-                       $vars_ejec[] = $params['tiporecurso'];  
-                   }     
+
+            if ($params['tiporecurso'] != '') {
+                if ($params['tiporecurso'] == 'no') {
+                    $sql .= " AND (empre.tipo_recurso = '' OR empre.tipo_recurso is null ) ";
+                } else if ($params['tiporecurso'] == 'si') {
+                    $sql .= " AND (empre.tipo_recurso != '' AND empre.tipo_recurso is not null ) ";
+                } else {
+                    $sql .= " AND empre.tipo_recurso = ? ";
+                    $vars_ejec[] = $params['tiporecurso'];
                 }
-
-
+            }
         }
-        
-        
-        if($count == FALSE)
-        {
-        
-          $sql.= "  ORDER BY indiv_appaterno, indiv_apmaterno,indiv_nombres ";  
 
-          if($params['limit']>0) $sql.= "  LIMIT ".$params['limit'];
-            
-          if($params['offset'] > 0 && $params['limit'] > 0 ){
-              
-             $sql.= " OFFSET ".$params['offset']; 
-             
-          }
-        
+
+        if ($count == FALSE) {
+
+            $sql .= "  ORDER BY indiv_appaterno, indiv_apmaterno,indiv_nombres ";
+
+            if ($params['limit'] > 0) $sql .= "  LIMIT " . $params['limit'];
+
+            if ($params['offset'] > 0 && $params['limit'] > 0) {
+
+                $sql .= " OFFSET " . $params['offset'];
+            }
         }
- 
-        $rs = $this->_CI->db->query($sql,$vars_ejec)->result_array();
-       
+
+        $rs = $this->_CI->db->query($sql, $vars_ejec)->result_array();
+
         return $rs;
-       
-   }
-   
-   
-   public function get_count_trabajadores($params)
-   {  
-        $count = true; 
+    }
+
+    public function get_trabajadores_legajo()
+    {
+
+        $sql = "
+        Select 
+         ind.indiv_id
+        ,ind.indiv_appaterno 
+        ,ind.indiv_apmaterno 
+        ,ind.indiv_nombres 
+        ,ind.indiv_dni
+        ,ind.indiv_celular
+        ,ind.indiv_email
+        ,ind.indiv_key
+      
+        from public.persona as pers
+        INNER JOIN public.individuo as ind ON ind.indiv_id = pers.indiv_id 
+        WHERE pers.pers_estado = '1'
+        GROUP BY
+        ind.indiv_id
+        ,ind.indiv_appaterno 
+        ,ind.indiv_apmaterno 
+        ,ind.indiv_nombres 
+        ,ind.indiv_dni
+        ,ind.indiv_celular
+        ,ind.indiv_email
+        ,ind.indiv_key
+      
+        ORDER BY ind.indiv_appaterno ASC
+        ";
+        $rs =  $this->_CI->db->query($sql)->result_array();
+        return $rs;
+    }
+
+
+    public function get_count_trabajadores($params)
+    {
+        $count = true;
 
         unset($params['limit']);
         unset($params['offset']);
 
-        $rs = $this->get_trabajadores($params, $count);  
+        $rs = $this->get_trabajadores($params, $count);
         return $rs[0]['total'];
-       
-   }
-   
+    }
 
-   
-   public function add_pension($indiv_id, $data )
-   {
 
-       $this->_CI->load->library(array('App/concepto', 'App/empleadoconcepto'));
-       
-       $this->_CI->db->trans_begin();
-      
-      /*
+
+    public function add_pension($indiv_id, $data)
+    {
+
+        $this->_CI->load->library(array('App/concepto', 'App/empleadoconcepto'));
+
+        $this->_CI->db->trans_begin();
+
+        /*
          QUITANDO LOS CONCEPTOS DE LA PLANILLA
       */
-       $this->remove_pension($indiv_id);
-         
-       $data['pers_id'] =  $indiv_id;
-       
-        $r   = $this->_CI->db->insert( 'rh.persona_pension',$data); 
-        $id  = $this->_CI->db->insert_id();
-        $md5 = md5('PERSPENSION'.$id);
-        $sql = " UPDATE rh.persona_pension SET peaf_key = ? WHERE peaf_id = ? ";
-        $this->_CI->db->query($sql, array($md5,$id));
+        $this->remove_pension($indiv_id);
 
-        /* ACTUALIZAMOS EL PEAF EN LAS PLANILLAS EN ESTADO ELABORAR */ 
+        $data['pers_id'] =  $indiv_id;
+
+        $r   = $this->_CI->db->insert('rh.persona_pension', $data);
+        $id  = $this->_CI->db->insert_id();
+        $md5 = md5('PERSPENSION' . $id);
+        $sql = " UPDATE rh.persona_pension SET peaf_key = ? WHERE peaf_id = ? ";
+        $this->_CI->db->query($sql, array($md5, $id));
+
+        /* ACTUALIZAMOS EL PEAF EN LAS PLANILLAS EN ESTADO ELABORAR */
         $sql = "   UPDATE planillas.planilla_empleados
                    SET peaf_id = ? 
                    WHERE indiv_id = ? AND 
@@ -551,292 +517,258 @@ class persona extends Table{
 
                                SELECT plaemp.plaemp_id 
                                FROM planillas.planillas pla 
-                               INNER JOIN planillas.planilla_movimiento mov ON pla.pla_id = mov.pla_id AND plamo_estado = 1 AND plaes_id = ".ESTADOPLANILLA_ELABORADA." 
+                               INNER JOIN planillas.planilla_movimiento mov ON pla.pla_id = mov.pla_id AND plamo_estado = 1 AND plaes_id = " . ESTADOPLANILLA_ELABORADA . " 
                                INNER JOIN planillas.planilla_empleados plaemp ON plaemp.pla_id = pla.pla_id AND plaemp.plaemp_estado = 1 AND plaemp.indiv_id = ?
                                WHERE pla.pla_estado = 1
                            )
 
                ";
 
-        $this->_CI->db->query($sql, array($id, $indiv_id, $indiv_id ));
+        $this->_CI->db->query($sql, array($id, $indiv_id, $indiv_id));
 
 
-       if(CONFIG_SUPPORT_AFP_CONCEPTOS == 1 && $data['peaf_jubilado'] == '0')
-       { 
+        if (CONFIG_SUPPORT_AFP_CONCEPTOS == 1 && $data['peaf_jubilado'] == '0') {
 
-           if( $data['pentip_id'] == PENSION_AFP )
-           {
-              $grupo     = array( GRUPOVC_AFP, GRUPOVC_AFP_APORTE ); 
-           }
-           else
-           {
-              $grupo     = GRUPOVC_ONP; 
-           }
-   
-           $this->add_conceptos_pension_planillas($indiv_id, $grupo);
-  
-       }
- 
-       
-        if($this->_CI->db->trans_status() === FALSE) 
-        {
+            if ($data['pentip_id'] == PENSION_AFP) {
+                $grupo     = array(GRUPOVC_AFP, GRUPOVC_AFP_APORTE);
+            } else {
+                $grupo     = GRUPOVC_ONP;
+            }
+
+            $this->add_conceptos_pension_planillas($indiv_id, $grupo);
+        }
+
+
+        if ($this->_CI->db->trans_status() === FALSE) {
             $this->_CI->db->trans_rollback();
             return false;
-        }
-        else
-        {
+        } else {
             $this->_CI->db->trans_commit();
             return true;
-        } 
-          
-         
-   }
-   
+        }
+    }
 
-   public function remove_pension($indiv_id, $delete = false)
-   {
-   
-        if(CONFIG_SUPPORT_AFP_CONCEPTOS == 1 )
-        { 
+
+    public function remove_pension($indiv_id, $delete = false)
+    {
+
+        if (CONFIG_SUPPORT_AFP_CONCEPTOS == 1) {
             $this->remove_conceptos_pension_planillas($indiv_id);
-        } 
-
-        if($delete)
-        {
-           
-           $sql = " DELETE FROM rh.persona_pension WHERE pers_id = ? AND peaf_estado = 1";
-           $this->_CI->db->query($sql, array($indiv_id));
-
-        }   
-        else
-        {
-
-            $this->_CI->db->where( 'pers_id', $indiv_id)
-                          ->update( 'rh.persona_pension', array('peaf_estado' => '0')); 
         }
 
- 
-       
-   }
+        if ($delete) {
+
+            $sql = " DELETE FROM rh.persona_pension WHERE pers_id = ? AND peaf_estado = 1";
+            $this->_CI->db->query($sql, array($indiv_id));
+        } else {
+
+            $this->_CI->db->where('pers_id', $indiv_id)
+                ->update('rh.persona_pension', array('peaf_estado' => '0'));
+        }
+    }
 
 
-   public function remove_conceptos_pension_planillas($indiv_id)
-   {
- 
-      $this->_CI->load->library(array('App/empleadoconcepto','App/planillaempleadoconcepto'));
-   
-      $sql = " SELECT conc_id FROM planillas.conceptos conc  
+    public function remove_conceptos_pension_planillas($indiv_id)
+    {
+
+        $this->_CI->load->library(array('App/empleadoconcepto', 'App/planillaempleadoconcepto'));
+
+        $sql = " SELECT conc_id FROM planillas.conceptos conc  
                WHERE conc.conc_estado = 1 AND  gvc_id in (?,?,?)  AND conc.conc_afecto = 1 ";
-      
-      $conceptos_pension_del = $this->_CI->db->query($sql, array(GRUPOVC_AFP, GRUPOVC_AFP_APORTE, GRUPOVC_ONP))->result_array();
-     
-      $sql = " SELECT plaemp_id 
+
+        $conceptos_pension_del = $this->_CI->db->query($sql, array(GRUPOVC_AFP, GRUPOVC_AFP_APORTE, GRUPOVC_ONP))->result_array();
+
+        $sql = " SELECT plaemp_id 
                FROM planillas.planilla_empleados plaemp
                INNER JOIN planillas.planillas pla ON plaemp.pla_id = pla.pla_id AND pla_estado = 1
-               INNER JOIN planillas.planilla_movimiento mov ON pla.pla_id = mov.pla_id AND  mov.plamo_estado = 1 AND  mov.plaes_id = ".ESTADOPLANILLA_ELABORADA."
+               INNER JOIN planillas.planilla_movimiento mov ON pla.pla_id = mov.pla_id AND  mov.plamo_estado = 1 AND  mov.plaes_id = " . ESTADOPLANILLA_ELABORADA . "
                WHERE plaemp.indiv_id = ?   ";
 
 
-      $conceptos_en_planillas = $this->_CI->db->query($sql, array($indiv_id))->result_array();          
- 
+        $conceptos_en_planillas = $this->_CI->db->query($sql, array($indiv_id))->result_array();
 
-      foreach($conceptos_pension_del as $concepto)
-      {  
-   
-          $this->_CI->empleadoconcepto->desvincular_concepto($indiv_id, $concepto['conc_id'], true); 
 
-          foreach($conceptos_en_planillas as $reg)
-          {
-             $this->_CI->planillaempleadoconcepto->desvincular( $concepto['conc_id'], $reg['plaemp_id'] );
-          }
+        foreach ($conceptos_pension_del as $concepto) {
 
-      }      
-       
-   }
+            $this->_CI->empleadoconcepto->desvincular_concepto($indiv_id, $concepto['conc_id'], true);
 
-   public function add_conceptos_pension_planillas( $indiv_id, $grupo)
-   {
- 
-           $this->_CI->load->library(array('App/concepto', 'App/variable', 'Catalogos/afp'));
- 
-           $sql = " SELECT plaemp_id, pla.plati_id,  plaemp.tarea_id, plaemp.fuente_id, plaemp.tipo_recurso, 
+            foreach ($conceptos_en_planillas as $reg) {
+                $this->_CI->planillaempleadoconcepto->desvincular($concepto['conc_id'], $reg['plaemp_id']);
+            }
+        }
+    }
+
+    public function add_conceptos_pension_planillas($indiv_id, $grupo)
+    {
+
+        $this->_CI->load->library(array('App/concepto', 'App/variable', 'Catalogos/afp'));
+
+        $sql = " SELECT plaemp_id, pla.plati_id,  plaemp.tarea_id, plaemp.fuente_id, plaemp.tipo_recurso, 
                            pla.pla_afectacion_presu, pla.clasificador_id, COALESCE(date_part('YEAR', age(now(), indiv.indiv_fechanac) ),0) as edad  
                     FROM planillas.planilla_empleados plaemp
                     LEFT JOIN public.individuo indiv ON plaemp.indiv_id = indiv.indiv_id 
                     LEFT JOIN rh.persona_situlaboral persla ON plaemp.persla_id = persla.persla_id 
                     INNER JOIN planillas.planillas pla ON plaemp.pla_id = pla.pla_id AND pla_estado = 1
-                    INNER JOIN planillas.planilla_movimiento mov ON pla.pla_id = mov.pla_id  AND  mov.plamo_estado = 1 AND mov.plaes_id = ".ESTADOPLANILLA_ELABORADA."
+                    INNER JOIN planillas.planilla_movimiento mov ON pla.pla_id = mov.pla_id  AND  mov.plamo_estado = 1 AND mov.plaes_id = " . ESTADOPLANILLA_ELABORADA . "
                     WHERE plaemp.indiv_id = ?   ";
 
 
-           $planilla_empleados = $this->_CI->db->query($sql, array($indiv_id))->result_array(); 
-
-          
-          list($tipo_pension, $data_pension)  =  $this->_CI->persona->get_tipo_pension($indiv_id); // GET INFO PENSION
+        $planilla_empleados = $this->_CI->db->query($sql, array($indiv_id))->result_array();
 
 
-           foreach($planilla_empleados as $reg)
-           {  
+        list($tipo_pension, $data_pension)  =  $this->_CI->persona->get_tipo_pension($indiv_id); // GET INFO PENSION
 
-             $id_clasificador = '';
 
-             if( $reg['pla_afectacion_presu'] == PLANILLA_AFECTACION_ESPECIFICADA )
-             {
+        foreach ($planilla_empleados as $reg) {
+
+            $id_clasificador = '';
+
+            if ($reg['pla_afectacion_presu'] == PLANILLA_AFECTACION_ESPECIFICADA) {
                 $id_clasificador = $reg['clasificador_id'];
-             }
-             else if(  $reg['pla_afectacion_presu'] == PLANILLA_AFECTACION_ESPECIFICADA_X_DETALLE )
-             {
+            } else if ($reg['pla_afectacion_presu'] == PLANILLA_AFECTACION_ESPECIFICADA_X_DETALLE) {
                 $id_clasificador = $concepto['id_clasificador'];
-             }
-             
+            }
 
-             $conceptos_pension = $this->_CI->concepto->get_list(array('tipoplanilla' => $reg['plati_id'],
-                                                                       'grupo'        => $grupo    ));
 
-             foreach($conceptos_pension as $concepto)
-             {  
+            $conceptos_pension = $this->_CI->concepto->get_list(array(
+                'tipoplanilla' => $reg['plati_id'],
+                'grupo'        => $grupo
+            ));
+
+            foreach ($conceptos_pension as $concepto) {
                 // $this->_CI->empleadoconcepto->registrar($indiv_id, $concepto['conc_id']); 
 
 
-                $this->_CI->planillaempleadoconcepto->registrar( array('conc_id' => $concepto['conc_id'],
-                                                                        'plaemp_id'  => $reg['plaemp_id'],
-                                                                        'tarea_id' => $reg['tarea_id'],
-                                                                        'fuente_id' => trim($reg['fuente_id']),
-                                                                        'tipo_recurso' => trim($reg['tipo_recurso']),
-                                                                        'clasificador_id' =>  $id_clasificador,
-                                                                        'plaec_displayprint' => $concepto['conc_displayprint']
-                
-                                                                         ), 
-                                                                         $indiv_id, PROCENDENCIA_CONCEPTO_DEL_TRABAJADOR );
+                $this->_CI->planillaempleadoconcepto->registrar(
+                    array(
+                        'conc_id' => $concepto['conc_id'],
+                        'plaemp_id'  => $reg['plaemp_id'],
+                        'tarea_id' => $reg['tarea_id'],
+                        'fuente_id' => trim($reg['fuente_id']),
+                        'tipo_recurso' => trim($reg['tipo_recurso']),
+                        'clasificador_id' =>  $id_clasificador,
+                        'plaec_displayprint' => $concepto['conc_displayprint']
+
+                    ),
+                    $indiv_id,
+                    PROCENDENCIA_CONCEPTO_DEL_TRABAJADOR
+                );
 
 
-                $edad_trabajador = $reg['edad']*1;
+                $edad_trabajador = $reg['edad'] * 1;
 
 
-                if(  (AFP_QUITARINVALIDEZ_AUTOMATICO == TRUE &&  $edad_trabajador > AFP_EDADINVALIDEZ_LIMITE )  || (AFP_QUITARINVALIDEZ_AUTOMATICO == FALSE && $data_pension['invalidez'] == '0' )     )
-                {
+                if ((AFP_QUITARINVALIDEZ_AUTOMATICO == TRUE &&  $edad_trabajador > AFP_EDADINVALIDEZ_LIMITE)  || (AFP_QUITARINVALIDEZ_AUTOMATICO == FALSE && $data_pension['invalidez'] == '0')) {
                     $sql = "  SELECT * FROM  planillas.conceptos_sistema WHERE plati_id = ? LIMIT 1";
                     list($conceptos_sistema) = $this->_CI->db->query($sql, array($reg['plati_id']))->result_array();
 
-                    $this->_CI->planillaempleadoconcepto->desvincular( $conceptos_sistema['conc_seguros'] , $reg['plaemp_id'] );
+                    $this->_CI->planillaempleadoconcepto->desvincular($conceptos_sistema['conc_seguros'], $reg['plaemp_id']);
                 }
-
-
-             }
-
-           
-           }
-
- 
- 
-           if($grupo == GRUPOVC_AFP || in_array(GRUPOVC_AFP, $grupo) )
-           {
-
-                
-
-               $sql = "SELECT * FROM  planillas.afps_vars_tipoplanilla WHERE plati_id = ? AND avt_estado = 1 LIMIT 1 ";
-               $v_rs =  $this->_CI->db->query($sql, array($reg['plati_id']))->result_array();
-               $vars_xplati  =  $v_rs[0];
+            }
+        }
 
 
 
-               if($tipo_pension == PENSION_AFP )
-               {
-                 
-                    $valores_afp = $this->_CI->afp->get_porcentajes($data_pension['afp']); // Valores para la afp especificada
-                    $valores_afp['comision'] = ($data_pension['afm_id'] == AFP_FLUJO) ? $valores_afp['comision'] : $valores_afp['saldo'] ; 
+        if ($grupo == GRUPOVC_AFP || in_array(GRUPOVC_AFP, $grupo)) {
 
 
-                    $var_aporte = $this->_CI->variable->get($vars_xplati['vars_aportobli']);
-                    $var_seguro = $this->_CI->variable->get($vars_xplati['vars_seguros']);
-                    $var_comision = $this->_CI->variable->get($vars_xplati['vars_comvar']);
- 
- 
-                    foreach($planilla_empleados as $reg)
-                    {  
 
-                
-               /*
+            $sql = "SELECT * FROM  planillas.afps_vars_tipoplanilla WHERE plati_id = ? AND avt_estado = 1 LIMIT 1 ";
+            $v_rs =  $this->_CI->db->query($sql, array($reg['plati_id']))->result_array();
+            $vars_xplati  =  $v_rs[0];
+
+
+
+            if ($tipo_pension == PENSION_AFP) {
+
+                $valores_afp = $this->_CI->afp->get_porcentajes($data_pension['afp']); // Valores para la afp especificada
+                $valores_afp['comision'] = ($data_pension['afm_id'] == AFP_FLUJO) ? $valores_afp['comision'] : $valores_afp['saldo'];
+
+
+                $var_aporte = $this->_CI->variable->get($vars_xplati['vars_aportobli']);
+                $var_seguro = $this->_CI->variable->get($vars_xplati['vars_seguros']);
+                $var_comision = $this->_CI->variable->get($vars_xplati['vars_comvar']);
+
+
+                foreach ($planilla_empleados as $reg) {
+
+
+                    /*
                       $this->_CI->planillaempleadovariable->set_valor($reg['plaemp_id'], $vars_xplati['vars_aportobli'] , $valores_afp['jubilacion']   );
                       $this->_CI->planillaempleadovariable->set_valor($reg['plaemp_id'], $vars_xplati['vars_seguros'] , $valores_afp['invalides']   );
                       $this->_CI->planillaempleadovariable->set_valor($reg['plaemp_id'], $vars_xplati['vars_comvar'] , $valores_afp['comision']   );*/
-                      
-                    
-                       $tasa_jubilacion = ($plati_id != TIPOPLANILLA_CONSCIVIL ) ? $valores_afp['jubilacion'] : $valores_afp['jubilacion_cc'];
-
-                       $this->_CI->planillaempleadovariable->registrar( array('plaemp_id' => $reg['plaemp_id'], 
-                                                                              'vari_id' => $vars_xplati['vars_aportobli'],
-                                                                              'plaev_valor' => $tasa_jubilacion,
-                                                                              'plaev_displayprint' => $var_aporte['vari_displayprint'],
-                                                                              'plaev_procedencia' =>  PROCENDENCIA_VARIABLE_VALOR_PERSONALIZADO  ));
-
-                       $this->_CI->planillaempleadovariable->registrar( array('plaemp_id' => $reg['plaemp_id'], 
-                                                                              'vari_id' => $vars_xplati['vars_seguros'],
-                                                                              'plaev_valor' => $valores_afp['invalides'],
-                                                                              'plaev_displayprint' => $var_seguro['vari_displayprint'],
-                                                                              'plaev_procedencia' =>  PROCENDENCIA_VARIABLE_VALOR_PERSONALIZADO  ));
 
 
-                       $this->_CI->planillaempleadovariable->registrar( array('plaemp_id' => $reg['plaemp_id'], 
-                                                                              'vari_id' => $vars_xplati['vars_comvar'],
-                                                                              'plaev_valor' => $valores_afp['comision'],
-                                                                              'plaev_displayprint' => $var_comision['vari_displayprint'],
-                                                                              'plaev_procedencia' =>  PROCENDENCIA_VARIABLE_VALOR_PERSONALIZADO  ));
+                    $tasa_jubilacion = ($plati_id != TIPOPLANILLA_CONSCIVIL) ? $valores_afp['jubilacion'] : $valores_afp['jubilacion_cc'];
+
+                    $this->_CI->planillaempleadovariable->registrar(array(
+                        'plaemp_id' => $reg['plaemp_id'],
+                        'vari_id' => $vars_xplati['vars_aportobli'],
+                        'plaev_valor' => $tasa_jubilacion,
+                        'plaev_displayprint' => $var_aporte['vari_displayprint'],
+                        'plaev_procedencia' =>  PROCENDENCIA_VARIABLE_VALOR_PERSONALIZADO
+                    ));
+
+                    $this->_CI->planillaempleadovariable->registrar(array(
+                        'plaemp_id' => $reg['plaemp_id'],
+                        'vari_id' => $vars_xplati['vars_seguros'],
+                        'plaev_valor' => $valores_afp['invalides'],
+                        'plaev_displayprint' => $var_seguro['vari_displayprint'],
+                        'plaev_procedencia' =>  PROCENDENCIA_VARIABLE_VALOR_PERSONALIZADO
+                    ));
 
 
-                    }
-               } 
+                    $this->_CI->planillaempleadovariable->registrar(array(
+                        'plaemp_id' => $reg['plaemp_id'],
+                        'vari_id' => $vars_xplati['vars_comvar'],
+                        'plaev_valor' => $valores_afp['comision'],
+                        'plaev_displayprint' => $var_comision['vari_displayprint'],
+                        'plaev_procedencia' =>  PROCENDENCIA_VARIABLE_VALOR_PERSONALIZADO
+                    ));
+                }
+            }
+        }
+    }
 
-           }
-
-   }
-
- 
-
-   public function get_tipo_pension( $indiv_id )
-   {
 
 
-      $data = array();
+    public function get_tipo_pension($indiv_id)
+    {
 
-      $sql  = " SELECT * FROM rh.persona_pension
+
+        $data = array();
+
+        $sql  = " SELECT * FROM rh.persona_pension
                 WHERE pers_id = ? AND peaf_estado = 1";
 
-      $rs  = $this->_CI->db->query($sql,array($indiv_id))->result_array();
-      $reg = $rs[0];
+        $rs  = $this->_CI->db->query($sql, array($indiv_id))->result_array();
+        $reg = $rs[0];
 
-      if($reg['pentip_id'] == PENSION_SNP )
-      {    
-      
-            $data = array(  'codigo' => trim($reg['peaf_codigo']),
-                            'jubilado' => trim($reg['peaf_jubilado']),
-                            'invalidez' => trim($reg['peaf_invalidez'])  );
-      
-      }  
-      else if($reg['pentip_id'] == PENSION_AFP )
-      {
+        if ($reg['pentip_id'] == PENSION_SNP) {
 
             $data = array(
-                            'codigo' => trim($reg['peaf_codigo']),
-                            'afp'    => trim($reg['afp_id']),
-                            'afm_id' => trim($reg['afm_id']),
-                            'jubilado' => trim($reg['peaf_jubilado']),
-                            'invalidez' => trim($reg['peaf_invalidez'])
-                         );
-      
-      }
-      else
-      {
-      
-            $reg['pentip_id'] = 0;
-      
-      }
- 
-      return array( $reg['pentip_id'] , $data );      
- 
-   }
+                'codigo' => trim($reg['peaf_codigo']),
+                'jubilado' => trim($reg['peaf_jubilado']),
+                'invalidez' => trim($reg['peaf_invalidez'])
+            );
+        } else if ($reg['pentip_id'] == PENSION_AFP) {
 
-/*
+            $data = array(
+                'codigo' => trim($reg['peaf_codigo']),
+                'afp'    => trim($reg['afp_id']),
+                'afm_id' => trim($reg['afm_id']),
+                'jubilado' => trim($reg['peaf_jubilado']),
+                'invalidez' => trim($reg['peaf_invalidez'])
+            );
+        } else {
+
+            $reg['pentip_id'] = 0;
+        }
+
+        return array($reg['pentip_id'], $data);
+    }
+
+    /*
    
    public function add_essalud($id_pers,$data)
    {
@@ -872,83 +804,82 @@ class persona extends Table{
        $this->_CI->db->where( 'pers_id', $id_pers)
                      ->update( 'rh.persona_essalud', array('persa_estado' => '0')); 
    }*/
-   
-   
-   public function add_cuentadeposito($id_pers,$data)
-   {
-        
-       $this->_CI->db->trans_begin();
-       
-  
-       $this->remove_cuenta($id_pers);
-         
-       $data['pers_id'] =  $id_pers;
-       $r=$this->_CI->db->insert( 'rh.persona_cuenta_deposito',$data); 
 
-       $id = $this->_CI->db->insert_id();
-       $md5 = md5('PERSCUENTA'.$id);
 
-       $sql= " UPDATE rh.persona_cuenta_deposito SET pecd_key = ? WHERE pecd_id = ? ";
-       $this->_CI->db->query($sql, array($md5,$id));
-        
+    public function add_cuentadeposito($id_pers, $data)
+    {
 
-       
+        $this->_CI->db->trans_begin();
+
+
+        $this->remove_cuenta($id_pers);
+
+        $data['pers_id'] =  $id_pers;
+        $r = $this->_CI->db->insert('rh.persona_cuenta_deposito', $data);
+
+        $id = $this->_CI->db->insert_id();
+        $md5 = md5('PERSCUENTA' . $id);
+
+        $sql = " UPDATE rh.persona_cuenta_deposito SET pecd_key = ? WHERE pecd_id = ? ";
+        $this->_CI->db->query($sql, array($md5, $id));
+
+
+
         if ($this->_CI->db->trans_status() === FALSE) {
             $this->_CI->db->trans_rollback();
             return false;
-        } else  {
+        } else {
             $this->_CI->db->trans_commit();
             return true;
-        } 
-       
-   }
-   
+        }
+    }
+
     public function remove_cuenta($id_pers)
-    { 
+    {
 
-         $this->_CI->db->trans_begin();
- 
-          $this->_CI->db->where( 'pers_id', $id_pers)
-                          ->update( 'rh.persona_cuenta_deposito', array('pecd_estado' => '0')); 
+        $this->_CI->db->trans_begin();
 
- 
+        $this->_CI->db->where('pers_id', $id_pers)
+            ->update('rh.persona_cuenta_deposito', array('pecd_estado' => '0'));
+
+
 
 
         if ($this->_CI->db->trans_status() === FALSE) {
             $this->_CI->db->trans_rollback();
             return false;
-        } else  {
+        } else {
             $this->_CI->db->trans_commit();
             return true;
-        } 
-       
-   }
-    
-   
-   public function registrar_comision($id_pers,$data = array()){
-       
-       // $r=$this->_CI->db->insert($this->_TABLE_WS,$data);
-         
-      
-       
-   }
-   
-   public function actualizar_grupo($indiv_id, $grupo_id)
-   {
+        }
+    }
 
-      $sql = " UPDATE rh.persona_situlaboral SET gremp_id = ?  
+
+    public function registrar_comision($id_pers, $data = array())
+    {
+
+        // $r=$this->_CI->db->insert($this->_TABLE_WS,$data);
+
+
+
+    }
+
+    public function actualizar_grupo($indiv_id, $grupo_id)
+    {
+
+        $sql = " UPDATE rh.persona_situlaboral SET gremp_id = ?  
                WHERE pers_id = ? AND persla_ultimo = 1 AND persla_estado = 1 ";
-     
-      $ok = $this->_CI->db->query($sql, array($grupo_id, $indiv_id));
-   
-      return ($ok) ? true : false;
-   }  
+
+        $ok = $this->_CI->db->query($sql, array($grupo_id, $indiv_id));
+
+        return ($ok) ? true : false;
+    }
 
 
-   public function es_beneficiario_judicial($indiv_id_b)
-   { 
+    public function es_beneficiario_judicial($indiv_id_b)
+    {
 
-      $sql = " SELECT ( indiv.indiv_appaterno || ' ' || indiv.indiv_apmaterno || ' ' || indiv.indiv_nombres ) as trabajador, 
+        $sql = " SELECT ( indiv.indiv_appaterno || ' ' || indiv.indiv_apmaterno || ' ' || indiv.indiv_nombres ) as trabajador, 
                       ( indiv_b.indiv_appaterno || ' ' || indiv_b.indiv_apmaterno || ' ' || indiv_b.indiv_nombres ) as beneficiario, 
                        empcon.conc_id,
                        concs.conc_nombre 
@@ -961,35 +892,34 @@ class persona extends Table{
                 WHERE empben.ecb_estado = 1 AND empben.indiv_id_b = ? ";
 
 
-      $rs = $this->_CI->db->query($sql, array($indiv_id_b))->result_array();
+        $rs = $this->_CI->db->query($sql, array($indiv_id_b))->result_array();
 
-      return $rs;
- 
-   }
+        return $rs;
+    }
 
-   public function actualizar_ocupacion($params = array())
-   {
-
+    public function actualizar_ocupacion($params = array())
+    {
 
 
-    /*    $sql = " SELECT plati_id FROM rh.persona_situlaboral persla WHERE pers_id = ? AND persla_estado = 1 AND persla_ultimo = 1 LIMIT 1 ";
+
+        /*    $sql = " SELECT plati_id FROM rh.persona_situlaboral persla WHERE pers_id = ? AND persla_estado = 1 AND persla_ultimo = 1 LIMIT 1 ";
         list($rs) = $this->_CI->db->query($sql, array($params['indiv_id']) )->result_array();
 
         $plati_id = $rs['plati_id'];*/
-  
+
         $sql = " UPDATE rh.persona_situlaboral 
                  SET ocu_id = ? 
                  WHERE pers_id = ? AND persla_estado = 1 AND persla_ultimo = 1 ";
 
-        $this->_CI->db->query($sql, array( $params['ocupacion'], $params['indiv_id']));
-/*
+        $this->_CI->db->query($sql, array($params['ocupacion'], $params['indiv_id']));
+        /*
 
         $sql = " UPDATE planillas.empleado_ocupacion SET emocu_estado = 0 WHERE indiv_id = ? ";
         $this->_CI->db->query($sql, array($params['indiv_id']) ); 
 
         $sql = "INSERT INTO planillas.empleado_ocupacion(indiv_id, ocu_id, plati_id ) VALUES(?,?,?) ";
         $this->_CI->db->query($sql, array($params['indiv_id'], $params['ocupacion'],   $plati_id));
-*/  
+*/
         $sql = " UPDATE planillas.planilla_empleados plaemp 
                  SET ocu_id = ? 
                  FROM  planillas.planillas pla,
@@ -1002,15 +932,14 @@ class persona extends Table{
                         plaemp.indiv_id = ? AND 
                         plamo.plaes_id = ? ";
 
-         $this->_CI->db->query($sql, array( $params['ocupacion'],$params['indiv_id'] , ESTADOPLANILLA_ELABORADA ) );
-
-   }
-
+        $this->_CI->db->query($sql, array($params['ocupacion'], $params['indiv_id'], ESTADOPLANILLA_ELABORADA));
+    }
 
 
-   public function verificar_dia_escalafon($indiv_id, $fecha_id)
-   {
-        $sql =" 
+
+    public function verificar_dia_escalafon($indiv_id, $fecha_id)
+    {
+        $sql = " 
                 SELECT peco_fechadesde as inicio, peco_fechahasta as fin, 'Comisio de servicio '::text as tipo 
                 FROM  rh.persona_comision 
                 WHERE peco_estado = 1 AND pers_id = 
@@ -1028,12 +957,12 @@ class persona extends Table{
                 FROM  rh.persona_faltas_tardanzas
                 WHERE perdm_estado = 1 AND peft_tipo AND  pers_id = 
            ";
-   }
+    }
 
-   public function comparar_meses_trabajadores()
-   {
+    public function comparar_meses_trabajadores()
+    {
 
-       $sql = "   SELECT indiv.indiv_appaterno as Paterno, 
+        $sql = "   SELECT indiv.indiv_appaterno as Paterno, 
                          indiv.indiv_apmaterno as Materno, 
                          indiv.indiv_nombres as Nombres, 
                          '_'||indiv.indiv_dni as DNI,  
@@ -1143,14 +1072,13 @@ class persona extends Table{
                    ORDER BY indiv.indiv_appaterno, indiv.indiv_apmaterno, indiv.indiv_nombres 
                    
               ";
+    }
 
-   }  
 
+    public function  asistencia_por_mes()
+    {
 
-   public function  asistencia_por_mes()
-   {
-
-      $sql = "      SELECT  (ind.indiv_appaterno || ' ' || ind.indiv_apmaterno || ' ' || ind.indiv_nombres) as trabajador, plati.plati_nombre, ('_'|| ind.indiv_dni) as dni, asistencia.* FROM (
+        $sql = "      SELECT  (ind.indiv_appaterno || ' ' || ind.indiv_apmaterno || ' ' || ind.indiv_nombres) as trabajador, plati.plati_nombre, ('_'|| ind.indiv_dni) as dni, asistencia.* FROM (
 
             SELECT * FROM crosstab(' 
 
@@ -1183,36 +1111,33 @@ class persona extends Table{
             ORDER BY indiv_appaterno, indiv_apmaterno, indiv_nombres
 
         ";
-  }
+    }
 
 
-  public function asistencia_meses($params = array() )
-  {
-
- 
-
-       $sql = " SELECT ";
+    public function asistencia_meses($params = array())
+    {
 
 
-        if($params['modo'] == '')
-        {
 
-           $sql.=" (ind.indiv_appaterno || ' ' || ind.indiv_apmaterno || ' ' || ind.indiv_nombres) as trabajador,  
+        $sql = " SELECT ";
+
+
+        if ($params['modo'] == '') {
+
+            $sql .= " (ind.indiv_appaterno || ' ' || ind.indiv_apmaterno || ' ' || ind.indiv_nombres) as trabajador,  
                         ('_'|| ind.indiv_dni) as dni, asistencia.* ";
+        } else {
+            $sql .= " asistencia.*, persla.persla_fechaini, persla.persla_fechafin ";
         }
-        else
-        {
-            $sql.=" asistencia.*, persla.persla_fechaini, persla.persla_fechafin ";
-        }
- 
-      $sql.="    FROM (
+
+        $sql .= "    FROM (
 
                      SELECT * FROM crosstab(' 
 
                         SELECT  plaemp.indiv_id, pla.pla_mes, ROUND(SUM(plaec_value)) as total 
                         FROM planillas.planilla_empleados plaemp 
                         INNER JOIN planillas.planillas pla ON plaemp.pla_id = pla.pla_id AND pla_estado = 1 
-                        INNER JOIN planillas.planilla_movimiento plamo ON pla.pla_id = plamo.pla_id AND plamo.plamo_estado = 1  AND plamo.plaes_id = ".ESTADOPLANILLA_MINIMO_SUNAT."
+                        INNER JOIN planillas.planilla_movimiento plamo ON pla.pla_id = plamo.pla_id AND plamo.plamo_estado = 1  AND plamo.plaes_id = " . ESTADOPLANILLA_MINIMO_SUNAT . "
                         INNER JOIN planillas.planilla_empleado_concepto plaec ON plaemp.plaemp_id = plaec.plaemp_id  AND plaec.plaec_estado = 1 AND plaec_marcado = 1 AND plaec.conc_tipo = 1 AND plaec.conc_afecto = 1 
                          
                         WHERE plaec.plaec_value > 0 
@@ -1244,79 +1169,72 @@ class persona extends Table{
 
          ";
 
-      $_MESES = array( 
-                          '01' => 'ENERO',
-                          '02' => 'FEBRERO',
-                          '03' => 'MARZO',
-                          '04' => 'ABRIL',
-                          '05' => 'MAYO',
-                          '06' => 'JUNIO',
-                          '07' => 'JULIO',
-                          '08' => 'AGOSTO',
-                          '09' => 'SEPTIEMBRE',
-                          '10' => 'OCTUBRE',
-                          '11' => 'NOVIEMBRE',
-                          '12' => 'DICIEMBRE'
-                      );
- 
+        $_MESES = array(
+            '01' => 'ENERO',
+            '02' => 'FEBRERO',
+            '03' => 'MARZO',
+            '04' => 'ABRIL',
+            '05' => 'MAYO',
+            '06' => 'JUNIO',
+            '07' => 'JULIO',
+            '08' => 'AGOSTO',
+            '09' => 'SEPTIEMBRE',
+            '10' => 'OCTUBRE',
+            '11' => 'NOVIEMBRE',
+            '12' => 'DICIEMBRE'
+        );
 
-      $meses= array('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre','noviembre', 'diciembre');
- 
 
-      if( $params['modo'] == 'altas' )
-      {
+        $meses = array('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre');
 
-          $sql_ = $sql;
- 
-          $sql = " SELECT data.indiv_id FROM (".$sql_.") as data 
+
+        if ($params['modo'] == 'altas') {
+
+            $sql_ = $sql;
+
+            $sql = " SELECT data.indiv_id FROM (" . $sql_ . ") as data 
 
                    WHERE (data.noviembre = 0 OR data.noviembre is null) AND data.diciembre > 0 AND data.persla_fechaini > '2013-12-01'
                 ";
+        }
 
-      }
 
+        if ($params['modo'] == 'bajas') {
 
-      if( $params['modo'] == 'bajas' )
-      {
+            $sql_ = $sql;
 
-          $sql_ = $sql;
-      
-          $sql = " SELECT data.indiv_id FROM (".$sql_.") as data 
+            $sql = " SELECT data.indiv_id FROM (" . $sql_ . ") as data 
 
                    WHERE data.noviembre > 0 AND (data.diciembre = 0 OR  data.diciembre is null)
                 ";
-
-      }
-
-  
-         $rs = $this->_CI->db->query($sql, array())->result_array();
-        
- 
-      return $rs;   
-
-  }
+        }
 
 
-  public function historico_ingresos_mes($params = array() )
-  {
-       
-
-      $meses = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
-
-      $sql_meseje ="   SELECT  * FROM 
-                   ( VALUES (''".$params['anio_anterior']."_12'') ";
-      
-      foreach ($meses as $mes)
-      {
-          
-          $sql_meseje.= ",(''".$params['anio']."_".$mes."'')";
-
-      }
-
-      $sql_meseje.=" ) as mes_eje"; 
+        $rs = $this->_CI->db->query($sql, array())->result_array();
 
 
-      $sql.=" SELECT
+        return $rs;
+    }
+
+
+    public function historico_ingresos_mes($params = array())
+    {
+
+
+        $meses = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
+
+        $sql_meseje = "   SELECT  * FROM 
+                   ( VALUES (''" . $params['anio_anterior'] . "_12'') ";
+
+        foreach ($meses as $mes) {
+
+            $sql_meseje .= ",(''" . $params['anio'] . "_" . $mes . "'')";
+        }
+
+        $sql_meseje .= " ) as mes_eje";
+
+
+        $sql .= " SELECT
 
                   (ind.indiv_appaterno || ' ' || ind.indiv_apmaterno || ' ' || ind.indiv_nombres) as trabajador,  
                    ind.indiv_dni,
@@ -1338,22 +1256,22 @@ class persona extends Table{
                         GROUP BY plaemp.indiv_id, pla.pla_anio, pla.pla_mes 
                         ORDER BY plaemp.indiv_id, pla.pla_anio, pla.pla_mes 
 
-                     ', '".$sql_meseje."' )as ct(
+                     ', '" . $sql_meseje . "' )as ct(
                        
                         \"indiv_id\" numeric, 
-                        \"".$params['anio_anterior']."_12\" double precision,
-                        \"".$params['anio']."_01\" double precision,
-                        \"".$params['anio']."_02\" double precision,
-                        \"".$params['anio']."_03\" double precision,
-                        \"".$params['anio']."_04\" double precision,
-                        \"".$params['anio']."_05\" double precision,
-                        \"".$params['anio']."_06\" double precision,
-                        \"".$params['anio']."_07\" double precision,
-                        \"".$params['anio']."_08\" double precision,
-                        \"".$params['anio']."_09\" double precision,
-                        \"".$params['anio']."_10\" double precision, 
-                        \"".$params['anio']."_11\" double precision,
-                        \"".$params['anio']."_12\" double precision  
+                        \"" . $params['anio_anterior'] . "_12\" double precision,
+                        \"" . $params['anio'] . "_01\" double precision,
+                        \"" . $params['anio'] . "_02\" double precision,
+                        \"" . $params['anio'] . "_03\" double precision,
+                        \"" . $params['anio'] . "_04\" double precision,
+                        \"" . $params['anio'] . "_05\" double precision,
+                        \"" . $params['anio'] . "_06\" double precision,
+                        \"" . $params['anio'] . "_07\" double precision,
+                        \"" . $params['anio'] . "_08\" double precision,
+                        \"" . $params['anio'] . "_09\" double precision,
+                        \"" . $params['anio'] . "_10\" double precision, 
+                        \"" . $params['anio'] . "_11\" double precision,
+                        \"" . $params['anio'] . "_12\" double precision  
                        
                      )
 
@@ -1365,9 +1283,9 @@ class persona extends Table{
 
          ";
 
-         $values = array( ESTADOPLANILLA_MINIMO_SUNAT, $params['anio'], $params['mes1'],  $params['anio_anterior']  );
+        $values = array(ESTADOPLANILLA_MINIMO_SUNAT, $params['anio'], $params['mes1'],  $params['anio_anterior']);
 
- /*     $_MESES = array( 
+        /*     $_MESES = array( 
                           '01' => 'ENERO',
                           '02' => 'FEBRERO',
                           '03' => 'MARZO',
@@ -1386,99 +1304,84 @@ class persona extends Table{
       $meses= array('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre','noviembre', 'diciembre');
       */
 
-      $get_fields = ' * ';
+        $get_fields = ' * ';
 
-      if($params['mes1'] != '01')
-      {
-          if( $params['modo'] == 'altas' )
-          {
+        if ($params['mes1'] != '01') {
+            if ($params['modo'] == 'altas') {
 
-              $sql_ = $sql;
-             
-              $sql = " SELECT ".$get_fields." FROM (".$sql_.") as data 
+                $sql_ = $sql;
 
-                       WHERE (data.\"".$params['anio']."_".$params['mes2']."\" = 0 OR data.\"".$params['anio']."_".$params['mes2']."\" is null) AND data.\"".$params['mes1']."\" > 0  
+                $sql = " SELECT " . $get_fields . " FROM (" . $sql_ . ") as data 
+
+                       WHERE (data.\"" . $params['anio'] . "_" . $params['mes2'] . "\" = 0 OR data.\"" . $params['anio'] . "_" . $params['mes2'] . "\" is null) AND data.\"" . $params['mes1'] . "\" > 0  
                     ";
+            }
 
-          }
 
+            if ($params['modo'] == 'bajas') {
 
-          if( $params['modo'] == 'bajas' )
-          {
+                $sql_ = $sql;
 
-              $sql_ = $sql;
-          
-              $sql = " SELECT ".$get_fields." FROM (".$sql_.") as data 
+                $sql = " SELECT " . $get_fields . " FROM (" . $sql_ . ") as data 
 
-                       WHERE (data.\"".$params['mes1']."\" = 0 OR data.\"".$params['mes1']."\" is null) AND data.\"".$params['anio']."_".$params['mes2']."\" > 0  
+                       WHERE (data.\"" . $params['mes1'] . "\" = 0 OR data.\"" . $params['mes1'] . "\" is null) AND data.\"" . $params['anio'] . "_" . $params['mes2'] . "\" > 0  
                     ";
+            }
+        } else {
 
-          }  
-        
-      }
-      else
-      {
+            if ($params['modo'] == 'altas') {
 
-          if( $params['modo'] == 'altas' )
-          {
+                $sql_ = $sql;
 
-              $sql_ = $sql;
-             
-              $sql = " SELECT ".$get_fields." FROM (".$sql_.") as data 
+                $sql = " SELECT " . $get_fields . " FROM (" . $sql_ . ") as data 
 
-                       WHERE (data.\"".$params['anio_anterior']."_".$params['mes2']."\" = 0 OR data.\"".$params['anio_anterior']."_".$params['mes2']."\" is null) AND data.\"".$params['anio']."_".$params['mes1']."\" > 0  
+                       WHERE (data.\"" . $params['anio_anterior'] . "_" . $params['mes2'] . "\" = 0 OR data.\"" . $params['anio_anterior'] . "_" . $params['mes2'] . "\" is null) AND data.\"" . $params['anio'] . "_" . $params['mes1'] . "\" > 0  
                     ";
+            }
 
-          }
 
+            if ($params['modo'] == 'bajas') {
 
-          if( $params['modo'] == 'bajas' )
-          {
+                $sql_ = $sql;
 
-              $sql_ = $sql;
-          
-              $sql = " SELECT ".$get_fields." FROM (".$sql_.") as data 
+                $sql = " SELECT " . $get_fields . " FROM (" . $sql_ . ") as data 
 
-                       WHERE (data.\"".$params['anio']."_".$params['mes1']."\" = 0 OR data.\"".$params['anio']."_".$params['mes1']."\" is null) AND data.\"".$params['anio_anterior']."_".$params['mes2']."\" > 0  
+                       WHERE (data.\"" . $params['anio'] . "_" . $params['mes1'] . "\" = 0 OR data.\"" . $params['anio'] . "_" . $params['mes1'] . "\" is null) AND data.\"" . $params['anio_anterior'] . "_" . $params['mes2'] . "\" > 0  
                     ";
-
-          }  
-      }
-
- 
-         $rs = $this->_CI->db->query($sql, $values )->result_array();
-        
-      
-      return $rs;   
+            }
+        }
 
 
-  }
- 
+        $rs = $this->_CI->db->query($sql, $values)->result_array();
 
-  public function trabajadores_varios_regimenes_x_mes($params = array())
-  { 
 
-      $sql = "  SELECT distinct(plaemp.indiv_id) as indiv_id
+        return $rs;
+    }
+
+
+    public function trabajadores_varios_regimenes_x_mes($params = array())
+    {
+
+        $sql = "  SELECT distinct(plaemp.indiv_id) as indiv_id
                 FROM planillas.planilla_empleados plaemp 
                 INNER JOIN planillas.planillas pla ON plaemp.pla_id = pla.pla_id AND pla_estado = 1 AND pla_anio = ?  AND pla_mes = ?  
-                INNER JOIN planillas.planilla_movimiento plamo ON pla.pla_id = plamo.pla_id AND plamo.plamo_estado = 1  AND plamo.plaes_id = ".ESTADOPLANILLA_MINIMO_SUNAT." 
+                INNER JOIN planillas.planilla_movimiento plamo ON pla.pla_id = plamo.pla_id AND plamo.plamo_estado = 1  AND plamo.plaes_id = " . ESTADOPLANILLA_MINIMO_SUNAT . " 
                 INNER JOIN rh.persona_situlaboral persla ON plaemp.persla_id = persla.persla_id 
                 INNER JOIN planillas.planilla_empleado_concepto plaec ON plaemp.plaemp_id = plaec.plaemp_id AND plaec.plaec_estado = 1 AND plaec_marcado = 1 AND plaec.conc_afecto = 1
                 INNER JOIN planillas.conceptos concs ON plaec.conc_id = concs.conc_id AND concs.cosu_id != 0
 
 
              ";
+    }
 
-  }
+    public function actualizar_lugar_de_trabajo($nuevo_lugar_de_trabajo, $ids)
+    {
 
-  public function actualizar_lugar_de_trabajo($nuevo_lugar_de_trabajo, $ids){
-      
-      $ids_key = implode("','", $ids);
-      $sql = " UPDATE public.individuo SET indiv_lugar_de_trabajo = ? WHERE indiv_key IN ('".$ids_key."') ";
+        $ids_key = implode("','", $ids);
+        $sql = " UPDATE public.individuo SET indiv_lugar_de_trabajo = ? WHERE indiv_key IN ('" . $ids_key . "') ";
 
-      $ok = $this->_CI->db->query($sql, array($nuevo_lugar_de_trabajo));
+        $ok = $this->_CI->db->query($sql, array($nuevo_lugar_de_trabajo));
 
-      return ($ok ? true : false);
-  }
-
+        return ($ok ? true : false);
+    }
 }
