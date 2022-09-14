@@ -161,11 +161,27 @@ var Persona = {
       message_function: function (msm, obj) {},
     }),
 
+    
+    personal_accion: new Laugo.Model({
+      connect: "escalafon/personal_accion",
+    }),
     estudios_accion: new Laugo.Model({
       connect: "escalafon/estudios_accion",
     }),
     capacitacion_accion: new Laugo.Model({
       connect: "escalafon/capacitacion_accion",
+    }),
+    laboral_accion: new Laugo.Model({
+      connect: "escalafon/laboral_accion",
+    }),
+    meritos_accion: new Laugo.Model({
+      connect: "escalafon/meritos_accion",
+    }),
+    demeritos_accion: new Laugo.Model({
+      connect: "escalafon/demeritos_accion",
+    }),
+    cargaFam_accion: new Laugo.Model({
+      connect: "escalafon/cargaFam_accion",
     }),
     
     /*
@@ -2051,13 +2067,15 @@ var Persona = {
 
       style: {
         width: "650px",
-        height: "350px",
+
         "background-color": "#FFFFFF",
       },
 
       title: " AGREGAR ESTUDIO ",
 
-      onLoad: function () {},
+      onLoad: function () {
+       
+      },
 
       onClose: function () {
         return true;
@@ -2069,7 +2087,7 @@ var Persona = {
 
       style: {
         width: "650px",
-        height: "350px",
+       
         "background-color": "#FFFFFF",
       },
 
@@ -2087,7 +2105,7 @@ var Persona = {
   
       style: {
         width: "650px",
-        height: "450px",
+        
         "background-color": "#FFFFFF",
       },
   
@@ -2105,7 +2123,7 @@ var Persona = {
   
       style: {
         width: "650px",
-        height: "450px",
+        
         "background-color": "#FFFFFF",
       },
   
@@ -2119,16 +2137,16 @@ var Persona = {
     }),
   
    
-    agregar_expLaboral_legajo: new Laugo.View.Window({
-      connect: "escalafon/ui_legajo_capacitacion",
+    agregar_laboral_legajo: new Laugo.View.Window({
+      connect: "escalafon/ui_legajo_laboral",
   
       style: {
         width: "650px",
-        height: "350px",
+       
         "background-color": "#FFFFFF",
       },
   
-      title: " AGREGAR CAPACITACION ",
+      title: " AGREGAR EXPERIENCIA LABORAL ",
   
       onLoad: function () {},
   
@@ -2137,16 +2155,34 @@ var Persona = {
       },
     }),
   
-    actualizar_capacitacion_legajo: new Laugo.View.Window({
-      connect: "escalafon/ui_legajo_capacitacion",
+    actualizar_laboral_legajo: new Laugo.View.Window({
+      connect: "escalafon/ui_legajo_laboral",
   
       style: {
         width: "650px",
-        height: "350px",
+       
         "background-color": "#FFFFFF",
       },
   
-      title: " ACTUALIZAR CAPACITACION ",
+      title: " ACTUALIZAR  EXPERIENCIA LABORAL ",
+  
+      onLoad: function () {},
+  
+      onClose: function () {
+        return true;
+      },
+    }),
+
+    agregar_meritos_legajo: new Laugo.View.Window({
+      connect: "escalafon/ui_legajo_meritos",
+  
+      style: {
+        width: "650px",
+       
+        "background-color": "#FFFFFF",
+      },
+  
+      title: " AGREGAR MERITOS ",
   
       onLoad: function () {},
   
@@ -2155,16 +2191,88 @@ var Persona = {
       },
     }),
   
-    eliminar_estudios_legajo: new Laugo.View.Window({
-      connect: "escalafon/ui_legajo_capacitacion",
+    actualizar_meritos_legajo: new Laugo.View.Window({
+      connect: "escalafon/ui_legajo_meritos",
   
       style: {
         width: "650px",
-        height: "350px",
+       
         "background-color": "#FFFFFF",
       },
   
-      title: " ELIMINAR CAPACITACION ",
+      title: " ACTUALIZAR MERITOS ",
+  
+      onLoad: function () {},
+  
+      onClose: function () {
+        return true;
+      },
+    }),
+  
+    agregar_demeritos_legajo: new Laugo.View.Window({
+      connect: "escalafon/ui_legajo_demeritos",
+  
+      style: {
+        width: "650px",
+       
+        "background-color": "#FFFFFF",
+      },
+  
+      title: " AGREGAR DEMERITOS ",
+  
+      onLoad: function () {},
+  
+      onClose: function () {
+        return true;
+      },
+    }),
+  
+    actualizar_demeritos_legajo: new Laugo.View.Window({
+      connect: "escalafon/ui_legajo_demeritos",
+  
+      style: {
+        width: "650px",
+       
+        "background-color": "#FFFFFF",
+      },
+  
+      title: " ACTUALIZAR DEMERITOS ",
+  
+      onLoad: function () {},
+  
+      onClose: function () {
+        return true;
+      },
+    }),
+
+    agregar_cargaFam_legajo: new Laugo.View.Window({
+      connect: "escalafon/ui_legajo_cargaFam",
+  
+      style: {
+        width: "650px",
+       
+        "background-color": "#FFFFFF",
+      },
+  
+      title: " AGREGAR CARGA FAMILIAR ",
+  
+      onLoad: function () {},
+  
+      onClose: function () {
+        return true;
+      },
+    }),
+  
+    actualizar_cargaFam_legajo: new Laugo.View.Window({
+      connect: "escalafon/ui_legajo_cargaFam",
+  
+      style: {
+        width: "650px",
+       
+        "background-color": "#FFFFFF",
+      },
+  
+      title: " ACTUALIZAR CARGA FAMILIAR ",
   
       onLoad: function () {},
   
@@ -2239,14 +2347,31 @@ var Persona = {
       }
     }
   },
+  personal_accion: function (data) {
+    return this._M.personal_accion.store(data);
+  },
   estudios_accion: function (data) {
-    
     return this._M.estudios_accion.store(data);
   },
 
   capacitacion_accion: function (data) {
-    
     return this._M.capacitacion_accion.store(data);
+  },
+
+  laboral_accion: function (data) {
+    return this._M.laboral_accion.store(data);
+  },
+
+  meritos_accion: function (data) {
+    return this._M.meritos_accion.store(data);
+  },
+
+  demeritos_accion: function (data) {
+    return this._M.demeritos_accion.store(data);
+  },
+
+  cargaFam_accion: function (data) {
+    return this._M.cargaFam_accion.store(data);
   },
   
 };

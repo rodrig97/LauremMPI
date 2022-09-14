@@ -5,14 +5,12 @@ class estudioslegajo  extends Table
 
     public function __construct()
     {
-
         parent::__construct();
     }
 
 
     public function get_ipersid($ipersid)
     {
-
         $sql = "
         Select 
         pte.iperstipoestudid
@@ -37,26 +35,23 @@ class estudioslegajo  extends Table
         pte.ipersid ='" . $ipersid . "'
         and pte.bHabilitado = 1
         ORDER BY pte.iperstipoestudid ASC
-        
         ";
         $rs =  $this->_CI->db->query($sql)->result_array();
         return $rs;
     }
 
-
-
     public function store($ipersid,$ccentroestudios,$dfechainicio,$dfechatermino,$cgrado_titulo,$ccolegiaturanro)
     {
-        $sql = "INSERT INTO ficha.personas_tipo_estudios(ipersid,dfechatermino,dfechainicio,iestado,bhabilitado,ccolegiaturanro,cgrado_titulo,ccentroestudios ) VALUES('".$ipersid."','".$dfechatermino."','".$dfechainicio."',1,1,'".$ccolegiaturanro."','".$cgrado_titulo."','".$ccentroestudios."') ";
+        $value1 = 1;
+        $sql = "INSERT INTO ficha.personas_tipo_estudios(ipersid,dfechatermino,dfechainicio,iestado,bhabilitado,ccolegiaturanro,cgrado_titulo,ccentroestudios ) 
+        VALUES('".$ipersid."','".$dfechatermino."','".$dfechainicio."','".$value1."','".$value1."','".$ccolegiaturanro."','".$cgrado_titulo."','".$ccentroestudios."') ";
          $this->_CI->db->query($sql);
         $rs =  $this->_CI->db->insert_id();
         return $rs;
-       
     }
 
     public function listxiperstipoestudid($iperstipoestudid)
     {
-
         $sql = "
         Select 
         pte.iperstipoestudid
@@ -89,7 +84,7 @@ class estudioslegajo  extends Table
 
     public function update($iperstipoestudid,$ccentroestudios,$dfechainicio,$dfechatermino,$cgrado_titulo,$ccolegiaturanro)
     {
-        $sql = "UPDATE ficha.personas_tipo_estudios 
+        $sql = "UPDATE ficha.personas_tipo_estudios
         SET
         dfechatermino = '" .$dfechatermino. "'
         ,dfechainicio = '" .$dfechainicio. "'
@@ -102,7 +97,6 @@ class estudioslegajo  extends Table
 
         $rs =  $iperstipoestudid;
         return $rs;
-       
     }
     public function delete($iperstipoestudid)
     {
@@ -113,7 +107,6 @@ class estudioslegajo  extends Table
 
         $rs =  $iperstipoestudid;
         return $rs;
-       
     }
 
 }

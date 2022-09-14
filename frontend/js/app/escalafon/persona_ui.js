@@ -1,6 +1,6 @@
  
  /*Interfaz de Usuario acciones/eventos */ 
-   
+
 
  Persona.Ui = {
         
@@ -326,9 +326,7 @@
                }
                 
          },
-          
-       
-          
+         
           
          /*betas*/ 
          
@@ -545,9 +543,9 @@
              {
                  err = true;
                  
-                 mensaje += '<li>Por favor especifique la fecha de inicio del contrato </li>'; 
+                 mensaje += '<li>Por favor especifique la fecha de inicio del contrato </li>';
                  
-             }  
+             }
              
              if(data.nombres==''){
                  err = true;
@@ -2038,16 +2036,16 @@
          
          btn_tblsilab_del_clic : function(){
                 
-            var codigo = '';      
+            var codigo = '';
                     
             for(var i in Persona.Ui.Grids.historial_laboral.selection){
                   codigo = i;
             }
 		
-            if(codigo != '')      
-            {   
-                if(confirm('Realmente desea eliminar el registro de la situacion laboral ?')){ 
-                     Persona._M.delete_situlaboral.process({'codigo' : codigo});    
+            if(codigo != '')
+            {
+                if(confirm('Realmente desea eliminar el registro de la situacion laboral ?')){
+                     Persona._M.delete_situlaboral.process({'codigo' : codigo});
                      Persona.Ui.Grids.historial_laboral.refresh();
                 }
             }
@@ -2148,16 +2146,16 @@
          
          btn_tblperm_del_clic : function(){
                 
-            var codigo = '';      
+            var codigo = '';
                     
             for(var i in Persona.Ui.Grids.permisos.selection){
                   codigo = i;
             }
 		
-            if(codigo != '')      
-            {   
+            if(codigo != '')
+            {
                 if(confirm('Realmente desea eliminar el registro del permiso ?')){ 
-                     Persona._M.delete_permiso.process({'codigo' : codigo});    
+                     Persona._M.delete_permiso.process({'codigo' : codigo});
                      Persona.Ui.Grids.permisos.refresh();
                 }
             }
@@ -2214,14 +2212,14 @@
          
          btn_tblestudio_del_clic : function(){
                 
-            var codigo = '';      
+            var codigo = '';
                     
             for(var i in Persona.Ui.Grids.academico.selection){
                   codigo = i;
             }
 		
             if(codigo != '')      
-            {   
+            {
                 if(confirm('Realmente desea eliminar el registro academico ?')){ 
                      Persona._M.delete_academico.process({'codigo' : codigo});    
                      Persona.Ui.Grids.academico.refresh();
@@ -2236,14 +2234,14 @@
          
           btn_tblfamiliar_del_clic : function(){
                 
-            var codigo = '';      
+            var codigo = '';
                     
             for(var i in Persona.Ui.Grids.familia.selection){
                   codigo = i;
             }
 		
             if(codigo != '')      
-            {   
+            {
                 if(confirm('Realmente desea eliminar el registro familiar ?')){ 
                      Persona._M.delete_familiar.process({'codigo' : codigo});    
                      Persona.Ui.Grids.familia.refresh();
@@ -2264,7 +2262,7 @@
                   codigo = i;
             }
 		
-            if(codigo != '')      
+            if(codigo != '')
             {   
                // alert(codigo);
                 
@@ -2273,37 +2271,390 @@
             else{
                 alert('Debe seleccionar un registro');
             }
-            
           
          },
 
-         btn_tblinfoper_click_legajo : function(indiv_id){
-            if(indiv_id != '')      
-            {   
+        
+        crearPDFDatos: function (){
+            // pipe = new DatePipe('en-US');
+            // //AFP Seguro
+            // let tipoSeguro;
+            // if((this.formPersonas.value.itiposegid==null)){
+            // this.formPersonas.value.itiposegid = '';
+            // tipoSeguro='';
+            // } else {
+            // let numTipoSeguroF = this.formPersonas.controls.itiposegid.value;
+            // let tipoSeguro1 = this.seguro[numTipoSeguroF-1];
+            // tipoSeguro = tipoSeguro1.ctiposegdsc;
+            // }
+
+            // //Departamento
+            // let departamento;
+            // if((this.formPersonas.value.idptoid==null)){
+            // this.formPersonas.value.idptoid = '';
+            // departamento='';
+            // } else {
+            // let numDepart = this.formPersonas.controls.idptoid.value;
+            // let departamento1 = this.departamentos[numDepart-1];
+            // departamento = departamento1.cdptodsc;
+            // }
+
+            // //Provincia
+            // let provincia;
+            // if((this.formPersonas.value.iprovid==null)){
+            // this.formPersonas.value.iprovid = '';
+            // provincia='';
+            // } else {
+            // let numProv = this.formPersonas.controls.iprovid.value;
+            // let prov1 = this.provincias[numProv-1];
+            // provincia = prov1.cprovdsc;
+            // }
+
+            // //Distrito
+            // let distrito;
+            // if((this.formPersonas.value.idistid==null)){
+            // this.formPersonas.value.idistid = '';
+            // distrito='';
+            // } else {
+            // let numDist = this.formPersonas.controls.idistid.value;
+            // let dist1 = this.distritos[numDist-1];
+            // distrito = dist1.cdistdsc;
+            // }
+
+            // //Grupo Sanguineo
+            // let gSanguineo;
+            // if((this.formPersonas.value.igruposangid==null)){
+            // this.formPersonas.value.igruposangid = '';
+            // gSanguineo='';
+            // } else {
+            // let numSang = this.formPersonas.controls.igruposangid.value;
+            // let sang1 = this.sanguineo[numSang-1];
+            // gSanguineo = sang1.cgruposangdsc;
+            // }
+            
+
+            // if((this.formPersonas.value.cpersdireccion==null)){
+            // this.formPersonas.value.cpersdireccion = ''
+            // }
+            // if((this.formPersonas.value.cperslibreta==null)){
+            // this.formPersonas.value.cperslibreta = ''
+            // }
+            // if((this.formPersonas.value.cpersruc==null)){
+            // this.formPersonas.value.cpersruc = ''
+            // }
+            // if((this.formPersonas.value.cnroseg==null)){
+            // this.formPersonas.value.cnroseg = ''
+            // }
+            // if((this.formPersonas.value.cperslicencia==null)){
+            // this.formPersonas.value.cperslicencia = ''
+            // }
+            // if((this.formPersonas.value.cperscorreo==null)){
+            // this.formPersonas.value.cperscorreo = ''
+            // }
+            // if((this.formPersonas.value.cperstelefono==null)){
+            // this.formPersonas.value.cperstelefono = ''
+            // }
+            // if((this.formPersonas.value.cperscelular==null)){
+            // this.formPersonas.value.cperscelular = ''
+            // }
+            // if((this.formPersonas.value.fam_instit==null)){
+            // this.formPersonas.value.fam_instit = ''
+            // }
+            // if((this.formPersonas.value.dfechanac==null)){
+            // this.formPersonas.value.dfechanac = ''
+            // }
+            // if((this.formPersonas.value.cestado==null)){
+            // this.formPersonas.value.cestado = ''
+            // }
+            // if((this.formPersonas.value.nro_hijos==null)){
+            // this.formPersonas.value.nro_hijos = ''
+            // }
+            // if((this.formPersonas.value.ape_nom_cony==null)){
+            // this.formPersonas.value.ape_nom_cony = ''
+            // }
+            // if((this.formPersonas.value.ingr_por==null)){
+            // this.formPersonas.value.ingr_por = ''
+            // }
+            // if((this.formPersonas.value.reposicion==null)){
+            // this.formPersonas.value.reposicion = ''
+            // }
+            // if((this.formPersonas.value.fecha_ingr==null)){
+            // this.formPersonas.value.fecha_ingr = ''
+            // }
+            // if((this.formPersonas.value.fecha_nomb==null)){
+            // this.formPersonas.value.fecha_nomb = ''
+            // }
+            // if((this.formPersonas.value.nro_resol==null)){
+            // this.formPersonas.value.nro_resol = ''
+            // }
+            // if((this.formPersonas.value.fecha_resol==null)){
+            // this.formPersonas.value.fecha_resol = ''
+            // }
+            // if((this.formPersonas.value.nro_contr==null)){
+            // this.formPersonas.value.nro_contr = ''
+            // }
+
+            let fecha = this.pipe.transform((new Date), 'dd/MM/yyyy');
+
+            const pdfDefinition = {
+            content: [
+                { text: 'Hoja de Datos Personales N° ' + this.FormDatosPers.value.ipersid + ' - ' + 'Creado: ' + fecha, alignment: 'left', fontSize: 11 },
+                { text: ' ' },
+                //{ text: 'Recepcionado: ' + fechaRevisado, alignment: 'right', fontSize: 11},
+                { text: 'Municipalidad Provincial de ILO', bold: true, style: 'header', fontSize: 19, alignment: 'center' },
+                { text: ' ' },
+                { text: 'Legajo', style: 'subheader', fontSize: 16, alignment: 'left' },
+                { text: 'Este documento es a fines de proveer informacion sobre el siguiente usuario: ' + this.FormDatosPers.value.cpersnombre + ' ' + this.FormDatosPers.value.indiv_appaterno + ' ' + this.FormDatosPers.value.indiv_apmaterno + ', con direccion: ' + this.FormDatosPers.value.cpersdireccion + '.', style: 'subheader', fontSize: 12, alignment: 'left' },
+                { text: ' ' },
+                {
+                style: 'tableExample',
+                table: {
+                    headerRows: 1,
+                    widths: [ '*', '*', '*'],
+                    body: [
+                    [{text:'Documentos personales', style:'header1', fontSize: 13}, {text: 'Lugar, Fecha de nacimiento, Grupo sanguineo y Estado Civil', style:'header1', fontSize: 13}, {text: 'Ingreso a la Entidad', style:'header1', fontSize: 13}],
+                    [
+                        {
+                        stack: [
+                            [
+                            {text: 'DNI/RUC:  '+ this.FormDatosPers.value.indiv_dni},
+                            {text: 'Libreta Militar:  '+ this.FormDatosPers.value.cperslibreta},
+                            {text: 'RUC:  '+ this.FormDatosPers.value.cpersruc},
+                            {text: 'AFP:  '+ tipoSeguro},
+                            {text: 'Codigo AFP:  '+ this.FormDatosPers.value.cnroseg},
+                            {text: 'Licencia de Conducir:  '+ this.FormDatosPers.value.cperslicencia},
+                            {text: 'Email: '+ this.FormDatosPers.value.cperscorreo},
+                            {text: 'Telefono Fijo:  '+ this.FormDatosPers.value.cperstelefono},
+                            {text: 'Celular:  '+ this.FormDatosPers.value.cperscelular},
+                            {text: 'Familiares en institucion:  '+ this.FormDatosPers.value.fam_instit},
+                            ]
+                            
+                        ]
+                        },
+                        
+                        [
+                        {text: 'Departamento:  ' + departamento},
+                        {text: 'Provincia:  ' + provincia},
+                        {text: 'Distrito:  ' + distrito},
+                        {text: 'Fecha Nacimiento:  ' + this.FormDatosPers.value.dfechanac},
+                        {text: 'Grupo Sanguineo:  ' + gSanguineo},
+                        {text: 'Estado Civil:  ' + this.FormDatosPers.value.cestado},
+                        {text: 'Numero de hijos:  ' + this.FormDatosPers.value.nro_hijos},
+                        {text: 'Apellidos y Nombres de conyugue:  ' + this.FormDatosPers.value.ape_nom_cony},
+                        ],
+                        [
+                        {text: 'Ingreso mediante:  ' + this.FormDatosPers.value.ingr_por},
+                        {text: 'Reposicion:  ' + this.FormDatosPers.value.reposicion},
+                        {text: 'Fecha Ingreso:  ' + this.FormDatosPers.value.fecha_ingr},
+                        {text: 'Fecha Nombramiento:  ' + this.FormDatosPers.value.fecha_nomb},
+                        {text: 'Nro Resolucion:  ' + this.FormDatosPers.value.nro_resol},
+                        {text: 'Fecha Resolucion:  ' + this.FormDatosPers.value.fecha_resol},
+                        {text: 'Nro Contrato:  ' + this.FormDatosPers.value.nro_contr},
+                    ]
+                    ]
+                    ]
+                }
+                },
+            ],
+            styles: {
+                header1: {
+                fillColor: 'grey',
+                    fillOpacity: 0.3
+                }
+            }
+            
+            }
+            const pdf = pdfMake.createPdf(pdfDefinition);
+            // pdf.getDataUrl((data) => {
+            //   this.formCargaFam.controls['url'].setValue(data);
+            
+            // });
+            pdf.open();
+        },
+
+         btn_tblinfoper_click_legajo : function(modal,indiv_id){
+            if(indiv_id != '')
+            {
                // alert(codigo);
-                
-                Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                Persona._V.full_info_persona_legajo.load({'modal':modal,'indiv_id' : indiv_id});
             }
             else{
                 alert('Debe seleccionar un registro');
             }
-            
           
          },
 
-         btn_estudios_click_legajo : function(indiv_id,ipersid,accion,iperstipoestudid){
+         btn_personal_accion : function(indiv_id,ipersid,accion,form){
             
+            let personal = {};
+            switch(accion){
+                
+                case 'actualizar':
+
+                    var frm_elements = form.elements;
+                    for(i=0; i<frm_elements.length; i++)
+                            {   
+                               
+                                switch (frm_elements[i].id)
+                                {
+                                    case "igruposangid":    
+                                    var igruposangid = frm_elements[i].value;
+                                    break;  
+                                    case "itiposegid":    
+                                    var itiposegid = frm_elements[i].value;
+                                    break;  
+                                    case "cnroseg":    
+                                    var cnroseg = frm_elements[i].value;
+                                    break;
+                                    case "cpersruc":    
+                                    var cpersruc = frm_elements[i].value;
+                                    break;  
+                                    case "cpersdireccion":    
+                                    var cpersdireccion = frm_elements[i].value;
+                                    break;  
+                                    case "dfechanac":    
+                                    var dfechanac = frm_elements[i].value;
+                                    break;  
+                                    case "cperslibreta":    
+                                    var cperslibreta = frm_elements[i].value;
+                                    break;  
+                                    case "cperslicencia":    
+                                    var cperslicencia = frm_elements[i].value;
+                                    break;  
+                                    case "dirigidoa":    
+                                    var dirigidoa = frm_elements[i].value;
+                                    break;    
+                                    case "area":    
+                                    var area = frm_elements[i].value;
+                                    break;    
+                                    case "creferencia":    
+                                    var creferencia = frm_elements[i].value;
+                                    break;  
+                                    case "reposicion":    
+                                    var reposicion = frm_elements[i].value;
+                                    break;    
+                                    case "ingr_por":    
+                                    var ingr_por = frm_elements[i].value;
+                                    break;    
+                                    case "acta_repos":    
+                                    var acta_repos = frm_elements[i].value;
+                                    break;    
+                                    case "cond_labor":    
+                                    var cond_labor = frm_elements[i].value;
+                                    break;  
+                                    case "mediante1":    
+                                    var mediante1 = frm_elements[i].value;
+                                    break;    
+                                    case "de_fecha":    
+                                    var de_fecha = frm_elements[i].value;
+                                    break;    
+                                    case "cargo_nombro":    
+                                    var cargo_nombro = frm_elements[i].value;
+                                    break;    
+                                    case "unidad_org_nomb":    
+                                    var unidad_org_nomb = frm_elements[i].value;
+                                    break;  
+                                    case "dependiente":    
+                                    var dependiente = frm_elements[i].value;
+                                    break;    
+                                    case "regimen_lab":    
+                                    var regimen_lab = frm_elements[i].value;
+                                    break;    
+                                    case "apartirdel":    
+                                    var apartirdel = frm_elements[i].value;
+                                    break;    
+                                    case "rotadoa":    
+                                    var rotadoa = frm_elements[i].value;
+                                    break;  
+                                    case "mediante2":    
+                                    var mediante2 = frm_elements[i].value;
+                                    break;    
+                                    case "profesion":    
+                                    var profesion = frm_elements[i].value;
+                                    break;    
+                                    case "comentario":    
+                                    var comentario = frm_elements[i].value;
+                                    break;    
+                                }
+                            }
+                            
+                    vacio = 0
+
+                    personal = {
+                            accion:accion,
+                            ipersid:ipersid,
+
+                            igruposangid : igruposangid ? igruposangid : vacio++,
+                            itiposegid : itiposegid ? itiposegid : vacio++,
+                            cnroseg : cnroseg ? cnroseg : vacio++,
+                            cpersruc : cpersruc ? cpersruc : vacio++,
+                            cpersdireccion : cpersdireccion ? cpersdireccion : vacio++,
+                            dfechanac : dfechanac ? dfechanac : vacio++,
+                            cperslibreta : cperslibreta ? cperslibreta : vacio++,
+                            cperslicencia : cperslicencia ? cperslicencia : vacio++,
+                            dirigidoa : dirigidoa ? dirigidoa : vacio++,
+                            area : area ? area : vacio++,
+                            creferencia : creferencia ? creferencia :  vacio++,
+                            reposicion : reposicion ? reposicion : vacio++,
+                            ingr_por : ingr_por ? ingr_por : vacio++,
+                            acta_repos : acta_repos ? acta_repos : vacio++,
+                            cond_labor : cond_labor ? cond_labor : vacio++,
+                            mediante1 : mediante1 ? mediante1 : vacio++,
+                            de_fecha : de_fecha ? de_fecha : vacio++,
+                            cargo_nombro : cargo_nombro ? cargo_nombro : vacio++,
+                            unidad_org_nomb : unidad_org_nomb ? unidad_org_nomb : vacio++,
+                            dependiente : dependiente ? dependiente : vacio++,
+                            regimen_lab : regimen_lab ? regimen_lab : vacio++,
+                            apartirdel : apartirdel ? apartirdel : vacio++,
+                            rotadoa : rotadoa ? rotadoa : vacio++,
+                            mediante2 : mediante2 ? mediante2 : vacio++,
+                            profesion : profesion ? profesion : vacio++,
+                            comentario : comentario ? comentario : vacio++,
+                        }
+                        if(vacio==0){
+                        var rs =  Persona.personal_accion(personal);
+                    
+                        if(rs){
+                            Swal.fire(
+                                'ESTUPENDO!',
+                                'Se guardó exitosamente.',
+                                'success'
+                              )
+
+                           
+                            Persona._V.full_info_persona_legajo.close();
+                            Persona._V.full_info_persona_legajo.load({'modal':'personal','indiv_id' : indiv_id});
+                        }}
+                        else{
+                            Swal.fire(
+                                'ATENCIÓN!',
+                                'Debe de completar todos los campos del formulario.',
+                                'warning'
+                              )
+                        }
+                    
+                break;
+                case 'imprimir': //aqui puedes hacer el tema de imprimir
+                break;
+                default: alert('No se encontró acción'); break;
+
+            }
+            
+         },
+
+
+         btn_estudios_click_legajo : function(indiv_id,ipersid,accion,iperstipoestudid){
          
             switch(accion){
                 case 'agregar':
-
+                  
                     Persona._V.agregar_estudios_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'iperstipoestudid' : null});
                   
                 break;
                 case 'actualizar':
                     
                     if(iperstipoestudid!=''){
-                        
+                       
                         Persona._V.actualizar_estudios_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
                     }
                     else{
@@ -2314,9 +2665,21 @@
                 case 'eliminar':
                    
                     if(iperstipoestudid!=''){
-                        if(confirm('Seguro desea eliminar')){
-                            Persona.Ui.btn_estudios_accion(indiv_id,iperstipoestudid,ipersid,'eliminar'); 
-                        }
+                        
+
+                        Swal.fire({
+                            title: 'Seguro desea eliminar?',
+                            text: "¡No podrás revertir esto!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Si!'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                                Persona.Ui.btn_estudios_accion(indiv_id,iperstipoestudid,ipersid,'eliminar'); 
+                            }
+                          })
                     }
                     else{
                         alert('Debe seleccionar un registro');
@@ -2328,72 +2691,114 @@
             
          },
 
-         btn_estudios_accion : function(indiv_id,iperstipoestudid,ipersid,accion){
-
+         btn_estudios_accion : function(indiv_id,iperstipoestudid,ipersid,accion,form){
             
-
             let estudio = {};
-
+            if(accion!='eliminar'){
+            var frm_elements = form.elements;
+            for(i=0; i<frm_elements.length; i++)
+                    {   
+                       
+                        switch (frm_elements[i].id)
+                        {
+                            case "e_ccentroestudios":    
+                                var ccentroestudios = frm_elements[i].value;
+                            break;  
+                            case "e_dfechainicio":    
+                            var dfechainicio = frm_elements[i].value;
+                            break;  
+                            case "e_dfechatermino":    
+                            var dfechatermino = frm_elements[i].value;
+                            break;    
+                            case "e_cgrado_titulo":    
+                            var cgrado_titulo = frm_elements[i].value;
+                            break;    
+                            case "e_ccolegiaturanro":    
+                            var ccolegiaturanro = frm_elements[i].value;
+                            break;    
+                        }
+                    }
+                }
             switch(accion){
                 case 'agregar':
-                    var ccentroestudios = document.getElementById("ccentroestudios").value;
-                    var dfechainicio = document.getElementById("dfechainicio").value;
-                    var dfechatermino = document.getElementById("dfechatermino").value;
-                    var cgrado_titulo = document.getElementById("cgrado_titulo").value;
-                    var ccolegiaturanro = document.getElementById("ccolegiaturanro").value;
-                             estudio = {
+                          vacio = 0
+                           estudio = {
                                 accion:accion,
                                 ipersid:ipersid,
-                                ccentroestudios:ccentroestudios,
-                                dfechatermino:dfechatermino,
-                                cgrado_titulo:cgrado_titulo,
-                                ccolegiaturanro:ccolegiaturanro,
-                                dfechainicio:dfechainicio
+                                ccentroestudios:ccentroestudios ? ccentroestudios : vacio++,
+                                dfechatermino:dfechatermino ? dfechatermino : vacio++,
+                                cgrado_titulo:cgrado_titulo ? cgrado_titulo : vacio++,
+                                ccolegiaturanro:ccolegiaturanro ? ccolegiaturanro : vacio++,
+                                dfechainicio:dfechainicio ? dfechainicio : vacio++,
                             }
-                        
-                            var rs =  Persona.estudios_accion(estudio);
+                            
+                            if(vacio==0){
+                                var rs =  Persona.estudios_accion(estudio);
                            
-                            if(rs){
-                                //Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
-                                Persona._V.agregar_estudios_legajo.close();
-                                Persona._V.full_info_persona_legajo.close();
-                                Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                                if(rs){
+                                    Swal.fire(
+                                        'ESTUPENDO!',
+                                        'Se guardó exitosamente.',
+                                        'success'
+                                      )
+                                    Persona._V.agregar_estudios_legajo.close();
+                                    Persona._V.full_info_persona_legajo.close();
+                                    Persona._V.full_info_persona_legajo.load({'modal':'estudios','indiv_id' : indiv_id});
+                                } 
                             }
-                       
+                            else{
+                                //alert("Debe de completar todos los campos del formulario.");
+                                Swal.fire(
+                                    'ATENCIÓN!',
+                                    'Debe de completar todos los campos del formulario.',
+                                    'warning'
+                                  )
+                            }
+                           
                   
                 break;
                 case 'actualizar':
-                    var ccentroestudios = document.getElementById("ccentroestudios").value;
-                    var dfechainicio = document.getElementById("dfechainicio").value;
-                    var dfechatermino = document.getElementById("dfechatermino").value;
-                    var cgrado_titulo = document.getElementById("cgrado_titulo").value;
-                    var ccolegiaturanro = document.getElementById("ccolegiaturanro").value;
-                   
+
+                    vacio = 0
+
                     estudio = {
                             accion:accion,
                             ipersid:ipersid,
-                            iperstipoestudid:iperstipoestudid,
-                            ccentroestudios:ccentroestudios,
-                            dfechatermino:dfechatermino,
-                            cgrado_titulo:cgrado_titulo,
-                            ccolegiaturanro:ccolegiaturanro,
-                            dfechainicio:dfechainicio
+                            iperstipoestudid:iperstipoestudid ? iperstipoestudid : vacio++,
+                            ccentroestudios:ccentroestudios ? ccentroestudios : vacio++,
+                            dfechatermino:dfechatermino ? dfechatermino : vacio++,
+                            cgrado_titulo:cgrado_titulo ? cgrado_titulo : vacio++,
+                            ccolegiaturanro:ccolegiaturanro ? ccolegiaturanro : vacio++,
+                            dfechainicio:dfechainicio ? dfechainicio : vacio++,
                         }
-                       
+                        if(vacio==0){
                         var rs =  Persona.estudios_accion(estudio);
                     
                         if(rs){
-                            //Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                            Swal.fire(
+                                'ESTUPENDO!',
+                                'Se actualizó exitosamente.',
+                                'success'
+                              )
+
+                           
                             Persona._V.actualizar_estudios_legajo.close();
                             Persona._V.full_info_persona_legajo.close();
-                            Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                            Persona._V.full_info_persona_legajo.load({'modal':'estudios','indiv_id' : indiv_id});
+                        }}
+                        else{
+                            Swal.fire(
+                                'ATENCIÓN!',
+                                'Debe de completar todos los campos del formulario.',
+                                'warning'
+                              )
                         }
-                   
                     
                 break;
                 case 'eliminar':
                    
                     if(iperstipoestudid!=''){
+
                         estudio = {
                             accion:accion,
                             ipersid:ipersid,
@@ -2402,13 +2807,23 @@
                        
                         var rs =  Persona.estudios_accion(estudio);
                         if(rs){
-                            Persona._V.full_info_persona_legajo.close();
-                            Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                            Swal.fire(
+                                'ESTUPENDO!',
+                                'Se eliminó exitosamente.',
+                                'success'
+                              )
+                            Persona._V.full_info_persona_legajo.close();   
+                            Persona._V.full_info_persona_legajo.load({'modal':'estudios','indiv_id' : indiv_id});
                         }
                        
                     }
                     else{
-                        alert('Debe seleccionar un registro');
+                        
+                        Swal.fire(
+                            'ATENCIÓN!',
+                            'Debe seleccionar un registro.',
+                            'warning'
+                          )
                     }
                     break;
                 default: alert('No se encontró acción'); break;
@@ -2418,8 +2833,7 @@
          },
 
          btn_capacitacion_click_legajo : function(indiv_id,ipersid,accion,iperstipocapacid){
-            
-            
+           
             switch(accion){
                 case 'agregar':
                     
@@ -2437,9 +2851,20 @@
                 case 'eliminar':
                    
                     if(iperstipocapacid!=''){
-                        if(confirm('Seguro desea eliminar')){
-                            Persona.Ui.btn_capacitacion_accion(indiv_id,iperstipocapacid,ipersid,'eliminar'); 
-                        }
+
+                        Swal.fire({
+                            title: 'Seguro desea eliminar?',
+                            text: "¡No podrás revertir esto!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Si!'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                                Persona.Ui.btn_capacitacion_accion(indiv_id,iperstipocapacid,ipersid,'eliminar'); 
+                            }
+                          })
                     }
                     else{
                         alert('Debe seleccionar un registro');
@@ -2451,77 +2876,116 @@
             
          },
 
-         btn_capacitacion_accion : function(indiv_id,iperstipocapacid,ipersid,accion){
-
-           
+         btn_capacitacion_accion : function(indiv_id,iperstipocapacid,ipersid,accion,form){
 
             let capacitacion = {};
+            if(accion!='eliminar'){
+                var frm_elements = form.elements;
+                for(i=0; i<frm_elements.length; i++)
+                        {   
+                           
+                            switch (frm_elements[i].id)
+                            {
+                                case "c_itipocapacid":    
+                                var itipocapacid = frm_elements[i].value;
+                                break;  
+                                case "c_ccentroestudios":    
+                                var ccentroestudios = frm_elements[i].value;
+                                break;  
+                                case "c_cdenominacion":    
+                                var cdenominacion = frm_elements[i].value;
+                                break;  
+                                case "c_dfechainicio":    
+                                var dfechainicio = frm_elements[i].value;
+                                break;    
+                                case "c_dfechatermino":    
+                                var dfechatermino = frm_elements[i].value;
+                                break;    
+                                case "c_ihoras":    
+                                var ihoras = frm_elements[i].value;
+                                break;    
+                            }
+                        }
+                    }
 
             switch(accion){
                 case 'agregar':
-                   
-                    var itipocapacid = document.getElementById("c_itipocapacid").value;
-                    var cdenominacion = document.getElementById("c_cdenominacion").value;
-                    var ihoras = document.getElementById("c_ihoras").value;
-                    var dfechainicio = document.getElementById("c_dfechainicio").value;
-                    var dfechatermino = document.getElementById("c_dfechatermino").value;
-                    var ccentroestudios = document.getElementById("c_ccentroestudios").value;
-                    
-                             capacitacion = {
+                    vacio = 0
+                           capacitacion = {
                                 accion:accion,
                                 ipersid:ipersid,
-                                itipocapacid:itipocapacid,
-                                cdenominacion:cdenominacion,
-                                ihoras:ihoras,
-                                dfechainicio:dfechainicio,
-                                dfechatermino:dfechatermino,
-
-                                ccentroestudios:ccentroestudios,
-                                
+                                itipocapacid:itipocapacid ? itipocapacid : vacio++,
+                                ccentroestudios:ccentroestudios ? ccentroestudios : vacio++,
+                                cdenominacion:cdenominacion ? cdenominacion : vacio++,
+                                dfechainicio:dfechainicio ? dfechainicio : vacio++,
+                                dfechatermino:dfechatermino ? dfechatermino : vacio++,
+                                ihoras:ihoras ? ihoras : vacio++,
                             }
-                            console.log(capacitacion);
-                            var rs =  Persona.capacitacion_accion(capacitacion);
+                            
+                            if(vacio==0){
+                                var rs =  Persona.capacitacion_accion(capacitacion);
                            
-                            if(rs){
-                              
-                                Persona._V.agregar_capacitacion_legajo.close();
-                                Persona._V.full_info_persona_legajo.close();
-                                Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                                if(rs){
+                                    Swal.fire(
+                                        'ESTUPENDO!',
+                                        'Se guardó exitosamente.',
+                                        'success'
+                                      )
+                                    Persona._V.agregar_capacitacion_legajo.close();
+                                    Persona._V.full_info_persona_legajo.close();
+                                    Persona._V.full_info_persona_legajo.load({'modal':'capacitacion','indiv_id' : indiv_id});
+                                } 
                             }
-                       
-                  
+                            else{
+                                //alert("Debe de completar todos los campos del formulario.");
+                                Swal.fire(
+                                    'ATENCIÓN!',
+                                    'Debe de completar todos los campos del formulario.',
+                                    'warning'
+                                  )
+                            }
+
                 break;
                 case 'actualizar':
-                    var itipocapacid = document.getElementById("c_itipocapacid").value;
-                    var cdenominacion = document.getElementById("c_cdenominacion").value;
-                    var ihoras = document.getElementById("c_ihoras").value;
-                    var dfechainicio = document.getElementById("c_dfechainicio").value;
-                    var dfechatermino = document.getElementById("c_dfechatermino").value;
-                    var ccentroestudios = document.getElementById("c_ccentroestudios").value;
+                        vacio = 0;
                    
                         capacitacion = {
                             accion:accion,
                             ipersid:ipersid,
-                            iperstipocapacid:iperstipocapacid,
-                            itipocapacid:itipocapacid,
-                            cdenominacion:cdenominacion,
-                            ihoras:ihoras,
-                            dfechainicio:dfechainicio,
-                            dfechatermino:dfechatermino,
+                            iperstipocapacid:iperstipocapacid ? iperstipocapacid : vacio++,
+                            itipocapacid:itipocapacid ? itipocapacid : vacio++,
+                                ccentroestudios:ccentroestudios ? ccentroestudios : vacio++,
+                                cdenominacion:cdenominacion ? cdenominacion : vacio++,
+                                dfechainicio:dfechainicio ? dfechainicio : vacio++,
+                                dfechatermino:dfechatermino ? dfechatermino : vacio++,
+                                ihoras:ihoras ? ihoras : vacio++,
+                        }
 
-                            ccentroestudios:ccentroestudios,
-                        }
-                       
-                        var rs =  Persona.capacitacion_accion(capacitacion);
-                    
-                        if(rs){
-                            //Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
-                            Persona._V.actualizar_capacitacion_legajo.close();
-                            Persona._V.full_info_persona_legajo.close();
-                            Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
-                        }
-                   
-                    
+                        
+                        if(vacio==0){
+                            var rs =  Persona.capacitacion_accion(capacitacion);
+                        
+                            if(rs){
+                                Swal.fire(
+                                    'ESTUPENDO!',
+                                    'Se actualizó exitosamente.',
+                                    'success'
+                                  )
+    
+                               
+                                Persona._V.actualizar_capacitacion_legajo.close();
+                                Persona._V.full_info_persona_legajo.close();
+                                Persona._V.full_info_persona_legajo.load({'modal':'capacitacion','indiv_id' : indiv_id});
+                            }}
+                            else{
+                                Swal.fire(
+                                    'ATENCIÓN!',
+                                    'Debe de completar todos los campos del formulario.',
+                                    'warning'
+                                  )
+                            }
+
+                        
                 break;
                 case 'eliminar':
                    
@@ -2535,12 +2999,16 @@
                         var rs =  Persona.capacitacion_accion(capacitacion);
                         if(rs){
                             Persona._V.full_info_persona_legajo.close();
-                            Persona._V.full_info_persona_legajo.load({'indiv_id' : indiv_id});
+                            Persona._V.full_info_persona_legajo.load({'modal':'capacitacion','indiv_id' : indiv_id});
                         }
                        
                     }
                     else{
-                        alert('Debe seleccionar un registro');
+                        Swal.fire(
+                            'ATENCIÓN!',
+                            'Debe seleccionar un registro.',
+                            'warning'
+                          )
                     }
                     break;
                 default: alert('No se encontró acción'); break;
@@ -2549,16 +3017,561 @@
             
          },
 
-         btn_expLaboral_click_legajo : function(ipersid,accion,iperstipoestudid){
-            
-            
+         btn_laboral_click_legajo : function(indiv_id,ipersid,accion,iexp_laboralid){
             switch(accion){
                 case 'agregar':
-                    Persona._V.agregar_expLaboral_legajo.load({'ipersid':ipersid,'iperstipoestudid' : null});
+                    Persona._V.agregar_laboral_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'iexp_laboralid' : null});
+                   
                 break;
                 case 'actualizar':
-                    if(iperstipoestudid!=''){
-                        Persona._V.actualizar_expLaboral_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
+                    if(iexp_laboralid!=''){
+                        Persona._V.actualizar_laboral_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'iexp_laboralid' : iexp_laboralid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    
+                break;
+                case 'eliminar':
+                    if(iexp_laboralid!=''){
+                        Swal.fire({
+                            title: 'Seguro desea eliminar?',
+                            text: "¡No podrás revertir esto!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Si!'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                                Persona.Ui.btn_laboral_accion(indiv_id,iexp_laboralid,ipersid,'eliminar'); 
+                            }
+                          })
+
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+            }
+         },
+
+        btn_laboral_accion : function(indiv_id,iexp_laboralid,ipersid,accion,form){
+            
+        let laboral = {};
+          if(accion!='eliminar'){
+            var frm_elements = form.elements;
+            for(i=0; i<frm_elements.length; i++)
+                    {   
+                       
+                        switch (frm_elements[i].id)
+                        {
+                            case "ccargos_desempenados":    
+                                var ccargos_desempenados = frm_elements[i].value;
+                            break;  
+                            case "dfechainicio":    
+                            var dfechainicio = frm_elements[i].value;
+                            break;  
+                            case "dfechatermino":    
+                            var dfechatermino = frm_elements[i].value;
+                            break;    
+                            case "lugar_laburo":    
+                            var lugar_laburo = frm_elements[i].value;
+                            break;    
+                             
+                        }
+                    }
+                }
+            switch(accion){
+                case 'agregar':
+                          vacio = 0
+                          laboral = {
+                                accion:accion,
+                                ipersid:ipersid,
+                                ccargos_desempenados:ccargos_desempenados ? ccargos_desempenados : vacio++,
+                                dfechainicio:dfechainicio ? dfechainicio : vacio++,
+                                dfechatermino:dfechatermino ? dfechatermino : vacio++,
+                                lugar_laburo:lugar_laburo ? lugar_laburo : vacio++,
+                               
+                            }
+                            
+                            if(vacio==0){
+                                var rs =  Persona.laboral_accion(laboral);
+                           
+                                if(rs){
+                                    Swal.fire(
+                                        'ESTUPENDO!',
+                                        'Se guardó exitosamente.',
+                                        'success'
+                                      )
+                                    Persona._V.agregar_laboral_legajo.close();
+                                    Persona._V.full_info_persona_legajo.close();
+                                    Persona._V.full_info_persona_legajo.load({'modal':'experiencia','indiv_id' : indiv_id});
+                                } 
+                            }
+                            else{
+                                //alert("Debe de completar todos los campos del formulario.");
+                                Swal.fire(
+                                    'ATENCIÓN!',
+                                    'Debe de completar todos los campos del formulario.',
+                                    'warning'
+                                  )
+                            }
+                           
+                  
+                break;
+                case 'actualizar':
+
+                    vacio = 0
+
+                    laboral = {
+                            accion:accion,
+                            ipersid:ipersid,
+                            iexp_laboralid:iexp_laboralid ? iexp_laboralid : vacio++,
+                            ccargos_desempenados:ccargos_desempenados ? ccargos_desempenados : vacio++,
+                            dfechainicio:dfechainicio ? dfechainicio : vacio++,
+                            dfechatermino:dfechatermino ? dfechatermino : vacio++,
+                            lugar_laburo:lugar_laburo ? lugar_laburo : vacio++,
+                            
+                        }
+
+                        
+                        if(vacio==0){
+                        var rs =  Persona.laboral_accion(laboral);
+                    
+                        if(rs){
+                            Swal.fire(
+                                'ESTUPENDO!',
+                                'Se actualizó exitosamente.',
+                                'success'
+                              );
+                            
+                            Persona._V.actualizar_laboral_legajo.close();
+                            Persona._V.full_info_persona_legajo.close();
+                            Persona._V.full_info_persona_legajo.load({'modal':'experiencia','indiv_id' : indiv_id});
+                            }
+                        }
+                        else{
+                            Swal.fire(
+                                'ATENCIÓN!',
+                                'Debe de completar todos los campos del formulario.',
+                                'warning'
+                              )
+                        }
+                    
+                break;
+                case 'eliminar':
+                   
+                    if(iexp_laboralid!=''){
+
+                        laboral = {
+                            accion:accion,
+                            ipersid:ipersid,
+                            iexp_laboralid:iexp_laboralid
+                        }
+                       
+                        var rs =  Persona.laboral_accion(laboral);
+
+                        if(rs){
+                            Swal.fire(
+                                'ESTUPENDO!',
+                                'Se eliminó exitosamente.',
+                                'success'
+                              )
+                            Persona._V.full_info_persona_legajo.close();
+                            Persona._V.full_info_persona_legajo.load({'modal':'experiencia','indiv_id' : indiv_id});
+                        }
+                       
+                    }
+                    else{
+                        
+                        Swal.fire(
+                            'ATENCIÓN!',
+                            'Debe seleccionar un registro.',
+                            'warning'
+                          )
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+
+            }
+        },
+
+
+         btn_meritos_click_legajo : function(indiv_id,ipersid,accion,imeritosid){
+            switch(accion){
+                case 'agregar':
+                    Persona._V.agregar_meritos_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'imeritosid' : null});
+                   
+                break;
+                case 'actualizar':
+                    if(imeritosid!=''){
+                        Persona._V.actualizar_meritos_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'imeritosid' : imeritosid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    
+                break;
+                case 'eliminar':
+                    if(imeritosid!=''){
+                        Swal.fire({
+                            title: 'Seguro desea eliminar?',
+                            text: "¡No podrás revertir esto!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Si!'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                                Persona.Ui.btn_meritos_accion(indiv_id,imeritosid,ipersid,'eliminar'); 
+                            }
+                          })
+
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+            }
+         },
+
+         btn_meritos_accion : function(indiv_id,imeritosid,ipersid,accion,form){
+            
+        let meritos = {};
+          if(accion!='eliminar'){
+            var frm_elements = form.elements;
+            for(i=0; i<frm_elements.length; i++)
+                    {   
+                       
+                        switch (frm_elements[i].id)
+                        {
+                            case "ctipomerito":    
+                                var ctipomerito = frm_elements[i].value;
+                            break;  
+                            case "cdocumentotipo":    
+                            var cdocumentotipo = frm_elements[i].value;
+                            break;  
+                            case "cdocumentonro":    
+                            var cdocumentonro = frm_elements[i].value;
+                            break;    
+                            case "cdocumentofecha":    
+                            var cdocumentofecha = frm_elements[i].value;
+                            break;    
+                            case "cmotivo":    
+                            var cmotivo = frm_elements[i].value;
+                            break;    
+                        }
+                    }
+                }
+            switch(accion){
+                case 'agregar':
+                          vacio = 0
+                          meritos = {
+                                accion:accion,
+                                ipersid:ipersid,
+                                ctipomerito:ctipomerito ? ctipomerito : vacio++,
+                                cdocumentotipo:cdocumentotipo ? cdocumentotipo : vacio++,
+                                cdocumentonro:cdocumentonro ? cdocumentonro : vacio++,
+                                cdocumentofecha:cdocumentofecha ? cdocumentofecha : vacio++,
+                                cmotivo:cmotivo ? cmotivo : vacio++,
+                            }
+                            
+                            if(vacio==0){
+                                var rs =  Persona.meritos_accion(meritos);
+                           
+                                if(rs){
+                                    Swal.fire(
+                                        'ESTUPENDO!',
+                                        'Se guardó exitosamente.',
+                                        'success'
+                                      )
+                                    Persona._V.agregar_meritos_legajo.close();
+                                    Persona._V.full_info_persona_legajo.close();
+                                    Persona._V.full_info_persona_legajo.load({'modal':'meritos','indiv_id' : indiv_id});
+                                } 
+                            }
+                            else{
+                                //alert("Debe de completar todos los campos del formulario.");
+                                Swal.fire(
+                                    'ATENCIÓN!',
+                                    'Debe de completar todos los campos del formulario.',
+                                    'warning'
+                                  )
+                            }
+                           
+                  
+                break;
+                case 'actualizar':
+
+                    vacio = 0
+
+                    meritos = {
+                            accion:accion,
+                            ipersid:ipersid,
+                            imeritosid:imeritosid ? imeritosid : vacio++,
+                            ctipomerito:ctipomerito ? ctipomerito : vacio++,
+                            cdocumentotipo:cdocumentotipo ? cdocumentotipo : vacio++,
+                            cdocumentonro:cdocumentonro ? cdocumentonro : vacio++,
+                            cdocumentofecha:cdocumentofecha ? cdocumentofecha : vacio++,
+                            cmotivo:cmotivo ? cmotivo : vacio++,
+                        }
+
+                        
+                        if(vacio==0){
+                        var rs =  Persona.meritos_accion(meritos);
+                    
+                        if(rs){
+                            Swal.fire(
+                                'ESTUPENDO!',
+                                'Se actualizó exitosamente.',
+                                'success'
+                              );
+                            
+                            Persona._V.actualizar_meritos_legajo.close();
+                            Persona._V.full_info_persona_legajo.close();
+                            Persona._V.full_info_persona_legajo.load({'modal':'meritos','indiv_id' : indiv_id});
+                            }
+                        }
+                        else{
+                            Swal.fire(
+                                'ATENCIÓN!',
+                                'Debe de completar todos los campos del formulario.',
+                                'warning'
+                              )
+                        }
+                    
+                break;
+                case 'eliminar':
+                   
+                    if(imeritosid!=''){
+
+                        meritos = {
+                            accion:accion,
+                            ipersid:ipersid,
+                            imeritosid:imeritosid
+                        }
+                       
+                        var rs =  Persona.meritos_accion(meritos);
+
+                        if(rs){
+                            Swal.fire(
+                                'ESTUPENDO!',
+                                'Se eliminó exitosamente.',
+                                'success'
+                              )
+                            Persona._V.full_info_persona_legajo.close();
+                            Persona._V.full_info_persona_legajo.load({'modal':'meritos','indiv_id' : indiv_id});
+                        }
+                       
+                    }
+                    else{
+                        
+                        Swal.fire(
+                            'ATENCIÓN!',
+                            'Debe seleccionar un registro.',
+                            'warning'
+                          )
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+
+            }
+        },
+
+        btn_demeritos_click_legajo : function(indiv_id,ipersid,accion,idemeritosid){
+            switch(accion){
+                case 'agregar':
+                    Persona._V.agregar_demeritos_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'idemeritosid' : null});
+                   
+                break;
+                case 'actualizar':
+                    if(idemeritosid!=''){
+                        Persona._V.actualizar_demeritos_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'idemeritosid' : idemeritosid});
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    
+                break;
+                case 'eliminar':
+                    if(idemeritosid!=''){
+                        Swal.fire({
+                            title: 'Seguro desea eliminar?',
+                            text: "¡No podrás revertir esto!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Si!'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                                Persona.Ui.btn_demeritos_accion(indiv_id,idemeritosid,ipersid,'eliminar'); 
+                            }
+                          })
+
+                    }
+                    else{
+                        alert('Debe seleccionar un registro');
+                    }
+                    break;
+                default: alert('No se encontró acción'); break;
+            }
+         },
+
+         btn_demeritos_accion : function(indiv_id,idemeritosid,ipersid,accion,form){
+            
+            let demeritos = {};
+          if(accion!='eliminar'){
+            var frm_elements = form.elements;
+            for(i=0; i<frm_elements.length; i++)
+                    {   
+                       
+                        switch (frm_elements[i].id)
+                        {
+                            case "sancion":    
+                                var sancion = frm_elements[i].value;
+                            break;  
+                            case "cdocumentoresolucion":    
+                            var cdocumentoresolucion = frm_elements[i].value;
+                            break;  
+                            case "cdocumentonro":    
+                            var cdocumentonro = frm_elements[i].value;
+                            break;    
+                            case "cfecha_ini":    
+                            var cfecha_ini = frm_elements[i].value;
+                            break;    
+                            case "cfecha_fin":    
+                            var cfecha_fin = frm_elements[i].value;
+                            break;    
+                        }
+                    }
+                }
+            switch(accion){
+                case 'agregar':
+                          vacio = 0
+                          demeritos = {
+                                accion:accion,
+                                ipersid:ipersid,
+                                sancion:sancion ? sancion : vacio++,
+                                cdocumentoresolucion:cdocumentoresolucion ? cdocumentoresolucion : vacio++,
+                                cdocumentonro:cdocumentonro ? cdocumentonro : vacio++,
+                                cfecha_ini:cfecha_ini ? cfecha_ini : vacio++,
+                                cfecha_fin:cfecha_fin ? cfecha_fin : vacio++,
+                            }
+                            
+                            if(vacio==0){
+                                var rs =  Persona.demeritos_accion(demeritos);
+                           
+                                if(rs){
+                                    Swal.fire(
+                                        'ESTUPENDO!',
+                                        'Se guardó exitosamente.',
+                                        'success'
+                                      )
+                                    Persona._V.agregar_demeritos_legajo.close();
+                                    Persona._V.full_info_persona_legajo.close();
+                                    Persona._V.full_info_persona_legajo.load({'modal':'demeritos','indiv_id' : indiv_id});
+                                } 
+                            }
+                            else{
+                                //alert("Debe de completar todos los campos del formulario.");
+                                Swal.fire(
+                                    'ATENCIÓN!',
+                                    'Debe de completar todos los campos del formulario.',
+                                    'warning'
+                                  )
+                            }
+                           
+                  
+                break;
+                case 'actualizar':
+
+                    vacio = 0
+
+                    demeritos = {
+                            accion:accion,
+                            ipersid:ipersid,
+                            idemeritosid:idemeritosid ? idemeritosid : vacio++,
+                            sancion:sancion ? sancion : vacio++,
+                            cdocumentoresolucion:cdocumentoresolucion ? cdocumentoresolucion : vacio++,
+                            cdocumentonro:cdocumentonro ? cdocumentonro : vacio++,
+                            cfecha_ini:cfecha_ini ? cfecha_ini : vacio++,
+                            cfecha_fin:cfecha_fin ? cfecha_fin : vacio++,
+                        }
+                        if(vacio==0){
+                        var rs =  Persona.demeritos_accion(demeritos);
+                    
+                        if(rs){
+                            Swal.fire(
+                                'ESTUPENDO!',
+                                'Se actualizó exitosamente.',
+                                'success'
+                              )
+
+                           
+                            Persona._V.actualizar_demeritos_legajo.close();
+                            Persona._V.full_info_persona_legajo.close();
+                            Persona._V.full_info_persona_legajo.load({'modal':'demeritos','indiv_id' : indiv_id});
+                        }}
+                        else{
+                            Swal.fire(
+                                'ATENCIÓN!',
+                                'Debe de completar todos los campos del formulario.',
+                                'warning'
+                              )
+                        }
+                    
+                break;
+                case 'eliminar':
+                   
+                    if(idemeritosid!=''){
+
+                        demeritos = {
+                            accion:accion,
+                            ipersid:ipersid,
+                            idemeritosid:idemeritosid
+                        }
+                       
+                        var rs =  Persona.demeritos_accion(demeritos);
+                        if(rs){
+                            Swal.fire(
+                                'ESTUPENDO!',
+                                'Se eliminó exitosamente.',
+                                'success'
+                              )
+                              Persona._V.full_info_persona_legajo.close();
+                            Persona._V.full_info_persona_legajo.load({'modal':'demeritos','indiv_id' : indiv_id});
+                        }
+                       
+                    }
+                    else{
+                        
+                        Swal.fire(
+                            'ATENCIÓN!',
+                            'Debe seleccionar un registro.',
+                            'warning'
+                          )
+                    }
+                    break;
+                default: alert('No se encontró acción');
+                break;
+
+            }
+        },
+
+        btn_cargaFam_click_legajo : function(indiv_id,ipersid,accion,icarga_familiarid){
+        
+            switch(accion){
+                case 'agregar':
+                    Persona._V.agregar_cargaFam_legajo.load({'indiv_id':indiv_id, 'accion':accion,'ipersid':ipersid,'icarga_familiarid' : null});
+                break;
+                case 'actualizar':
+                    if(icarga_familiarid!=''){
+                        Persona._V.actualizar_cargaFam_legajo.load({'indiv_id':indiv_id,'accion':accion,'ipersid':ipersid,'icarga_familiarid' : icarga_familiarid});
                     }
                     else{
                         alert('Debe seleccionar un registro');
@@ -2567,8 +3580,21 @@
                 break;
                 case 'eliminar':
                    
-                    if(iperstipoestudid!=''){
-                        Persona._V.eliminar_expLaboral_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
+                    if(icarga_familiarid!=''){
+                        Swal.fire({
+                            title: 'Seguro desea eliminar?',
+                            text: "¡No podrás revertir esto!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Si!'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                                Persona.Ui.btn_cargaFam_accion(indiv_id,icarga_familiarid,ipersid,'eliminar'); 
+                            }
+                          })
+                        //Persona._V.eliminar_cargaFam_legajo.load({'ipersid':ipersid,'icarga_familiarid' : icarga_familiarid});
                     }
                     else{
                         alert('Debe seleccionar un registro');
@@ -2580,92 +3606,144 @@
             
          },
 
-         btn_meritos_click_legajo : function(ipersid,accion,iperstipoestudid){
+         btn_cargaFam_accion : function(indiv_id,icarga_familiarid,ipersid,accion,form){
+            let familiar = {};
+            if(accion!='eliminar'){
+                var frm_elements = form.elements;
+                for(i=0; i<frm_elements.length; i++)
+                {
+                    switch (frm_elements[i].id){
+                        case "cape_nom_conyug":
+                            var cape_nom_conyug = frm_elements[i].value;
+                        break;
+                        case "ccel_conyug":
+                            var ccel_conyug = frm_elements[i].value;
+                        break;
+                        case "cape_nom_hijos":
+                            var cape_nom_hijos = frm_elements[i].value;
+                        break;
+                        case "cfechanac_hijos":
+                            var cfechanac_hijos = frm_elements[i].value;
+                        break;
+                        case "ape_nom_padre":
+                            var ape_nom_padre = frm_elements[i].value;
+                        break;
+                        case "cel_padre":
+                            var cel_padre = frm_elements[i].value;
+                        break;
+                        case "ape_nom_madre":
+                            var ape_nom_madre = frm_elements[i].value;
+                        break;
+                        case "cel_madre":
+                            var cel_madre = frm_elements[i].value;
+                        break;
+                        case "dfechasis":
+                            var dfechasis = frm_elements[i].value;
+                        break;
+                    }
+                }
+            }
             switch(accion){
                 case 'agregar':
-                    Persona._V.agregar_meritos_legajo.load({'ipersid':ipersid,'iperstipoestudid' : null});
+                    vacio = 0
+                    familiar = {
+                        accion:accion,
+                        ipersid:ipersid,
+                        cape_nom_conyug:cape_nom_conyug ? cape_nom_conyug : vacio++,
+                        ccel_conyug:ccel_conyug ? ccel_conyug: vacio++,
+                        cape_nom_hijos:cape_nom_hijos ? cape_nom_hijos: vacio++,
+                        cfechanac_hijos:cfechanac_hijos ? cfechanac_hijos: vacio++,
+                        ape_nom_padre:ape_nom_padre ? ape_nom_padre:vacio++,
+                        cel_padre:cel_padre ? cel_padre:vacio++,
+                        ape_nom_madre:ape_nom_madre ? ape_nom_madre:vacio++,
+                        cel_madre:cel_madre ? cel_madre:vacio++,
+                        dfechasis:dfechasis ? dfechasis:vacio++
+                    }
+
+                    if(vacio==0){
+                        var rs = Persona.cargaFam_accion(familiar);
+
+                        if(rs){
+                            Swal.fire(
+                                'ESTUPENDO!',
+                                'Se guardó exitosamente.',
+                                'success'
+                              )
+                            Persona._V.agregar_cargaFam_legajo.close();
+                            Persona._V.full_info_persona_legajo.close();
+                            Persona._V.full_info_persona_legajo.load({'modal':'familiar','indiv_id' : indiv_id});
+                        } 
+                    }else {
+                        Swal.fire(
+                            'ATENCION!',
+                            'Debe de completar todos los campos del formulario.',
+                            'warning'
+                        )
+                    }
+            break;
+            case 'actualizar':
+                vacio=0;
+                familiar = {
+                    accion:accion,
+                        ipersid:ipersid,
+                        cape_nom_conyug:cape_nom_conyug ? cape_nom_conyug : vacio++,
+                        ccel_conyug:ccel_conyug ? ccel_conyug: vacio++,
+                        cape_nom_hijos:cape_nom_hijos ? cape_nom_hijos: vacio++,
+                        ape_nom_padre:ape_nom_padre ? ape_nom_padre:vacio++,
+                        cel_padre:cel_padre ? cel_padre:vacio++,
+                        ape_nom_madre:ape_nom_madre ? ape_nom_madre:vacio++,
+                        cel_madre:cel_madre ? cel_madre:vacio++,
+                        dfechasis:dfechasis ? dfechasis:vacio++
+                }
+                if(vacio==0){
+                    var rs = Persona.cargaFam_accion(familiar);
+                    if(rs){
+                        Swal.fire(
+                            'ESTUPENDO!',
+                            'Se actualizó exitosamente.',
+                            'success'
+                          )
+                        Persona._V.actualizar_cargaFam_legajo.close();
+                        Persona._V.full_info_persona_legajo.close();
+                        Persona._V.full_info_persona_legajo.load({'modal':'familiar','indiv_id' : indiv_id});
+                    }
+                }
+                else{
+                    Swal.fire(
+                        'ATENCIÓN!',
+                        'Debe de completar todos los campos del formulario.',
+                        'warning'
+                      )
+                }
+            break;
+            case 'eliminar':
+                if(icarga_familiarid!=''){
+                    familiar={
+                        accion:accion,
+                        ipersid:ipersid,
+                        icarga_familiarid:icarga_familiarid
+                    }
+                    var rs = Persona.cargaFam_accion(familiar);
+                    if (rs){
+                        Swal.fire(
+                            'ESTUPENDO!',
+                            'Se eliminó exitosamente.',
+                            'success'
+                          )
+                        Persona._V.full_info_persona_legajo.close();
+                        Persona._V.full_info_persona_legajo.load({'modal':'familiar','indiv_id' : indiv_id});
+                    }
+                }else {
+                    Swal.fire(
+                        'ATENCIÓN!',
+                        'Debe seleccionar un registro.',
+                        'warning'
+                    )
+                }
                 break;
-                case 'actualizar':
-                    if(iperstipoestudid!=''){
-                        Persona._V.actualizar_meritos_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
-                    }
-                    else{
-                        alert('Debe seleccionar un registro');
-                    }
-                    
+                default:alert('No se encontró acción');
                 break;
-                case 'eliminar':
-                    if(iperstipoestudid!=''){
-                        Persona._V.eliminar_meritos_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
-                    }
-                    else{
-                        alert('Debe seleccionar un registro');
-                    }
-                    break;
-                default: alert('No se encontró acción'); break;
             }
-         },
-
-         btn_demeritos_click_legajo : function(ipersid,accion,iperstipoestudid){
-            
-            
-            switch(accion){
-                case 'agregar':
-                    Persona._V.agregar_demeritos_legajo.load({'ipersid':ipersid,'iperstipoestudid' : null});
-                break;
-                case 'actualizar':
-                    if(iperstipoestudid!=''){
-                        Persona._V.actualizar_demeritos_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
-                    }
-                    else{
-                        alert('Debe seleccionar un registro');
-                    }
-                    
-                break;
-                case 'eliminar':
-                   
-                    if(iperstipoestudid!=''){
-                        Persona._V.eliminar_demeritos_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
-                    }
-                    else{
-                        alert('Debe seleccionar un registro');
-                    }
-                    break;
-                default: alert('No se encontró acción'); break;
-
-            }
-            
-         },
-
-         btn_cargaFam_click_legajo : function(ipersid,accion,iperstipoestudid){
-            
-            
-            switch(accion){
-                case 'agregar':
-                    Persona._V.agregar_cargaFam_legajo.load({'ipersid':ipersid,'iperstipoestudid' : null});
-                break;
-                case 'actualizar':
-                    if(iperstipoestudid!=''){
-                        Persona._V.actualizar_cargaFam_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
-                    }
-                    else{
-                        alert('Debe seleccionar un registro');
-                    }
-                    
-                break;
-                case 'eliminar':
-                   
-                    if(iperstipoestudid!=''){
-                        Persona._V.eliminar_cargaFam_legajo.load({'ipersid':ipersid,'iperstipoestudid' : iperstipoestudid});
-                    }
-                    else{
-                        alert('Debe seleccionar un registro');
-                    }
-                    break;
-                default: alert('No se encontró acción'); break;
-
-            }
-            
          },
          
 
@@ -3074,25 +4152,18 @@
 
 
          btn_viewadjuntar_click : function(btn, evt, window_view){
-
-
               var data = {'data' : dojo.query('.data',btn.parentNode)[0].value  }
               Persona.window_upload_file = window_view;
               Persona._V.view_adjuntar_doc.load(data);
-
          },
           
 
 
          btn_subirfile_click : function(btn, evt){
 
-
               var data = {'data' : dojo.query('.data',btn.parentNode)[0].value  }
-
               if(confirm('Realmente desea adjuntar el archivo? ')){ 
-
                    dojo.setStyle(dojo.byId('dv_files_buttonsubir'), 'display', 'none');
-
                    dojo.setStyle(dojo.byId('dv_files_subir'), 'display', 'block');
                    dojo.byId('formadjfiles_newviatico').submit();
               }

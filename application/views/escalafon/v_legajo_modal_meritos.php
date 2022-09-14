@@ -1,58 +1,52 @@
-<form  class="row pt-2">
+<form class="row pt-2" name="FormMeritos">
+
+  <label class="col-sm-12 col-form-label text-uppercase font-weight-bold">Tipo de Merito:</label>
   <div class="col-sm-12">
-    <input type="hidden" name="ipersid" id="ipersid" value="<?PHP echo trim($ipersid); ?>" />
+    <input type="text" name="ctipomerito" id="ctipomerito" value="<?php echo trim($meritos[0]['ctipomerito']);?>" class="form-control form-control-sm" />
   </div>
 
-  <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Tipo de Merito:
-    <div class="col-sm-8">
-      <input type="text" name="ctipomerito" id="ctipomerito" class="form-control form-control-sm" />
-    </div>
-  </label>
+  <label class="col-sm-12 col-form-label text-uppercase font-weight-bold">Documento Tipo:</label>
+  <div class="col-sm-12">
+    <input type="text" name="cdocumentotipo" id="cdocumentotipo" value="<?php echo trim($meritos[0]['cdocumentotipo']);?>" class="form-control form-control-sm" />
+  </div>
 
-  <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Documento Tipo:
-    <div class="col-sm-6">
-      <input type="date" name="cdocumentotipo" id="cdocumentotipo" class="form-control form-control-sm" />
-    </div>
-  </label>
-  <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Doc Nro:
-    <div class="col-sm-6">
-      <input type="date" name="cdocumentonro" id="cdocumentonro" class="form-control form-control-sm" />
-    </div>
-  </label>
+  <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Doc Nro:</label>
+  <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Documento Fecha:</label>
 
-  <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Documento Fecha:
-    <div class="col-sm-7">
-      <input type="text" name="cdocumentofecha" id="cdocumentofecha" class="form-control form-control-sm" />
-    </div>
-  </label>
+  <div class="col-sm-6">
+      <input type="text" name="cdocumentonro" id="cdocumentonro" value="<?php echo trim($meritos[0]['cdocumentonro']);?>" class="form-control form-control-sm" />
+  </div>
+  <div class="col-sm-6">
+      <input type="date" name="cdocumentofecha" id="cdocumentofecha" value="<?php echo trim($meritos[0]['cdocumentofecha']);?>" class="form-control form-control-sm" />
+  </div>
 
-  <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Motivo:
-    <div class="col-sm-4">
-      <input type="text" name="cmotivo" id="cmotivo" class="form-control form-control-sm" />
+  <label class="col-sm-12 col-form-label text-uppercase font-weight-bold">Motivo:</label>
+  <div class="col-sm-12">
+      <input type="text" name="cmotivo" id="cmotivo" value="<?php echo trim($meritos[0]['cmotivo']);?>" class="form-control form-control-sm" />
     </div>
-  </label>
 
   <div class="col-sm-12" align="center">
-  <br><br>
-  <?php
+    <br><br>
+    <?php
     switch ($accion) {
       case 'agregar':
+        
     ?>
-    <button onclick=" Persona.btn_estudios_accion_legajo(<?php echo $ipersid; ?>,'agregar'); " type="button" class="btn btn-primary">
-      GUARDAR
-    </button>
-    <?php
+        <button onclick="Persona.Ui.btn_meritos_accion(<?php echo $indiv_id; ?>,null,<?php echo $ipersid; ?>,'agregar',this.form); " type="button" class="btn btn-primary">
+          GUARDAR
+        </button>
+      <?php
         break;
       case 'actualizar':
       ?>
-        <button onclick=" Persona.Ui.btn_estudios_accion(<?php echo $indiv_id; ?>,<?php echo $ipersid; ?>,'actualizar'); " type="button" class="btn btn-primary">
+        <button onclick="Persona.Ui.btn_meritos_accion(<?php echo $indiv_id; ?>,<?php echo $imeritosid; ?>,<?php echo $ipersid; ?>,'actualizar',this.form); " type="button" class="btn btn-primary">
           ACTUALIZAR
         </button>
     <?php
         break;
       default:
         break;
-      }
+    }
     ?>
   </div>
 </form>

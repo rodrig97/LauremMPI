@@ -2,7 +2,7 @@
     /* Fix table head */
     .tableFixHead {
         overflow: auto;
-        height: 350px;
+        height: 450px;
     }
 
     .tableFixHead th {

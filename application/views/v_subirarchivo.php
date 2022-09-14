@@ -48,8 +48,7 @@
                                           ?>
 
                                 <script type="dojo/method" event="onClick" args="evt">
-
-                                                    Persona.Ui.btn_subirfile_click(this,evt);   
+                                   Persona.Ui.btn_subirfile_click(this,evt);
                                 </script>
                                 <label class="lbl11">Guardar Archivo</label> 
                         </button>

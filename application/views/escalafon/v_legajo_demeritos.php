@@ -1,3 +1,30 @@
+<style>
+    /* Fix table head */
+    .tableFixHead {
+        overflow: auto;
+        height: 350px;
+    }
+
+    .tableFixHead th {
+        position: sticky;
+        top: 0;
+    }
+
+    /* Just common table stuff. */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px 16px;
+    }
+
+    th {
+        background: #eee;
+    }
+</Style>
 <div class="class">
 
 
@@ -15,7 +42,7 @@
                 </div>
 
                 <div>
-                    <button onclick=" Persona.Ui.btn_estudios_click_legajo(<?php echo $ipersid; ?>,'agregar',''); " type="button" class="btn btn-primary">
+                    <button onclick=" Persona.Ui.btn_demeritos_click_legajo(<?php echo $indiv_id; ?>,<?php echo $ipersid; ?>,'agregar',''); " type="button" class="btn btn-primary">
                         Agregar Demeritos
                     </button>
                 </div>
@@ -29,27 +56,10 @@
     </div>
 
 </div>
-<div class="container">
-    <div class="header_wrap">
-        <div class="num_rows">
-
-            <div class="form-group">
-                <!--		Show Numbers Of Rows 		-->
-                <select class="form-control" name="state" id="maxRows" style="visibility:hidden">
+<div class="tableFixHead">
 
 
-                    <option value="50">50</option>
-                    <option value="5000">Show ALL Rows</option>
-                </select>
-
-            </div>
-        </div>
-        <!-- <div class="tb_search">
-            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Buscar.." class="form-control">
-        </div> -->
-    </div>
-
-    <table cellpadding="0" cellspacing="0" border="0"  class="table table-hover table-bordered results">
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-hover table-bordered results">
         <thead>
             <tr>
                 <th>#</th>
@@ -66,43 +76,47 @@
 
             <?PHP
 
-            foreach ($estudios as $key => $estud) {
+            foreach ($demeritos as $key => $demeri) {
             ?>
                 <tr>
-
+                <td>
+                    <?php
+                        echo ($key + 1)
+                        ?>
+                    </td>
                     <td>
                         <?PHP
-                            echo ($estud['sancion']);
+                        echo ($demeri['sancion']);
                         ?>
                     </td>
 
                     <td>
                         <?PHP
-                            echo ($estud['cdocumentoresolucion']);
+                        echo ($demeri['cdocumentoresolucion']);
                         ?>
                     </td>
 
                     <td>
                         <?PHP
-                            echo ($estud['cdocumentonro']);
+                        echo ($demeri['cdocumentonro']);
                         ?>
                     </td>
 
                     <td>
                         <?PHP
-                            echo ($estud['cfecha_ini']);
+                        echo ($demeri['cfecha_ini']);
                         ?>
                     </td>
                     <td>
                         <?PHP
-                            echo ($estud['cfecha_fin']);
+                        echo ($demeri['cfecha_fin']);
                         ?></td>
                     <td>
 
 
-                        <button class="btn btn-warning btn-sm" type="button" onclick=" Persona.Ui.btn_estudios_click_legajo(<?php echo $ipersid; ?>,'actualizar',<?php echo ($estud['iperstipoestudid']); ?>); "> <em class="fa fa-pencil"></em></button>
-                        <button class="btn btn-danger btn-sm" type="button" onclick=" Persona.Ui.btn_estudios_click_legajo(<?php echo $ipersid; ?>,'eliminar',<?php echo ($estud['iperstipoestudid']); ?>); "> <em class="fa fa-trash"></em></button>
-                  
+                        <button class="btn btn-warning btn-sm" type="button" onclick=" Persona.Ui.btn_demeritos_click_legajo(<?php echo $indiv_id; ?>,<?php echo $ipersid; ?>,'actualizar',<?php echo ($demeri['idemeritosid']); ?>); "> <em class="fa fa-pencil"></em></button>
+                        <button class="btn btn-danger btn-sm" type="button" onclick=" Persona.Ui.btn_demeritos_click_legajo(<?php echo $indiv_id; ?>,<?php echo $ipersid; ?>,'eliminar',<?php echo ($demeri['idemeritosid']); ?>); "> <em class="fa fa-trash"></em></button>
+
                     </td>
                 </tr>
             <?php

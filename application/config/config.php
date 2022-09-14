@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= '';
+$config['base_url']	= 'http://localhost/laurem/';
 /*
 if ($_SERVER[HTTP_HOST] == 'www.mpi.gob.pe') {
 	$config['base_url'] = 'http://www.mpi.gob.pe/intranet/jasmin/';

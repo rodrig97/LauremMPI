@@ -52,7 +52,7 @@ class demeritoslegajo  extends Table
         return $rs;
     }
 
-    public function listxidemeritos($idemeritosid)
+    public function listxidemeritosid($idemeritosid)
     {
             $data =  (
                 "
@@ -79,5 +79,43 @@ class demeritoslegajo  extends Table
                 $rs =  $this->_CI->db->query($data)->result_array();
                 return $rs;
     }
+
+    public function store($ipersid,$sancion,$cdocumentoresolucion,$cdocumentonro,$cfecha_ini,$cfecha_fin)
+    {
+        $value1 = 1;
+        $sql = "INSERT INTO ficha.demeritos(ipersid,sancion,cdocumentoresolucion,cdocumentonro,cfecha_ini,cfecha_fin,iestado,bhabilitado ) 
+        VALUES('".$ipersid."','".$sancion."','".$cdocumentoresolucion."','".$cdocumentonro."','".$cfecha_ini."','".$cfecha_fin."','".$value1."','".$value1."') ";
+         $this->_CI->db->query($sql);
+        $rs =  $this->_CI->db->insert_id();
+        return $rs;
+    }
+
+    public function update($idemeritosid,$sancion,$cdocumentoresolucion,$cdocumentonro,$cfecha_ini,$cfecha_fin)
+    {
+        $sql = "UPDATE ficha.demeritos
+        SET
+        sancion = '" .$sancion. "'
+        ,cdocumentoresolucion = '" .$cdocumentoresolucion. "'
+        ,cdocumentonro= '" .$cdocumentonro. "'
+        ,cfecha_ini= '" .$cfecha_ini. "'
+        ,cfecha_fin = '" .$cfecha_fin. "'
+        WHERE idemeritosid = '" .$idemeritosid. "'
+         ";
+        $this->_CI->db->query($sql);
+
+        $rs =  $idemeritosid;
+        return $rs;
+    }
+    public function delete($idemeritosid)
+    {
+        $sql = "DELETE FROM ficha.demeritos 
+        WHERE idemeritosid = '" .$idemeritosid. "'
+         ";
+        $this->_CI->db->query($sql);
+
+        $rs =  $idemeritosid;
+        return $rs;
+    }
+
     
 }

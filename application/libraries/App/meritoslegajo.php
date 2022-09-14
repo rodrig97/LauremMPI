@@ -2,19 +2,6 @@
 
 class meritoslegajo  extends Table
 {
-   
-    protected $_FIELDS = array(
-        'id'          => 'indiv_id',
-        'code'        => 'indiv_key',
-        'name'        => 'indiv_nombres',
-        'descripcion' => '',
-        'state'       => 'indiv_estado'
-    );
-
-    protected $_SCHEMA     = 'public';
-    protected $_TABLE      = 'individuo';
-    protected $_PREF_TABLE = 'PERSMPI';
-
 
     public function __construct()
     {
@@ -52,7 +39,7 @@ class meritoslegajo  extends Table
         return $rs;
     }
 
-    public function listximeritos($imeritosid)
+    public function listximeritosid($imeritosid)
     {
             $data =  (
                 "
@@ -79,4 +66,43 @@ class meritoslegajo  extends Table
                 $rs =  $this->_CI->db->query($data)->result_array();
                 return $rs;
         }
+
+    public function store($ipersid,$ctipomerito,$cdocumentotipo,$cdocumentonro,$cdocumentofecha,$cmotivo)
+    {
+        $value1 = 1;
+        $sql = "INSERT INTO ficha.meritos(ipersid,ctipomerito,cdocumentotipo,cdocumentonro,cdocumentofecha,cmotivo,iestado,bhabilitado ) 
+        VALUES('".$ipersid."','".$ctipomerito."','".$cdocumentotipo."','".$cdocumentonro."','".$cdocumentofecha."','".$cmotivo."','".$value1."','".$value1."') ";
+         $this->_CI->db->query($sql);
+        $rs =  $this->_CI->db->insert_id();
+        return $rs;
+    }
+
+    public function update($imeritosid,$ctipomerito,$cdocumentotipo,$cdocumentonro,$cdocumentofecha,$cmotivo)
+    {
+        $sql = "UPDATE ficha.meritos
+        SET
+        ctipomerito = '" .$ctipomerito. "'
+        ,cdocumentotipo = '" .$cdocumentotipo. "'
+        ,cdocumentonro= '" .$cdocumentonro. "'
+        ,cdocumentofecha= '" .$cdocumentofecha. "'
+        ,cmotivo = '" .$cmotivo. "'
+        WHERE imeritosid = '" .$imeritosid. "'
+         ";
+        $this->_CI->db->query($sql);
+
+        $rs =  $imeritosid;
+        return $rs;
+    }
+    public function delete($imeritosid)
+    {
+        $sql = "DELETE FROM ficha.meritos 
+        WHERE imeritosid = '" .$imeritosid. "'
+         ";
+        $this->_CI->db->query($sql);
+
+        $rs =  $imeritosid;
+        return $rs;
+    }
+
+
 }

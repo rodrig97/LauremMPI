@@ -213,6 +213,7 @@ class escalafon extends CI_Controller
     public function ui_legajo_full()
     {
         $indiv_id        = trim($this->input->post('indiv_id'));
+        $modal           = trim($this->input->post('modal'));
         //PRIMER CONSULTAR SI EXISTE EL INDIV_ID EN LA TABLA FICHA.PERSONAS
         $datos_personales = $this->personaslegajo->get_pers_id($indiv_id);
         if (count($datos_personales) < 1) {
@@ -223,50 +224,149 @@ class escalafon extends CI_Controller
                 $datos_personales = null;
             }
         }
-        $estudios = null;
-        $capacitacion = null;
-        $experiencia = null;
-        $meritos = null;
-        $demeritos = null;
-        $familiar = null;
 
-        //SELECT
-        //$tipo_capacitacion = null;
-        if (count($datos_personales) > 0) {
+        if ($modal!='' && count($datos_personales) > 0) {
             $ipersid = $datos_personales[0]['ipersid'];
 
-            $estudios = $this->estudioslegajo->get_ipersid($ipersid);
-            $capacitacion = $this->capacitacionlegajo->get_ipersid($ipersid);
-             /* $experiencia = $this->experiencialegajo->get_ipersid($ipersid);
-            $meritos = $this->meritoslegajo->get_ipersid($ipersid);
-            $demeritos =$this->demeritoslegajo->get_ipersid($ipersid);*/
-            // $familiar = $this->familiarlegajo->get_ipersid($ipersid);
-
-            //SELECT
-            //$tipo_capacitacion = $this->capacitacionlegajo->listTipoCapac();
+            switch ($modal) {
+                case 'personal':
+                    $grupo_sanguineo = $this->personaslegajo->listGrupoSanguineo();
+                    $tipo_seguro= $this->personaslegajo->listTipoSeguro();
+                    $this->load->view(
+                        'escalafon/v_legajo_datosPers',
+                        array(
+                            'indiv_id' =>  $indiv_id,
+                            'ipersid'                  => $ipersid,
+                            'datos_personales'                 => $datos_personales,
+                            'grupo_sanguineo'   => $grupo_sanguineo,
+                            'tipo_seguro'   => $tipo_seguro,
+                           
+                        )
+                    );
+                    $this->guardarArchivo();
+                    break;
+                // case 'informe':
+                //     $informe = [];
+                //     $this->load->view(
+                //         'escalafon/v_legajo_cartaPDF',
+                //         array(
+                //             'indiv_id' =>  $indiv_id,
+                //             'ipersid'                  => $ipersid,
+                //             'informe'                 => $informe,
+                            
+                //         )
+                //     );
+                //     break;
+                case 'estudios':
+                    $estudios = $this->estudioslegajo->get_ipersid($ipersid);
+                    $this->load->view(
+                        'escalafon/v_legajo_estudios',
+                        array(
+                            'indiv_id' =>  $indiv_id,
+                            'ipersid'                  => $ipersid,
+                            'estudios'                 => $estudios,
+                           
+                        )
+                    );
+                    break;
+                case 'capacitacion':
+                    $tipo_capacitacion = $this->capacitacionlegajo->listTipoCapac();
+                    $capacitacion = $this->capacitacionlegajo->get_ipersid($ipersid);
+                    $this->load->view(
+                        'escalafon/v_legajo_capacitacion',
+                        array(
+                            'indiv_id' =>  $indiv_id,
+                            'ipersid'                  => $ipersid,
+                            'tipo_capacitacion'                 => $tipo_capacitacion,
+                            'capacitacion'                 => $capacitacion,
+                            
+                        )
+                    );
+                    break;
+                case 'experiencia':
+                    $laboral = $this->experiencialegajo->get_ipersid($ipersid);
+                    $this->load->view(
+                        'escalafon/v_legajo_expLaboral',
+                        array(
+                            'indiv_id' =>  $indiv_id,
+                            'ipersid'                  => $ipersid,
+                            'laboral'                 => $laboral,
+                            
+                        )
+                    );
+                    break;
+                case 'meritos':
+                    $meritos = $this->meritoslegajo->get_ipersid($ipersid);
+                    $this->load->view(
+                        'escalafon/v_legajo_meritos',
+                        array(
+                            'indiv_id' =>  $indiv_id,
+                            'ipersid'                  => $ipersid,
+                            'meritos'                 => $meritos,
+                        )
+                    );
+                    break;
+                case 'demeritos':
+                    $demeritos = $this->demeritoslegajo->get_ipersid($ipersid);
+                    $this->load->view(
+                        'escalafon/v_legajo_demeritos',
+                        array(
+                            'indiv_id' =>  $indiv_id,
+                            'ipersid'                  => $ipersid,
+                            'demeritos'                 => $demeritos,
+                            
+                        )
+                    );
+                    break;
+                case 'familiar':
+                    $cargaFam = $this->familiarlegajo->get_ipersid($ipersid);
+                    $this->load->view(
+                        'escalafon/v_legajo_cargaFam',
+                        array(
+                            'indiv_id' =>  $indiv_id,
+                            'ipersid'                  => $ipersid,
+                            'cargaFam'                 => $cargaFam,
+                            
+                        )
+                    );
+                    break;
+                default:
+                    break;
+            }
         }
-
-        
-
-        $this->load->view(
-            'escalafon/v_legajo_info',
-            array(
-                'indiv_id' =>  $indiv_id,
-                'datos_personales'         => count($datos_personales) > 0 ? $datos_personales[0] : null,
-                'ipersid'                  => $ipersid,
-                'estudios'                 => count($datos_personales) > 0 ? $estudios : null,
-                'capacitacion'             => count($datos_personales) > 0 ? $capacitacion : null,
-                //'tipo_capacitacion'        =>  $tipo_capacitacion,
-                'experiencia'              => count($datos_personales) > 0 ? $experiencia : null,
-                'meritos'                  => count($datos_personales) > 0 ? $meritos : null,
-                'demeritos'                => count($datos_personales) > 0 ? $demeritos : null,
-                'familiar'                 => count($datos_personales) > 0 ? $familiar : null,
-            )
-        );
     }
 
+    public function guardarArchivo() {
+        $miArchivo = 'upload';
+        $config['upload_path'] = "uploads";
+        $config['file_name'] = "nombre_archivo";
+        $config['allowed_types'] = "*";
+        $config['max_size'] = "5000";
+        $config['max_width'] = "2000";
+        $config['max_height'] = "2000";
+
+        $this->load->library('upload', $config);
+        
+
+        if(!$this->upload->do_upload($miArchivo)){
+            //$data['uploadError'] = $this->upload->display_errors();
+            echo $this->upload->display_errors();
+            return;
+        }
+
+        var_dump($this->upload->data());
+    }
+
+    /*public function mpdf(){
+        $html = $this->load->view('informe_pdf', true);
+        $mpdf = new \MDPF\MDPF();
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    }*/
+
     public function ui_legajo_estudios()
-    {
+    {   
+        
         $accion        = trim($this->input->post('accion'));
         $indiv_id        = trim($this->input->post('indiv_id'));
         $ipersid        = trim($this->input->post('ipersid'));
@@ -283,7 +383,7 @@ class escalafon extends CI_Controller
                             'indiv_id' => $indiv_id,
                             'ipersid' => $ipersid,
                             'iperstipoestudid' => $iperstipoestudid,
-                            'estudios' => $estudios
+                            'estudios' => $estudios,
                         )
                     );
 
@@ -297,7 +397,7 @@ class escalafon extends CI_Controller
                             'indiv_id' => $indiv_id,
                             'ipersid' => $ipersid,
                             'iperstipoestudid' => $iperstipoestudid,
-                            'estudios' => null
+                            'estudios' => null,
                         )
                     );
 
@@ -313,9 +413,53 @@ class escalafon extends CI_Controller
                     'indiv_id' => $indiv_id,
                     'ipersid' => $ipersid,
                     'iperstipoestudid' => null,
-                    'estudios' => []
+                    'estudios' => [],
+                    
                 )
             );
+        }
+    }
+
+    public function personal_accion()
+    {
+        $accion = $this->input->post('accion');
+        $ipersid = $this->input->post('ipersid');
+
+        $igruposangid = $_POST["igruposangid"];
+        $itiposegid = $_POST["itiposegid"];
+        $cnroseg = $_POST["cnroseg"];
+        $cpersruc = $_POST["cpersruc"];
+        $cpersdireccion = $_POST["cpersdireccion"];
+        $dfechanac = $_POST["dfechanac"];
+        $cperslibreta = $_POST["cperslibreta"];
+        $cperslicencia = $_POST["cperslicencia"];
+        $dirigidoa = $_POST["dirigidoa"];
+        $area = $_POST["area"];
+        $creferencia = $_POST["creferencia"];
+        $reposicion = $_POST["reposicion"];
+        $ingr_por = $_POST["ingr_por"];
+        $acta_repos = $_POST["acta_repos"];
+        $cond_labor = $_POST["cond_labor"];
+        $mediante1 = $_POST["mediante1"];
+        $de_fecha = $_POST["de_fecha"];
+        $cargo_nombro = $_POST["cargo_nombro"];
+        $unidad_org_nomb = $_POST["unidad_org_nomb"];
+        $dependiente = $_POST["dependiente"];
+        $regimen_lab = $_POST["regimen_lab"];
+        $apartirdel = $_POST["apartirdel"];
+        $rotadoa = $_POST["rotadoa"];
+        $mediante2 = $_POST["mediante2"];
+        $profesion = $_POST["profesion"];
+        $comentario = $_POST["comentario"];
+       
+        switch ($accion) {
+            case 'actualizar':
+                $personal = $this->personaslegajo->update($ipersid,$igruposangid,$itiposegid,$cnroseg,$cpersruc,$cpersdireccion,$dfechanac,
+                $cperslibreta,$cperslicencia,$dirigidoa,$area,$creferencia,$reposicion,$ingr_por,$acta_repos,$cond_labor,$mediante1,$de_fecha,
+                $cargo_nombro,$unidad_org_nomb,$dependiente,$regimen_lab,$apartirdel,$rotadoa,$mediante2,$profesion,$comentario);
+                return $personal;
+                break;
+           
         }
     }
 
@@ -325,12 +469,11 @@ class escalafon extends CI_Controller
         $ipersid = $this->input->post('ipersid');
 
         $iperstipoestudid = $this->input->post('iperstipoestudid');
-        $ccentroestudios = $this->input->post('ccentroestudios');
-        $dfechainicio = $this->input->post('dfechainicio');
-        $dfechatermino = $this->input->post('dfechatermino');
-        $cgrado_titulo = $this->input->post('cgrado_titulo');
-        $ccolegiaturanro = $this->input->post('ccolegiaturanro');
-
+        $ccentroestudios = $_POST["ccentroestudios"]; //$this->input->post('ccentroestudios') ? $this->input->post('ccentroestudios') : null;
+        $dfechainicio = $_POST["dfechainicio"]; // $this->input->post('dfechainicio') ? $this->input->post('dfechainicio') : null;
+        $dfechatermino = $_POST["dfechatermino"]; // $this->input->post('dfechatermino') ? $this->input->post('dfechatermino') : null;
+        $cgrado_titulo = $_POST["cgrado_titulo"]; // $this->input->post('cgrado_titulo') ? $this->input->post('cgrado_titulo') : null;
+        $ccolegiaturanro = $_POST["ccolegiaturanro"]; // $this->input->post('ccolegiaturanro') ? $this->input->post('ccolegiaturanro') : null;
 
         switch ($accion) {
             case 'agregar':
@@ -362,35 +505,35 @@ class escalafon extends CI_Controller
             switch ($accion) {
                 case 'actualizar':
                     $capacitacion = $this->capacitacionlegajo->listxiperstipocapac($iperstipocapacid);
-                    json_encode($capacitacion);
+                    
                     $this->load->view(
                         'escalafon/v_legajo_modal_capacitacion',
                         array(
                             'accion' => $accion,
                             'indiv_id' => $indiv_id,
                             'ipersid' => $ipersid,
-                            'iperstipocapacid'=>$iperstipocapacid,
+                            'iperstipocapacid' => $iperstipocapacid,
                             'capacitacion' => $capacitacion,
-                            'tipo_capacitacion'=>$tipo_capacitacion
+                            'tipo_capacitacion' => $tipo_capacitacion
                         )
                     );
 
                     break;
-                    case 'eliminar':
+                case 'eliminar':
 
-                        $this->load->view(
-                            'escalafon/v_legajo_modal_capacitacion',
-                            array(
-                                'accion' => $accion,
-                                'indiv_id' => $indiv_id,
-                                'ipersid' => $ipersid,
-                                'iperstipocapacid'=>$iperstipocapacid,
-                                'capacitacion' => null,
-                                'tipo_capacitacion'=>$tipo_capacitacion
-                            )
-                        );
-    
-                        break;
+                    $this->load->view(
+                        'escalafon/v_legajo_modal_capacitacion',
+                        array(
+                            'accion' => $accion,
+                            'indiv_id' => $indiv_id,
+                            'ipersid' => $ipersid,
+                            'iperstipocapacid' => $iperstipocapacid,
+                            'capacitacion' => null,
+                            'tipo_capacitacion' => $tipo_capacitacion
+                        )
+                    );
+
+                    break;
                 default:
                     break;
             }
@@ -401,46 +544,45 @@ class escalafon extends CI_Controller
                     'accion' => $accion,
                     'indiv_id' => $indiv_id,
                     'ipersid' => $ipersid,
-                    'iperstipocapacid'=>null,
+                    'iperstipocapacid' => null,
                     'capacitacion' => [],
-                    'tipo_capacitacion'=>$tipo_capacitacion
+                    'tipo_capacitacion' => $tipo_capacitacion
                 )
             );
         }
     }
 
     public function capacitacion_accion()
-    {   
+    {
         $accion = $this->input->post('accion');
         $ipersid = $this->input->post('ipersid');
 
         $iperstipocapacid = $this->input->post('iperstipocapacid');
-        $itipocapacid= $this->input->post('itipocapacid');
-        $cdenominacion= $this->input->post('cdenominacion');
-        $ihoras= $this->input->post('ihoras');
-        $dfechainicio= $this->input->post('dfechainicio');
-        $dfechatermino= $this->input->post('dfechatermino');
-
-        $ccentroestudios= $this->input->post('ccentroestudios');
+        $itipocapacid = $this->input->post('itipocapacid');
+        $ccentroestudios = $this->input->post('ccentroestudios');
+        $cdenominacion = $this->input->post('cdenominacion');
+        $dfechainicio = $this->input->post('dfechainicio');
+        $dfechatermino = $this->input->post('dfechatermino');
+        $ihoras = $this->input->post('ihoras');
 
         switch ($accion) {
             case 'agregar':
-                $capacitacion = $this->capacitacionlegajo->store($ipersid, $itipocapacid, $cdenominacion,$ihoras, $dfechainicio, $dfechatermino, $ccentroestudios);
+                $capacitacion = $this->capacitacionlegajo->store($ipersid, $itipocapacid, $cdenominacion, $ihoras, $dfechainicio, $dfechatermino, $ccentroestudios);
                 return $capacitacion;
                 break;
             case 'actualizar':
-                $capacitacion = $this->capacitacionlegajo->update($iperstipocapacid,$itipocapacid, $cdenominacion,$ihoras, $dfechainicio, $dfechatermino, $ccentroestudios);
+                $capacitacion = $this->capacitacionlegajo->update($iperstipocapacid, $itipocapacid, $cdenominacion, $ihoras, $dfechainicio, $dfechatermino, $ccentroestudios);
                 return $capacitacion;
             case 'eliminar':
                 $capacitacion = $this->capacitacionlegajo->delete($iperstipocapacid);
                 return $capacitacion;
                 break;
         }
-
     }
 
-    public function ui_legajo_expLaboral()
-    {
+    public function ui_legajo_laboral()
+    {   
+        
         $accion        = trim($this->input->post('accion'));
         $indiv_id        = trim($this->input->post('indiv_id'));
         $ipersid        = trim($this->input->post('ipersid'));
@@ -449,7 +591,20 @@ class escalafon extends CI_Controller
         if ($iexp_laboralid > 0) {
             switch ($accion) {
                 case 'actualizar':
-                    $experiencia = $this->experiencialegajo->listxiexpLaboral($iexp_laboralid);
+                    $laboral = $this->experiencialegajo->listxiexpLaboral($iexp_laboralid);
+                    $this->load->view(
+                        'escalafon/v_legajo_modal_expLaboral',
+                        array(
+                            'accion' => $accion,
+                            'indiv_id' => $indiv_id,
+                            'ipersid' => $ipersid,
+                            'iexp_laboralid' => $iexp_laboralid,
+                            'laboral' => $laboral   
+                        )
+                    );
+
+                    break;
+                case 'eliminar':
 
                     $this->load->view(
                         'escalafon/v_legajo_modal_expLaboral',
@@ -457,7 +612,9 @@ class escalafon extends CI_Controller
                             'accion' => $accion,
                             'indiv_id' => $indiv_id,
                             'ipersid' => $ipersid,
-                            'experiencia' => $experiencia
+                            'iexp_laboralid' => $iexp_laboralid,
+                            'laboral' => null,
+                            
                         )
                     );
 
@@ -472,36 +629,47 @@ class escalafon extends CI_Controller
                     'accion' => $accion,
                     'indiv_id' => $indiv_id,
                     'ipersid' => $ipersid,
-                    'experiencia' => []
+                    'iexp_laboralid' => null,
+                    'laboral' => [],
+                    
                 )
             );
         }
     }
 
-    public function expLaboral_accion()
+    public function laboral_accion()
     {
         $accion = $this->input->post('accion');
         $ipersid = $this->input->post('ipersid');
 
-        $ccargos_desempenados = $this->input->post('ccargos_desempenados');
-        $lugar_laburo = $this->input->input->post('lugar_laburo');
-        $dfechainicio = $this->input->post('dfechainicio');
-        $dfechatermino = $this->input->post('dfechatermino');
+        $iexp_laboralid = $this->input->post('iexp_laboralid');
+        $ccargos_desempenados = $_POST["ccargos_desempenados"]; 
+        $dfechainicio = $_POST["dfechainicio"]; 
+        $dfechatermino = $_POST["dfechatermino"]; 
+        $lugar_laburo = $_POST["lugar_laburo"];
+       
+
 
         switch ($accion) {
             case 'agregar':
-                $expLaboral = $this->experiencialegajo->store($ipersid, $ccargos_desempenados, $lugar_laburo, $dfechainicio, $dfechatermino);
-                return $expLaboral;
-
+                $meritos = $this->experiencialegajo->store($ipersid, $ccargos_desempenados, $dfechainicio, $dfechatermino, $lugar_laburo);
+                return $meritos;
                 break;
             case 'actualizar':
-
+                $meritos = $this->experiencialegajo->update($iexp_laboralid, $ccargos_desempenados, $dfechainicio, $dfechatermino, $lugar_laburo);
+                return $meritos;
+            case 'eliminar':
+                $meritos = $this->experiencialegajo->delete($iexp_laboralid);
+                return $meritos;
                 break;
         }
     }
 
+   
+
     public function ui_legajo_meritos()
-    {
+    {   
+        
         $accion        = trim($this->input->post('accion'));
         $indiv_id        = trim($this->input->post('indiv_id'));
         $ipersid        = trim($this->input->post('ipersid'));
@@ -510,14 +678,30 @@ class escalafon extends CI_Controller
         if ($imeritosid > 0) {
             switch ($accion) {
                 case 'actualizar':
-                    $meritos = $this->meritoslegajo->listximeritos($imeritosid);
+                    $meritos = $this->meritoslegajo->listximeritosid($imeritosid);
                     $this->load->view(
-                        'escalafon/v_legajo_modal_expLaboral',
+                        'escalafon/v_legajo_modal_meritos',
                         array(
                             'accion' => $accion,
                             'indiv_id' => $indiv_id,
                             'ipersid' => $ipersid,
-                            'meritos' => $meritos
+                            'imeritosid' => $imeritosid,
+                            'meritos' => $meritos   
+                        )
+                    );
+
+                    break;
+                case 'eliminar':
+
+                    $this->load->view(
+                        'escalafon/v_legajo_modal_meritos',
+                        array(
+                            'accion' => $accion,
+                            'indiv_id' => $indiv_id,
+                            'ipersid' => $ipersid,
+                            'imeritosid' => $imeritosid,
+                            'meritos' => null,
+                            
                         )
                     );
 
@@ -527,12 +711,14 @@ class escalafon extends CI_Controller
             }
         } else {
             $this->load->view(
-                'escalafon/v_legajo_modal_expLaboral',
+                'escalafon/v_legajo_modal_meritos',
                 array(
                     'accion' => $accion,
                     'indiv_id' => $indiv_id,
                     'ipersid' => $ipersid,
-                    'meritos' => []
+                    'imeritosid' => null,
+                    'meritos' => [],
+                    
                 )
             );
         }
@@ -543,11 +729,13 @@ class escalafon extends CI_Controller
         $accion = $this->input->post('accion');
         $ipersid = $this->input->post('ipersid');
 
-        $ctipomerito = $this->input->post('ctipomerito');
-        $cdocumentotipo = $this->input->input->post('cdocumentotipo');
-        $cdocumentonro = $this->input->post('cdocumentonro');
-        $cdocumentofecha = $this->input->post('cdocumentofecha');
-        $cmotivo = $this->input->post('cmotivo');
+        $imeritosid = $this->input->post('imeritosid');
+        $ctipomerito = $_POST["ctipomerito"]; 
+        $cdocumentotipo = $_POST["cdocumentotipo"]; 
+        $cdocumentonro = $_POST["cdocumentonro"]; 
+        $cdocumentofecha = $_POST["cdocumentofecha"];
+        $cmotivo = $_POST["cmotivo"];
+
 
         switch ($accion) {
             case 'agregar':
@@ -555,13 +743,18 @@ class escalafon extends CI_Controller
                 return $meritos;
                 break;
             case 'actualizar':
-
+                $meritos = $this->meritoslegajo->update($imeritosid, $ctipomerito, $cdocumentotipo, $cdocumentonro, $cdocumentofecha, $cmotivo);
+                return $meritos;
+            case 'eliminar':
+                $meritos = $this->meritoslegajo->delete($imeritosid);
+                return $meritos;
                 break;
         }
     }
 
     public function ui_legajo_demeritos()
-    {
+    {   
+        
         $accion        = trim($this->input->post('accion'));
         $indiv_id        = trim($this->input->post('indiv_id'));
         $ipersid        = trim($this->input->post('ipersid'));
@@ -570,16 +763,33 @@ class escalafon extends CI_Controller
         if ($idemeritosid > 0) {
             switch ($accion) {
                 case 'actualizar':
-                    $idemeritosid = $this->demeritoslegajo->listxidemeritos($idemeritosid);
+                    $demeritos = $this->demeritoslegajo->listxidemeritosid($idemeritosid);
                     $this->load->view(
                         'escalafon/v_legajo_modal_demeritos',
                         array(
                             'accion' => $accion,
                             'indiv_id' => $indiv_id,
                             'ipersid' => $ipersid,
-                            'demeritos' => $idemeritosid
+                            'idemeritosid' => $idemeritosid,
+                            'demeritos' => $demeritos
                         )
                     );
+
+                    break;
+                case 'eliminar':
+
+                    $this->load->view(
+                        'escalafon/v_legajo_modal_demeritos',
+                        array(
+                            'accion' => $accion,
+                            'indiv_id' => $indiv_id,
+                            'ipersid' => $ipersid,
+                            'idemeritosid' => $idemeritosid,
+                            'demeritos' => null,
+                            
+                        )
+                    );
+
                     break;
                 default:
                     break;
@@ -591,7 +801,9 @@ class escalafon extends CI_Controller
                     'accion' => $accion,
                     'indiv_id' => $indiv_id,
                     'ipersid' => $ipersid,
-                    'demeritos' => []
+                    'idemeritosid' => null,
+                    'demeritos' => [],
+                    
                 )
             );
         }
@@ -602,11 +814,13 @@ class escalafon extends CI_Controller
         $accion = $this->input->post('accion');
         $ipersid = $this->input->post('ipersid');
 
-        $sancion = $this->input->post('sancion');
-        $cdocumentoresolucion = $this->input->input->post('cdocumentoresolucion');
-        $cdocumentonro = $this->input->post('cdocumentonro');
-        $cfecha_ini = $this->input->post('cfecha_ini');
-        $cfecha_fin = $this->input->post('cmotivo');
+        $idemeritosid = $this->input->post('idemeritosid');
+        $sancion = $_POST["sancion"]; 
+        $cdocumentoresolucion = $_POST["cdocumentoresolucion"]; 
+        $cdocumentonro = $_POST["cdocumentonro"];
+        $cfecha_ini = $_POST["cfecha_ini"];
+        $cfecha_fin = $_POST["cfecha_fin"];
+
 
         switch ($accion) {
             case 'agregar':
@@ -614,7 +828,11 @@ class escalafon extends CI_Controller
                 return $demeritos;
                 break;
             case 'actualizar':
-
+                $demeritos = $this->demeritoslegajo->update($idemeritosid, $sancion, $cdocumentoresolucion, $cdocumentonro, $cfecha_ini, $cfecha_fin);
+                return $demeritos;
+            case 'eliminar':
+                $demeritos = $this->demeritoslegajo->delete($idemeritosid);
+                return $demeritos;
                 break;
         }
     }
@@ -628,20 +846,37 @@ class escalafon extends CI_Controller
 
         if ($icarga_familiarid > 0) {
             switch ($accion) {
+
                 case 'actualizar':
-                    $icarga_familiarid = $this->familiarlegajo->listxicargaFam($icarga_familiarid);
+                    $cargaFam = $this->familiarlegajo->listxicargaFam($icarga_familiarid);
                     $this->load->view(
                         'escalafon/v_legajo_modal_cargaFam',
                         array(
                             'accion' => $accion,
                             'indiv_id' => $indiv_id,
                             'ipersid' => $ipersid,
-                            'cargaFam' => $icarga_familiarid
+                            'icarga_familiarid' => $icarga_familiarid,
+                            'cargaFam' => $cargaFam
                         )
                     );
-                    break;
+                break;
+                case 'eliminar':
+
+                    $this->load->view(
+                        'escalafon/v_legajo_modal_cargaFam',
+                        array(
+                            'accion' => $accion,
+                            'indiv_id' => $indiv_id,
+                            'ipersid' => $ipersid,
+                            'icarga_familiarid' => $icarga_familiarid,
+                            'cargaFam' => null,
+                            
+                        )
+                    );
+
+                break;
                 default:
-                    break;
+                break;
             }
         } else {
             $this->load->view(
@@ -650,6 +885,7 @@ class escalafon extends CI_Controller
                     'accion' => $accion,
                     'indiv_id' => $indiv_id,
                     'ipersid' => $ipersid,
+                    'icarga_familiarid' => null,
                     'cargaFam' => []
                 )
             );
@@ -676,7 +912,11 @@ class escalafon extends CI_Controller
                 return $cargaFam;
                 break;
             case 'actualizar':
-
+                $cargaFam = $this->familiarlegajo->update($ipersid, $cape_nom_conyug, $ccel_conyug, $cape_nom_hijos, $cfechanac_hijos, $ape_nom_padre, $cel_padre, $ape_nom_madre, $cel_madre);
+                return $cargaFam;
+            case 'eliminar':
+                $cargaFam = $this->familiarlegajo->delete($ipersid);
+                return $cargaFam;
                 break;
         }
     }

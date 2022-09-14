@@ -1,267 +1,207 @@
+<style>
+    .scroll-bg {
+    background: rgb(255,255,255);
+    width: 1000px;
+    margin: 10% auto;
+    padding: 10px;
+}
 
+.scroll-div {
+    width: 930px;
+    background: rgb(255,255,255);
+    height:500px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
 
+.scroll-object {
+    font-family: cursive;
+    font-size: 12px;
+    padding: 5px;
+}
+</style>
 
-<form>
-   
-        <table class="_tablepadding4" width="100%">
-            <tr class="row_form">
-                <td width="140"> <span class="sp12b">Nombres </span></td>
-                <td width="20">:</td>
-                <td width="500">
+<form class="row" name="FormDatosPers">
+<div class="scroll-bg">
+    <div class="scroll-div">
+        <div class="scroll-object">
+        <div class="col-sm-12 alert alert-primary" role="alert">
+            <b>DATOS PERSONALES</b>
+        </div>
+    <label class="col-sm-1 col-form-label text-uppercase font-weight-bold"></label>
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" name="upload">
+        <input type="submit" value="Submit">
+    </form>
+    <label class="col-sm-12 col-form-label text-uppercase font-weight-bold"></label>
+    <label class="col-sm-1 col-form-label text-uppercase font-weight-bold">Nombres
+    </label>
+    <input type="text" name="indiv_nombres" id="indiv_nombres" value="<?php echo trim($datos_personales[0]['indiv_nombres']); ?>" class="col-sm-3 col-form-label">
+    </input>
+    <label class="col-sm-1 col-form-label text-uppercase font-weight-bold">Apellidos
+    </label>
+    <input type="text" name="" id="" value="<?php echo $datos_personales[0]['indiv_appaterno'] . ' ' . $datos_personales[0]['indiv_apmaterno']; ?>" class="col-sm-3 col-form-label">
+    </input>
+    <label class="col-sm-1 col-form-label text-uppercase font-weight-bold">DNI
+    </label>
+    <input type="text" name="indiv_dni" id="indiv_dni" value="<?php echo trim($datos_personales[0]['indiv_dni']);?>" class="col-sm-2 col-form-label">
+    </input>
+    <label class="col-sm-12 col-form-label text-uppercase font-weight-bold"></label>
+    <label class="col-sm-1 col-form-label text-uppercase font-weight-bold">RUC
+    </label>
+    <input type="text" name="cpersruc" id="cpersruc" value="<?php echo trim($datos_personales[0]['cpersruc']);?>" class="col-sm-2 col-form-label">
+    </input>
+    <label class="col-sm-2 col-form-label text-uppercase font-weight-bold">Direccion
+    </label>
+    <input type="text" name="cpersdireccion" id="cpersdireccion" value="<?php echo trim($datos_personales[0]['cpersdireccion']);?>" class="col-sm-2 col-form-label">
+    </input>
+    
+    <label class="col-sm-1 col-form-label text-uppercase font-weight-bold">Celular
+    </label>
+    <input type="text" name="indiv_celular" id="indiv_celular" value="<?php echo trim($datos_personales[0]['indiv_celular']);?>" class="col-sm-2 col-form-label">
+    </input>
+    
+    <label class="col-sm-12 col-form-label text-uppercase font-weight-bold"></label>
+    <label class="col-sm-1 col-form-label text-uppercase font-weight-bold">Email
+    </label>
+    <input type="text" name="indiv_email" id="indiv_email" value="<?php echo trim($datos_personales[0]['indiv_email']);?>" class="col-sm-2 col-form-label">
+    </input>
+    <label class="col-sm-1 col-form-label text-uppercase font-weight-bold">Fecha Nacimiento
+    </label>
+    <input type="date" name="dfechanac" id="dfechanac" value="<?php echo trim($datos_personales[0]['dfechanac']);?>" class="col-sm-2 col-form-label">
+    </input>
+    <label class="col-sm-1 col-form-label text-uppercase font-weight-bold">Libreta Militar
+    </label>
+    <input type="text" name="cperslibreta" id="cperslibreta" value="<?php echo trim($datos_personales[0]['cperslibreta']);?>" class="col-sm-2 col-form-label">
+    </input>
+    <label class="col-sm-1 col-form-label text-uppercase font-weight-bold">Licencia Conducir
+    </label>
+    <input type="text" name="cperslicencia" id="cperslicencia" value="<?php echo trim($datos_personales[0]['cperslicencia']);?>" class="col-sm-2 col-form-label">
+    </input>
 
+    <label class="col-sm-4 col-form-label text-uppercase font-weight-bold">Grupo Sanguineo:</label>
+    <div class="col-sm-4">
+        <select name="igruposangid" id="igruposangid" class="form-control form-control-sm">
+            <?PHP
+            foreach ($grupo_sanguineo as $sanguineo) {
+            ?>
+                <option value="<?PHP echo $sanguineo['igruposangid'] ?>" <?php if ($datos_personales[0]['igruposangid'] == $sanguineo['igruposangid']) echo ' selected="selected"'; ?>> <?PHP echo $sanguineo['cgruposangdsc'] ?></option>
+            <?PHP
+            }
+            ?>
+        </select>
+    </div>
+    <label class="col-sm-4 col-form-label text-uppercase font-weight-bold">Tipo de Seguro:</label>
+    <div class="col-sm-4">
+        <select name="itiposegid" id="itiposegid" class="form-control form-control-sm">
+            <?PHP
+            foreach ($tipo_seguro as $tipseg) {
+            ?>
+                <option value="<?PHP echo $tipseg['itiposegid'] ?>" <?php if ($datos_personales[0]['itiposegid'] == $tipseg['itiposegid']) echo ' selected="selected"'; ?>> <?PHP echo $tipseg['ctiposegdsc'] ?></option>
+            <?PHP
+            }
+            ?>
+        </select>
+    </div>
+    <label class="col-sm-4 col-form-label text-uppercase font-weight-bold">Nro de Seguro:</label>
+    <div class="col-sm-4">
+        <input type="text" name="cnroseg" id="cnroseg" value="<?php echo trim($datos_personales[0]['cnroseg']); ?>" class="form-control form-control-sm" />
+        <br>
+    </div>
 
-                    <input id="fip_txtnombres" class="fieldform" name="nombres" type="text" data-dojo-type="dijit.form.TextBox" value="<?PHP echo trim($pers_info['indiv_nombres']); ?>" data-dojo-props="maxlength:100" class="formelement-250-12" />
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b">Apellido Paterno </span></td>
-                <td>:</td>
-                <td>
+    <hr>
+    <br><br>
+    <div class="col-sm-12 alert alert-primary" role="alert">
+        <b>INFORME</b>
+    </div>
+    <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Informe Dirigido a:</label>
+    <div class="col-sm-6">
+        <input type="text" name="dirigidoa" id="dirigidoa" value="<?php echo trim($datos_personales[0]['dirigidoa']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Trabajo de:</label>
+    <div class="col-sm-6">
+        <input type="text" name="area" id="area" value="<?php echo trim($datos_personales[0]['area']); ?>" class="form-control form-control-sm" />
+    </div>
 
-                    <input id="fip_txtpaterno" class="fieldform" name="paterno" type="text" data-dojo-type="dijit.form.TextBox" value="<?PHP echo trim($pers_info['indiv_appaterno']); ?>" data-dojo-props="maxlength:100" class="formelement-250-12" />
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b">Apellido Materno </span></td>
-                <td>:</td>
-                <td>
+    <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Referencia:</label>
+    <div class="col-sm-6">
+        <input type="text" name="creferencia" id="creferencia" value="<?php echo trim($datos_personales[0]['creferencia']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Reposicion:</label>
+    <div class="col-sm-6">
+        <input type="text" name="reposicion" id="reposicion" value="<?php echo trim($datos_personales[0]['reposicion']); ?>" class="form-control form-control-sm" />
+    </div>
 
-                    <input id="fip_txtmaterno" class="fieldform" name="materno" type="text" data-dojo-type="dijit.form.TextBox" value="<?PHP echo trim($pers_info['indiv_apmaterno']); ?>" data-dojo-props="maxlength:100" class="formelement-250-12" />
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b">Sexo</span></td>
-                <td>:</td>
-                <td>
-                    <select id="fip_selsexo" class="fieldform" name="sexo" data-dojo-type="dijit.form.Select" class="formelement-100-12" style="width:120px;">
-                        <option value="1" <?PHP if ($pers_info['indiv_sexo'] == '1') echo 'selected="selected"'; ?>>Masculino</option>
-                        <option value="2" <?PHP if ($pers_info['indiv_sexo'] == '2') echo 'selected="selected"'; ?>>Femenino</option>
-                        <option value="0" <?PHP if ($pers_info['indiv_sexo'] == '0' || $pers_info['indiv_sexo'] == '') echo 'selected="selected"'; ?>> ------- </option>
-                    </select>
-                </td>
-            </tr>
+    <label class="col-sm-3 col-form-label text-uppercase font-weight-bold">Ingreso por:</label>
+    <div class="col-sm-3">
+        <input type="text" name="ingr_por" id="ingr_por" value="<?php echo trim($datos_personales[0]['ingr_por']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-9 col-form-label text-uppercase font-weight-bold">Acta de Reposicion Judic:</label>
+    <div class="col-sm-9">
+        <input type="text" name="acta_repos" id="acta_repos" value="<?php echo trim($datos_personales[0]['acta_repos']); ?>" class="form-control form-control-sm" />
+    </div>
 
-            <tr class="row_form">
-                <td> <span class="sp12b">Estado Civil</span></td>
-                <td>:</td>
-                <td>
-                    <select id="fip_estadocivil" class="fieldform" name="estadocivil" data-dojo-type="dijit.form.Select" class="formelement-50-12" style="width:120px; font-size:12px;">
-                        <option value="0" <?PHP if ($pers_info['indiv_estadocivil'] == '0') echo 'selected="selected"'; ?>> No especificado</option>
-                        <option value="1" <?PHP if ($pers_info['indiv_estadocivil'] == '1') echo 'selected="selected"'; ?>>Soltero(a)</option>
-                        <option value="2" <?PHP if ($pers_info['indiv_estadocivil'] == '2') echo 'selected="selected"'; ?>>Casado(a)</option>
-                        <option value="3" <?PHP if ($pers_info['indiv_estadocivil'] == '3') echo 'selected="selected"'; ?>>Divorciado(a)</option>
-                        <option value="4" <?PHP if ($pers_info['indiv_estadocivil'] == '4') echo 'selected="selected"'; ?>>Viudo(a)</option>
-                    </select>
-                </td>
+    <label class="col-sm-2 col-form-label text-uppercase font-weight-bold">Condicion lab.:</label>
+    <div class="col-sm-2">
+        <input type="text" name="cond_labor" id="cond_labor" value="<?php echo trim($datos_personales[0]['cond_labor']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-3 col-form-label text-uppercase font-weight-bold">Mediante:</label>
+    <div class="col-sm-3">
+        <input type="text" name="mediante1" id="mediante1" value="<?php echo trim($datos_personales[0]['mediante1']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-3 col-form-label text-uppercase font-weight-bold">De Fecha:</label>
+    <div class="col-sm-3">
+        <input type="date" name="de_fecha" id="de_fecha" value="<?php echo trim($datos_personales[0]['de_fecha']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-4 col-form-label text-uppercase font-weight-bold">Cargo en el que se nombro:</label>
+    <div class="col-sm-4">
+        <input type="text" name="cargo_nombro" id="cargo_nombro" value="<?php echo trim($datos_personales[0]['cargo_nombro']); ?>" class="form-control form-control-sm" />
+    </div>
 
-            </tr>
+    <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Unidad organica se nombro:</label>
+    <div class="col-sm-6">
+        <input type="text" name="unidad_org_nomb" id="unidad_org_nomb" value="<?php echo trim($datos_personales[0]['unidad_org_nomb']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Dependiente:</label>
+    <div class="col-sm-6">
+        <input type="text" name="dependiente" id="dependiente" value="<?php echo trim($datos_personales[0]['dependiente']); ?>" class="form-control form-control-sm" />
+    </div>
 
-            <tr height="35" class="row_form">
-                <td> <span class="sp12b">Lugar de Origen</span></td>
-                <td>:</td>
-                <td colspan="4">
-                    <!--   <select id="fip_departamento" name="departamento" data-dojo-type="dijit.form.Select" data-dojo-props='required:true ' style="width: 130px; font-size:10px;">
-                                    <option value="0" selected="selected"> ------ </option>
-                                     <?PHP
-                                        foreach ($departamentos as $departamento) {
-                                            echo '<option value="' . trim($departamento['departamento']) . '">' . trim($departamento['nombre']) . '</option>';
-                                        }
-                                        ?>
-                              </select>
-
-                                <select id="fip_provincia"  name="provincia" data-dojo-type="dijit.form.Select" data-dojo-props='required:true ' style="width: 130px; font-size:10px;">
-
-                              </select>
-
-                                <select id="fip_distrito"  name="distrito" data-dojo-type="dijit.form.Select" data-dojo-props='required:true ' style="width: 130px; font-size:10px;">
-
-                              </select> -->
-                    <select data-dojo-type="dijit.form.FilteringSelect" data-dojo-props='name:"ciudad", disabled:false, autoComplete:false, highlightMatch: "all",  queryExpr:"${0}*", invalidMessage: "La Ciudad no esta registrada" ' style="margin-left:0px; font-size:12px; width: 250px;">
-                        <option value="0"> No Especificar </option>
-                        <?PHP
-                        $lugar = false;
-                        foreach ($ciudades as $ciudad) {
-
-                            if (trim($ciudad['distrito_id']) . "-" . trim($ciudad['provincia_id']) . "-" . trim($ciudad['departamento_id'])  == trim($pers_info['distrito']) . "-" . trim($pers_info['provincia']) . "-" . trim($pers_info['departamento'])) {
-                                $lugar = true;
-                            }
-
-                            echo "<option value='" . trim($ciudad['distrito_id']) . "-" . trim($ciudad['provincia_id']) . "-" . trim($ciudad['departamento_id']) . "' ";
-                            if ($lugar) echo ' selected="true" ';
-                            echo "   >  " . trim($ciudad['distrito']) . " - " . trim($ciudad['provincia']) . " - " . trim($ciudad['departamento']) . "   </option>";
-
-                            $lugar = false;
-                        }
-                        ?>
-                    </select>
-
-
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b">Fecha de Nacimiento</span></td>
-                <td>:</td>
-                <td>
-                    <!-- <input name="fechanac" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:10" class="formelement-100-12"   />
-                             -->
-
-                    <div class="fieldform" name="fechanac" id="fip_fechanac" data-dojo-type="dijit.form.DateTextBox" data-dojo-props='type:"text", name:"fechanac", value:"<?PHP echo $pers_info['indiv_fechanac']; ?>",
-                                                 constraints:{datePattern:"dd/MM/yyyy", strict:true},
-                                                lang:"es",
-                                                required:true,
-                                                promptMessage:"mm/dd/yyyy",
-                                                invalidMessage:"Fecha invalida, utilize el formato mm/dd/yyyy."' style="width:100px;">
-                    </div>
-
-
-                    <span class="sp12b"> Edad: </span> <?PHP echo $pers_info['edad']; ?> años
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b">Grupo Sanguíneo</span></td>
-                <td>:</td>
-                <td>
-                    <input id="cgruposangdsc" name="cgruposangdsc" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:8, readOnly: true" class="formelement-100-12" value="<?PHP echo trim($pers_info['indiv_dni']); ?>" />
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b">Tipo Seguro</span></td>
-                <td>:</td>
-                <td>
-                    <input id="ctiposegdsc" name="ctiposegdsc" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:8, readOnly: true" class="formelement-100-12" value="<?PHP echo trim($pers_info['indiv_dni']); ?>" />
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b">Nro Seguro</span></td>
-                <td>:</td>
-                <td>
-                    <input id="cnroseg" name="cnroseg" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:8, readOnly: true" class="formelement-100-12" value="<?PHP echo trim($pers_info['indiv_dni']); ?>" />
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b">Dni</span></td>
-                <td>:</td>
-                <td>
-                    <input id="fip_txtdni" name="dni" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:8, readOnly: true" class="formelement-100-12" value="<?PHP echo trim($pers_info['indiv_dni']); ?>" />
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b">Ruc</span></td>
-                <td>:</td>
-                <td>
-                    <select id="fip_selhasruc" name="hasruc" data-dojo-type="dijit.form.Select" data-dojo-props='' class="formelement-35-12" style="width: 40px;">
-                        <option value="1" <?PHP if (trim($pers_info['indiv_ruc']) != '') echo 'selected="selected"'; ?>>Si</option>
-                        <option value="0" <?PHP if (trim($pers_info['indiv_ruc']) == '') echo 'selected="selected"'; ?>>No</option>
-                    </select>
-                    <div class="containerItems" style="display:none">
-                        <span class="sp12b">#</span>
-                        <input id="fip_txtruc" name="ruc" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:11" class="formelement-100-12" value="<?PHP echo trim($pers_info['indiv_ruc']); ?>" />
-                    </div>
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b">Libreta Militar</span></td>
-                <td>:</td>
-                <td>
-                    <select id="fip_selhaslib" name="haslibreta" data-dojo-type="dijit.form.Select" data-dojo-props='' class="formelement-35-12" style="width: 40px;">
-                        <option value="1" <?PHP if (trim($pers_info['indiv_libmilitar_cod']) != '') echo 'selected="selected"'; ?>>Si</option>
-                        <option value="0" <?PHP if (trim($pers_info['indiv_libmilitar_cod']) == '') echo 'selected="selected"'; ?>>No</option>
-                    </select>
-                    <div class="containerItems" style="display:none">
-                        <span class="sp12b">#</span>
-                        <input id="fip_txtlibcod" name="codlibreta" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:10" class="formelement-100-12" value="<?PHP echo trim($pers_info['indiv_libmilitar_cod']); ?>" />
-                        <span class="sp12b">De:</span>
-                        <select id="fip_txtlibtip" name="tipolibreta" data-dojo-type="dijit.form.Select" data-dojo-props='' class="formelement-80-12">
-                            <option value="0" <?PHP if ($pers_info['indiv_libmilitar_tipo'] == '') echo 'selected="selected"'; ?>> ------- </option>
-                            <option value="1" <?PHP if ($pers_info['indiv_libmilitar_tipo'] == '1') echo 'selected="selected"'; ?>>Ejercito</option>
-                            <option value="2" <?PHP if ($pers_info['indiv_libmilitar_tipo'] == '2') echo 'selected="selected"'; ?>>Fap</option>
-                            <option value="3" <?PHP if ($pers_info['indiv_libmilitar_tipo'] == '3') echo 'selected="selected"'; ?>>Marina</option>
-                        </select>
-                    </div>
-
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b">Brevete</span></td>
-                <td>:</td>
-                <td>
-                    <select id="fip_hasbrevete" name="hasbrevete" data-dojo-type="dijit.form.Select" data-dojo-props='' class="formelement-35-12" style="width: 40px;">
-
-                        <option value="1" <?PHP if (trim($pers_info['indiv_brevete_cod']) != '') echo 'selected="selected"'; ?>>Si</option>
-                        <option value="0" <?PHP if (trim($pers_info['indiv_brevete_cod']) == '') echo 'selected="selected"'; ?>>No</option>
-
-                    </select>
-                    <div class="containerItems" style="display:none">
-                        <span class="sp12b">#</span>
-                        <input id="fip_codbrevete" name="codbrevete" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:10" class="formelement-100-12" value="<?PHP echo trim($pers_info['indiv_brevete_cod']); ?>" />
-                        <span class="sp12b">Categor&iacute;a:</span>
-                        <select id="fip_tipobrevete" name="tipobrevete" data-dojo-type="dijit.form.Select" data-dojo-props=' ' class="formelement-50-12">
-                            <option value="0" <?PHP if (trim($pers_info['indiv_brevete_tipo']) == '') echo ' selected="selected" ';  ?>> ------ </option>
-                            <?PHP
-                            foreach ($brevetes as $tipobrevet) {
-                                echo '<option value="' . $tipobrevet['id'] . '"';
-
-                                if (trim($pers_info['indiv_brevete_tipo']) == $tipobrevet['id']) echo ' selected="selected" ';
-
-                                echo ' >' . trim($tipobrevet['label']) . '</option>';
-                            }
-                            ?>
-
-                        </select>
-                    </div>
-
-                </td>
-            </tr>
-
-            <tr class="row_form">
-                <td> <span class="sp12b">Direcci&oacute;n 1 </span></td>
-                <td>:</td>
-                <td>
-                    <input id="fip_direccion1" name="direccion1" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:100" class="formelement-250-12" value="<?PHP echo trim($pers_info['indiv_direccion1']); ?>" />
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b"> Telefono casa </span></td>
-                <td>:</td>
-                <td>
-                    <input id="fip_fono" name="fono" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:20" class="formelement-80-12" value="<?PHP echo trim($pers_info['indiv_telefono']); ?>" />
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b"> Telefono celular </span></td>
-                <td>:</td>
-                <td>
-                    <input id="fip_celular" name="celular" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:20" class="formelement-80-12" value="<?PHP echo trim($pers_info['indiv_celular']); ?>" />
-                </td>
-            </tr>
-            <tr class="row_form">
-                <td> <span class="sp12b"> Email </span></td>
-                <td>:</td>
-                <td>
-                    <input id="fip_email" name="email" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:80" class="formelement-200-12" value="<?PHP echo trim($pers_info['indiv_email']); ?>" />
-                </td>
-            </tr>
-
-            <!--
-                       <tr class="row_form">
-                          <td> <span class="sp12b">ESSALUD</span></td>
-                          <td>:</td>
-                          <td> 
-                              <select id="fip_hasessalud"  name="hasessalud"  data-dojo-type="dijit.form.Select" data-dojo-props='' class="formelement-35-12">
-                                  <option value="1"    <?PHP if (trim($pers_info['persa_id']) != '') echo 'selected="selected"'; ?> >Si</option>
-                                    <option value="0"  <?PHP if (trim($pers_info['persa_id']) == '') echo 'selected="selected"'; ?>>No</option>
-                              </select>
-                                 <div class="containerItems" style="display:none">
-
-                                  <span class="sp12b">Codigo: </span>
-                                 <input id="fip_essaludcod" name="essaludcod" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="maxlength:30" class="formelement-100-12"   value="<?PHP if (trim($pers_info['persa_id']) != '') echo trim($pers_info['persa_codigo']); ?>" />
-
-                                 </div>
-                          </td>
-                     </tr> 
-                   -->
-        </table>
-        <button>
+    <label class="col-sm-3 col-form-label text-uppercase font-weight-bold">Regimen Laboral:</label>
+    <div class="col-sm-3">
+        <input type="text" name="regimen_lab" id="regimen_lab" value="<?php echo trim($datos_personales[0]['regimen_lab']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-3 col-form-label text-uppercase font-weight-bold">A partir del:</label>
+    <div class="col-sm-3">
+        <input type="date" name="apartirdel" id="apartirdel" value="<?php echo trim($datos_personales[0]['apartirdel']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-2 col-form-label text-uppercase font-weight-bold">Rotado a:</label>
+    <div class="col-sm-2">
+        <input type="text" name="rotadoa" id="rotadoa" value="<?php echo trim($datos_personales[0]['rotadoa']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-4 col-form-label text-uppercase font-weight-bold">Mediante:</label>
+    <div class="col-sm-4">
+        <input type="text" name="mediante2" id="mediante2" value="<?php echo trim($datos_personales[0]['mediante2']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-4 col-form-label text-uppercase font-weight-bold">Profesion:</label>
+    <div class="col-sm-4">
+        <input type="text" name="profesion" id="profesion" value="<?php echo trim($datos_personales[0]['profesion']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-6 col-form-label text-uppercase font-weight-bold">Comentario:</label>
+    <div class="col-sm-6">
+        <input type="text" name="comentario" id="comentario" value="<?php echo trim($datos_personales[0]['comentario']); ?>" class="form-control form-control-sm" />
+    </div>
+    <label class="col-sm-2 col-form-label text-uppercase font-weight-bold"></label>
+    <div class="col-sm-2">
+        <button onclick="Persona.Ui.btn_personal_accion(<?php echo $indiv_id; ?>,<?php echo $ipersid; ?>,'actualizar',this.form); " type="button" class="btn btn-primary">
             Guardar
         </button>
-    </form>
+        <button onclick="Persona.Ui.crearPDFDatos();" type="button" class="btn btn-primary">
+            Informe PDF
+        </button>
+    </div>
+        </div>
+    </div>
+</div>
+    
+</form>

@@ -1,3 +1,31 @@
+<style>
+    /* Fix table head */
+    .tableFixHead {
+        overflow: auto;
+        height: 350px;
+    }
+
+    .tableFixHead th {
+        position: sticky;
+        top: 0;
+    }
+
+    /* Just common table stuff. */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px 16px;
+    }
+
+    th {
+        background: #eee;
+    }
+</Style>
+
 <div class="class">
 
 
@@ -15,7 +43,7 @@
                 </div>
 
                 <div>
-                    <button onclick=" Persona.Ui.btn_estudios_click_legajo(<?php echo $ipersid; ?>,'agregar',''); " type="button" class="btn btn-primary">
+                    <button onclick=" Persona.Ui.btn_laboral_click_legajo(<?php echo $indiv_id; ?>,<?php echo $ipersid; ?>,'agregar',''); " type="button" class="btn btn-primary">
                         Agregar Experiencia
                     </button>
                 </div>
@@ -26,27 +54,8 @@
     </div>
 
 </div>
-<div class="container">
-    <div class="header_wrap">
-        <div class="num_rows">
-
-            <div class="form-group">
-                <!--		Show Numbers Of Rows 		-->
-                <select class="form-control" name="state" id="maxRows" style="visibility:hidden">
-
-
-                    <option value="50">50</option>
-                    <option value="5000">Show ALL Rows</option>
-                </select>
-
-            </div>
-        </div>
-        <!-- <div class="tb_search">
-            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Buscar.." class="form-control">
-        </div> -->
-    </div>
-
-    <table cellpadding="0" cellspacing="0" border="0"  class="table table-hover table-bordered results">
+<div class="tableFixHead">
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-hover table-bordered">
         <thead>
             <tr>
                 <th>#</th>
@@ -61,30 +70,34 @@
 
             <?PHP
 
-            foreach ($estudios as $key => $estud) {
+            foreach ($laboral as $key => $lab) {
             ?>
                 <tr>
-
+                    <td>
+                        <?php
+                        echo ($key + 1)
+                        ?>
+                    </td>
                     <td>
                         <?PHP
-                        echo ($estud['ccargos_desempenados']);
+                        echo ($lab['ccargos_desempenados']);
                         ?>
                     </td>
 
                     <td>
                         <?PHP
-                        echo ($estud['dfechainicio']);
+                        echo ($lab['dfechainicio']);
                         ?>
                     </td>
                     <td> <?PHP
-                            echo ($estud['dfechatermino']);
+                            echo ($lab['dfechatermino']);
                             ?></td>
                     <td>
 
 
-                        <button class="btn btn-warning btn-sm" type="button" onclick=" Persona.Ui.btn_estudios_click_legajo(<?php echo $ipersid; ?>,'actualizar',<?php echo ($estud['iperstipoestudid']); ?>); "> <em class="fa fa-pencil"></em></button>
-                        <button class="btn btn-danger btn-sm" type="button" onclick=" Persona.Ui.btn_estudios_click_legajo(<?php echo $ipersid; ?>,'eliminar',<?php echo ($estud['iperstipoestudid']); ?>); "> <em class="fa fa-trash"></em></button>
-                  
+                        <button class="btn btn-warning btn-sm" type="button" onclick="Persona.Ui.btn_laboral_click_legajo(<?php echo $indiv_id; ?>,<?php echo $ipersid; ?>,'actualizar',<?php echo ($lab['iexp_laboralid']); ?>); "> <em class="fa fa-pencil"></em></button>
+                        <button class="btn btn-danger btn-sm" type="button" onclick="Persona.Ui.btn_laboral_click_legajo(<?php echo $indiv_id; ?>,<?php echo $ipersid; ?>,'eliminar',<?php echo ($lab['iexp_laboralid']); ?>); "> <em class="fa fa-trash"></em></button>
+
                     </td>
                 </tr>
             <?php

@@ -553,6 +553,9 @@ thead.fixedHeader a:hover {
 /* set TBODY element to have block level attributes. All other non-IE browsers            */
 /* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
 /* induced side effect is that child TDs no longer accept width: auto                     */
+
+
+
 html>body tbody.scrollContent {
 	display: block;
 	height: 242px;

@@ -92,8 +92,8 @@
                     <td>
 
                     
-                        <button class="btn btn-warning btn-sm" type="button" onclick=" Persona.Ui.btn_capacitacion_click_legajo(<?php echo $indiv_id; ?>,<?php echo $ipersid; ?>,'actualizar',<?php echo ($estud['iperstipocapacid']); ?>); "> <em class="fa fa-pencil"></em></button>
-                        <button class="btn btn-danger btn-sm" type="button" onclick=" Persona.Ui.btn_capacitacion_click_legajo(<?php echo $indiv_id; ?>,<?php echo $ipersid; ?>,'eliminar',<?php echo ($estud['iperstipocapacid']); ?>); "> <em class="fa fa-trash"></em></button>
+                        <button class="btn btn-warning btn-sm" type="button" onclick=" Persona.Ui.btn_capacitacion_click_legajo(<?php echo $indiv_id; ?>,<?php echo $ipersid; ?>,'actualizar',<?php echo ($capac['iperstipocapacid']); ?>) "> <em class="fa fa-pencil"></em></button>
+                        <button class="btn btn-danger btn-sm" type="button" onclick=" Persona.Ui.btn_capacitacion_click_legajo(<?php echo $indiv_id; ?>,<?php echo $ipersid; ?>,'eliminar',<?php echo ($capac['iperstipocapacid']); ?>); "> <em class="fa fa-trash"></em></button>
                   
                     </td>
                 </tr>

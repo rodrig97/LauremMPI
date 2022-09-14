@@ -84,7 +84,7 @@
         <tbody>
 
             <?PHP
-          
+
             foreach ($personas as $key => $indiv) {
             ?>
                 <tr>
@@ -114,9 +114,25 @@
                         ?></td>
 
                     <td>
-                    
- 
-                        <button class="btn btn-warning btn-sm" type="button"  onclick=" Persona.Ui.btn_tblinfoper_click_legajo(<?php echo ($indiv['indiv_id']); ?>); "> <em class="fa fa-pencil"></em></button>
+                        <div class="dropdown">
+                            <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <em class="fa fa-pencil"></em>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" onclick="Persona.Ui.btn_tblinfoper_click_legajo('personal',<?php echo ($indiv['indiv_id']); ?>); "> Datos Personales</a>
+                                <!--<a class="dropdown-item" onclick="Persona.Ui.btn_tblinfoper_click_legajo('informe',<php echo ($indiv['indiv_id']); ?>); "> Informe</a>-->
+                                <a class="dropdown-item" onclick="Persona.Ui.btn_tblinfoper_click_legajo('estudios',<?php echo ($indiv['indiv_id']); ?>); "> Estudios</a>
+                                <a class="dropdown-item" onclick="Persona.Ui.btn_tblinfoper_click_legajo('capacitacion',<?php echo ($indiv['indiv_id']); ?>); "> Capacitación</a>
+                                <a class="dropdown-item" onclick="Persona.Ui.btn_tblinfoper_click_legajo('experiencia',<?php echo ($indiv['indiv_id']); ?>); "> Experiencia Laboral</a>
+                                <a class="dropdown-item" onclick="Persona.Ui.btn_tblinfoper_click_legajo('meritos',<?php echo ($indiv['indiv_id']); ?>); "> Méritos</a>
+                                <a class="dropdown-item" onclick="Persona.Ui.btn_tblinfoper_click_legajo('demeritos',<?php echo ($indiv['indiv_id']); ?>); "> Demeritos</a>
+                                <a class="dropdown-item" onclick="Persona.Ui.btn_tblinfoper_click_legajo('familiar',<?php echo ($indiv['indiv_id']); ?>); "> Carga Familiar</a>
+                            </div>
+                        </div>
+
+                       <!-- <button class="btn btn-warning btn-sm" type="button" 
+                        onclick=" Persona.Ui.btn_tblinfoper_click_legajo(<php echo ($indiv['indiv_id']); ?>); ">
+                         <em class="fa fa-pencil"></em></button>-->
                     </td>
                 </tr>
             <?php

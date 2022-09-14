@@ -28,7 +28,7 @@ class experiencialegajo  extends Table
 
         $sql = "
         Select 
-        el.iexp_laboralid
+         el.iexp_laboralid
         ,el.ipersid
         ,el.ipaisid
         ,el.idptoid
@@ -60,7 +60,7 @@ class experiencialegajo  extends Table
             $data = (
                 "
                 SELECT
-                el.iexp_laboralid
+                 el.iexp_laboralid
                 ,el.ipersid
                 ,el.ipaisid
                 ,el.idptoid
@@ -82,6 +82,43 @@ class experiencialegajo  extends Table
                 "
             );
             $rs =  $this->_CI->db->query($data)->result_array();
+        return $rs;
+    }
+
+    public function store($ipersid,$ccargos_desempenados,$dfechainicio,$dfechatermino,$lugar_laburo)
+    {
+        $value1 = 1;
+        $sql = "INSERT INTO ficha.exp_laboral(ipersid,ccargos_desempenados,dfechainicio,dfechatermino,lugar_laburo,iestado,bhabilitado ) 
+        VALUES('".$ipersid."','".$ccargos_desempenados."','".$dfechainicio."','".$dfechatermino."','".$lugar_laburo."','".$value1."','".$value1."') ";
+         $this->_CI->db->query($sql);
+        $rs =  $this->_CI->db->insert_id();
+        return $rs;
+    }
+
+    public function update($iexp_laboralid,$ccargos_desempenados,$dfechainicio,$dfechatermino,$lugar_laburo)
+    {
+        $sql = "UPDATE ficha.exp_laboral
+        SET
+        ccargos_desempenados = '" .$ccargos_desempenados. "'
+        ,dfechainicio = '" .$dfechainicio. "'
+        ,dfechatermino= '" .$dfechatermino. "'
+        ,lugar_laburo= '" .$lugar_laburo. "'
+       
+        WHERE iexp_laboralid = '" .$iexp_laboralid. "'
+         ";
+        $this->_CI->db->query($sql);
+
+        $rs =  $iexp_laboralid;
+        return $rs;
+    }
+    public function delete($iexp_laboralid)
+    {
+        $sql = "DELETE FROM ficha.exp_laboral 
+        WHERE iexp_laboralid = '" .$iexp_laboralid. "'
+         ";
+        $this->_CI->db->query($sql);
+
+        $rs =  $iexp_laboralid;
         return $rs;
     }
   

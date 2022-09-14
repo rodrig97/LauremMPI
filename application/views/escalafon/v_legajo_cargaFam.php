@@ -1,5 +1,31 @@
-<div class="class">
+<style>
+    /* Fix table head */
+    .tableFixHead {
+        overflow: auto;
+        height: 450px;
+    }
 
+    .tableFixHead th {
+        position: sticky;
+        top: 0;
+    }
+
+    /* Just common table stuff. */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px 16px;
+    }
+
+    th {
+        background: #eee;
+    }
+</Style>
+<div class="class">
 
     <div class="wrapper">
         <div class="content-wrapper">
@@ -15,7 +41,7 @@
                 </div>
 
                 <div>
-                    <button onclick=" Persona.Ui.btn_estudios_click_legajo(<?php echo $ipersid; ?>,'agregar',''); " type="button" class="btn btn-primary">
+                    <button onclick=" Persona.Ui.btn_cargaFam_click_legajo(<?php echo $ipersid; ?>,'agregar',''); " type="button" class="btn btn-primary">
                         Agregar Carga Familiar
                     </button>
                 </div>

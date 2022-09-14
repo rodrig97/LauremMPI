@@ -54,7 +54,7 @@ class capacitacionlegajo  extends Table
              ptc.iperstipocapacid
             ,ptc.itipocapacid
             ,ptc.ipersid
-            ,ptc.icentestudid
+            ,ptc.ccentroestudios
             ,ptc.ipaisid
             ,ptc.idptoid
             ,ptc.iprovid
@@ -66,11 +66,11 @@ class capacitacionlegajo  extends Table
             ,ptc.clugar_cap
             ,ptc.documento
             ,ptc.nombarch
-            ,ce.ccentestuddsc
+           
             
             FROM
             ficha.personas_tipo_capacitacion as ptc
-            LEFT JOIN ficha.centro_estudios AS ce ON ptc.icentestudid = ce.icentestudid
+            
             WHERE
             ptc.iperstipocapacid ='" . $iperstipocapacid . "'
             and ptc.bHabilitado = 1
@@ -126,7 +126,6 @@ class capacitacionlegajo  extends Table
 
         $rs =  $iperstipocapacid;
         return $rs;
-       
     }
     public function delete($iperstipocapacid)
     {

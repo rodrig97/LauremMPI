@@ -20,11 +20,11 @@
      <!-- DOJO STYLE -->
 
      <link id="themeStyles" rel="stylesheet" href="<?PHP echo $this->resources->url('js', false); ?>Libs/dojo/dijit/themes/<?PHP echo UI_FRONTEND; ?>/<?PHP echo UI_FRONTEND; ?>.css" />
-     <link id="themeStyles_dijit" rel="stylesheet" href="<?PHP echo $this->resources->url('js', false); ?>Libs/dojo/dojox/widget/Dialog/Dialog.css" />
-     <link id="expandocss" rel="stylesheet" href="<?PHP echo $this->resources->url('js', false); ?>Libs/dojo/dojox/layout/resources/ExpandoPane.css" />
+     <!--<link id="themeStyles_dijit" rel="stylesheet" href="<?PHP echo $this->resources->url('js', false); ?>Libs/dojo/dojox/widget/Dialog/Dialog.css" />-->
+     <!--<link id="expandocss" rel="stylesheet" href="<?PHP echo $this->resources->url('js', false); ?>Libs/dojo/dojox/layout/resources/ExpandoPane.css" />-->
      <link id="grid1css" rel="stylesheet" href="<?PHP echo $this->resources->url('js', false); ?>Libs/dojo/dojox/grid/resources/Grid.css" />
      <link id="grid2css" rel="stylesheet" href="<?PHP echo $this->resources->url('js', false); ?>Libs/dojo/dojox/grid/resources/claroGrid.css" />
-     <link id="wcalendar" rel="stylesheet" href="<?PHP echo $this->resources->url('js', false); ?>Libs/dojo/dojox/widget/Calendar/Calendar.css" />
+     <!--<link id="wcalendar" rel="stylesheet" href="<?PHP echo $this->resources->url('js', false); ?>Libs/dojo/dojox/widget/Calendar/Calendar.css" />-->
 
      <link rel="stylesheet" href="<?PHP echo $this->resources->url('js', false); ?>Libs/dojo/dojo/resources/dojo.css" />
      <link rel="stylesheet" href="<?PHP echo $this->resources->url('js', false); ?>Libs/dojo/dgrid/css/dgrid.css" />
@@ -46,7 +46,7 @@
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
      <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <script>
   // tabbed interface using pure JS ES5, make multiple tabbed ui:s on one page.
 
